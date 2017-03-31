@@ -15,25 +15,24 @@ public class RoundRunner : MonoBehaviour {
     private PuzzleFactory factory;
     private Puzzle Puzzle;
     private BoardFiller boardFiller;
-    private List<TextMesh> UsedLetters = new List<TextMesh>();
+    private List<Text> UsedLetters = new List<Text>();
 
     // Use this for initialization
     void Start() {
         factory = new PuzzleFactory(DataTextFile);
-        Puzzle = factory.NewPuzzle(RoundType.Regular);
         boardFiller = new BoardFiller();
 
         foreach(GameObject obj in UsedLetterObjects) {
-            TextMesh mesh = obj.GetComponent<TextMesh>();
-            UsedLetters.Add(mesh);
+            Text text = obj.GetComponent<Text>();
+            UsedLetters.Add(text);
         }
 
         NewBoard();
     }
 
     public void NewBoard() {
-        foreach(TextMesh mesh in UsedLetters) {
-            mesh.color = Constants.USED_LETTER_ENABLED_COLOR;
+        foreach(Text text in UsedLetters) {
+            text.color = Constants.USED_LETTER_ENABLED_COLOR;
         }
 
         Puzzle = factory.NewPuzzle(RoundType.Regular);
