@@ -5,10 +5,14 @@ using UnityEngine;
 public class BoardFiller : MonoBehaviour {
 
     public List<Row> Rows;
+    public List<Trilon> Trilons;
+    public AudioTracks AudioTracks;
 
-    List<Trilon> Trilons;
     Data data;
     Puzzle Puzzle;
+
+    private IEnumerator coroutine;
+    private IEnumerator subcoroutine;
 
     public void InitBoard(Puzzle Puzzle) {
         this.Puzzle = Puzzle;
@@ -118,11 +122,37 @@ public class BoardFiller : MonoBehaviour {
     public void RevealLetter(char c) {
         c = char.ToUpper(c);
 
-        for(int i = 0; i < Trilons.Count; i++) {
+        List<int> LetterIndexes = new List<int>();
+        for (int i = 0; i < Trilons.Count; i++) {
             if (data.Letters[i].text.Equals(c.ToString())) {
-                data.Letters[i].color = Color.black;
-                Trilons[i].Reveal(c);
+                LetterIndexes.Add(i);
             }
+        }
+
+        if (LetterIndexes.Count == 0) {
+            AudioTracks.Play("buzzer");
+            return;
+        }
+
+        coroutine = WaitForLetter(1f, c, LetterIndexes);
+        StartCoroutine(coroutine);
+    }
+
+    private IEnumerator WaitForLetter(float waitTime, char letter, List<int> Indexes) {    
+        foreach (int i in Indexes) {
+            AudioTracks.Play("ding");
+
+            data.Letters[i].color = Color.blue;
+            data.Screens[i].color = Color.blue;
+
+            yield return new WaitForSeconds(1f);
+
+            data.Letters[i].color = Color.black;
+            data.Screens[i].color = Color.white;
+
+            Trilons[i].Reveal(letter);
+
+            yield return new WaitForSeconds(waitTime);
         }
     }
 

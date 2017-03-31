@@ -8,7 +8,11 @@ public class SortLayerExposer : MonoBehaviour {
     public int SortingOrder = 0;
 
     void Awake() {
-        gameObject.GetComponent<MeshRenderer>().sortingLayerName = SortingLayerName;
-        gameObject.GetComponent<MeshRenderer>().sortingOrder = SortingOrder;
+        MeshRenderer mesh = gameObject.GetComponent<MeshRenderer>();
+
+        if (mesh != null) {
+            mesh.sortingLayerName = SortingLayerName;
+            mesh.sortingOrder = SortingOrder;
+        }
     }
 }

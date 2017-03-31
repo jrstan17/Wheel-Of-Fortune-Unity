@@ -15,11 +15,14 @@ public class RoundRunner : MonoBehaviour {
     public GameObject CategoryTextObject;
     public GameObject KeyPressObject;
 
+    public GameObject AudioSource;
+
     private PuzzleFactory factory;
     private Puzzle Puzzle;
     private BoardFiller boardFiller;
     private List<Text> UsedLetters = new List<Text>();
     private Text CategoryText;
+    private AudioTracks AudioTracks;
 
     // Use this for initialization
     void Start() {
@@ -32,6 +35,8 @@ public class RoundRunner : MonoBehaviour {
         }
 
         CategoryText = CategoryTextObject.GetComponent<Text>();
+        AudioTracks = AudioSource.GetComponent<AudioTracks>();
+        boardFiller.AudioTracks = AudioTracks;
 
         NewBoard();
     }
@@ -42,8 +47,13 @@ public class RoundRunner : MonoBehaviour {
         }
 
         Puzzle = factory.NewPuzzle(RoundType.Regular);
+
+        Debug.Log("Puzzle Solution: " + Puzzle.Text);
+
         boardFiller.InitBoard(Puzzle);
         CategoryText.text = Puzzle.Category;
+
+        AudioTracks.Play("reveal");
     }
 
     public void NewPuzzle_Clicked() {

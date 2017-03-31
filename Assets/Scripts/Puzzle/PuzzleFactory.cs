@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PuzzleFactory {
 
-    const int REGULAR_ROUND_PUZZLE_SIZE_MIN = 9;
+    const int REGULAR_ROUND_PUZZLE_SIZE_MIN = 16;
     const int BONUS_ROUND_PUZZLE_SIZE_MAX = 16;
 
     List<Puzzle> Puzzles;
