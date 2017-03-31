@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 2f072469f330a2245a5b0bf47a751f3d
+timeCreated: 1490916793
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Latin Modern Roman
+  fontNames:
+  - Latin Modern Roman
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

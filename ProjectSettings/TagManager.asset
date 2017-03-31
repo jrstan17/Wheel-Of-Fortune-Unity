@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - DataHolder
+  - Trilons
+  - UIButtons
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Wheel
+  - Board
+  - Menu
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: GameCanvas
+    uniqueID: 1953457327
+    locked: 0
+  - name: Board
+    uniqueID: 2195033053
+    locked: 0
+  - name: Menu
+    uniqueID: 871154015
+    locked: 0
+  - name: Canvases
+    uniqueID: 419508775
+    locked: 0
