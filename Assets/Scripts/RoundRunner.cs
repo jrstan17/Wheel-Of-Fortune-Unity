@@ -12,10 +12,13 @@ public class RoundRunner : MonoBehaviour {
     public GameObject WheelCanvas;
     public GameObject MenuCanvas;
 
+    public GameObject CategoryTextObject;
+
     private PuzzleFactory factory;
     private Puzzle Puzzle;
     private BoardFiller boardFiller;
     private List<Text> UsedLetters = new List<Text>();
+    private Text CategoryText;
 
     // Use this for initialization
     void Start() {
@@ -27,6 +30,8 @@ public class RoundRunner : MonoBehaviour {
             UsedLetters.Add(text);
         }
 
+        CategoryText = CategoryTextObject.GetComponent<Text>();
+
         NewBoard();
     }
 
@@ -37,6 +42,7 @@ public class RoundRunner : MonoBehaviour {
 
         Puzzle = factory.NewPuzzle(RoundType.Regular);
         boardFiller.InitBoard(Puzzle);
+        CategoryText.text = Puzzle.Category;
     }
 
     public void NewPuzzle_Clicked() {
