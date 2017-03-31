@@ -143,13 +143,17 @@ public class BoardFiller : MonoBehaviour {
         }
     }
 
-    public void RevealLetter(char c) {
-        c = char.ToUpper(c);
+    public void RevealLetters(List<char> letters) {
+        for (int i = 0; i < letters.Count; i++) {
+            letters[i] = char.ToUpper(letters[i]);
+        }
 
         List<int> LetterIndexes = new List<int>();
-        for (int i = 0; i < Trilons.Count; i++) {
-            if (data.Letters[i].text.Equals(c.ToString())) {
-                LetterIndexes.Add(i);
+        for (int i = 0; i < letters.Count; i++) {
+            for (int j = 0; j < Trilons.Count; j++) {
+                if (data.Letters[j].text.Equals(letters[i].ToString())) {
+                    LetterIndexes.Add(j);
+                }
             }
         }
 
@@ -158,25 +162,25 @@ public class BoardFiller : MonoBehaviour {
             return;
         }
 
-        coroutine = WaitForLetter(1f, c, LetterIndexes);
+        coroutine = WaitForLetter(1f, letters, LetterIndexes);
         StartCoroutine(coroutine);
     }
 
-    private IEnumerator WaitForLetter(float waitTime, char letter, List<int> Indexes) {    
-        foreach (int i in Indexes) {
-            AudioTracks.Play("ding");
+    private IEnumerator WaitForLetter(float waitTime, List<char> letters, List<int> Indexes) {
+            foreach (int i in Indexes) {
+                AudioTracks.Play("ding");
 
-            data.Letters[i].color = Color.blue;
-            data.Screens[i].color = Color.blue;
+                data.Letters[i].color = Color.blue;
+                data.Screens[i].color = Color.blue;
 
-            yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(1f);
 
-            data.Letters[i].color = Color.black;
-            data.Screens[i].color = Color.white;
+                data.Letters[i].color = Color.black;
+                data.Screens[i].color = Color.white;
 
-            Trilons[i].Reveal(letter);
+                //Trilons[i].Reveal(c);
 
-            yield return new WaitForSeconds(waitTime);
+                yield return new WaitForSeconds(waitTime);
         }
     }
 

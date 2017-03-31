@@ -78,6 +78,17 @@ public class RoundRunner : MonoBehaviour {
         WheelCanvas.SetActive(true);
     }
 
+    public void RevealRSTLNE_Clicked() {
+        List<char> rstlne = new List<char>();
+        rstlne.Add('R');
+        rstlne.Add('S');
+        rstlne.Add('T');
+        rstlne.Add('L');
+        rstlne.Add('N');
+        rstlne.Add('E');
+        boardFiller.RevealLetters(rstlne);
+    }
+
     public void ToggleUIButtons(bool enable) {
         GameObject buttons = GameObject.FindGameObjectWithTag("UIButtons");
 
@@ -89,7 +100,9 @@ public class RoundRunner : MonoBehaviour {
 
     public void LetterPressed(char letter) {
         if (UsedLetters[letter - 97].color == Constants.USED_LETTER_ENABLED_COLOR) {
-            boardFiller.RevealLetter(letter);
+            List<char> letters = new List<char>();
+            letters.Add(letter);
+            boardFiller.RevealLetters(letters);
             UsedLetters[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
         }
     }
