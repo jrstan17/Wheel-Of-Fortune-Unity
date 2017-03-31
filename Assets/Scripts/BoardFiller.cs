@@ -12,7 +12,6 @@ public class BoardFiller : MonoBehaviour {
     Puzzle Puzzle;
 
     private IEnumerator coroutine;
-    private IEnumerator subcoroutine;
 
     public void InitBoard(Puzzle Puzzle) {
         this.Puzzle = Puzzle;
@@ -87,19 +86,32 @@ public class BoardFiller : MonoBehaviour {
     }
 
     public void FillBoard() {
-        for(int i = 0; i < Trilons.Count; i++) {
+        List<int> InUseIndexes = new List<int>();
+        for (int i = 0; i < Trilons.Count; i++) {
             string letter = Trilons[i].Letter.ToString();
             data.Letters[i].text = letter;
+            data.Letters[i].color = new Color32(0, 128, 0, 255);
 
             if (Trilons[i].State != TrilonState.NotInUse) {
-                if (char.IsLetter(Trilons[i].Letter)) {
-                    data.Letters[i].color = Color.white;
-                } else {
-                    data.Letters[i].color = Color.black;
-                }
-
-                data.Screens[i].color = Color.white;
+                InUseIndexes.Add(i);
             }
+        }
+
+        coroutine = RevealWhiteScreens(0.025f, InUseIndexes);
+        StartCoroutine(coroutine);
+    }
+
+    private IEnumerator RevealWhiteScreens(float time, List<int> InUseIndexes) {
+        foreach (int i in InUseIndexes) {
+            if (char.IsLetter(Trilons[i].Letter)) {
+                data.Letters[i].color = Color.white;
+            } else {
+                data.Letters[i].color = Color.black;
+            }
+
+            data.Screens[i].color = Color.white;
+
+            yield return new WaitForSeconds(time);
         }
     }
 
@@ -111,11 +123,23 @@ public class BoardFiller : MonoBehaviour {
     }
 
     public void RevealBoard() {
+        List<int> LetterIndexes = new List<int>();
         for (int i = 0; i < Trilons.Count; i++) {
-            if (!data.Letters[i].text.Equals("")) {
-                data.Letters[i].color = Color.black;
-                Trilons[i].Reveal();
+            if (Trilons[i].State == TrilonState.Unrevealed) {
+                LetterIndexes.Add(i);
             }
+        }
+
+        coroutine = RevealingTimer(0.025f, LetterIndexes);
+        StartCoroutine(coroutine);
+    }
+
+    public IEnumerator RevealingTimer(float time, List<int> indexes) {
+        foreach(int i in indexes) {
+            Trilons[i].Reveal();
+            data.Letters[i].color = Color.black;
+            data.Screens[i].color = Color.white;
+            yield return new WaitForSeconds(time);
         }
     }
 
