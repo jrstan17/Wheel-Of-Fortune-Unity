@@ -7,12 +7,19 @@ public class SpinWheel : MonoBehaviour {
     public List<AnimationCurve> animationCurves;
     public float AverageFriction;
     public float RandomFriction;
+    public RoundRunner RoundRunner;
 
-    private bool spinning;
+    internal bool HasSpun;
+
+    internal bool spinning;
     private float randomTime;
 
     void Start() {
         spinning = false;
+    }
+
+    private void OnEnable() {
+        HasSpun = false;
     }
 
     void Update() {
@@ -20,7 +27,7 @@ public class SpinWheel : MonoBehaviour {
     }
 
     public void Spin() {
-        if (!spinning) {
+        if (!spinning && !HasSpun) {
             randomTime = Random.Range(AverageFriction - RandomFriction, AverageFriction + RandomFriction);
             float maxAngle = 360 * randomTime;
 
@@ -30,6 +37,7 @@ public class SpinWheel : MonoBehaviour {
 
     private IEnumerator SpinTheWheel(float time, float maxAngle) {
         spinning = true;
+        HasSpun = true;
 
         float timer = 0.0f;
         float startAngle = transform.eulerAngles.z;
@@ -47,5 +55,19 @@ public class SpinWheel : MonoBehaviour {
 
         transform.eulerAngles = new Vector3(0.0f, 0.0f, maxAngle + startAngle);
         spinning = false;
+
+        CountdownTimer countdownTimer = gameObject.AddComponent<CountdownTimer>();
+        countdownTimer.timeLeft = 5;
+        countdownTimer.TimesUp += CountdownTimer_TimesUp;
+        countdownTimer.StartTimer();
+    }
+
+    private void CountdownTimer_TimesUp(object sender, System.EventArgs e) {
+        RoundRunner.ToggleUIButtons(true);
+        GameObject wheelObject = GameObject.FindGameObjectWithTag("WheelObject");
+        KeyPress press = RoundRunner.KeyPressObject.GetComponent<KeyPress>();
+
+        press.isWheelActive = false;
+        wheelObject.SetActive(false);
     }
 }

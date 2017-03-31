@@ -22,6 +22,10 @@ public class CountdownTimer : MonoBehaviour {
         Start = true;
     }
 
+    public bool isRunning() {
+        return Start;
+    }
+
     protected virtual void OnTimesUp(EventArgs e) {
         EventHandler handler = TimesUp;
         if (handler != null) {

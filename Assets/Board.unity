@@ -862,6 +862,7 @@ MonoBehaviour:
   MenuObject: {fileID: 717350203}
   BoardObject: {fileID: 1525156003}
   WheelObject: {fileID: 2012431094}
+  isWheelActive: 0
 --- !u!4 &50168774
 Transform:
   m_ObjectHideFlags: 0
@@ -1652,7 +1653,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 14783986}
 --- !u!50 &72579951
 Rigidbody2D:
@@ -1874,7 +1876,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 576.5926
+      value: 577.7885
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -1884,7 +1886,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 60.036057
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -1950,7 +1952,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &79502778
@@ -2075,7 +2078,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1135.6672
+      value: 1134.9038
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -2085,7 +2088,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 60.036057
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -2151,7 +2154,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &99172719
@@ -2230,7 +2234,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 1148083338}
 --- !u!50 &115248086
 Rigidbody2D:
@@ -2344,7 +2349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 2142404842}
 --- !u!50 &115973456
 Rigidbody2D:
@@ -2530,7 +2536,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 878921100}
 --- !u!50 &150906516
 Rigidbody2D:
@@ -2684,7 +2691,6 @@ GameObject:
   - component: {fileID: 164590125}
   - component: {fileID: 164590124}
   - component: {fileID: 164590123}
-  - component: {fileID: 164590126}
   m_Layer: 9
   m_Name: NewPuzzleButton
   m_TagString: Untagged
@@ -2796,19 +2802,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 164590121}
---- !u!114 &164590126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 164590121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9591119ca8c305246804ab72b4205150, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SortingLayerName: GameCanvas
-  SortingOrder: 40
 --- !u!1 &167859464
 GameObject:
   m_ObjectHideFlags: 0
@@ -3005,7 +2998,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1319.6815
+      value: 1318.9424
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -3015,7 +3008,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 61.598557
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -3081,7 +3074,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &205725617
@@ -3450,8 +3444,6 @@ RectTransform:
   m_Children:
   - {fileID: 2012431095}
   - {fileID: 1525156004}
-  - {fileID: 825022199}
-  - {fileID: 1478944273}
   m_Father: {fileID: 666059823}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3925,7 +3917,7 @@ RectTransform:
   - {fileID: 859557893}
   - {fileID: 1572379828}
   m_Father: {fileID: 1525156004}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -3982,7 +3974,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 153.9964
+      value: 153.36539
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -3992,7 +3984,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 61.598557
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -4058,7 +4050,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &295056559
@@ -4431,7 +4424,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 519.6815
+      value: 518.9423
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -4441,7 +4434,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 53.786057
+      value: 56.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -4507,7 +4500,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &332318877 stripped
@@ -5131,7 +5125,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 950.8715
+      value: 950.86536
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -5141,7 +5135,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 60.036057
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -5207,7 +5201,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &397647659 stripped
@@ -5673,7 +5668,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 889.27295
+      value: 889.5192
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -5683,7 +5678,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 63.161057
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -5749,7 +5744,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &432328629
@@ -7350,7 +7346,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 638.19116
+      value: 639.13464
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -7360,7 +7356,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 63.161057
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -7426,7 +7422,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &546445811
@@ -8160,7 +8157,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1257.3018
+      value: 1257.5962
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -8170,7 +8167,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 63.161057
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -8236,7 +8233,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &597502155
@@ -8560,7 +8558,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 597502155}
 --- !u!50 &608438631
 Rigidbody2D:
@@ -8877,7 +8876,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1447.566
+      value: 1446.6348
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -8887,7 +8886,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 61.598557
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -8953,7 +8952,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &616424285
@@ -9933,7 +9933,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 762.16956
+      value: 764.3269
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -9943,7 +9943,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 64.72356
+      value: 66.34616
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -10009,7 +10009,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &666059822
@@ -10661,7 +10662,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 398.0469
+      value: 398.75
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -10671,7 +10672,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 63.161057
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -10737,7 +10738,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &703762015 stripped
@@ -11186,7 +11188,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 33523199}
 --- !u!50 &735150333
 Rigidbody2D:
@@ -11516,7 +11519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 624643291}
 --- !u!50 &746833187
 Rigidbody2D:
@@ -11710,7 +11714,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 595180293}
 --- !u!50 &760232133
 Rigidbody2D:
@@ -11831,7 +11836,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 826.1119
+      value: 828.1731
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -11841,7 +11846,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 63.161057
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -11907,7 +11912,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &762460416
@@ -12468,7 +12474,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1012.4701
+      value: 1012.2115
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -12478,7 +12484,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 63.161057
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -12544,7 +12550,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &798292611
@@ -12597,7 +12604,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 215.59494
+      value: 214.71155
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -12607,7 +12614,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 61.598557
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -12673,7 +12680,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &816178920
@@ -12813,7 +12821,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 825022198}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12843,13 +12851,13 @@ RectTransform:
   - {fileID: 399051535}
   - {fileID: 1284230801}
   - {fileID: 1194049622}
-  m_Father: {fileID: 257985897}
-  m_RootOrder: 2
+  m_Father: {fileID: 1525156004}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 54.88}
+  m_AnchoredPosition: {x: 311.89966, y: -141.18993}
+  m_SizeDelta: {x: -623.7997, y: 54.88}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &825022200
 MonoBehaviour:
@@ -13556,7 +13564,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 1371053785}
 --- !u!50 &853005079
 Rigidbody2D:
@@ -13886,7 +13895,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 482610781}
 --- !u!50 &873056904
 Rigidbody2D:
@@ -14292,7 +14302,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1074.85
+      value: 1073.5576
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -14302,7 +14312,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 61.598557
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -14368,7 +14378,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &885449020
@@ -15350,7 +15361,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1195.7032
+      value: 1196.25
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -15360,7 +15371,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 60.036057
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -15426,7 +15437,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1011684273
@@ -18161,7 +18173,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1509.1646
+      value: 1507.981
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -18171,7 +18183,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 61.598557
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -18237,7 +18249,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1194049621 stripped
@@ -18581,7 +18594,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 59822827}
 --- !u!50 &1207490286
 Rigidbody2D:
@@ -19117,7 +19131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 1187321161}
 --- !u!50 &1228686139
 Rigidbody2D:
@@ -19962,7 +19977,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 1556705637}
 --- !u!50 &1284996531
 Rigidbody2D:
@@ -20043,6 +20059,7 @@ GameObject:
   - component: {fileID: 1291362534}
   - component: {fileID: 1291362536}
   - component: {fileID: 1291362535}
+  - component: {fileID: 1291362537}
   m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
@@ -20108,6 +20125,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1291362533}
+--- !u!114 &1291362537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1291362533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9591119ca8c305246804ab72b4205150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortingLayerName: GameCanvas
+  SortingOrder: 100
 --- !u!1 &1293453453
 GameObject:
   m_ObjectHideFlags: 0
@@ -20289,7 +20319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 742058423}
 --- !u!50 &1313001568
 Rigidbody2D:
@@ -20476,7 +20507,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 30.799255
+      value: 30.673079
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -20486,7 +20517,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 61.598557
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -20532,7 +20563,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1332175621
@@ -21140,7 +21172,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 276.41226
+      value: 276.0577
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -21150,7 +21182,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 60.036057
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -21216,7 +21248,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1386584514
@@ -22165,7 +22198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 873644883}
 --- !u!50 &1450283585
 Rigidbody2D:
@@ -22279,7 +22313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 1264126470}
 --- !u!50 &1453617114
 Rigidbody2D:
@@ -22537,7 +22572,6 @@ GameObject:
   - component: {fileID: 1465681005}
   - component: {fileID: 1465681004}
   - component: {fileID: 1465681003}
-  - component: {fileID: 1465681006}
   m_Layer: 9
   m_Name: RevealButton
   m_TagString: Untagged
@@ -22649,19 +22683,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1465681001}
---- !u!114 &1465681006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1465681001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9591119ca8c305246804ab72b4205150, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SortingLayerName: GameCanvas
-  SortingOrder: 40
 --- !u!1 &1468220497 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1979869338169420, guid: e0e5fa63369e14f4290375c9cb82925f,
@@ -22939,7 +22960,6 @@ GameObject:
   - component: {fileID: 1478944275}
   - component: {fileID: 1478944274}
   - component: {fileID: 1478944276}
-  - component: {fileID: 1478944277}
   m_Layer: 9
   m_Name: Buttons
   m_TagString: UIButtons
@@ -22953,20 +22973,20 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1478944272}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 164590122}
   - {fileID: 1465681002}
   - {fileID: 1542871978}
-  m_Father: {fileID: 257985897}
-  m_RootOrder: 3
+  m_Father: {fileID: 1525156004}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 56}
-  m_SizeDelta: {x: 0, y: 68.31}
+  m_AnchoredPosition: {x: 311.89966, y: -85.18997}
+  m_SizeDelta: {x: -623.7997, y: 68.31}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1478944274
 MonoBehaviour:
@@ -23023,19 +23043,6 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 1
---- !u!114 &1478944277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1478944272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9591119ca8c305246804ab72b4205150, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SortingLayerName: GameCanvas
-  SortingOrder: 40
 --- !u!1 &1480816124
 GameObject:
   m_ObjectHideFlags: 0
@@ -23159,7 +23166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 22640152}
 --- !u!50 &1481124593
 Rigidbody2D:
@@ -24005,7 +24013,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 2034090983}
 --- !u!50 &1513272610
 Rigidbody2D:
@@ -24212,6 +24221,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 825022199}
+  - {fileID: 1478944273}
   - {fileID: 1789545419}
   - {fileID: 282256161}
   - {fileID: 2056533338}
@@ -24314,7 +24325,6 @@ GameObject:
   - component: {fileID: 1542871981}
   - component: {fileID: 1542871980}
   - component: {fileID: 1542871979}
-  - component: {fileID: 1542871982}
   m_Layer: 9
   m_Name: SpinButton
   m_TagString: Untagged
@@ -24426,19 +24436,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1542871977}
---- !u!114 &1542871982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1542871977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9591119ca8c305246804ab72b4205150, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SortingLayerName: GameCanvas
-  SortingOrder: 40
 --- !u!1 &1543274245
 GameObject:
   m_ObjectHideFlags: 0
@@ -24482,7 +24479,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 1757499006}
 --- !u!50 &1543274248
 Rigidbody2D:
@@ -24673,6 +24671,7 @@ MonoBehaviour:
     m_RotationOrder: 0
   AverageFriction: 1
   RandomFriction: 0.5
+  RoundRunner: {fileID: 2044940848}
 --- !u!1 &1548951500
 GameObject:
   m_ObjectHideFlags: 0
@@ -24716,7 +24715,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 253010652}
 --- !u!50 &1548951503
 Rigidbody2D:
@@ -25036,7 +25036,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 336.44833
+      value: 337.40384
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -25046,7 +25046,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 60.036057
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -25112,7 +25112,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1602191388
@@ -25262,7 +25263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 1835208149}
 --- !u!50 &1604625061
 Rigidbody2D:
@@ -25383,7 +25385,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1569.9818
+      value: 1569.3271
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -25393,7 +25395,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 60.036057
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -25459,7 +25461,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1608718563
@@ -26404,7 +26407,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 699.78973
+      value: 700.4808
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -26414,7 +26417,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 60.036057
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -26480,7 +26483,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1702315344
@@ -27115,7 +27119,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 92.397835
+      value: 92.01923
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -27125,7 +27129,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 61.598557
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -27176,7 +27180,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1745291857
@@ -27309,7 +27314,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1383.6238
+      value: 1382.7886
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -27319,7 +27324,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 66.28606
+      value: 66.34616
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -27385,7 +27390,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1756541054
@@ -27948,7 +27954,7 @@ RectTransform:
   - {fileID: 1903635156}
   - {fileID: 1150314313}
   m_Father: {fileID: 1525156004}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -28162,7 +28168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 567477392}
 --- !u!50 &1804385747
 Rigidbody2D:
@@ -29138,7 +29145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 608680722}
 --- !u!50 &1904217693
 Rigidbody2D:
@@ -29324,7 +29332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 1437996803}
 --- !u!50 &1908790274
 Rigidbody2D:
@@ -29941,7 +29950,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 461.20798
+      value: 460.09616
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -29951,7 +29960,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 63.161057
+      value: 61.346157
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -30017,7 +30026,8 @@ Prefab:
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114742293302539102, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0e5fa63369e14f4290375c9cb82925f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1942344716
@@ -30258,7 +30268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 1061223493}
 --- !u!50 &1956328409
 Rigidbody2D:
@@ -30473,7 +30484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
+  WheelWithSpinObject: {fileID: 1544352559}
+  SajakTextBox: {fileID: 1291362533}
   Wedge: {fileID: 1794053702}
 --- !u!50 &1977657269
 Rigidbody2D:
@@ -30868,7 +30880,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: b6813c5d96a41334b8b30584552de699, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.197}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.591}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!222 &2003088318
@@ -30888,7 +30900,7 @@ GameObject:
   - component: {fileID: 2012431096}
   m_Layer: 8
   m_Name: WheelObject
-  m_TagString: Untagged
+  m_TagString: WheelObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31961,6 +31973,7 @@ MonoBehaviour:
   WheelCanvas: {fileID: 2012431094}
   MenuCanvas: {fileID: 717350203}
   CategoryTextObject: {fileID: 2056533337}
+  KeyPressObject: {fileID: 50168772}
 --- !u!4 &2044940849
 Transform:
   m_ObjectHideFlags: 0
@@ -32035,7 +32048,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1525156004}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}

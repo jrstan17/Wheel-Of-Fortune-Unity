@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class NewWedgeEntered : MonoBehaviour {
 
-    public GameObject TextBox;
+    public GameObject WheelWithSpinObject;
+    public GameObject SajakTextBox;
     public GameObject Wedge;
 
     private WedgeData data;
-    private Text text;
+    private Text sajakText;
 
 	// Use this for initialization
 	void Start () {
-        text = TextBox.GetComponent<Text>();
+        sajakText = SajakTextBox.GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
@@ -29,7 +30,7 @@ public class NewWedgeEntered : MonoBehaviour {
         data = Wedge.GetComponent<WedgeData>();
 
         if (data != null) {
-            text.text = data.Text;
+            sajakText.text = data.Text;
         }
     }
 }

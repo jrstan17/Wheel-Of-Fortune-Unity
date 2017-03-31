@@ -11,9 +11,10 @@ public class KeyPress : MonoBehaviour {
 
     private RoundRunner RoundRunner;
     private bool isMenuActive = false;
+    public bool isWheelActive = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         RoundRunner = RoundRunnerObject.GetComponent<RoundRunner>();
 	}
 	
@@ -21,12 +22,13 @@ public class KeyPress : MonoBehaviour {
 	void Update () {
         if (Input.anyKeyDown) {
 
-            bool isWheelActive = WheelObject.activeSelf;
-
-            if (Input.GetKeyDown(KeyCode.Space) && isWheelActive && !isMenuActive) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
                 SpinWheel spinWheel = WheelObject.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
-                spinWheel.Spin();
-                return;
+
+                if (!isMenuActive && isWheelActive && !spinWheel.HasSpun) {
+                    spinWheel.Spin();
+                    return;
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Escape)) {

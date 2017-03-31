@@ -13,6 +13,7 @@ public class RoundRunner : MonoBehaviour {
     public GameObject MenuCanvas;
 
     public GameObject CategoryTextObject;
+    public GameObject KeyPressObject;
 
     private PuzzleFactory factory;
     private Puzzle Puzzle;
@@ -23,7 +24,7 @@ public class RoundRunner : MonoBehaviour {
     // Use this for initialization
     void Start() {
         factory = new PuzzleFactory(DataTextFile);
-        boardFiller = new BoardFiller();
+        boardFiller = gameObject.AddComponent<BoardFiller>();
 
         foreach(GameObject obj in UsedLetterObjects) {
             Text text = obj.GetComponent<Text>();
@@ -60,6 +61,10 @@ public class RoundRunner : MonoBehaviour {
 
     public void Spin_Clicked() {
         ToggleUIButtons(false);
+
+        KeyPress press = KeyPressObject.GetComponent<KeyPress>();
+        press.isWheelActive = true;
+
         WheelCanvas.SetActive(true);
     }
 
