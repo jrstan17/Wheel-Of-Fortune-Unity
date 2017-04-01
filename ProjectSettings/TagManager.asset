@@ -8,6 +8,10 @@ TagManager:
   - Trilons
   - UIButtons
   - WheelObject
+  - BonusRoundButtons
+  - RegularRoundButtons
+  - RoundRunner
+  - InputFieldText
   layers:
   - Default
   - TransparentFX
