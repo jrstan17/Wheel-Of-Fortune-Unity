@@ -12,6 +12,7 @@ public class BoardFiller : MonoBehaviour {
     Puzzle Puzzle;
 
     private IEnumerator coroutine;
+    private IEnumerator coroutine2;
 
     public void InitBoard(Puzzle Puzzle) {
         this.Puzzle = Puzzle;
@@ -135,7 +136,7 @@ public class BoardFiller : MonoBehaviour {
     }
 
     public IEnumerator RevealingTimer(float time, List<int> indexes) {
-        foreach(int i in indexes) {
+        foreach (int i in indexes) {
             Trilons[i].Reveal();
             data.Letters[i].color = Color.black;
             data.Screens[i].color = Color.white;
@@ -167,20 +168,21 @@ public class BoardFiller : MonoBehaviour {
     }
 
     private IEnumerator WaitForLetter(float waitTime, List<char> letters, List<int> Indexes) {
-            foreach (int i in Indexes) {
-                AudioTracks.Play("ding");
+        foreach (int i in Indexes) {
+            AudioTracks.Play("ding");
 
-                data.Letters[i].color = Color.blue;
-                data.Screens[i].color = Color.blue;
+            data.Letters[i].color = Color.blue;
+            data.Screens[i].color = Color.blue;
 
-                yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1f);
 
-                data.Letters[i].color = Color.black;
-                data.Screens[i].color = Color.white;
+            data.Letters[i].color = Color.black;
+            data.Screens[i].color = Color.white;
 
-                //Trilons[i].Reveal(c);
+            //needed?
+            //Trilons[i].Reveal(c);
 
-                yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(waitTime);
         }
     }
 
