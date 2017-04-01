@@ -1,7 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
+
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -46,6 +51,7 @@ public class RoundRunner : MonoBehaviour {
 
     public void NewBoard() {
         bool isBonus = EditorUtility.DisplayDialog("Question", "Create Bonus Round?", "Yes", "No");
+        //bool isBonus = true;
 
         foreach (Text text in UsedLetters) {
             text.color = Constants.USED_LETTER_ENABLED_COLOR;
@@ -55,18 +61,18 @@ public class RoundRunner : MonoBehaviour {
             Puzzle = factory.NewPuzzle(RoundType.Bonus);
         } else {
             Puzzle = factory.NewPuzzle(RoundType.Regular);
+            AudioTracks.Play("reveal");
         }
 
-        //Debug.Log("Puzzle Solution: " + Puzzle.Text);
-
         CategoryText.text = Puzzle.Category;
-        AudioTracks.Play("reveal");
 
         boardFiller.InitBoard(Puzzle);
 
         if (isBonus) {
-            RevealRSTLNE_Clicked();
+            RevealRSTLNE();
         }
+
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void NewPuzzle_Clicked() {
@@ -78,6 +84,7 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void Reveal_Clicked() {
+        AudioTracks.Play("round_win");
         boardFiller.RevealBoard();
     }
 
@@ -90,15 +97,24 @@ public class RoundRunner : MonoBehaviour {
         WheelCanvas.SetActive(true);
     }
 
-    public void RevealRSTLNE_Clicked() {
+    public void RevealRSTLNE() {
         List<char> rstlne = new List<char>();
-        rstlne.Add('R');
-        rstlne.Add('S');
-        rstlne.Add('T');
-        rstlne.Add('L');
-        rstlne.Add('N');
-        rstlne.Add('E');
+        rstlne.Add('r');
+        rstlne.Add('s');
+        rstlne.Add('t');
+        rstlne.Add('l');
+        rstlne.Add('n');
+        rstlne.Add('e');
+
+        foreach(char letter in rstlne) {
+            UsedLetters[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
+        }
+
         boardFiller.RevealLetters(rstlne);
+    }
+
+    public void Answer_Clicked() {
+        Debug.Log("Puzzle Solution: " + Puzzle.Text);
     }
 
     public void ToggleUIButtons(bool enable) {

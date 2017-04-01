@@ -15002,7 +15002,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: REVEAL RSTLNE
+  m_Text: REVEAL ANSWER IN DEBUG
 --- !u!222 &939049517
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16284,7 +16284,7 @@ GameObject:
   - component: {fileID: 1057312233}
   - component: {fileID: 1057312232}
   m_Layer: 9
-  m_Name: RSTLNEButton
+  m_Name: AnswerButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16349,7 +16349,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2044940848}
-        m_MethodName: RevealRSTLNE_Clicked
+        m_MethodName: Answer_Clicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

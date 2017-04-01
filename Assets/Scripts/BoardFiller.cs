@@ -9,14 +9,11 @@ public class BoardFiller : MonoBehaviour {
     public AudioTracks AudioTracks;
 
     Data data;
-    Puzzle Puzzle;
 
     private IEnumerator coroutine;
     private IEnumerator coroutine2;
 
     public void InitBoard(Puzzle Puzzle) {
-        this.Puzzle = Puzzle;
-
         GameObject dataHolder = GameObject.FindGameObjectWithTag("DataHolder");
         data = dataHolder.GetComponent<Data>();
 

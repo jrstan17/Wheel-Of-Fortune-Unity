@@ -14,12 +14,12 @@ public class KeyPress : MonoBehaviour {
     public bool isWheelActive = false;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         RoundRunner = RoundRunnerObject.GetComponent<RoundRunner>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update() {
         if (Input.anyKeyDown) {
 
             if (Input.GetKeyDown(KeyCode.Space)) {
@@ -46,11 +46,9 @@ public class KeyPress : MonoBehaviour {
             }
 
             if (!isWheelActive && !isMenuActive) {
-                for (char i = 'a'; i <= 'z'; i++)
-                {
+                for (char i = 'a'; i <= 'z'; i++) {
                     string strChar = (i.ToString());
-                    if (Input.GetKeyDown(strChar))
-                    {
+                    if (Input.GetKeyDown(strChar)) {
                         RoundRunner.LetterPressed(i);
                     }
                 }

@@ -7,11 +7,20 @@ public class PuzzleFactory {
 
     const int REGULAR_ROUND_PUZZLE_SIZE_MIN = 16;
     const int BONUS_ROUND_PUZZLE_SIZE_MAX = 16;
+    List<char> rSTLNEList;
 
     List<Puzzle> Puzzles;
     int previousPuzzleIndex = -1;
 
     public PuzzleFactory(TextAsset textAsset) {
+        rSTLNEList = new List<char>();
+        rSTLNEList.Add('R');
+        rSTLNEList.Add('S');
+        rSTLNEList.Add('T');
+        rSTLNEList.Add('L');
+        rSTLNEList.Add('N');
+        rSTLNEList.Add('E');
+
         InitPuzzleList(textAsset);
     }
 
@@ -41,12 +50,36 @@ public class PuzzleFactory {
                 return true;
             }
         } else if (type == RoundType.Bonus) {
-            if (letters <= BONUS_ROUND_PUZZLE_SIZE_MAX) {
+            if (letters <= BONUS_ROUND_PUZZLE_SIZE_MAX && IsValidLetterRatio(answer, rSTLNEList, 0.3f)) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    internal bool IsValidLetterRatio(string answer, List<char> lettersToCheck, float maxRatioAllowed) {
+        List<char> answerLetters = new List<char>();
+        foreach(char c in answer) {
+            if (char.IsLetter(c)) {
+                answerLetters.Add(c);
+            }
+        }
+
+        int sum = 0;
+        int total = 0;
+        foreach(char c in answerLetters) {
+            if (lettersToCheck.Contains(c)) {
+                sum++;
+            }
+
+            total++;
+        }
+
+        float ratio = (float) sum / total;
+        Debug.Log("RSTLNE: " + sum + " / Letters: " + total + " / Ratio: " + ratio.ToString("P"));
+
+        return (ratio <= maxRatioAllowed);
     }
 
     internal Puzzle NewPuzzle(int puzzleIndex) {

@@ -7,6 +7,7 @@ public class AudioTracks : MonoBehaviour {
     public AudioClip PuzzleReveal;
     public AudioClip LetterReveal;
     public AudioClip Buzzer;
+    public AudioClip RoundWin;
 
     AudioSource AudioSource;
 
@@ -21,6 +22,8 @@ public class AudioTracks : MonoBehaviour {
             AudioSource.clip = LetterReveal;
         } else if (name.Equals("buzzer")) {
             AudioSource.clip = Buzzer;
+        } else if (name.Equals("round_win")) {
+            AudioSource.clip = RoundWin;
         } else {
             return;
         }
