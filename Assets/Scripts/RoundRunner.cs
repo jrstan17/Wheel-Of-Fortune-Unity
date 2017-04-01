@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,12 +25,14 @@ public class RoundRunner : MonoBehaviour {
     private Text CategoryText;
     private AudioTracks AudioTracks;
 
+    private IEnumerator coroutine;
+
     // Use this for initialization
     void Start() {
         factory = new PuzzleFactory(DataTextFile);
         boardFiller = gameObject.AddComponent<BoardFiller>();
 
-        foreach(GameObject obj in UsedLetterObjects) {
+        foreach (GameObject obj in UsedLetterObjects) {
             Text text = obj.GetComponent<Text>();
             UsedLetters.Add(text);
         }
@@ -42,26 +45,35 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void NewBoard() {
-        foreach(Text text in UsedLetters) {
+        bool isBonus = EditorUtility.DisplayDialog("Question", "Create Bonus Round?", "Yes", "No");
+
+        foreach (Text text in UsedLetters) {
             text.color = Constants.USED_LETTER_ENABLED_COLOR;
         }
 
-        Puzzle = factory.NewPuzzle(RoundType.Regular);
+        if (isBonus) {
+            Puzzle = factory.NewPuzzle(RoundType.Bonus);
+        } else {
+            Puzzle = factory.NewPuzzle(RoundType.Regular);
+        }
 
-        Debug.Log("Puzzle Solution: " + Puzzle.Text);
+        //Debug.Log("Puzzle Solution: " + Puzzle.Text);
+
+        CategoryText.text = Puzzle.Category;
+        AudioTracks.Play("reveal");
 
         boardFiller.InitBoard(Puzzle);
-        CategoryText.text = Puzzle.Category;
 
-        AudioTracks.Play("reveal");
+        if (isBonus) {
+            RevealRSTLNE_Clicked();
+        }
     }
 
     public void NewPuzzle_Clicked() {
         NewBoard();
     }
 
-    public void Exit_Clicked()
-    {
+    public void Exit_Clicked() {
         Application.Quit();
     }
 
@@ -92,7 +104,7 @@ public class RoundRunner : MonoBehaviour {
     public void ToggleUIButtons(bool enable) {
         GameObject buttons = GameObject.FindGameObjectWithTag("UIButtons");
 
-        for(int i = 0; i < buttons.transform.childCount; i++) {
+        for (int i = 0; i < buttons.transform.childCount; i++) {
             Button b = buttons.transform.GetChild(i).GetComponent<Button>();
             b.enabled = enable;
         }
