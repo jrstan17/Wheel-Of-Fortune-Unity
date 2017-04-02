@@ -1,6 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -10,15 +14,14 @@ public class RoundRunner : MonoBehaviour {
 
     public TextAsset DataTextFile;
     public List<GameObject> UsedLetterObjects;
+
     public GameObject WheelCanvas;
     public GameObject MenuCanvas;
+
     public GameObject CategoryTextObject;
     public GameObject KeyPressObject;
+
     public GameObject AudioSource;
-    public GameObject RegularRoundButtonsObject;
-    public GameObject BonusRoundButtonsObject;
-    public Toggle BonusToggle;
-    public InputField BonusInputText;
 
     private PuzzleFactory factory;
     private Puzzle Puzzle;
@@ -26,6 +29,8 @@ public class RoundRunner : MonoBehaviour {
     private List<Text> UsedLetters = new List<Text>();
     private Text CategoryText;
     private AudioTracks AudioTracks;
+
+    private IEnumerator coroutine;
 
     // Use this for initialization
     void Start() {
@@ -45,19 +50,16 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void NewBoard() {
+        bool isBonus = EditorUtility.DisplayDialog("Question", "Create Bonus Round?", "Yes", "No");
+        //bool isBonus = true;
+
         foreach (Text text in UsedLetters) {
             text.color = Constants.USED_LETTER_ENABLED_COLOR;
         }
 
-        if (BonusToggle.isOn) {
-            BonusInputText.text = "";
-            RegularRoundButtonsObject.SetActive(false);
-            BonusRoundButtonsObject.SetActive(true);
+        if (isBonus) {
             Puzzle = factory.NewPuzzle(RoundType.Bonus);
-            EventSystem.current.SetSelectedGameObject(BonusInputText.gameObject);
         } else {
-            RegularRoundButtonsObject.SetActive(true);
-            BonusRoundButtonsObject.SetActive(false);
             Puzzle = factory.NewPuzzle(RoundType.Regular);
             AudioTracks.Play("reveal");
         }
@@ -66,34 +68,15 @@ public class RoundRunner : MonoBehaviour {
 
         boardFiller.InitBoard(Puzzle);
 
-        EventSystem.current.SetSelectedGameObject(gameObject);
+        if (isBonus) {
+            RevealRSTLNE();
+        }
+
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void NewPuzzle_Clicked() {
         NewBoard();
-    }
-
-    public void BonusTextField_Changed() {
-        string toReturn = "";
-
-        foreach(char c in BonusInputText.text) {
-            toReturn += char.ToUpper(c);
-        }
-
-        BonusInputText.text = toReturn;
-    }
-
-    public void SubmitLetters_Clicked() {
-        List<char> inputedList = new List<char>();
-        foreach(char c in BonusInputText.text) {
-            if (char.IsLetter(c)) {
-                char lower = char.ToLower(c);
-                inputedList.Add(lower);
-                UsedLetters[lower - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
-            }
-        }
-
-        boardFiller.RevealLetters(inputedList);
     }
 
     public void Exit_Clicked() {
@@ -135,7 +118,7 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void ToggleUIButtons(bool enable) {
-        GameObject buttons = GameObject.FindGameObjectWithTag("RegularRoundButtons");
+        GameObject buttons = GameObject.FindGameObjectWithTag("UIButtons");
 
         for (int i = 0; i < buttons.transform.childCount; i++) {
             Button b = buttons.transform.GetChild(i).GetComponent<Button>();
@@ -150,5 +133,9 @@ public class RoundRunner : MonoBehaviour {
             boardFiller.RevealLetters(letters);
             UsedLetters[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
         }
+    }
+
+    void Update() {
+
     }
 }

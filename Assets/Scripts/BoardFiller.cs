@@ -7,15 +7,11 @@ public class BoardFiller : MonoBehaviour {
     public List<Row> Rows;
     public List<Trilon> Trilons;
     public AudioTracks AudioTracks;
-    internal RoundRunner RoundRunner;
 
     Data data;
 
     private IEnumerator coroutine;
-
-    void Start() {
-        RoundRunner = GameObject.FindGameObjectWithTag("RoundRunner").GetComponent<RoundRunner>();
-    }
+    private IEnumerator coroutine2;
 
     public void InitBoard(Puzzle Puzzle) {
         GameObject dataHolder = GameObject.FindGameObjectWithTag("DataHolder");
@@ -115,16 +111,12 @@ public class BoardFiller : MonoBehaviour {
 
             yield return new WaitForSeconds(time);
         }
-
-        if (RoundRunner.BonusToggle.isOn) {
-            yield return new WaitForSeconds(1f);
-            RoundRunner.RevealRSTLNE();
-        }
     }
 
     public void ClearBoard() {
         for (int i = 0; i < data.Screens.Count; i++) {
             data.Screens[i].color = new Color32(0, 128, 0, 255);
+            //data.Letters[i].text = "";
         }
     }
 
@@ -163,7 +155,7 @@ public class BoardFiller : MonoBehaviour {
             }
         }
 
-        if (LetterIndexes.Count == 0 && !RoundRunner.BonusToggle.isOn) {
+        if (LetterIndexes.Count == 0) {
             AudioTracks.Play("buzzer");
             return;
         }

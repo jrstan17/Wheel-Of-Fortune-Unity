@@ -45,7 +45,7 @@ public class KeyPress : MonoBehaviour {
                 return;
             }
 
-            if (!isWheelActive && !isMenuActive && !RoundRunner.BonusToggle.isOn) {
+            if (!isWheelActive && !isMenuActive) {
                 for (char i = 'a'; i <= 'z'; i++) {
                     string strChar = (i.ToString());
                     if (Input.GetKeyDown(strChar)) {
