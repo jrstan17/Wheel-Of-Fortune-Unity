@@ -13,7 +13,7 @@ public class RoundRunner : MonoBehaviour {
     public GameObject WheelCanvas;
     public GameObject MenuCanvas;
     public GameObject CategoryTextObject;
-    public GameObject KeyPressObject;
+    public KeyPress KeyPress;
     public GameObject AudioSource;
     public GameObject RegularRoundButtonsObject;
     public GameObject BonusRoundButtonsObject;
@@ -70,6 +70,8 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void NewPuzzle_Clicked() {
+        MenuCanvas.SetActive(false);
+        KeyPress.isMenuActive = false;
         NewBoard();
     }
 
@@ -101,16 +103,15 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void Reveal_Clicked() {
+        MenuCanvas.SetActive(false);
+        KeyPress.isMenuActive = true;
         AudioTracks.Play("round_win");
         boardFiller.RevealBoard();
     }
 
     public void Spin_Clicked() {
         ToggleUIButtons(false);
-
-        KeyPress press = KeyPressObject.GetComponent<KeyPress>();
-        press.isWheelActive = true;
-
+        KeyPress.isWheelActive = true;
         WheelCanvas.SetActive(true);
     }
 
@@ -150,5 +151,36 @@ public class RoundRunner : MonoBehaviour {
             boardFiller.RevealLetters(letters);
             UsedLetters[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
         }
+    }
+
+    void Update() {
+        if (Input.anyKeyDown) {
+            if (Input.GetKey(KeyCode.Return) && IsInputFieldValid(BonusInputText.text)) {
+                SubmitLetters_Clicked();
+            }
+        }
+    }
+
+    public bool IsInputFieldValid(string inputText) {
+        if (inputText.Length != 4) {
+            return false;
+        }
+
+        int vowelCount = 0;
+        int consonantCount = 0;
+
+        foreach(char c in inputText) {
+            if (!char.IsLetter(c)) {
+                return false;
+            }
+
+            if (Utilities.IsVowel(c)) {
+                vowelCount++;
+            } else {
+                consonantCount++;
+            }
+        }
+
+        return (vowelCount == 1 && consonantCount == 3);
     }
 }

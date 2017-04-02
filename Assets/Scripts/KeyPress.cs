@@ -10,7 +10,7 @@ public class KeyPress : MonoBehaviour {
     public GameObject WheelObject;
 
     private RoundRunner RoundRunner;
-    private bool isMenuActive = false;
+    public bool isMenuActive = false;
     public bool isWheelActive = false;
 
     // Use this for initialization

@@ -8,6 +8,7 @@ public class SpinWheel : MonoBehaviour {
     public float AverageFriction;
     public float RandomFriction;
     public RoundRunner RoundRunner;
+    public KeyPress KeyPress;
 
     internal bool HasSpun;
 
@@ -65,9 +66,8 @@ public class SpinWheel : MonoBehaviour {
     private void CountdownTimer_TimesUp(object sender, System.EventArgs e) {
         RoundRunner.ToggleUIButtons(true);
         GameObject wheelObject = GameObject.FindGameObjectWithTag("WheelObject");
-        KeyPress press = RoundRunner.KeyPressObject.GetComponent<KeyPress>();
 
-        press.isWheelActive = false;
+        KeyPress.isWheelActive = false;
         wheelObject.SetActive(false);
     }
 }
