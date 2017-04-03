@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 class Utilities {
 
@@ -11,4 +10,9 @@ class Utilities {
         c = char.ToUpper(c);
         return (c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U');
     }
+
+    //public static void SetFocus(Selectable obj) {
+    //    EventSystem.current.SetSelectedGameObject(obj.gameObject, null);
+    //    obj.OnPointerUp(new PointerEventData(EventSystem.current));
+    //}
 }

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using UnityEngine;
 
-    class Prize {
+class Prize {
         public string Text { get; set; }
         public int Value { get; set; }
 
@@ -10,19 +10,17 @@
         }
 
         public Prize(string line) {
-            Random rnd = Utilities.rnd;
-
             string[] splits = line.Split('\t');
             Text = splits[0];            
 
             int tempValue = int.Parse(splits[1]);
-            int wholePercentage = rnd.Next(0, 10);
-            double decimalPercentage = rnd.NextDouble();
+            int wholePercentage = Random.Range(0, 10);
+            double decimalPercentage = Random.value;
             double percentage = wholePercentage + decimalPercentage;
             percentage /= 100;
 
             bool isNeg;
-            if (rnd.Next(0, 2) == 0) {
+            if (Random.Range(0, 2) == 0) {
                 isNeg = true;
             } else {
                 isNeg = false;
@@ -34,7 +32,7 @@
                 percentage += 1;                
             }
 
-            Value = (int)Math.Round(tempValue * percentage);
+            Value = (int)System.Math.Round(tempValue * percentage);
         }
 
         public Prize DeepCopy() {

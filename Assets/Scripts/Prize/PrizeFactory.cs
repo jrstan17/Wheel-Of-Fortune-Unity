@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 
 class PrizeFactory {
 
@@ -14,6 +15,6 @@ class PrizeFactory {
     }
 
     public Prize GetRandom() {
-        return Prizes[Utilities.rnd.Next(0, Prizes.Count)];
+        return Prizes[Random.Range(0, Prizes.Count)];
     }
 }
