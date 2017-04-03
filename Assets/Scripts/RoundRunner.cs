@@ -17,7 +17,7 @@ public class RoundRunner : MonoBehaviour {
     public GameObject AudioSource;
     public GameObject RegularRoundButtonsObject;
     public GameObject BonusRoundButtonsObject;
-    public Toggle BonusToggle;
+    internal bool IsBonusRound = false;
     public InputField BonusInputText;
 
     private PuzzleFactory factory;
@@ -41,15 +41,17 @@ public class RoundRunner : MonoBehaviour {
         AudioTracks = AudioSource.GetComponent<AudioTracks>();
         boardFiller.AudioTracks = AudioTracks;
 
-        NewBoard();
+        NewBoard(false);
     }
 
-    public void NewBoard() {
+    public void NewBoard(bool isBonus) {
+        IsBonusRound = isBonus;
+
         foreach (Text text in UsedLetters) {
             text.color = Constants.USED_LETTER_ENABLED_COLOR;
         }
 
-        if (BonusToggle.isOn) {
+        if (isBonus) {
             BonusInputText.text = "";
             RegularRoundButtonsObject.SetActive(false);
             BonusRoundButtonsObject.SetActive(true);
@@ -69,10 +71,16 @@ public class RoundRunner : MonoBehaviour {
         EventSystem.current.SetSelectedGameObject(gameObject);
     }
 
-    public void NewPuzzle_Clicked() {
+    public void NewBonus_Clicked() {
         MenuCanvas.SetActive(false);
         KeyPress.isMenuActive = false;
-        NewBoard();
+        NewBoard(true);
+    }
+
+    public void NewRegular_Clicked() {
+        MenuCanvas.SetActive(false);
+        KeyPress.isMenuActive = false;
+        NewBoard(false);
     }
 
     public void BonusTextField_Changed() {

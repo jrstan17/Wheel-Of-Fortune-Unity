@@ -31,6 +31,16 @@ public class KeyPress : MonoBehaviour {
                 }
             }
 
+            if (Input.GetKeyDown(KeyCode.F1)) {
+                RoundRunner.NewRegular_Clicked();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.F2)) {
+                RoundRunner.Reveal_Clicked();
+                return;
+            }
+
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 if (isMenuActive) {
                     MenuObject.SetActive(false);
@@ -45,7 +55,7 @@ public class KeyPress : MonoBehaviour {
                 return;
             }
 
-            if (!isWheelActive && !isMenuActive && !RoundRunner.BonusToggle.isOn) {
+            if (!isWheelActive && !isMenuActive && !RoundRunner.IsBonusRound) {
                 for (char i = 'a'; i <= 'z'; i++) {
                     string strChar = (i.ToString());
                     if (Input.GetKeyDown(strChar)) {

@@ -116,7 +116,7 @@ public class BoardFiller : MonoBehaviour {
             yield return new WaitForSeconds(time);
         }
 
-        if (RoundRunner.BonusToggle.isOn) {
+        if (RoundRunner.IsBonusRound) {
             yield return new WaitForSeconds(1f);
             RoundRunner.RevealRSTLNE();
         }
@@ -163,7 +163,7 @@ public class BoardFiller : MonoBehaviour {
             }
         }
 
-        if (LetterIndexes.Count == 0 && !RoundRunner.BonusToggle.isOn) {
+        if (LetterIndexes.Count == 0 && !RoundRunner.IsBonusRound) {
             AudioTracks.Play("buzzer");
             return;
         }
