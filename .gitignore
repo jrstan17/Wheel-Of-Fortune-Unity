@@ -80,3 +80,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+*.exe
+wheel_data

@@ -21,7 +21,7 @@ public class Scroller : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         offset = new Vector2(Time.time * xYSpeed, Time.time * xYSpeed * 2f);
         gameObject.GetComponent<Renderer>().material.mainTextureOffset = offset;
         gameObject.transform.Rotate(new Vector3(0, 0, rotateSpeed));
