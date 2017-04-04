@@ -82,4 +82,4 @@ sysinfo.txt
 *.unitypackage
 
 *.exe
-wheel_data
+/wheel_Data/
