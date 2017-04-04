@@ -11,11 +11,14 @@ public class KeyPress : MonoBehaviour {
     public GameObject BoardObject;
     public GameObject WheelObject;
     public GameObject DebugInputObject;
+    public GameObject Background;
 
     private RoundRunner RoundRunner;
     internal bool isMenuActive = false;
     internal bool isWheelActive = false;
     internal InputField DebugInputField;
+
+    internal string[] Splits;
 
     // Use this for initialization
     void Start() {
@@ -53,26 +56,50 @@ public class KeyPress : MonoBehaviour {
     }
 
     private bool ParseDebugSplits(string[] splits) {
+        Splits = splits;
+
         if (splits == null || splits.Length == 0) {
             return false;
         }
 
-        if (splits[0].Equals("reveal")) {
-            if (splits.Length == 1) {
+        for(int i = 0; i < splits.Length; i++) {
+            Splits[i] = Splits[i].ToUpper();
+        }
+
+        Reveal();
+        BackgroundColor();
+
+        return false;
+    }
+
+    private void BackgroundColor() {
+        if (Splits[0].Equals("BACKGROUNDCOLOR") && Splits.Length == 4) {
+            int[] asInt = new int[4];
+            for (int i = 0; i < Splits.Length - 1; i++) {
+                bool isParsed = int.TryParse(Splits[i+1], out asInt[i]);
+                if (!isParsed || asInt[i] < 0 || asInt[i] > 255) {
+                    return;
+                }
+            }
+
+            Color color = new Color32((byte)asInt[0], (byte)asInt[1], (byte)asInt[2], 255);
+            Background.gameObject.GetComponent<Renderer>().material.SetColor("_Color", color);
+        }
+    }
+
+    private void Reveal() {
+        if (Splits[0].Equals("REVEAL")) {
+            if (Splits.Length == 1) {
                 RoundRunner.Reveal_Clicked();
-                return true;
             } else {
                 List<char> letters = new List<char>();
-                foreach(char c in splits[1]) {
+                foreach (char c in Splits[1]) {
                     letters.Add(c);
                 }
 
                 RoundRunner.boardFiller.RevealLetters(letters);
-                return true;
             }
         }
-
-        return false;
     }
 
     private void IfNoDebugField() {
