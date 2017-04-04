@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class PlayerList {
-    public static List<Player> Players;
+    public static List<Player> Players = new List<Player>();
 }

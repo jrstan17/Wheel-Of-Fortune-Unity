@@ -19,6 +19,7 @@ public class RoundRunner : MonoBehaviour {
     public GameObject BonusRoundButtonsObject;
     internal bool IsBonusRound = false;
     public InputField BonusInputText;
+    public GameObject PlayerBar;
 
     private PuzzleFactory factory;
     private Puzzle Puzzle;
@@ -27,8 +28,22 @@ public class RoundRunner : MonoBehaviour {
     private Text CategoryText;
     private AudioTracks AudioTracks;
 
-    // Use this for initialization
     void Start() {
+        List<Player> Players = PlayerList.Players;
+        Players.Add(new Player("Jason"));
+        Players.Add(new Player("Philip"));
+        Players.Add(new Player("David"));
+        Players.Add(new Player("Leslie"));
+        Players.Add(new Player("Mom"));
+        Players.Add(new Player("Dad"));
+        GameObject panel = GameObject.FindGameObjectWithTag("PlayerPanel");
+        foreach(Player p in Players) {
+            GameObject panelClone = Instantiate(panel);
+            Text TextObj = panelClone.transform.GetChild(0).GetComponent<Text>();
+            TextObj.text = p.Name;
+            panelClone.transform.SetParent(PlayerBar.transform, false);
+        }
+
         factory = new PuzzleFactory(DataTextFile);
         boardFiller = gameObject.AddComponent<BoardFiller>();
 

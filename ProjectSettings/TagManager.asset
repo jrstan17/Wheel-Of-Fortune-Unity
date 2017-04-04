@@ -12,6 +12,7 @@ TagManager:
   - RegularRoundButtons
   - RoundRunner
   - InputFieldText
+  - PlayerPanel
   layers:
   - Default
   - TransparentFX
