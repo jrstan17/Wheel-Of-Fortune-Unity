@@ -50,7 +50,6 @@ public class KeyPress : MonoBehaviour {
                 if (Input.GetKey(KeyCode.Return)) {
                     History.Add(DebugInputField.text);
                     HistoryIndex = History.Count - 1;
-
                     ParseDebugSplits(DebugInputField.text.Split(' '));
                     DebugInputObject.SetActive(false);
                 } else if (Input.GetKey(KeyCode.Escape)) {
@@ -79,7 +78,7 @@ public class KeyPress : MonoBehaviour {
             return;
         }
 
-        for(int i = 0; i < splits.Length; i++) {
+        for (int i = 0; i < splits.Length; i++) {
             Splits[i] = Splits[i].ToUpper();
         }
 
@@ -87,13 +86,14 @@ public class KeyPress : MonoBehaviour {
         BackgroundColor();
         XYSpeed();
         RotateSpeed();
+        SpinWheel();
     }
 
     private void BackgroundColor() {
         if (Splits[0].Equals("BACKGROUNDCOLOR") && Splits.Length == 4) {
             int[] asInt = new int[4];
             for (int i = 0; i < Splits.Length - 1; i++) {
-                bool isParsed = int.TryParse(Splits[i+1], out asInt[i]);
+                bool isParsed = int.TryParse(Splits[i + 1], out asInt[i]);
                 if (!isParsed || asInt[i] < 0 || asInt[i] > 255) {
                     return;
                 }
@@ -143,6 +143,15 @@ public class KeyPress : MonoBehaviour {
                     Scroller scroller = Background.GetComponent<Scroller>();
                     scroller.rotateSpeed = parsed;
                 }
+            }
+        }
+    }
+
+    private void SpinWheel() {
+        if (Splits[0].Equals("SPINWHEEL")) {
+            if (Splits.Length == 1) {
+                SpinWheel spinWheel = WheelObject.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
+                spinWheel.Spin();
             }
         }
     }
