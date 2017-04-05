@@ -138,22 +138,6 @@ public class RoundRunner : MonoBehaviour {
         WheelCanvas.SetActive(true);
     }
 
-    public void RevealRSTLNE() {
-        List<char> rstlne = new List<char>();
-        rstlne.Add('r');
-        rstlne.Add('s');
-        rstlne.Add('t');
-        rstlne.Add('l');
-        rstlne.Add('n');
-        rstlne.Add('e');
-
-        foreach(char letter in rstlne) {
-            UsedLetters[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
-        }
-
-        boardFiller.RevealLetters(rstlne);
-    }
-
     public void Answer_Clicked() {
         Debug.Log("Puzzle Solution: " + Puzzle.Text);
     }

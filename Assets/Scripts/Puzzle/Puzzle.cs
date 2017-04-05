@@ -26,4 +26,14 @@ public class Puzzle {
         Airdate = DateTime.Parse(splits[2]);
         Number = number;
     }
+
+    public bool HasNonLetters() {
+        foreach(char c in Text) {
+            if (!char.IsLetter(c) && c != ' ') {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

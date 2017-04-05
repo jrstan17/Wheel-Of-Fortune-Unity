@@ -10,6 +10,7 @@ public class BoardFiller : MonoBehaviour {
     internal RoundRunner RoundRunner;
 
     Data data;
+    Puzzle Puzzle;
 
     private IEnumerator coroutine;
 
@@ -18,6 +19,8 @@ public class BoardFiller : MonoBehaviour {
     }
 
     public void InitBoard(Puzzle Puzzle) {
+        this.Puzzle = Puzzle;
+
         GameObject dataHolder = GameObject.FindGameObjectWithTag("DataHolder");
         data = dataHolder.GetComponent<Data>();
 
@@ -105,20 +108,19 @@ public class BoardFiller : MonoBehaviour {
 
     private IEnumerator RevealWhiteScreens(float time, List<int> InUseIndexes) {
         foreach (int i in InUseIndexes) {
-            if (char.IsLetter(Trilons[i].Letter)) {
-                data.Letters[i].color = Color.white;
-            } else {
-                data.Letters[i].color = Color.black;
-            }
-
+            data.Letters[i].color = Color.white;
             data.Screens[i].color = Color.white;
-
             yield return new WaitForSeconds(time);
         }
 
+        if (Puzzle.HasNonLetters()) {
+            yield return new WaitForSeconds(1f);
+            RevealLetters(Utilities.NonLetters);
+        }        
+
         if (RoundRunner.IsBonusRound) {
             yield return new WaitForSeconds(1f);
-            RoundRunner.RevealRSTLNE();
+            RevealLetters(Utilities.RSTLNE);
         }
     }
 
@@ -154,6 +156,12 @@ public class BoardFiller : MonoBehaviour {
             letters[i] = char.ToUpper(letters[i]);
         }
 
+        foreach (char letter in letters) {
+            if (char.IsLetter(letter)) {
+                RoundRunner.UsedLetters[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
+            }
+        }
+
         List<int> LetterIndexes = new List<int>();
         for (int i = 0; i < letters.Count; i++) {
             for (int j = 0; j < Trilons.Count; j++) {
@@ -183,9 +191,6 @@ public class BoardFiller : MonoBehaviour {
 
             data.Letters[i].color = Color.black;
             data.Screens[i].color = Color.white;
-
-            //needed?
-            //Trilons[i].Reveal(c);
 
             yield return new WaitForSeconds(waitTime);
         }
