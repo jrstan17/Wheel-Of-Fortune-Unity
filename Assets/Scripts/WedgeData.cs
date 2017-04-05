@@ -7,8 +7,6 @@ public class WedgeData : MonoBehaviour {
     public string Text;
     public WedgeType WedgeType;
 
-    private TextMesh textMesh;
-
 	// Use this for initialization
 	void Start () {
         gameObject.GetComponentInChildren<TextMesh>().text = Text;

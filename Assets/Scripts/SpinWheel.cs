@@ -29,10 +29,10 @@ public class SpinWheel : MonoBehaviour {
 
     public void Spin() {
         if (!spinning && !HasSpun) {
-            randomTime = Random.Range(AverageFriction - RandomFriction, AverageFriction + RandomFriction);
+            randomTime = Random.Range(1f, 1.1f);
             float maxAngle = 360 * randomTime;
 
-            StartCoroutine(SpinTheWheel(5.1f * randomTime, maxAngle));
+            StartCoroutine(SpinTheWheel(5f * randomTime, maxAngle));
         }
     }
 
@@ -54,20 +54,27 @@ public class SpinWheel : MonoBehaviour {
             yield return 0;
         }
 
-        transform.eulerAngles = new Vector3(0.0f, 0.0f, maxAngle + startAngle);
+        //transform.eulerAngles = new Vector3(0.0f, 0.0f, maxAngle + startAngle);
         spinning = false;
 
         CountdownTimer countdownTimer = gameObject.AddComponent<CountdownTimer>();
         countdownTimer.timeLeft = 5;
         countdownTimer.TimesUp += CountdownTimer_TimesUp;
         countdownTimer.StartTimer();
+
+        if (RoundRunner.CurrentWedge.WedgeType == WedgeType.LoseATurn) {
+            RoundRunner.AudioTracks.Play("buzzer");
+        } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.Bankrupt) {
+            RoundRunner.AudioTracks.Play("bankrupt");
+        }
     }
 
     private void CountdownTimer_TimesUp(object sender, System.EventArgs e) {
-        RoundRunner.ToggleUIButtons(true);
+        RoundRunner.ToggleUIButtons("all", true);
         GameObject wheelObject = GameObject.FindGameObjectWithTag("WheelObject");
 
         KeyPress.isWheelActive = false;
         wheelObject.SetActive(false);
+        RoundRunner.WheelWindowClosed();
     }
 }

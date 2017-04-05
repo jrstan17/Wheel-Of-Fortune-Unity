@@ -28,6 +28,7 @@ public class NewWedgeEntered : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col) {
         data = Wedge.GetComponent<WedgeData>();
+        RoundRunner.CurrentWedge = data;
 
         if (data != null) {
             sajakText.text = data.Text;

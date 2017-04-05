@@ -158,7 +158,7 @@ public class BoardFiller : MonoBehaviour {
 
         foreach (char letter in letters) {
             if (char.IsLetter(letter)) {
-                RoundRunner.UsedLetters[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
+                RoundRunner.UsedLetters[letter - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
             }
         }
 

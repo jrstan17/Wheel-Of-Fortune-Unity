@@ -26,7 +26,8 @@ public class RoundRunner : MonoBehaviour {
     internal BoardFiller boardFiller;
     internal List<Text> UsedLetters = new List<Text>();
     private Text CategoryText;
-    private AudioTracks AudioTracks;
+    internal AudioTracks AudioTracks;
+    internal static WedgeData CurrentWedge;
 
     void Start() {
         List<Player> Players = PlayerList.Players;
@@ -75,6 +76,8 @@ public class RoundRunner : MonoBehaviour {
         } else {
             RegularRoundButtonsObject.SetActive(true);
             BonusRoundButtonsObject.SetActive(false);
+            ToggleUIButtons("all", false);
+            ToggleUIButtons("spin", true);
             Puzzle = factory.NewPuzzle(RoundType.Regular);
             AudioTracks.Play("reveal");
         }
@@ -133,21 +136,39 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void Spin_Clicked() {
-        ToggleUIButtons(false);
+        ToggleUIButtons("all", false);
         KeyPress.isWheelActive = true;
         WheelCanvas.SetActive(true);
+    }
+
+    public void WheelWindowClosed() {
+        Debug.Log(CurrentWedge.Text);
     }
 
     public void Answer_Clicked() {
         Debug.Log("Puzzle Solution: " + Puzzle.Text);
     }
 
-    public void ToggleUIButtons(bool enable) {
-        GameObject buttons = GameObject.FindGameObjectWithTag("RegularRoundButtons");
+    public void ToggleUIButtons(string buttons, bool enable) {
+        GameObject buttonObj = GameObject.FindGameObjectWithTag("RegularRoundButtons");
+        string[] splits = buttons.Split(' ');
 
-        for (int i = 0; i < buttons.transform.childCount; i++) {
-            Button b = buttons.transform.GetChild(i).GetComponent<Button>();
-            b.enabled = enable;
+        foreach(string str in splits) {
+            if (str.Equals("spin")) {
+                Button b = buttonObj.transform.GetChild(0).GetComponent<Button>();
+                b.interactable = enable;
+            } else if (str.Equals("buy")) {
+                Button b = buttonObj.transform.GetChild(1).GetComponent<Button>();
+                b.interactable = enable;
+            } else if (str.Equals("solve")) {
+                Button b = buttonObj.transform.GetChild(2).GetComponent<Button>();
+                b.interactable = enable;
+            } else if (str.Equals("all")) {
+                for (int i = 0; i < buttonObj.transform.childCount; i++) {
+                    Button b = buttonObj.transform.GetChild(i).GetComponent<Button>();
+                    b.interactable = enable;
+                }
+            }
         }
     }
 
