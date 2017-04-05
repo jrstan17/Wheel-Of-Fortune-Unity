@@ -24,7 +24,7 @@ public class RoundRunner : MonoBehaviour {
     private PuzzleFactory factory;
     private Puzzle Puzzle;
     internal BoardFiller boardFiller;
-    private List<Text> UsedLetters = new List<Text>();
+    internal List<Text> UsedLetters = new List<Text>();
     private Text CategoryText;
     private AudioTracks AudioTracks;
 

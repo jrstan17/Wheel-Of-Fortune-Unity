@@ -112,6 +112,7 @@ public class KeyPress : MonoBehaviour {
                 List<char> letters = new List<char>();
                 foreach (char c in Splits[1]) {
                     letters.Add(c);
+                    RoundRunner.UsedLetters[c - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
                 }
 
                 RoundRunner.boardFiller.RevealLetters(letters);
