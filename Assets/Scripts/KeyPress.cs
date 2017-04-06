@@ -86,7 +86,8 @@ public class KeyPress : MonoBehaviour {
         BackgroundColor();
         XYSpeed();
         RotateSpeed();
-        SpinWheel();
+        SpinTime();
+        SpinAngleRange();
     }
 
     private void BackgroundColor() {
@@ -120,6 +121,31 @@ public class KeyPress : MonoBehaviour {
         }
     }
 
+    private void SpinTime() {
+        if (Splits[0].Equals("SPINTIME") && Splits.Length == 2) {
+            float parsed = 0;
+            bool isParsed = float.TryParse(Splits[1], out parsed);
+
+            if (isParsed) {
+                SpinWheel.SpinTime = parsed;
+            }
+        }
+    }
+
+    private void SpinAngleRange() {
+        if (Splits[0].Equals("SPINANGLERANGE") && Splits.Length == 3) {
+            int parsed = 0;
+            bool isParsed = int.TryParse(Splits[1], out parsed);
+            int parsed2 = 0;
+            bool isParsed2 = int.TryParse(Splits[2], out parsed2);
+
+            if (isParsed && isParsed2) {
+                SpinWheel.minAngle = parsed;
+                SpinWheel.maxAngle = parsed2;
+            }
+        }
+    }
+
     private void XYSpeed() {
         if (Splits[0].Equals("XYSPEED")) {
             if (Splits.Length == 2) {
@@ -144,15 +170,6 @@ public class KeyPress : MonoBehaviour {
                     Scroller scroller = Background.GetComponent<Scroller>();
                     scroller.rotateSpeed = parsed;
                 }
-            }
-        }
-    }
-
-    private void SpinWheel() {
-        if (Splits[0].Equals("SPINWHEEL")) {
-            if (Splits.Length == 1) {
-                SpinWheel spinWheel = WheelObject.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
-                spinWheel.Spin();
             }
         }
     }

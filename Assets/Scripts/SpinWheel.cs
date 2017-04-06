@@ -5,15 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class SpinWheel : MonoBehaviour {
     public List<AnimationCurve> animationCurves;
-    public float AverageFriction;
-    public float RandomFriction;
     public RoundRunner RoundRunner;
     public KeyPress KeyPress;
 
     internal bool HasSpun;
+    internal bool HasPast = false;
 
     internal bool spinning;
-    private float randomTime;
+    internal static float SpinTime = 5f;
+    internal static int minAngle = 360;
+    internal static int maxAngle = 720;
 
     void Start() {
         spinning = false;
@@ -29,32 +30,29 @@ public class SpinWheel : MonoBehaviour {
 
     public void Spin() {
         if (!spinning && !HasSpun) {
-            randomTime = Random.Range(1f, 1.1f);
-            float maxAngle = 360 * randomTime;
-
-            StartCoroutine(SpinTheWheel(5f * randomTime, maxAngle));
+            float rndAngle = Random.Range(transform.eulerAngles.z + minAngle, transform.eulerAngles.z + maxAngle);
+            StartCoroutine(SpinTheWheel(SpinTime, rndAngle));
         }
     }
 
-    private IEnumerator SpinTheWheel(float time, float maxAngle) {
+    private IEnumerator SpinTheWheel(float time, float rndAngle) {
         spinning = true;
         HasSpun = true;
 
         float timer = 0.0f;
         float startAngle = transform.eulerAngles.z;
-        maxAngle = startAngle - maxAngle;
+        rndAngle = startAngle - rndAngle;
 
         int animationCurveNumber = Random.Range(0, animationCurves.Count);
 
         while (timer < time) {
-            //to calculate rotation
-            float angle = maxAngle * animationCurves[animationCurveNumber].Evaluate(timer / time);
+            //to calculate rotation            
+            float angle = rndAngle * animationCurves[animationCurveNumber].Evaluate(timer / time);
             transform.eulerAngles = new Vector3(0.0f, 0.0f, angle + startAngle);
             timer += Time.deltaTime;
             yield return 0;
         }
 
-        //transform.eulerAngles = new Vector3(0.0f, 0.0f, maxAngle + startAngle);
         spinning = false;
 
         CountdownTimer countdownTimer = gameObject.AddComponent<CountdownTimer>();
