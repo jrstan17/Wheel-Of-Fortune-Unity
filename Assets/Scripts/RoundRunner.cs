@@ -24,7 +24,8 @@ public class RoundRunner : MonoBehaviour {
     private PuzzleFactory factory;
     private Puzzle Puzzle;
     internal BoardFiller boardFiller;
-    internal List<Text> UsedLetters = new List<Text>();
+    internal List<Text> UsedLetterText = new List<Text>();
+    internal List<char> UsedLetters = new List<char>();
     private Text CategoryText;
     internal AudioTracks AudioTracks;
 
@@ -41,7 +42,7 @@ public class RoundRunner : MonoBehaviour {
         PlayerList.GotoNextPlayer();
 
         GameObject panel = GameObject.FindGameObjectWithTag("PlayerPanel");
-        foreach(Player p in Players) {
+        foreach (Player p in Players) {
             GameObject panelClone = Instantiate(panel);
             Text TextObj = panelClone.transform.GetChild(0).GetComponent<Text>();
             TextObj.text = p.Name;
@@ -53,7 +54,7 @@ public class RoundRunner : MonoBehaviour {
 
         foreach (GameObject obj in UsedLetterObjects) {
             Text text = obj.GetComponent<Text>();
-            UsedLetters.Add(text);
+            UsedLetterText.Add(text);
         }
 
         CategoryText = CategoryTextObject.GetComponent<Text>();
@@ -66,9 +67,11 @@ public class RoundRunner : MonoBehaviour {
     public void NewBoard(bool isBonus) {
         IsBonusRound = isBonus;
 
-        foreach (Text text in UsedLetters) {
+        foreach (Text text in UsedLetterText) {
             text.color = Constants.USED_LETTER_ENABLED_COLOR;
         }
+        UsedLetters = new List<char>();
+
 
         if (isBonus) {
             BonusInputText.text = "";
@@ -107,7 +110,7 @@ public class RoundRunner : MonoBehaviour {
     public void BonusTextField_Changed() {
         string toReturn = "";
 
-        foreach(char c in BonusInputText.text) {
+        foreach (char c in BonusInputText.text) {
             toReturn += char.ToUpper(c);
         }
 
@@ -116,11 +119,12 @@ public class RoundRunner : MonoBehaviour {
 
     public void SubmitLetters_Clicked() {
         List<char> inputedList = new List<char>();
-        foreach(char c in BonusInputText.text) {
+        foreach (char c in BonusInputText.text) {
             if (char.IsLetter(c)) {
                 char lower = char.ToLower(c);
                 inputedList.Add(lower);
-                UsedLetters[lower - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
+                UsedLetterText[lower - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
+                UsedLetters.Add(lower);
             }
         }
 
@@ -154,8 +158,6 @@ public class RoundRunner : MonoBehaviour {
             PlayerList.GotoNextPlayer();
         } else if (CurrentType == WedgeType.LoseATurn) {
             PlayerList.GotoNextPlayer();
-        } else if (CurrentType == WedgeType.HighAmount || CurrentType == WedgeType.MedAmount || CurrentType == WedgeType.Regular) {
-            PlayerList.CurrentPlayer.RoundWinnings += CurrentWedge.Value;
         }
     }
 
@@ -167,7 +169,7 @@ public class RoundRunner : MonoBehaviour {
         GameObject buttonObj = GameObject.FindGameObjectWithTag("RegularRoundButtons");
         string[] splits = buttons.Split(' ');
 
-        foreach(string str in splits) {
+        foreach (string str in splits) {
             if (str.Equals("spin")) {
                 Button b = buttonObj.transform.GetChild(0).GetComponent<Button>();
                 b.interactable = enable;
@@ -187,12 +189,14 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void LetterPressed(char letter) {
-        if (UsedLetters[letter - 97].color == Constants.USED_LETTER_ENABLED_COLOR) {
-            List<char> letters = new List<char>();
-            letters.Add(letter);
-            boardFiller.RevealLetters(letters);
-            UsedLetters[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
-        } else {
+        List<char> letters = new List<char>();
+        letters.Add(letter);
+        int trilonsRevealed = boardFiller.RevealLetters(letters);
+
+        if (!UsedLetters.Contains(letter)) {
+            UsedLetterText[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
+            PlayerList.CurrentPlayer.RoundWinnings += CurrentWedge.Value * trilonsRevealed;
+        } else if (UsedLetters.Contains(letter) || trilonsRevealed == 0) {
             PlayerList.GotoNextPlayer();
             AudioTracks.Play("buzzer");
         }
@@ -205,7 +209,7 @@ public class RoundRunner : MonoBehaviour {
             }
         }
 
-        for(int i = 0; i < PlayerBar.transform.childCount; i++) {
+        for (int i = 0; i < PlayerBar.transform.childCount; i++) {
             Text nameText = PlayerBar.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<Text>();
             Text winningText = PlayerBar.transform.GetChild(i).transform.GetChild(1).gameObject.GetComponent<Text>();
 
@@ -231,7 +235,7 @@ public class RoundRunner : MonoBehaviour {
         int vowelCount = 0;
         int consonantCount = 0;
 
-        foreach(char c in inputText) {
+        foreach (char c in inputText) {
             if (!char.IsLetter(c)) {
                 return false;
             }

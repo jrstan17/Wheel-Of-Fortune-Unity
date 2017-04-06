@@ -151,14 +151,14 @@ public class BoardFiller : MonoBehaviour {
         }
     }
 
-    public void RevealLetters(List<char> letters) {
+    public int RevealLetters(List<char> letters) {
         for (int i = 0; i < letters.Count; i++) {
             letters[i] = char.ToUpper(letters[i]);
         }
 
         foreach (char letter in letters) {
             if (char.IsLetter(letter)) {
-                RoundRunner.UsedLetters[letter - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
+                RoundRunner.UsedLetterText[letter - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
             }
         }
 
@@ -173,11 +173,13 @@ public class BoardFiller : MonoBehaviour {
 
         if (LetterIndexes.Count == 0 && !RoundRunner.IsBonusRound) {
             AudioTracks.Play("buzzer");
-            return;
+            return 0;
         }
 
         coroutine = WaitForLetter(1f, letters, LetterIndexes);
         StartCoroutine(coroutine);
+
+        return LetterIndexes.Count;
     }
 
     private IEnumerator WaitForLetter(float waitTime, List<char> letters, List<int> Indexes) {
