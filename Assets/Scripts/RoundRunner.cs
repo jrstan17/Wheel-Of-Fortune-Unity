@@ -27,6 +27,7 @@ public class RoundRunner : MonoBehaviour {
     internal List<Text> UsedLetters = new List<Text>();
     private Text CategoryText;
     internal AudioTracks AudioTracks;
+
     internal static WedgeData CurrentWedge;
 
     void Start() {
@@ -37,6 +38,8 @@ public class RoundRunner : MonoBehaviour {
         Players.Add(new Player("Leslie"));
         Players.Add(new Player("Mom"));
         Players.Add(new Player("Dad"));
+        PlayerList.GotoNextPlayer();
+
         GameObject panel = GameObject.FindGameObjectWithTag("PlayerPanel");
         foreach(Player p in Players) {
             GameObject panelClone = Instantiate(panel);
@@ -143,6 +146,17 @@ public class RoundRunner : MonoBehaviour {
 
     public void WheelWindowClosed() {
         Debug.Log(CurrentWedge.Text);
+
+        WedgeType CurrentType = CurrentWedge.WedgeType;
+
+        if (CurrentType == WedgeType.Bankrupt) {
+            PlayerList.CurrentPlayer.RoundWinnings = 0;
+            PlayerList.GotoNextPlayer();
+        } else if (CurrentType == WedgeType.LoseATurn) {
+            PlayerList.GotoNextPlayer();
+        } else if (CurrentType == WedgeType.HighAmount || CurrentType == WedgeType.MedAmount || CurrentType == WedgeType.Regular) {
+            PlayerList.CurrentPlayer.RoundWinnings += CurrentWedge.Value;
+        }
     }
 
     public void Answer_Clicked() {
@@ -178,6 +192,9 @@ public class RoundRunner : MonoBehaviour {
             letters.Add(letter);
             boardFiller.RevealLetters(letters);
             UsedLetters[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
+        } else {
+            PlayerList.GotoNextPlayer();
+            AudioTracks.Play("buzzer");
         }
     }
 
@@ -186,6 +203,23 @@ public class RoundRunner : MonoBehaviour {
             if (Input.GetKey(KeyCode.Return) && IsInputFieldValid(BonusInputText.text)) {
                 SubmitLetters_Clicked();
             }
+        }
+
+        for(int i = 0; i < PlayerBar.transform.childCount; i++) {
+            Text nameText = PlayerBar.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<Text>();
+            Text winningText = PlayerBar.transform.GetChild(i).transform.GetChild(1).gameObject.GetComponent<Text>();
+
+            if (PlayerList.CurrentPlayer.Name.Equals(nameText.text)) {
+                PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
+                nameText.color = Color.black;
+                winningText.color = Color.black;
+            } else {
+                PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.clear;
+                nameText.color = Color.white;
+                winningText.color = Color.white;
+            }
+
+            winningText.text = PlayerList.Players[i].RoundWinnings.ToString("C0");
         }
     }
 

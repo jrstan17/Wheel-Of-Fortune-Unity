@@ -38,4 +38,13 @@ public class Player {
 
         return value;
     }
+
+    public override bool Equals(object obj) {
+        if (!(obj is Player)) {
+            return false;
+        }
+
+        Player toCompare = (Player)obj;
+        return (toCompare.Name.Equals(this.Name));
+    }
 }
