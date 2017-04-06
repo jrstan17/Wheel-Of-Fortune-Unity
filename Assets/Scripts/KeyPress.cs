@@ -197,11 +197,9 @@ public class KeyPress : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if (isMenuActive) {
                 MenuObject.SetActive(false);
-                MenuObject.SetActiveRecursively(false);
                 isMenuActive = false;
             } else {
                 MenuObject.SetActive(true);
-                MenuObject.SetActiveRecursively(true);
                 isMenuActive = true;
             }
 

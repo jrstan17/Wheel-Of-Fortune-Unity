@@ -68,7 +68,6 @@ public class SpinWheel : MonoBehaviour {
     }
 
     private void CountdownTimer_TimesUp(object sender, System.EventArgs e) {
-        RoundRunner.ToggleUIButtons("all", true);
         GameObject wheelObject = GameObject.FindGameObjectWithTag("WheelObject");
 
         KeyPress.isWheelActive = false;

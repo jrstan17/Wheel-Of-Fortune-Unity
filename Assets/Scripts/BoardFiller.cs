@@ -116,11 +116,15 @@ public class BoardFiller : MonoBehaviour {
         if (Puzzle.HasNonLetters()) {
             yield return new WaitForSeconds(1f);
             RevealLetters(Utilities.NonLetters);
+            yield return new WaitForSeconds(1f);
         }        
 
         if (RoundRunner.IsBonusRound) {
             yield return new WaitForSeconds(1f);
             RevealLetters(Utilities.RSTLNE);
+        } else {
+            yield return new WaitForSeconds(1f);
+            RoundRunner.ToggleUIButtons();
         }
     }
 
@@ -196,6 +200,8 @@ public class BoardFiller : MonoBehaviour {
 
             yield return new WaitForSeconds(waitTime);
         }
+
+        RoundRunner.ToggleUIButtons();
     }
 
     public void Clear() {

@@ -47,4 +47,8 @@ public class Player {
         Player toCompare = (Player)obj;
         return (toCompare.Name.Equals(this.Name));
     }
+
+    public override int GetHashCode() {
+        return base.GetHashCode();
+    }
 }
