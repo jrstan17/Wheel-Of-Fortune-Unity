@@ -12,6 +12,7 @@ public class RoundRunner : MonoBehaviour {
     public List<GameObject> UsedLetterObjects;
     public GameObject WheelCanvas;
     public GameObject MenuCanvas;
+    public GameObject SolveCanvas;
     public GameObject CategoryTextObject;
     public KeyPress KeyPress;
     public GameObject AudioSource;
@@ -23,7 +24,7 @@ public class RoundRunner : MonoBehaviour {
     public GameObject Background;
 
     private PuzzleFactory factory;
-    private Puzzle Puzzle;
+    internal static Puzzle Puzzle;
     internal BoardFiller boardFiller;
     internal Text SajakText;
     internal List<Text> UsedLetterText = new List<Text>();
@@ -118,7 +119,7 @@ public class RoundRunner : MonoBehaviour {
         CategoryText.text = Puzzle.Category;
         SajakText.text = "The category is " + Puzzle.Category + ". Start us off with a spin, " + PlayerList.CurrentPlayer.Name + ".";
 
-        boardFiller.InitBoard(Puzzle);
+        boardFiller.InitBoard();
 
         EventSystem.current.SetSelectedGameObject(gameObject);
     }
@@ -176,6 +177,18 @@ public class RoundRunner : MonoBehaviour {
         NewBoard(false);
     }
 
+    public void SolvedCorrectly() {
+
+    }
+
+    public void SolvedIncorrectly() {        
+        SolveCanvas.SetActive(false);
+        AudioTracks.Play("buzzer");
+        SajakText.text = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". ";
+        GotoNextPlayer();
+        SajakText.text += "That is incorrect. Let's give " + PlayerList.CurrentPlayer.Name + " a try.";
+    }
+
     public void BonusTextField_Changed() {
         string toReturn = "";
 
@@ -216,6 +229,11 @@ public class RoundRunner : MonoBehaviour {
         ShouldBeVowel = false;
         KeyPress.isWheelActive = true;
         WheelCanvas.SetActive(true);
+    }
+
+    public void Solve_Clicked() {
+        ToggleUIButtonsParsing("all", false);
+        SolveCanvas.SetActive(true);
     }
 
     public void Buy_Clicked() {

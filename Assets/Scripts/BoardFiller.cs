@@ -12,7 +12,6 @@ public class BoardFiller : MonoBehaviour {
     internal Color32 ScreenColor;
 
     Data data;
-    internal Puzzle Puzzle;
 
     private IEnumerator coroutine;
 
@@ -20,9 +19,7 @@ public class BoardFiller : MonoBehaviour {
         RoundRunner = GameObject.FindGameObjectWithTag("RoundRunner").GetComponent<RoundRunner>();
     }
 
-    public void InitBoard(Puzzle Puzzle) {
-        this.Puzzle = Puzzle;
-
+    public void InitBoard() {
         GameObject dataHolder = GameObject.FindGameObjectWithTag("DataHolder");
         data = dataHolder.GetComponent<Data>();
 
@@ -34,7 +31,7 @@ public class BoardFiller : MonoBehaviour {
         Rows.Add(new Row(14));
         Rows.Add(new Row(12));
 
-        string[] splits = Puzzle.Text.Split(' ');
+        string[] splits = RoundRunner.Puzzle.Text.Split(' ');
         string[] remainders = null;
 
         remainders = Rows[1].AddAnswer(splits);
@@ -153,7 +150,7 @@ public class BoardFiller : MonoBehaviour {
             yield return new WaitForSeconds(time);
         }
 
-        if (Puzzle.HasNonLetters()) {
+        if (RoundRunner.Puzzle.HasNonLetters()) {
             yield return new WaitForSeconds(1f);
             RevealLetters(Utilities.NonLetters);
             yield return new WaitForSeconds(1f);

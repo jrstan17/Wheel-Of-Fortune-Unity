@@ -149,7 +149,7 @@ public class KeyPress : MonoBehaviour {
 
     private void RevealDebug() {
         if (Splits[0].Equals("REVEALDEBUG")) {
-            RoundRunner.SajakText.text = "Puzzle Solution: " + RoundRunner.boardFiller.Puzzle.Text;
+            RoundRunner.SajakText.text = "Puzzle Solution: " + RoundRunner.Puzzle.Text;
         }
     }
 
