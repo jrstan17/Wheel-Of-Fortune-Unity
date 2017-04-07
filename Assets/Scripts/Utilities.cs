@@ -11,6 +11,11 @@ class Utilities {
     public static readonly List<char> Consonants = FillLetters(new char[] { 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z' });
     public static readonly List<Color32> RoundColors = FillColors();
 
+    public static string RandomString(string[] strArray) {
+        int n = Random.Range(0, strArray.Length);
+        return strArray[n];
+    }
+
     private static List<char> FillLetters(char[] chars) {
         List<char> toReturn = new List<char>();
         foreach (char c in chars) {

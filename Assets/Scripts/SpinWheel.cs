@@ -16,6 +16,8 @@ public class SpinWheel : MonoBehaviour {
     internal static int minAngle = 275;
     internal static int maxAngle = 540;
 
+    private IEnumerator coroutine;
+
     void Start() {
         spinning = false;
     }
@@ -64,13 +66,13 @@ public class SpinWheel : MonoBehaviour {
             RoundRunner.AudioTracks.Play("oh");
         }
 
-        CountdownTimer countdownTimer = gameObject.AddComponent<CountdownTimer>();
-        countdownTimer.timeLeft = 1;
-        countdownTimer.TimesUp += CountdownTimer_TimesUp;
-        countdownTimer.StartTimer();
+        coroutine = TimesUp();
+        StartCoroutine(coroutine);
     }
 
-    private void CountdownTimer_TimesUp(object sender, System.EventArgs e) {
+    public IEnumerator TimesUp() {
+        yield return new WaitForSeconds(1f);
+
         GameObject wheelObject = GameObject.FindGameObjectWithTag("WheelObject");
 
         KeyPress.isWheelActive = false;

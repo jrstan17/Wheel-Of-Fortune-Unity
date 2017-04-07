@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -181,12 +180,21 @@ public class RoundRunner : MonoBehaviour {
 
     }
 
-    public void SolvedIncorrectly() {        
+    public void SolvedIncorrectly(bool isOutOfTime) {        
         SolveCanvas.SetActive(false);
         AudioTracks.Play("buzzer");
         SajakText.text = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". ";
         GotoNextPlayer();
-        SajakText.text += "That is incorrect. Let's give " + PlayerList.CurrentPlayer.Name + " a try.";
+
+        if (isOutOfTime) {
+            SajakText.text += "You're out of time. Let's give " + PlayerList.CurrentPlayer.Name + " a";
+        } else {
+            string statement = Utilities.RandomString(new string[] { "That is incorrect.", "That is not correct.", "That's not right.", "You didn't solve it correctly.", "That's not the right answer." });
+            SajakText.text +=  statement + " Let's give " + PlayerList.CurrentPlayer.Name + " a";
+        }
+
+        string chance = Utilities.RandomString(new string[] { " try.", " chance.", "n opportunity." });
+        SajakText.text += chance;
     }
 
     public void BonusTextField_Changed() {
