@@ -21,6 +21,7 @@ public class KeyPress : MonoBehaviour {
     internal string[] Splits;
     List<string> History = new List<string>();
     int HistoryIndex = 0;
+    internal string CustomText = null;
 
     // Use this for initialization
     void Start() {
@@ -85,11 +86,13 @@ public class KeyPress : MonoBehaviour {
         }
 
         Reveal();
+        RevealDebug();
         BackgroundColor();
         XYSpeed();
         RotateSpeed();
         SpinTime();
         SpinAngleRange();
+        CustomPuzzle();
     }
 
     private void BackgroundColor() {
@@ -123,6 +126,28 @@ public class KeyPress : MonoBehaviour {
                     RoundRunner.UsedLetters.Add(c);
                 }
             }
+        }
+    }
+
+    private void CustomPuzzle() {
+        if (Splits[0].Equals("CUSTOMPUZZLE") && Splits.Length > 1) {
+            string text = "";
+
+            for(int i = 1; i < Splits.Length; i++) {
+                if (i != Splits.Length - 1) {
+                    text += Splits[i] + " ";
+                } else {
+                    text += Splits[i];
+                }
+            }
+
+            CustomText = text;
+        }
+    }
+
+    private void RevealDebug() {
+        if (Splits[0].Equals("REVEALDEBUG")) {
+            RoundRunner.SajakText.text = "Puzzle Solution: " + RoundRunner.boardFiller.Puzzle.Text;
         }
     }
 

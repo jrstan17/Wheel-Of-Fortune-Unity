@@ -27,6 +27,11 @@ public class PuzzleFactory {
         //return new Puzzle("IF YOU DON'T LOVE ME I'LL KICK YOUR BUTT\tCategory\t10/16/2014", 1);
     }
 
+    public Puzzle NewPuzzle(string text) {
+        text = text.ToUpper();
+        return new Puzzle(text + "\tCustom Puzzle\t10/16/2014", 1);
+    }
+
     private bool IsRandomRoundPuzzleValid(int randomIndex, RoundType type) {
         string answer = Puzzles[randomIndex].Text;
         int letters = 0;

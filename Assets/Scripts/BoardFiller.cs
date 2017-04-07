@@ -12,7 +12,7 @@ public class BoardFiller : MonoBehaviour {
     internal Color32 ScreenColor;
 
     Data data;
-    Puzzle Puzzle;
+    internal Puzzle Puzzle;
 
     private IEnumerator coroutine;
 
@@ -108,10 +108,34 @@ public class BoardFiller : MonoBehaviour {
         StartCoroutine(coroutine);
     }
 
-    public bool PuzzleContainsOnlyVowels() {
+    public bool PuzzleContainsOnly(LetterType type) {
         if (Trilons != null) {
             foreach (Trilon t in Trilons) {
-                if (t.State == TrilonState.Unrevealed && !Utilities.IsVowel(t.Letter)) {
+                if (type == LetterType.Vowel) {
+                    if (t.State == TrilonState.Unrevealed && !Utilities.IsVowel(t.Letter)) {
+                        return false;
+                    }
+                } else if (type == LetterType.Consonant) {
+                    if (t.State == TrilonState.Unrevealed && Utilities.IsVowel(t.Letter)) {
+                        return false;
+                    }
+                } else if (type == LetterType.Both) {
+                    if (t.State == TrilonState.Unrevealed) {
+                        return false;
+                    }
+                }
+            }
+        } else {
+            return false;
+        }
+
+        return true;
+    }
+
+    public bool IsPuzzleFullyRevealed() {
+        if (Trilons != null) {
+            foreach (Trilon t in Trilons) {
+                if (t.State == TrilonState.Unrevealed) {
                     return false;
                 }
             }
@@ -133,7 +157,7 @@ public class BoardFiller : MonoBehaviour {
             yield return new WaitForSeconds(1f);
             RevealLetters(Utilities.NonLetters);
             yield return new WaitForSeconds(1f);
-        }        
+        }
 
         if (RoundRunner.IsBonusRound) {
             yield return new WaitForSeconds(1f);
@@ -196,7 +220,7 @@ public class BoardFiller : MonoBehaviour {
             return 0;
         }
 
-        for(int i = 0; i < letters.Count; i++) {
+        for (int i = 0; i < letters.Count; i++) {
             foreach (Trilon t in Trilons) {
                 if (t.Letter == letters[i]) {
                     t.Reveal(letters[i]);
@@ -225,21 +249,37 @@ public class BoardFiller : MonoBehaviour {
             yield return new WaitForSeconds(waitTime);
         }
 
-        if (PuzzleContainsOnlyVowels() && !RoundRunner.NotifiedOfRemainingLetters) {
-            yield return new WaitForSeconds(1f);
-            AudioTracks.Play("remains");
-            RoundRunner.SajakText.text = "Only vowels remain!";
-            RoundRunner.NotifiedOfRemainingLetters = true;
-            RoundRunner.ToggleUIButtons();
+        if (!PuzzleContainsOnly(LetterType.Both)) {
+            if (PuzzleContainsOnly(LetterType.Vowel) && !RoundRunner.NotifiedOfRemainingLetters) {
+                yield return new WaitForSeconds(1f);
+                AudioTracks.Play("remains");
+                RoundRunner.SajakText.text = "Only vowels remain!";
+                RoundRunner.NotifiedOfRemainingLetters = true;
+                RoundRunner.ToggleUIButtons();
 
-            foreach (char c in Utilities.Consonants) {
-                if (!RoundRunner.UsedLetters.Contains(c)) {
-                    RoundRunner.UsedLetters.Add(c);
+                foreach (char c in Utilities.Consonants) {
+                    if (!RoundRunner.UsedLetters.Contains(c)) {
+                        RoundRunner.UsedLetters.Add(c);
+                    }
+                    RoundRunner.UsedLetterText[c - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
                 }
-                RoundRunner.UsedLetterText[c - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
+            } else if (PuzzleContainsOnly(LetterType.Consonant) && !RoundRunner.NotifiedOfRemainingLetters) {
+                yield return new WaitForSeconds(1f);
+                AudioTracks.Play("remains");
+                RoundRunner.SajakText.text = "Only consonants remain!";
+                RoundRunner.NotifiedOfRemainingLetters = true;
+                RoundRunner.ToggleUIButtons();
+
+                foreach (char c in Utilities.Vowels) {
+                    if (!RoundRunner.UsedLetters.Contains(c)) {
+                        RoundRunner.UsedLetters.Add(c);
+                    }
+                    RoundRunner.UsedLetterText[c - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
+                }
             }
         }
 
+        yield return new WaitForSeconds(waitTime);
         RoundRunner.ToggleUIButtons();
     }
 

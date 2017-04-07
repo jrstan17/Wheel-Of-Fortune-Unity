@@ -46,12 +46,6 @@ public class RoundRunner : MonoBehaviour {
         Players.Add(new Player("Philip"));
         Players.Add(new Player("David"));
         Players.Add(new Player("Leslie"));
-        Players.Add(new Player("Mom"));
-        Players.Add(new Player("Dad"));
-        Players.Add(new Player("Daniel"));
-        Players.Add(new Player("Elizabeth"));
-        Players.Add(new Player("G"));
-        Players.Add(new Player("Martha"));
 
         GameObject panel = GameObject.FindGameObjectWithTag("PlayerPanel");
         foreach (Player p in Players) {
@@ -82,6 +76,7 @@ public class RoundRunner : MonoBehaviour {
 
     public void NewBoard(bool isBonus) {
         RoundNumber++;
+        NotifiedOfRemainingLetters = false;
 
         IsBonusRound = isBonus;
         ShouldBeVowel = false;
@@ -109,7 +104,14 @@ public class RoundRunner : MonoBehaviour {
             RegularRoundButtonsObject.SetActive(true);
             BonusRoundButtonsObject.SetActive(false);
             ToggleUIButtonsParsing("all", false);
-            Puzzle = factory.NewPuzzle(RoundType.Regular);
+
+            if (KeyPress.CustomText == null) {
+                Puzzle = factory.NewPuzzle(RoundType.Regular);
+            } else {
+                Puzzle = factory.NewPuzzle(KeyPress.CustomText);
+                KeyPress.CustomText = null;
+            }
+
             AudioTracks.Play("reveal");
         }
 
@@ -266,13 +268,14 @@ public class RoundRunner : MonoBehaviour {
             ToggleUIButtonsParsing("spin solve", true);
         }
 
-        if (boardFiller.PuzzleContainsOnlyVowels()) {
+        if (boardFiller.PuzzleContainsOnly(LetterType.Both)) {
+            ToggleUIButtonsParsing("spin buy", false);
+            ToggleUIButtonsParsing("solve", true);
+        } else if (boardFiller.PuzzleContainsOnly(LetterType.Vowel)) {
             ToggleUIButtonsParsing("spin", false);
+        } else if (boardFiller.PuzzleContainsOnly(LetterType.Consonant)) {
+            ToggleUIButtonsParsing("buy", false);
         }
-    }
-
-    public void Answer_Clicked() {
-        Debug.Log("Puzzle Solution: " + Puzzle.Text);
     }
 
     public void ToggleUIButtonsParsing(string buttons, bool enable) {
@@ -330,7 +333,7 @@ public class RoundRunner : MonoBehaviour {
 
                 } else {
                     GotoNextPlayer();
-                    SajakText.text = "There are no '" + char.ToUpper(letter) + "s.' It's your turn, " + PlayerList.CurrentPlayer.Name + ".";
+                    SajakText.text = "There are no " + char.ToUpper(letter) + "'s. It's your turn, " + PlayerList.CurrentPlayer.Name + ".";
                     AudioTracks.Play("buzzer");
                 }
 
@@ -361,7 +364,7 @@ public class RoundRunner : MonoBehaviour {
 
                 UsedLetters.Add(letter);
             } else {
-                SajakText.text = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". '" + char.ToUpper(letter) + "' has already been used. ";
+                SajakText.text = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". " + char.ToUpper(letter) + " has already been used. ";
                 GotoNextPlayer();
                 SajakText.text += "It's now " + PlayerList.CurrentPlayer.Name + "'s turn.";
                 AudioTracks.Play("buzzer");
@@ -393,7 +396,7 @@ public class RoundRunner : MonoBehaviour {
                 winningText.color = Color.black;
             } else {
                 PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.clear;
-                nameText.color = new Color32(255,255,255,125);
+                nameText.color = new Color32(255, 255, 255, 125);
                 winningText.color = new Color32(255, 255, 255, 125);
             }
 
