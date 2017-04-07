@@ -55,10 +55,12 @@ public class KeyPress : MonoBehaviour {
                 } else if (Input.GetKey(KeyCode.Escape)) {
                     DebugInputObject.SetActive(false);
                 } else if (Input.GetKey(KeyCode.UpArrow)) {
-                    DebugInputField.text = History[HistoryIndex];
+                    if (History.Count != 0) {
+                        DebugInputField.text = History[HistoryIndex];
 
-                    if (HistoryIndex != 0) {
-                        HistoryIndex--;
+                        if (HistoryIndex != 0) {
+                            HistoryIndex--;
+                        }
                     }
                 } else if (Input.GetKey(KeyCode.DownArrow)) {
                     DebugInputField.text = History[HistoryIndex];
@@ -117,6 +119,9 @@ public class KeyPress : MonoBehaviour {
                 }
 
                 RoundRunner.boardFiller.RevealLetters(letters);
+                foreach(char c in letters) {
+                    RoundRunner.UsedLetters.Add(c);
+                }
             }
         }
     }

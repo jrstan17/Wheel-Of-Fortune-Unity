@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoardFiller : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class BoardFiller : MonoBehaviour {
     public List<Trilon> Trilons;
     public AudioTracks AudioTracks;
     internal RoundRunner RoundRunner;
+    internal Color32 ScreenColor;
 
     Data data;
     Puzzle Puzzle;
@@ -95,7 +97,7 @@ public class BoardFiller : MonoBehaviour {
         for (int i = 0; i < Trilons.Count; i++) {
             string letter = Trilons[i].Letter.ToString();
             data.Letters[i].text = letter;
-            data.Letters[i].color = new Color32(0, 128, 0, 255);
+            data.Letters[i].color = ScreenColor;
 
             if (Trilons[i].State != TrilonState.NotInUse) {
                 InUseIndexes.Add(i);
@@ -104,6 +106,20 @@ public class BoardFiller : MonoBehaviour {
 
         coroutine = RevealWhiteScreens(0.025f, InUseIndexes);
         StartCoroutine(coroutine);
+    }
+
+    public bool PuzzleContainsOnlyVowels() {
+        if (Trilons != null) {
+            foreach (Trilon t in Trilons) {
+                if (t.State == TrilonState.Unrevealed && !Utilities.IsVowel(t.Letter)) {
+                    return false;
+                }
+            }
+        } else {
+            return false;
+        }
+
+        return true;
     }
 
     private IEnumerator RevealWhiteScreens(float time, List<int> InUseIndexes) {
@@ -130,7 +146,7 @@ public class BoardFiller : MonoBehaviour {
 
     public void ClearBoard() {
         for (int i = 0; i < data.Screens.Count; i++) {
-            data.Screens[i].color = new Color32(0, 128, 0, 255);
+            data.Screens[i].color = ScreenColor;
         }
     }
 
@@ -180,6 +196,14 @@ public class BoardFiller : MonoBehaviour {
             return 0;
         }
 
+        for(int i = 0; i < letters.Count; i++) {
+            foreach (Trilon t in Trilons) {
+                if (t.Letter == letters[i]) {
+                    t.Reveal(letters[i]);
+                }
+            }
+        }
+
         coroutine = WaitForLetter(1f, letters, LetterIndexes);
         StartCoroutine(coroutine);
 
@@ -199,6 +223,21 @@ public class BoardFiller : MonoBehaviour {
             data.Screens[i].color = Color.white;
 
             yield return new WaitForSeconds(waitTime);
+        }
+
+        if (PuzzleContainsOnlyVowels() && !RoundRunner.NotifiedOfRemainingLetters) {
+            yield return new WaitForSeconds(1f);
+            AudioTracks.Play("remains");
+            RoundRunner.SajakText.text = "Only vowels remain!";
+            RoundRunner.NotifiedOfRemainingLetters = true;
+            RoundRunner.ToggleUIButtons();
+
+            foreach (char c in Utilities.Consonants) {
+                if (!RoundRunner.UsedLetters.Contains(c)) {
+                    RoundRunner.UsedLetters.Add(c);
+                }
+                RoundRunner.UsedLetterText[c - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
+            }
         }
 
         RoundRunner.ToggleUIButtons();

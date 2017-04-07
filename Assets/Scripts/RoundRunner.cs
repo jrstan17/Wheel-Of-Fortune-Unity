@@ -17,22 +17,28 @@ public class RoundRunner : MonoBehaviour {
     public GameObject AudioSource;
     public GameObject RegularRoundButtonsObject;
     public GameObject BonusRoundButtonsObject;
-    internal bool IsBonusRound = false;
-    internal bool IsTimeForLetter = false;
     public InputField BonusInputText;
     public GameObject PlayerBar;
+    public GameObject SajackPanel;
+    public GameObject Background;
 
     private PuzzleFactory factory;
     private Puzzle Puzzle;
     internal BoardFiller boardFiller;
+    internal Text SajakText;
     internal List<Text> UsedLetterText = new List<Text>();
     internal List<char> UsedLetters = new List<char>();
     private Text CategoryText;
     internal AudioTracks AudioTracks;
-
+    internal bool IsBonusRound = false;
+    internal bool IsTimeForLetter = false;
     internal int VowelPurchaseCost = 250;
+    internal bool ShouldBeVowel = false;
+    internal int RoundNumber = 0;
+    internal bool NotifiedOfRemainingLetters = false;
 
     internal static WedgeData CurrentWedge;
+    private IEnumerator coroutine;
 
     void Start() {
         List<Player> Players = PlayerList.Players;
@@ -42,6 +48,10 @@ public class RoundRunner : MonoBehaviour {
         Players.Add(new Player("Leslie"));
         Players.Add(new Player("Mom"));
         Players.Add(new Player("Dad"));
+        Players.Add(new Player("Daniel"));
+        Players.Add(new Player("Elizabeth"));
+        Players.Add(new Player("G"));
+        Players.Add(new Player("Martha"));
 
         GameObject panel = GameObject.FindGameObjectWithTag("PlayerPanel");
         foreach (Player p in Players) {
@@ -61,16 +71,25 @@ public class RoundRunner : MonoBehaviour {
 
         CategoryText = CategoryTextObject.GetComponent<Text>();
         AudioTracks = AudioSource.GetComponent<AudioTracks>();
+        SajakText = SajackPanel.transform.GetChild(0).GetComponent<Text>();
         boardFiller.AudioTracks = AudioTracks;
+
+        SpinWheel spinWheel = WheelCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
+        spinWheel.Randomize();
 
         NewBoard(false);
     }
 
     public void NewBoard(bool isBonus) {
+        RoundNumber++;
+
         IsBonusRound = isBonus;
+        ShouldBeVowel = false;
         GotoNextPlayer();
 
-        foreach(Player p in PlayerList.Players) {
+        SetRoundColors();
+
+        foreach (Player p in PlayerList.Players) {
             p.RoundWinnings = 0;
             p.FreePlays = 0;
         }
@@ -95,10 +114,52 @@ public class RoundRunner : MonoBehaviour {
         }
 
         CategoryText.text = Puzzle.Category;
+        SajakText.text = "The category is " + Puzzle.Category + ". Start us off with a spin, " + PlayerList.CurrentPlayer.Name + ".";
 
         boardFiller.InitBoard(Puzzle);
 
         EventSystem.current.SetSelectedGameObject(gameObject);
+    }
+
+    private void SetRoundColors() {
+        int colorIndex;
+
+        if (RoundNumber == Utilities.RoundColors.Count + 1) {
+            colorIndex = 0;
+        } else {
+            colorIndex = RoundNumber - 1;
+        }
+
+        Color color = Utilities.RoundColors[colorIndex];
+        Background.gameObject.GetComponent<Renderer>().material.SetColor("_Color", color);
+
+        SajackPanel.GetComponent<Image>().color = new Color(color.r, color.g, color.b, 0.5f);
+
+        Color32 bright = new Color32(0, 0, 0, 255);
+        if (color.r != 0) {
+            bright.r = 255;
+        }
+        if (color.g != 0) {
+            bright.g = 255;
+        }
+        if (color.b != 0) {
+            bright.b = 255;
+        }
+
+        SajakText.color = bright;
+
+        Color32 screen = new Color32(0, 0, 0, 255);
+        if (color.r != 0) {
+            screen.r = 128;
+        }
+        if (color.g != 0) {
+            screen.g = 128;
+        }
+        if (color.b != 0) {
+            screen.b = 128;
+        }
+
+        boardFiller.ScreenColor = screen;
     }
 
     public void NewBonus_Clicked() {
@@ -150,8 +211,16 @@ public class RoundRunner : MonoBehaviour {
 
     public void Spin_Clicked() {
         ToggleUIButtonsParsing("all", false);
+        ShouldBeVowel = false;
         KeyPress.isWheelActive = true;
         WheelCanvas.SetActive(true);
+    }
+
+    public void Buy_Clicked() {
+        ToggleUIButtonsParsing("all", false);
+        IsTimeForLetter = true;
+        ShouldBeVowel = true;
+        PlayerList.CurrentPlayer.RoundWinnings -= VowelPurchaseCost;
     }
 
     public void WheelWindowClosed() {
@@ -161,12 +230,25 @@ public class RoundRunner : MonoBehaviour {
         WedgeType CurrentType = CurrentWedge.WedgeType;
 
         if (CurrentType == WedgeType.Bankrupt) {
+            AudioTracks.Play("bankrupt");
+            SajakText.text = "You're bankrupt, " + PlayerList.CurrentPlayer.Name + ". I'm so sorry.";
             PlayerList.CurrentPlayer.RoundWinnings = 0;
             GotoNextPlayer();
+            SajakText.text += " It's your turn, " + PlayerList.CurrentPlayer.Name + ".";
         } else if (CurrentType == WedgeType.LoseATurn) {
-            
+            AudioTracks.Play("buzzer");
+            SajakText.text = "You've lost your turn, " + PlayerList.CurrentPlayer.Name + ".";
+            GotoNextPlayer();
+            SajakText.text += " It's now your turn, " + PlayerList.CurrentPlayer.Name + ".";
+        } else if (CurrentType == WedgeType.HighAmount) {
+            SajakText.text = CurrentWedge.Value.ToString("C0") + "! Now make your guess count!";
+            IsTimeForLetter = true;
+        } else if (CurrentType == WedgeType.FreePlay) {
+            SajakText.text = "You have yourself a Free Play, " + PlayerList.CurrentPlayer.Name + ". The current value is " + CurrentWedge.Value + ".";
+            IsTimeForLetter = true;
         } else {
             IsTimeForLetter = true;
+            SajakText.text = CurrentWedge.Value + ".";
         }
     }
 
@@ -176,10 +258,16 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void ToggleUIButtons() {
+        ToggleUIButtonsParsing("all", false);
+
         if (PlayerList.CurrentPlayer.RoundWinnings >= VowelPurchaseCost) {
             ToggleUIButtonsParsing("all", true);
         } else {
             ToggleUIButtonsParsing("spin solve", true);
+        }
+
+        if (boardFiller.PuzzleContainsOnlyVowels()) {
+            ToggleUIButtonsParsing("spin", false);
         }
     }
 
@@ -213,19 +301,79 @@ public class RoundRunner : MonoBehaviour {
     public void LetterPressed(char letter) {
         if (IsTimeForLetter) {
             IsTimeForLetter = false;
+            int trilonsRevealed = 0;
 
             List<char> letters = new List<char>();
             letters.Add(letter);
-            int trilonsRevealed = boardFiller.RevealLetters(letters);
 
-            if (!UsedLetters.Contains(letter) && trilonsRevealed > 0) {
-                UsedLetterText[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
-                PlayerList.CurrentPlayer.RoundWinnings += CurrentWedge.Value * trilonsRevealed;
+            //if it's a consonant
+            if (!ShouldBeVowel && !Utilities.IsVowel(letter) && !UsedLetters.Contains(letter)) {
+                trilonsRevealed = boardFiller.RevealLetters(letters);
+
+                if (!UsedLetters.Contains(letter) && trilonsRevealed > 0) {
+                    UsedLetterText[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
+                    int totalValue = CurrentWedge.Value * trilonsRevealed;
+                    PlayerList.CurrentPlayer.RoundWinnings += totalValue;
+
+                    if (trilonsRevealed == 1) {
+                        SajakText.text = "There is 1 " + char.ToUpper(letter);
+                    } else {
+                        SajakText.text = "There are " + trilonsRevealed + " " + char.ToUpper(letter) + "'s";
+                    }
+
+                    SajakText.text += " for a value of " + totalValue.ToString("C0");
+                    if (CurrentWedge.WedgeType == WedgeType.HighAmount) {
+                        SajakText.text += "!";
+                    } else {
+                        SajakText.text += ".";
+                    }
+
+                } else {
+                    GotoNextPlayer();
+                    SajakText.text = "There are no '" + char.ToUpper(letter) + "s.' It's your turn, " + PlayerList.CurrentPlayer.Name + ".";
+                    AudioTracks.Play("buzzer");
+                }
+
+                UsedLetters.Add(letter);
+            } //if it's a vowel
+            else if (ShouldBeVowel && Utilities.IsVowel(letter) && !UsedLetters.Contains(letter)) {
+                trilonsRevealed = boardFiller.RevealLetters(letters);
+
+                if (!UsedLetters.Contains(letter) && trilonsRevealed > 0) {
+                    UsedLetterText[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
+
+                    if (trilonsRevealed == 1) {
+                        SajakText.text = "There is 1 " + char.ToUpper(letter);
+                    } else {
+                        SajakText.text = "There are " + trilonsRevealed + " " + char.ToUpper(letter) + "'s";
+                    }
+
+                    if (CurrentWedge.WedgeType == WedgeType.HighAmount) {
+                        SajakText.text += "!";
+                    } else {
+                        SajakText.text += ".";
+                    }
+                } else {
+                    GotoNextPlayer();
+                    SajakText.text = "There are no " + char.ToUpper(letter) + "'s. It's your turn, " + PlayerList.CurrentPlayer.Name + ".";
+                    AudioTracks.Play("buzzer");
+                }
+
+                UsedLetters.Add(letter);
             } else {
+                SajakText.text = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". '" + char.ToUpper(letter) + "' has already been used. ";
                 GotoNextPlayer();
+                SajakText.text += "It's now " + PlayerList.CurrentPlayer.Name + "'s turn.";
                 AudioTracks.Play("buzzer");
             }
+
+            ShouldBeVowel = false;
         }
+    }
+
+    public IEnumerator SajakWait(string sajakText) {
+        yield return new WaitForSeconds(2f);
+        SajakText.text = sajakText;
     }
 
     void Update() {
@@ -240,13 +388,13 @@ public class RoundRunner : MonoBehaviour {
             Text winningText = PlayerBar.transform.GetChild(i).transform.GetChild(1).gameObject.GetComponent<Text>();
 
             if (PlayerList.CurrentPlayer.Name.Equals(nameText.text)) {
-                PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
+                PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = SajakText.color;
                 nameText.color = Color.black;
                 winningText.color = Color.black;
             } else {
                 PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.clear;
-                nameText.color = Color.white;
-                winningText.color = Color.white;
+                nameText.color = new Color32(255,255,255,125);
+                winningText.color = new Color32(255, 255, 255, 125);
             }
 
             winningText.text = PlayerList.Players[i].RoundWinnings.ToString("C0");

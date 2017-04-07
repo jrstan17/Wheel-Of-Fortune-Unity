@@ -9,6 +9,8 @@ public class AudioTracks : MonoBehaviour {
     public AudioClip Buzzer;
     public AudioClip RoundWin;
     public AudioClip Bankrupt;
+    public AudioClip Oh;
+    public AudioClip Remains;
 
     AudioSource AudioSource;
 
@@ -27,6 +29,10 @@ public class AudioTracks : MonoBehaviour {
             AudioSource.clip = RoundWin;
         } else if (name.Equals("bankrupt")) {
             AudioSource.clip = Bankrupt;
+        } else if (name.Equals("oh")) {
+            AudioSource.clip = Oh;
+        } else if (name.Equals("remains")) {
+            AudioSource.clip = Remains;
         } else {
             return;
         }

@@ -13,8 +13,8 @@ public class SpinWheel : MonoBehaviour {
 
     internal bool spinning;
     internal static float SpinTime = 5f;
-    internal static int minAngle = 360;
-    internal static int maxAngle = 720;
+    internal static int minAngle = 275;
+    internal static int maxAngle = 540;
 
     void Start() {
         spinning = false;
@@ -26,6 +26,11 @@ public class SpinWheel : MonoBehaviour {
 
     void Update() {
 
+    }
+
+    public void Randomize() {
+        float rndAngle = Random.Range(transform.eulerAngles.z, transform.eulerAngles.z + 360);
+        transform.eulerAngles = new Vector3(0, 0, rndAngle);
     }
 
     public void Spin() {
@@ -55,16 +60,14 @@ public class SpinWheel : MonoBehaviour {
 
         spinning = false;
 
+        if (RoundRunner.CurrentWedge.WedgeType == WedgeType.HighAmount) {
+            RoundRunner.AudioTracks.Play("oh");
+        }
+
         CountdownTimer countdownTimer = gameObject.AddComponent<CountdownTimer>();
-        countdownTimer.timeLeft = 5;
+        countdownTimer.timeLeft = 1;
         countdownTimer.TimesUp += CountdownTimer_TimesUp;
         countdownTimer.StartTimer();
-
-        if (RoundRunner.CurrentWedge.WedgeType == WedgeType.LoseATurn) {
-            RoundRunner.AudioTracks.Play("buzzer");
-        } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.Bankrupt) {
-            RoundRunner.AudioTracks.Play("bankrupt");
-        }
     }
 
     private void CountdownTimer_TimesUp(object sender, System.EventArgs e) {

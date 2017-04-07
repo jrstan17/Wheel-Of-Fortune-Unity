@@ -7,20 +7,11 @@ public class PuzzleFactory {
 
     const int REGULAR_ROUND_PUZZLE_SIZE_MIN = 16;
     const int BONUS_ROUND_PUZZLE_SIZE_MAX = 16;
-    List<char> rSTLNEList;
 
     List<Puzzle> Puzzles;
     int previousPuzzleIndex = -1;
 
     public PuzzleFactory(TextAsset textAsset) {
-        rSTLNEList = new List<char>();
-        rSTLNEList.Add('R');
-        rSTLNEList.Add('S');
-        rSTLNEList.Add('T');
-        rSTLNEList.Add('L');
-        rSTLNEList.Add('N');
-        rSTLNEList.Add('E');
-
         InitPuzzleList(textAsset);
     }
 
@@ -50,7 +41,7 @@ public class PuzzleFactory {
                 return true;
             }
         } else if (type == RoundType.Bonus) {
-            if (letters <= BONUS_ROUND_PUZZLE_SIZE_MAX && IsValidLetterRatio(answer, rSTLNEList, 0.3f)) {
+            if (letters <= BONUS_ROUND_PUZZLE_SIZE_MAX && IsValidLetterRatio(answer, Utilities.RSTLNE, 0.3f)) {
                 return true;
             }
         }
