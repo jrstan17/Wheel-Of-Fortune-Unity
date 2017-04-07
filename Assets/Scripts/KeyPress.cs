@@ -142,6 +142,8 @@ public class KeyPress : MonoBehaviour {
             }
 
             CustomText = text;
+            RoundRunner.RoundNumber--;
+            RoundRunner.NewBoard(false);
         }
     }
 
