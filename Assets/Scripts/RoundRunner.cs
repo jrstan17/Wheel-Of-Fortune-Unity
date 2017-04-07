@@ -84,6 +84,7 @@ public class RoundRunner : MonoBehaviour {
 
         SetRoundColors();
 
+        PlayerList.TransferRoundToTotalForCurrentPlayer();
         foreach (Player p in PlayerList.Players) {
             p.RoundWinnings = 0;
             p.FreePlays = 0;
@@ -177,7 +178,25 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void SolvedCorrectly() {
+        SolveCanvas.SetActive(false);
+        AudioTracks.Play("round_win");
+        boardFiller.RevealBoard();
 
+        string pieceOne = Utilities.RandomString(new string[] { "Congratulations", "Absolutely", "Great job", "Fantastic", "Extraordinary" });
+
+        SajakText.text = pieceOne + ", " + PlayerList.CurrentPlayer.Name + ". ";
+
+        string pieceTwo = Utilities.RandomString(new string[] { "You solved it correctly", "That's right", "That's the right answer", "That's the correct answer" });
+
+        SajakText.text += pieceTwo + ". You've won " + PlayerList.CurrentPlayer.RoundWinnings.ToString("C0") + " for this round! Onto Round " + (RoundNumber + 1) + "!";
+
+        coroutine = WaitForNewRound(7f);
+        StartCoroutine(coroutine);        
+    }
+
+    public IEnumerator WaitForNewRound(float time) {
+        yield return new WaitForSeconds(time);
+        NewBoard(false);
     }
 
     public void SolvedIncorrectly(bool isOutOfTime) {        
@@ -400,9 +419,14 @@ public class RoundRunner : MonoBehaviour {
         }
     }
 
-    public IEnumerator SajakWait(string sajakText) {
-        yield return new WaitForSeconds(2f);
+    public IEnumerator SajakWaitAfter(string sajakText, float time) {
+        yield return new WaitForSeconds(time);
         SajakText.text = sajakText;
+    }
+
+    public IEnumerator SajakWaitBefore(string sajakText, float time) {
+        SajakText.text = sajakText;
+        yield return new WaitForSeconds(time);
     }
 
     void Update() {

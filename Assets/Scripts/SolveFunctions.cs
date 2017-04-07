@@ -21,7 +21,7 @@ public class SolveFunctions : MonoBehaviour {
             Submit_Clicked();
         }
 
-        if (!Countdown.isRunning()) {
+        if (Countdown.timeLeft == 0) {
             RoundRunner.SolvedIncorrectly(true);
         }
     }

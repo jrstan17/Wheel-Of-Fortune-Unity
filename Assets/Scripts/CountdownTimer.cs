@@ -8,7 +8,7 @@ public class CountdownTimer : MonoBehaviour {
 
     public float timePerChar;
 
-    private float timeLeft;
+    internal float timeLeft;
     private bool IsStarted = false;
     private Text text;
 

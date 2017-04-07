@@ -18,6 +18,11 @@ public static class PlayerList {
         return null;
     }
 
+    public static void TransferRoundToTotalForCurrentPlayer() {
+        CurrentPlayer.TotalWinnings += CurrentPlayer.RoundWinnings;
+        CurrentPlayer.RoundWinnings = 0;
+    }
+
     public static void GotoNextPlayer() {
         if (Players != null && Players.Count != 0) {
             if (CurrentPlayer != null) {
