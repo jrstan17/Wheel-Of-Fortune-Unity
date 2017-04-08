@@ -85,7 +85,7 @@ public class KeyPress : MonoBehaviour {
         }
 
         Reveal();
-        RevealDebug();
+        RevealSajak();
         BackgroundColor();
         XYSpeed();
         RotateSpeed();
@@ -146,8 +146,8 @@ public class KeyPress : MonoBehaviour {
         }
     }
 
-    private void RevealDebug() {
-        if (Splits[0].Equals("REVEALDEBUG")) {
+    private void RevealSajak() {
+        if (Splits[0].Equals("REVEALSAJAK")) {
             RoundRunner.SajakText.text = "Puzzle Solution: " + RoundRunner.Puzzle.Text;
         }
     }
@@ -237,7 +237,7 @@ public class KeyPress : MonoBehaviour {
             yield return 0;
         }
 
-        if (!isWheelActive && !isMenuActive && !RoundRunner.IsBonusRound) {
+        if (RoundRunner.IsTimeForLetter) {
             for (char i = 'a'; i <= 'z'; i++) {
                 string strChar = (i.ToString());
                 if (Input.GetKeyDown(strChar)) {

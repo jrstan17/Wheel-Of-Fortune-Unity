@@ -46,8 +46,10 @@ public class SolveFunctions : MonoBehaviour {
         }
 
         if (solveText.Equals(sb.ToString())) {
+            RoundRunner.ToggleUIButtonsParsing("all", false);
             RoundRunner.SolvedCorrectly();
         } else {
+            RoundRunner.ToggleUIButtonsParsing("all", false);
             RoundRunner.SolvedIncorrectly(false);
         }
     }

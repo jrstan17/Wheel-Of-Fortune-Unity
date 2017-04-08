@@ -45,9 +45,9 @@ public class RoundRunner : MonoBehaviour {
     void Start() {
         List<Player> Players = PlayerList.Players;
         Players.Add(new Player("Jason"));
-        Players.Add(new Player("Philip"));
+        //Players.Add(new Player("Philip"));
         Players.Add(new Player("David"));
-        Players.Add(new Player("Leslie"));
+        //Players.Add(new Player("Leslie"));
 
         MaxRounds = Players.Count + 1;
 

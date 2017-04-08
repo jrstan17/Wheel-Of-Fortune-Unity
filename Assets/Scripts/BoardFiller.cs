@@ -156,7 +156,7 @@ public class BoardFiller : MonoBehaviour {
 
         if (RoundRunner.Puzzle.HasNonLetters()) {
             float start = Time.time;
-            RoundRunner.SajakText.text = "Let's reveal some punctuation.";            
+            RoundRunner.SajakText.text = "First, let's reveal some punctuation.";            
             yield return StartCoroutine(RevealLetters(Utilities.NonLetters));
 
             if (Time.time < start + 4) {
