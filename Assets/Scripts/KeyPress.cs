@@ -93,6 +93,8 @@ public class KeyPress : MonoBehaviour {
         SpinAngleRange();
         CustomPuzzle();
         GiveMoney();
+        Bankrupt();
+        GotoNextPlayer();
     }
 
     private void BackgroundColor() {
@@ -122,7 +124,7 @@ public class KeyPress : MonoBehaviour {
                 }
 
                 RoundRunner.boardFiller.RevealLetters(letters);
-                foreach(char c in letters) {
+                foreach (char c in letters) {
                     RoundRunner.UsedLetters.Add(c);
                 }
             }
@@ -133,7 +135,7 @@ public class KeyPress : MonoBehaviour {
         if (Splits[0].Equals("CUSTOMPUZZLE") && Splits.Length > 1) {
             string text = "";
 
-            for(int i = 1; i < Splits.Length; i++) {
+            for (int i = 1; i < Splits.Length; i++) {
                 if (i != Splits.Length - 1) {
                     text += Splits[i] + " ";
                 } else {
@@ -228,6 +230,25 @@ public class KeyPress : MonoBehaviour {
                     }
                 }
             }
+        }
+    }
+
+    private void Bankrupt() {
+        if (Splits[0].Equals("BANKRUPT")) {
+            if (Splits.Length == 2) {
+                Player p = PlayerList.Get(Splits[1]);
+                if (p == null) {
+                    return;
+                }
+
+                RoundRunner.OnBankrupt(p);
+            }
+        }
+    }
+
+    private void GotoNextPlayer() {
+        if (Splits[0].Equals("NEXTPLAYER")) {
+            RoundRunner.GotoNextPlayer();
         }
     }
 

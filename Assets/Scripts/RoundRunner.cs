@@ -307,9 +307,7 @@ public class RoundRunner : MonoBehaviour {
         WedgeType CurrentType = CurrentWedge.WedgeType;
 
         if (CurrentType == WedgeType.Bankrupt) {
-            AudioTracks.Play("bankrupt");
-            SajakText.text = "You're bankrupt, " + PlayerList.CurrentPlayer.Name + ". I'm so sorry.";
-            PlayerList.CurrentPlayer.RoundWinnings = 0;
+            OnBankrupt(PlayerList.CurrentPlayer);
             GotoNextPlayer();
             SajakText.text += " It's your turn, " + PlayerList.CurrentPlayer.Name + ".";
         } else if (CurrentType == WedgeType.LoseATurn) {
@@ -330,6 +328,12 @@ public class RoundRunner : MonoBehaviour {
             IsTimeForLetter = true;
             SajakText.text = CurrentWedge.Value + ".";
         }
+    }
+
+    public void OnBankrupt(Player p) {
+        AudioTracks.Play("bankrupt");
+        SajakText.text = "You're bankrupt, " + p.Name + ". I'm so sorry.";
+        p.RoundWinnings = 0;
     }
 
     public void GotoNextPlayer() {
