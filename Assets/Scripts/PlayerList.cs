@@ -10,7 +10,7 @@ public static class PlayerList {
 
     public static Player Get(string name) {
         foreach (Player p in Players) {
-            if (p.Name.Equals(name)) {
+            if (p.Name.ToUpper().Equals(name.ToUpper())) {
                 return p;
             }
         }

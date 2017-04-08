@@ -45,7 +45,8 @@ public class Player {
         }
 
         Player toCompare = (Player)obj;
-        return (toCompare.Name.Equals(this.Name));
+       
+        return (toCompare.Name.ToUpper().Equals(this.Name.ToUpper()));
     }
 
     public override int GetHashCode() {

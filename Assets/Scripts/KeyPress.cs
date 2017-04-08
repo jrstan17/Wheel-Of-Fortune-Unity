@@ -92,6 +92,7 @@ public class KeyPress : MonoBehaviour {
         SpinTime();
         SpinAngleRange();
         CustomPuzzle();
+        GiveMoney();
     }
 
     private void BackgroundColor() {
@@ -200,6 +201,31 @@ public class KeyPress : MonoBehaviour {
                 if (isParsed) {
                     Scroller scroller = Background.GetComponent<Scroller>();
                     scroller.rotateSpeed = parsed;
+                }
+            }
+        }
+    }
+
+    private void GiveMoney() {
+        if (Splits[0].Equals("GIVE")) {
+            if (Splits.Length >= 3) {
+                Player p = PlayerList.Get(Splits[1]);
+                if (p == null) {
+                    return;
+                }
+
+                int parsed = 0;
+                bool isParsed = int.TryParse(Splits[2], out parsed);
+
+                if (isParsed) {
+                    p.RoundWinnings += parsed;
+                    RoundRunner.SajakText.text = parsed.ToString("C0") + " given to " + p.Name + ".";
+                } else if (Splits.Length == 4 && Splits[2].Equals("FREEPLAY")) {
+                    isParsed = int.TryParse(Splits[3], out parsed);
+                    if (isParsed) {
+                        p.FreePlays += parsed;
+                        RoundRunner.SajakText.text = parsed + " Free Play given to " + p.Name + ".";
+                    }
                 }
             }
         }

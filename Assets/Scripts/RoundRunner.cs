@@ -45,11 +45,15 @@ public class RoundRunner : MonoBehaviour {
     void Start() {
         List<Player> Players = PlayerList.Players;
         Players.Add(new Player("Jason"));
-        //Players.Add(new Player("Philip"));
+        Players.Add(new Player("Philip"));
         Players.Add(new Player("David"));
-        //Players.Add(new Player("Leslie"));
+        Players.Add(new Player("Leslie"));
+        Players.Add(new Player("Karaparampath"));
+        Players.Add(new Player("Karaparampath"));
+        Players.Add(new Player("Karaparampath"));
 
-        MaxRounds = Players.Count + 1;
+        //MaxRounds = Players.Count + 1;
+        MaxRounds = 4;
 
         GameObject panel = GameObject.FindGameObjectWithTag("PlayerPanel");
         foreach (Player p in Players) {
@@ -70,11 +74,7 @@ public class RoundRunner : MonoBehaviour {
         CategoryText = CategoryTextObject.GetComponent<Text>();
         AudioTracks = AudioSource.GetComponent<AudioTracks>();
         SajakText = SajackPanel.transform.GetChild(0).GetComponent<Text>();
-        boardFiller.AudioTracks = AudioTracks;
-
-        WheelCanvas = WheelCanvases[GetWheelIndex()];
-        SpinWheel spinWheel = WheelCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
-        spinWheel.Randomize();
+        boardFiller.AudioTracks = AudioTracks;        
 
         NewBoard(false);
     }
@@ -127,6 +127,7 @@ public class RoundRunner : MonoBehaviour {
         SajakText.text = "The category is " + Puzzle.Category + ".";
 
         boardFiller.InitBoard();
+        Debug.Log(GetWheelIndex());
         WheelCanvas = WheelCanvases[GetWheelIndex()];
         SpinWheel spinWheel = WheelCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
         spinWheel.Randomize();
@@ -143,6 +144,10 @@ public class RoundRunner : MonoBehaviour {
 
         float WheelsPerRound = (float)(WheelCanvases.Length - 2) / (MaxRounds - 2);
         int toReturn = (int)Mathf.Round(WheelsPerRound * RoundNumber);
+
+        if (toReturn >= WheelCanvases.Length) {
+            return toReturn / 2;
+        }
 
         if (toReturn == WheelCanvases.Length - 1 && RoundNumber != MaxRounds) {
             return WheelCanvases.Length - 2;
@@ -432,7 +437,7 @@ public class RoundRunner : MonoBehaviour {
                 yield return StartCoroutine(boardFiller.RevealLetters(letters));
             } //if it's a vowel
             else if (ShouldBeVowel && Utilities.IsVowel(letter) && !UsedLetters.Contains(letter)) {
-                yield return StartCoroutine(boardFiller.RevealLetters(letters));
+                BoardFiller.LettersRevealed = FindHowManyToReveal(letters);
                 trilonsRevealed = BoardFiller.LettersRevealed;
 
                 if (!UsedLetters.Contains(letter) && trilonsRevealed > 0) {
@@ -456,10 +461,18 @@ public class RoundRunner : MonoBehaviour {
                 }
 
                 UsedLetters.Add(letter);
+                yield return StartCoroutine(boardFiller.RevealLetters(letters));
             } else {
-                SajakText.text = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". " + char.ToUpper(letter) + " has already been used. ";
-                GotoNextPlayer();
-                SajakText.text += "It's now " + PlayerList.CurrentPlayer.Name + "'s turn.";
+                if (UsedLetters.Contains(letter)) {
+                    SajakText.text = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". " + char.ToUpper(letter) + " has already been used. ";
+                    GotoNextPlayer();
+                    SajakText.text += "It's now " + PlayerList.CurrentPlayer.Name + "'s turn.";                    
+                } else {
+                    SajakText.text = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ", but that's the incorrect letter type. ";
+                    GotoNextPlayer();
+                    SajakText.text += "It's now " + PlayerList.CurrentPlayer.Name + "'s turn.";
+                }
+
                 AudioTracks.Play("buzzer");
             }
 
