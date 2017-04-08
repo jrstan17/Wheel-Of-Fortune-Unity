@@ -31,12 +31,12 @@ class Utilities {
         toReturn.Add(new Color32(0, 70, 70, 255)); //indigo
         toReturn.Add(new Color32(70, 0, 70, 255)); //purple
         toReturn.Add(new Color32(70, 70, 0, 255)); //yellow
-        toReturn.Add(new Color32(128, 128, 128, 255)); //white
+        toReturn.Add(new Color32(70, 70, 70, 255)); //white
         toReturn.Add(new Color32(70, 0, 0, 255)); //red
         toReturn.Add(new Color32(0, 70, 70, 255)); //indigo
         toReturn.Add(new Color32(70, 0, 70, 255)); //purple
         toReturn.Add(new Color32(70, 70, 0, 255)); //yellow
-        toReturn.Add(new Color32(128, 128, 128, 255)); //white
+        toReturn.Add(new Color32(70, 70, 70, 255)); //white
         toReturn.Add(new Color32(70, 0, 0, 255)); //red
         return toReturn;
     }

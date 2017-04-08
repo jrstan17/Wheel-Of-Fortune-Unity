@@ -9,7 +9,6 @@ public class KeyPress : MonoBehaviour {
     public GameObject RoundRunnerObject;
     public GameObject MenuObject;
     public GameObject BoardObject;
-    public GameObject WheelObject;
     public GameObject DebugInputObject;
     public GameObject Background;
 
@@ -208,7 +207,7 @@ public class KeyPress : MonoBehaviour {
 
     private void IfNoDebugField() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            SpinWheel spinWheel = WheelObject.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
+            SpinWheel spinWheel = RoundRunner.WheelCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
 
             if (!isMenuActive && isWheelActive && !spinWheel.HasSpun) {
                 spinWheel.Spin();

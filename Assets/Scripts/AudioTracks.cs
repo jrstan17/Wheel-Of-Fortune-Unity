@@ -11,6 +11,7 @@ public class AudioTracks : MonoBehaviour {
     public AudioClip Bankrupt;
     public AudioClip Oh;
     public AudioClip Remains;
+    public AudioClip Cheering;
 
     AudioSource AudioSource;
 
@@ -33,6 +34,8 @@ public class AudioTracks : MonoBehaviour {
             AudioSource.clip = Oh;
         } else if (name.Equals("remains")) {
             AudioSource.clip = Remains;
+        } else if (name.Equals("cheering")) {
+            AudioSource.clip = Cheering;
         } else {
             return;
         }

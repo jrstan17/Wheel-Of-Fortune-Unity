@@ -9,7 +9,7 @@ public class RoundRunner : MonoBehaviour {
 
     public TextAsset DataTextFile;
     public List<GameObject> UsedLetterObjects;
-    public GameObject WheelCanvas;
+    public GameObject[] WheelCanvases;
     public GameObject MenuCanvas;
     public GameObject SolveCanvas;
     public GameObject CategoryTextObject;
@@ -25,6 +25,7 @@ public class RoundRunner : MonoBehaviour {
     private PuzzleFactory factory;
     internal static Puzzle Puzzle;
     internal BoardFiller boardFiller;
+    internal GameObject WheelCanvas;
     internal Text SajakText;
     internal List<Text> UsedLetterText = new List<Text>();
     internal List<char> UsedLetters = new List<char>();
@@ -35,6 +36,7 @@ public class RoundRunner : MonoBehaviour {
     internal int VowelPurchaseCost = 250;
     internal bool ShouldBeVowel = false;
     internal int RoundNumber = 0;
+    internal int MaxRounds = 0;
     internal bool NotifiedOfRemainingLetters = false;
 
     internal static WedgeData CurrentWedge;
@@ -46,6 +48,8 @@ public class RoundRunner : MonoBehaviour {
         Players.Add(new Player("Philip"));
         Players.Add(new Player("David"));
         Players.Add(new Player("Leslie"));
+
+        MaxRounds = Players.Count + 1;
 
         GameObject panel = GameObject.FindGameObjectWithTag("PlayerPanel");
         foreach (Player p in Players) {
@@ -68,6 +72,7 @@ public class RoundRunner : MonoBehaviour {
         SajakText = SajackPanel.transform.GetChild(0).GetComponent<Text>();
         boardFiller.AudioTracks = AudioTracks;
 
+        WheelCanvas = WheelCanvases[GetWheelIndex()];
         SpinWheel spinWheel = WheelCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
         spinWheel.Randomize();
 
@@ -99,11 +104,13 @@ public class RoundRunner : MonoBehaviour {
             BonusInputText.text = "";
             RegularRoundButtonsObject.SetActive(false);
             BonusRoundButtonsObject.SetActive(true);
+            PlayerBar.SetActive(false);
             Puzzle = factory.NewPuzzle(RoundType.Bonus);
             EventSystem.current.SetSelectedGameObject(BonusInputText.gameObject);
         } else {
             RegularRoundButtonsObject.SetActive(true);
             BonusRoundButtonsObject.SetActive(false);
+            PlayerBar.SetActive(true);
             ToggleUIButtonsParsing("all", false);
 
             if (KeyPress.CustomText == null) {
@@ -120,8 +127,28 @@ public class RoundRunner : MonoBehaviour {
         SajakText.text = "The category is " + Puzzle.Category + ". Start us off with a spin, " + PlayerList.CurrentPlayer.Name + ".";
 
         boardFiller.InitBoard();
+        WheelCanvas = WheelCanvases[GetWheelIndex()];
+        SpinWheel spinWheel = WheelCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
+        spinWheel.Randomize();
 
         EventSystem.current.SetSelectedGameObject(gameObject);
+    }
+
+    private int GetWheelIndex() {
+        if (RoundNumber == 1) {
+            return 0;
+        } else if (RoundNumber == MaxRounds) {
+            return WheelCanvases.Length - 1;
+        }
+
+        float WheelsPerRound = (float)(WheelCanvases.Length - 2) / (MaxRounds - 2);
+        int toReturn = (int)Mathf.Round(WheelsPerRound * RoundNumber);
+
+        if (toReturn == WheelCanvases.Length - 1 && RoundNumber != MaxRounds) {
+            return WheelCanvases.Length - 2;
+        } else {
+            return toReturn;
+        }        
     }
 
     private void SetRoundColors() {
@@ -186,9 +213,7 @@ public class RoundRunner : MonoBehaviour {
 
         SajakText.text = pieceOne + ", " + PlayerList.CurrentPlayer.Name + ". ";
 
-        string pieceTwo = Utilities.RandomString(new string[] { "You solved it correctly", "That's right", "That's the right answer", "That's the correct answer" });
-
-        SajakText.text += pieceTwo + ". You've won " + PlayerList.CurrentPlayer.RoundWinnings.ToString("C0") + " for this round! Onto Round " + (RoundNumber + 1) + "!";
+        SajakText.text += "You've won " + PlayerList.CurrentPlayer.RoundWinnings.ToString("C0") + " for this round! Onto Round " + (RoundNumber + 1) + "!";
 
         coroutine = WaitForNewRound(7f);
         StartCoroutine(coroutine);        
@@ -289,6 +314,9 @@ public class RoundRunner : MonoBehaviour {
             SajakText.text += " It's now your turn, " + PlayerList.CurrentPlayer.Name + ".";
         } else if (CurrentType == WedgeType.HighAmount) {
             SajakText.text = CurrentWedge.Value.ToString("C0") + "! Now make your guess count!";
+            IsTimeForLetter = true;
+        } else if (CurrentType == WedgeType.TenThousand) {
+            SajakText.text = "Oh Wow! " + CurrentWedge.Value.ToString("C0") + "! Good Luck!";
             IsTimeForLetter = true;
         } else if (CurrentType == WedgeType.FreePlay) {
             SajakText.text = "You have yourself a Free Play, " + PlayerList.CurrentPlayer.Name + ". The current value is " + CurrentWedge.Value + ".";
@@ -440,7 +468,7 @@ public class RoundRunner : MonoBehaviour {
             Text nameText = PlayerBar.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<Text>();
             Text winningText = PlayerBar.transform.GetChild(i).transform.GetChild(1).gameObject.GetComponent<Text>();
 
-            if (PlayerList.CurrentPlayer.Name.Equals(nameText.text)) {
+            if (PlayerList.CurrentPlayer != null && PlayerList.CurrentPlayer.Name.Equals(nameText.text)) {
                 PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = SajakText.color;
                 nameText.color = Color.black;
                 winningText.color = Color.black;

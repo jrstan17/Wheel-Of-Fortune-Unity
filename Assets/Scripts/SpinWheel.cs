@@ -61,17 +61,21 @@ public class SpinWheel : MonoBehaviour {
         }
 
         spinning = false;
+        float waitTime = 1f;
 
         if (RoundRunner.CurrentWedge.WedgeType == WedgeType.HighAmount) {
             RoundRunner.AudioTracks.Play("oh");
+        }else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.TenThousand) {
+            RoundRunner.AudioTracks.Play("cheering");
+            waitTime = 2f;
         }
 
-        coroutine = TimesUp();
+        coroutine = TimesUp(waitTime);
         StartCoroutine(coroutine);
     }
 
-    public IEnumerator TimesUp() {
-        yield return new WaitForSeconds(1f);
+    public IEnumerator TimesUp(float time) {
+        yield return new WaitForSeconds(time);
 
         GameObject wheelObject = GameObject.FindGameObjectWithTag("WheelObject");
 
