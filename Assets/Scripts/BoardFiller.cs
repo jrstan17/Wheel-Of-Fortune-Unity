@@ -11,6 +11,8 @@ public class BoardFiller : MonoBehaviour {
     internal RoundRunner RoundRunner;
     internal Color32 ScreenColor;
 
+    internal static int LettersRevealed = 0;
+
     Data data;
 
     private IEnumerator coroutine;
@@ -150,19 +152,18 @@ public class BoardFiller : MonoBehaviour {
             yield return new WaitForSeconds(time);
         }
 
-        if (RoundRunner.Puzzle.HasNonLetters()) {
-            yield return new WaitForSeconds(1f);
-            RevealLetters(Utilities.NonLetters);
-            yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
+
+        if (RoundRunner.Puzzle.HasNonLetters()) {            
+            yield return StartCoroutine(RevealLetters(Utilities.NonLetters));
         }
 
         if (RoundRunner.IsBonusRound) {
             yield return new WaitForSeconds(1f);
             RevealLetters(Utilities.RSTLNE);
-        } else {
-            yield return new WaitForSeconds(1f);
-            RoundRunner.ToggleUIButtons();
         }
+
+        RoundRunner.ToggleUIButtons();
     }
 
     public void ClearBoard() {
@@ -171,7 +172,7 @@ public class BoardFiller : MonoBehaviour {
         }
     }
 
-    public void RevealBoard() {
+    public IEnumerator RevealBoard() {
         List<int> LetterIndexes = new List<int>();
         for (int i = 0; i < Trilons.Count; i++) {
             if (Trilons[i].State == TrilonState.Unrevealed) {
@@ -181,6 +182,8 @@ public class BoardFiller : MonoBehaviour {
 
         coroutine = RevealingTimer(0.025f, LetterIndexes);
         StartCoroutine(coroutine);
+
+        yield return 0;
     }
 
     public IEnumerator RevealingTimer(float time, List<int> indexes) {
@@ -192,7 +195,7 @@ public class BoardFiller : MonoBehaviour {
         }
     }
 
-    public int RevealLetters(List<char> letters) {
+    public IEnumerator RevealLetters(List<char> letters) {
         for (int i = 0; i < letters.Count; i++) {
             letters[i] = char.ToUpper(letters[i]);
         }
@@ -214,7 +217,7 @@ public class BoardFiller : MonoBehaviour {
 
         if (LetterIndexes.Count == 0 && !RoundRunner.IsBonusRound) {
             AudioTracks.Play("buzzer");
-            return 0;
+            yield return 0;
         }
 
         for (int i = 0; i < letters.Count; i++) {
@@ -225,10 +228,9 @@ public class BoardFiller : MonoBehaviour {
             }
         }
 
-        coroutine = WaitForLetter(1f, letters, LetterIndexes);
-        StartCoroutine(coroutine);
+        LettersRevealed = LetterIndexes.Count;
 
-        return LetterIndexes.Count;
+        yield return StartCoroutine(WaitForLetter(1f, letters, LetterIndexes));
     }
 
     private IEnumerator WaitForLetter(float waitTime, List<char> letters, List<int> Indexes) {
@@ -276,8 +278,7 @@ public class BoardFiller : MonoBehaviour {
             }
         }
 
-        yield return new WaitForSeconds(waitTime);
-        RoundRunner.ToggleUIButtons();
+        yield return 0;
     }
 
     public void Clear() {

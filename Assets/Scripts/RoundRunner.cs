@@ -384,7 +384,8 @@ public class RoundRunner : MonoBehaviour {
 
             //if it's a consonant
             if (!ShouldBeVowel && !Utilities.IsVowel(letter) && !UsedLetters.Contains(letter)) {
-                trilonsRevealed = boardFiller.RevealLetters(letters);
+                boardFiller.RevealLetters(letters);
+                trilonsRevealed = BoardFiller.LettersRevealed;
 
                 if (!UsedLetters.Contains(letter) && trilonsRevealed > 0) {
                     UsedLetterText[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
@@ -413,7 +414,8 @@ public class RoundRunner : MonoBehaviour {
                 UsedLetters.Add(letter);
             } //if it's a vowel
             else if (ShouldBeVowel && Utilities.IsVowel(letter) && !UsedLetters.Contains(letter)) {
-                trilonsRevealed = boardFiller.RevealLetters(letters);
+                boardFiller.RevealLetters(letters);
+                trilonsRevealed = BoardFiller.LettersRevealed;
 
                 if (!UsedLetters.Contains(letter) && trilonsRevealed > 0) {
                     UsedLetterText[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
