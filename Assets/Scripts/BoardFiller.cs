@@ -154,16 +154,24 @@ public class BoardFiller : MonoBehaviour {
 
         yield return new WaitForSeconds(2f);
 
-        if (RoundRunner.Puzzle.HasNonLetters()) {            
+        if (RoundRunner.Puzzle.HasNonLetters()) {
+            float start = Time.time;
+            RoundRunner.SajakText.text = "Let's reveal some punctuation.";            
             yield return StartCoroutine(RevealLetters(Utilities.NonLetters));
+
+            if (Time.time < start + 4) {
+                yield return new WaitForSeconds(start + 4 - Time.time);
+            }
         }
 
         if (RoundRunner.IsBonusRound) {
-            yield return new WaitForSeconds(1f);
-            RevealLetters(Utilities.RSTLNE);
+            yield return StartCoroutine(RevealLetters(Utilities.RSTLNE));
         }
 
-        RoundRunner.ToggleUIButtons();
+        if (!RoundRunner.IsBonusRound) {
+            RoundRunner.SajakText.text = "Start us off with a spin, " + PlayerList.CurrentPlayer.Name + ".";
+            RoundRunner.ToggleUIButtons();
+        }
     }
 
     public void ClearBoard() {

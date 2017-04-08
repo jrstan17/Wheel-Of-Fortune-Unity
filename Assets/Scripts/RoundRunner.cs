@@ -124,7 +124,7 @@ public class RoundRunner : MonoBehaviour {
         }
 
         CategoryText.text = Puzzle.Category;
-        SajakText.text = "The category is " + Puzzle.Category + ". Start us off with a spin, " + PlayerList.CurrentPlayer.Name + ".";
+        SajakText.text = "The category is " + Puzzle.Category + ".";
 
         boardFiller.InitBoard();
         WheelCanvas = WheelCanvases[GetWheelIndex()];
@@ -374,7 +374,24 @@ public class RoundRunner : MonoBehaviour {
         }
     }
 
-    public void LetterPressed(char letter) {
+    public int FindHowManyToReveal(List<char> letters) {
+        for(int i = 0; i < letters.Count; i++) {
+            letters[i] = char.ToUpper(letters[i]);
+        }
+
+        int toReturn = 0;
+        for (int i = 0; i < letters.Count; i++) {
+            for (int j = 0; j < Puzzle.Text.Length; j++) {
+                if (letters[i] == Puzzle.Text[j]) {
+                    toReturn++;
+                }
+            }
+        }
+
+        return toReturn;
+    }
+
+    public IEnumerator LetterPressed(char letter) {
         if (IsTimeForLetter) {
             IsTimeForLetter = false;
             int trilonsRevealed = 0;
@@ -384,7 +401,8 @@ public class RoundRunner : MonoBehaviour {
 
             //if it's a consonant
             if (!ShouldBeVowel && !Utilities.IsVowel(letter) && !UsedLetters.Contains(letter)) {
-                boardFiller.RevealLetters(letters);
+
+                BoardFiller.LettersRevealed = FindHowManyToReveal(letters);
                 trilonsRevealed = BoardFiller.LettersRevealed;
 
                 if (!UsedLetters.Contains(letter) && trilonsRevealed > 0) {
@@ -404,7 +422,6 @@ public class RoundRunner : MonoBehaviour {
                     } else {
                         SajakText.text += ".";
                     }
-
                 } else {
                     GotoNextPlayer();
                     SajakText.text = "There are no " + char.ToUpper(letter) + "'s. It's your turn, " + PlayerList.CurrentPlayer.Name + ".";
@@ -412,9 +429,10 @@ public class RoundRunner : MonoBehaviour {
                 }
 
                 UsedLetters.Add(letter);
+                yield return StartCoroutine(boardFiller.RevealLetters(letters));
             } //if it's a vowel
             else if (ShouldBeVowel && Utilities.IsVowel(letter) && !UsedLetters.Contains(letter)) {
-                boardFiller.RevealLetters(letters);
+                yield return StartCoroutine(boardFiller.RevealLetters(letters));
                 trilonsRevealed = BoardFiller.LettersRevealed;
 
                 if (!UsedLetters.Contains(letter) && trilonsRevealed > 0) {
@@ -447,16 +465,8 @@ public class RoundRunner : MonoBehaviour {
 
             ShouldBeVowel = false;
         }
-    }
 
-    public IEnumerator SajakWaitAfter(string sajakText, float time) {
-        yield return new WaitForSeconds(time);
-        SajakText.text = sajakText;
-    }
-
-    public IEnumerator SajakWaitBefore(string sajakText, float time) {
-        SajakText.text = sajakText;
-        yield return new WaitForSeconds(time);
+        yield return 0;
     }
 
     void Update() {

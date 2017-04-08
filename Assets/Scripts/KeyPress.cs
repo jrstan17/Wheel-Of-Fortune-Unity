@@ -45,7 +45,7 @@ public class KeyPress : MonoBehaviour {
             }
 
             if (!DebugInputObject.activeInHierarchy) {
-                IfNoDebugField();
+                StartCoroutine(IfNoDebugField());
             } else {
                 if (Input.GetKey(KeyCode.Return)) {
                     History.Add(DebugInputField.text);
@@ -205,24 +205,24 @@ public class KeyPress : MonoBehaviour {
         }
     }
 
-    private void IfNoDebugField() {
+    private IEnumerator IfNoDebugField() {
         if (Input.GetKeyDown(KeyCode.Space)) {
             SpinWheel spinWheel = RoundRunner.WheelCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
 
             if (!isMenuActive && isWheelActive && !spinWheel.HasSpun) {
                 spinWheel.Spin();
-                return;
+                yield return 0;
             }
         }
 
         if (Input.GetKeyDown(KeyCode.F1)) {
             RoundRunner.NewRegular_Clicked();
-            return;
+            yield return 0;
         }
 
         if (Input.GetKeyDown(KeyCode.F2)) {
             RoundRunner.Reveal_Clicked();
-            return;
+            yield return 0;
         }
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -234,14 +234,15 @@ public class KeyPress : MonoBehaviour {
                 isMenuActive = true;
             }
 
-            return;
+            yield return 0;
         }
 
         if (!isWheelActive && !isMenuActive && !RoundRunner.IsBonusRound) {
             for (char i = 'a'; i <= 'z'; i++) {
                 string strChar = (i.ToString());
                 if (Input.GetKeyDown(strChar)) {
-                    RoundRunner.LetterPressed(i);
+                    yield return StartCoroutine(RoundRunner.LetterPressed(i));
+                    RoundRunner.ToggleUIButtons();
                 }
             }
         }
