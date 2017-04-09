@@ -278,7 +278,7 @@ public class RoundRunner : MonoBehaviour {
         MenuCanvas.SetActive(false);
         KeyPress.isMenuActive = true;
         AudioTracks.Play("round_win");
-        boardFiller.RevealBoard();
+        StartCoroutine(boardFiller.RevealBoard());
     }
 
     public void Spin_Clicked() {

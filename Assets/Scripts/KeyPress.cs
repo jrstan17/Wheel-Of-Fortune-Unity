@@ -91,10 +91,12 @@ public class KeyPress : MonoBehaviour {
         RotateSpeed();
         SpinTime();
         SpinAngleRange();
+        StartCoroutine(SpinTo());
         CustomPuzzle();
         GiveMoney();
         Bankrupt();
         GotoNextPlayer();
+        GotoPrevPlayer();
     }
 
     private void BackgroundColor() {
@@ -221,6 +223,7 @@ public class KeyPress : MonoBehaviour {
 
                 if (isParsed) {
                     p.RoundWinnings += parsed;
+                    RoundRunner.ToggleUIButtons();
                     RoundRunner.SajakText.text = parsed.ToString("C0") + " given to " + p.Name + ".";
                 } else if (Splits.Length == 4 && Splits[2].Equals("FREEPLAY")) {
                     isParsed = int.TryParse(Splits[3], out parsed);
@@ -252,13 +255,32 @@ public class KeyPress : MonoBehaviour {
         }
     }
 
+    private void GotoPrevPlayer() {
+        if (Splits[0].Equals("PREVPLAYER")) {
+            int movement = PlayerList.Players.Count - 1;
+            for (int i = 0; i < movement; i++) {
+                RoundRunner.GotoNextPlayer();
+            }
+        }
+    }
+
+    private IEnumerator SpinTo() {
+        if (Splits[0].Equals("SPINTO")) {
+            if (Splits.Length == 2) {
+                SpinWheel spinWheel = RoundRunner.WheelCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
+
+                spinWheel.debugWedgeText = Splits[1].ToUpper();
+                yield return StartCoroutine(spinWheel.Spin(true));
+            }
+        }
+    }
+
     private IEnumerator IfNoDebugField() {
         if (Input.GetKeyDown(KeyCode.Space)) {
             SpinWheel spinWheel = RoundRunner.WheelCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
 
-            if (!isMenuActive && isWheelActive && !spinWheel.HasSpun) {
-                spinWheel.Spin();
-                yield return 0;
+            if (!isMenuActive && isWheelActive && !spinWheel.HasSpun) {                
+                yield return StartCoroutine(spinWheel.Spin(false));
             }
         }
 

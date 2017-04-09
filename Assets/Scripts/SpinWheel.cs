@@ -16,6 +16,9 @@ public class SpinWheel : MonoBehaviour {
     internal static int minAngle = 275;
     internal static int maxAngle = 540;
 
+    internal bool isDebugSpin = false;
+    internal string debugWedgeText;
+
     private IEnumerator coroutine;
 
     void Start() {
@@ -35,10 +38,16 @@ public class SpinWheel : MonoBehaviour {
         transform.eulerAngles = new Vector3(0, 0, rndAngle);
     }
 
-    public void Spin() {
+    public IEnumerator Spin(bool isDebugSpin) {
+        this.isDebugSpin = isDebugSpin;
+        if (isDebugSpin) {
+            maxAngle = 360;
+            minAngle = 360;
+        }
+
         if (!spinning && !HasSpun) {
             float rndAngle = Random.Range(transform.eulerAngles.z + minAngle, transform.eulerAngles.z + maxAngle);
-            StartCoroutine(SpinTheWheel(SpinTime, rndAngle));
+            yield return StartCoroutine(SpinTheWheel(SpinTime, rndAngle));
         }
     }
 
@@ -57,6 +66,11 @@ public class SpinWheel : MonoBehaviour {
             float angle = rndAngle * animationCurves[animationCurveNumber].Evaluate(timer / time);
             transform.eulerAngles = new Vector3(0.0f, 0.0f, angle + startAngle);
             timer += Time.deltaTime;
+
+            if (isDebugSpin && RoundRunner.CurrentWedge.Text.Equals(debugWedgeText)) {
+                break;
+            }
+
             yield return 0;
         }
 
@@ -65,10 +79,14 @@ public class SpinWheel : MonoBehaviour {
 
         if (RoundRunner.CurrentWedge.WedgeType == WedgeType.HighAmount) {
             RoundRunner.AudioTracks.Play("oh");
-        }else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.TenThousand) {
+        } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.TenThousand) {
             RoundRunner.AudioTracks.Play("cheering");
             waitTime = 2f;
         }
+
+        isDebugSpin = false;
+        minAngle = 275;
+        maxAngle = 540;
 
         coroutine = TimesUp(waitTime);
         StartCoroutine(coroutine);
