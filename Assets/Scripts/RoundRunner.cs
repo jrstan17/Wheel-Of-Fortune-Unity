@@ -229,13 +229,7 @@ public class RoundRunner : MonoBehaviour {
         SajakText.text = "Here are the totals won so far!";
 
         PlayerList.TransferRoundToTotalForCurrentPlayer();
-        int i = 0;
-        foreach(Player p in PlayerList.Players) { 
-            p.RoundWinnings = 0;
-            p.FreePlays = 0;
-            PlayerWinningsTexts[i].text = p.TotalWinnings.ToString("C0");
-            i++;
-        }
+        HighlightCurrentlyWinningPlayerText();
 
         Text buttonText = NextRoundCanvas.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
         buttonText.text = "CONTINUE TO\nROUND " + (RoundNumber + 1);
@@ -243,6 +237,35 @@ public class RoundRunner : MonoBehaviour {
         NextRoundCanvas.SetActive(true);
         SolveCanvas.SetActive(false);
         SolveCanvas.GetComponent<Canvas>().enabled = true;
+    }
+
+    public void HighlightCurrentlyWinningPlayerText() {
+        int indexHighest = 0;
+        int maxMoney = 0;
+        for (int i = 0; i < PlayerList.Players.Count; i++) {
+            Player p = PlayerList.Players[i];
+            p.RoundWinnings = 0;
+            p.FreePlays = 0;
+            PlayerWinningsTexts[i].text = p.TotalWinnings.ToString("C0");
+            if (p.TotalWinnings >= maxMoney) {
+                maxMoney = p.TotalWinnings;
+                indexHighest = i;
+            }
+        }
+        for (int i = 0; i < PlayerList.Players.Count; i++) {
+            Text nameText = PlayerBar.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<Text>();
+            Text winningText = PlayerBar.transform.GetChild(i).transform.GetChild(1).gameObject.GetComponent<Text>();
+
+            if (i == indexHighest) {
+                PlayerBar.transform.GetChild(indexHighest).gameObject.GetComponent<Image>().color = SajakText.color;
+                nameText.color = Color.black;
+                winningText.color = Color.black;
+            } else {
+                PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.clear;
+                nameText.color = new Color32(255, 255, 255, 125);
+                winningText.color = new Color32(255, 255, 255, 125);
+            }
+        }
     }
 
     public void SolvedIncorrectly(bool isOutOfTime) {
