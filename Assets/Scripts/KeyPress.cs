@@ -267,9 +267,19 @@ public class KeyPress : MonoBehaviour {
     private IEnumerator SpinTo() {
         if (Splits[0].Equals("SPINTO")) {
             if (Splits.Length == 2) {
+                string removedUnderscores = "";
+                Splits[1] = Splits[1].ToUpper();
+                foreach(char c in Splits[1]) {
+                    if (c == '_') {
+                        removedUnderscores += ' ';
+                    } else {
+                        removedUnderscores += c;
+                    }
+                }
+
                 SpinWheel spinWheel = RoundRunner.WheelCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
 
-                spinWheel.debugWedgeText = Splits[1].ToUpper();
+                spinWheel.debugWedgeText = removedUnderscores;
                 yield return StartCoroutine(spinWheel.Spin(true));
             }
         }

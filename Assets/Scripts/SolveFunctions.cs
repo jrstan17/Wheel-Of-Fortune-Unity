@@ -22,7 +22,7 @@ public class SolveFunctions : MonoBehaviour {
         SolveField.text = SolveField.text.ToUpper();
 
         if (Input.GetKey(KeyCode.Return)) {
-            Submit_Clicked();
+            StartCoroutine(Submit_Clicked());
         }
 
         if (Countdown.timeLeft == 0) {
@@ -30,7 +30,7 @@ public class SolveFunctions : MonoBehaviour {
         }
     }
 
-    public void Submit_Clicked() {
+    public IEnumerator Submit_Clicked() {
         string solveText = SolveField.GetComponent<InputField>().text;
         solveText = solveText.ToUpper();
 
@@ -47,7 +47,7 @@ public class SolveFunctions : MonoBehaviour {
 
         if (solveText.Equals(sb.ToString())) {
             RoundRunner.ToggleUIButtonsParsing("all", false);
-            RoundRunner.SolvedCorrectly();
+            yield return StartCoroutine(RoundRunner.SolvedCorrectly());
         } else {
             RoundRunner.ToggleUIButtonsParsing("all", false);
             RoundRunner.SolvedIncorrectly(false);

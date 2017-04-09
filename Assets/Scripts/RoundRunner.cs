@@ -11,6 +11,7 @@ public class RoundRunner : MonoBehaviour {
     public List<GameObject> UsedLetterObjects;
     public GameObject[] WheelCanvases;
     public GameObject MenuCanvas;
+    public GameObject NextRoundCanvas;
     public GameObject SolveCanvas;
     public GameObject CategoryTextObject;
     public KeyPress KeyPress;
@@ -48,12 +49,8 @@ public class RoundRunner : MonoBehaviour {
         Players.Add(new Player("Philip"));
         Players.Add(new Player("David"));
         Players.Add(new Player("Leslie"));
-        Players.Add(new Player("Karaparampath"));
-        Players.Add(new Player("Karaparampath"));
-        Players.Add(new Player("Karaparampath"));
 
-        //MaxRounds = Players.Count + 1;
-        MaxRounds = 4;
+        MaxRounds = Players.Count + 1;
 
         GameObject panel = GameObject.FindGameObjectWithTag("PlayerPanel");
         foreach (Player p in Players) {
@@ -209,24 +206,24 @@ public class RoundRunner : MonoBehaviour {
         NewBoard(false);
     }
 
-    public void SolvedCorrectly() {
+    public IEnumerator SolvedCorrectly() {
         SolveCanvas.SetActive(false);
         AudioTracks.Play("round_win");
-        boardFiller.RevealBoard();
+        StartCoroutine(boardFiller.RevealBoard());
 
         string pieceOne = Utilities.RandomString(new string[] { "Congratulations", "Absolutely", "Great job", "Fantastic", "Extraordinary" });
 
         SajakText.text = pieceOne + ", " + PlayerList.CurrentPlayer.Name + ". ";
 
-        SajakText.text += "You've won " + PlayerList.CurrentPlayer.RoundWinnings.ToString("C0") + " for this round! Onto Round " + (RoundNumber + 1) + "!";
+        SajakText.text += "You've won " + PlayerList.CurrentPlayer.RoundWinnings.ToString("C0") + " for Round " + RoundNumber + "!";
 
-        coroutine = WaitForNewRound(7f);
-        StartCoroutine(coroutine);        
-    }
+        //TODO: make it so the code doesn't jump through this yield
+        yield return new WaitForSeconds(1f);
 
-    public IEnumerator WaitForNewRound(float time) {
-        yield return new WaitForSeconds(time);
-        NewBoard(false);
+        SajakText.text = "Here are the totals won so far!";
+        NextRoundCanvas.SetActive(true);
+
+        yield return 0;   
     }
 
     public void SolvedIncorrectly(bool isOutOfTime) {        
@@ -268,6 +265,11 @@ public class RoundRunner : MonoBehaviour {
         }
 
         boardFiller.RevealLetters(inputedList);
+    }
+
+    public void Continue_Clicked() {
+        NextRoundCanvas.SetActive(false);
+        NewBoard(false);
     }
 
     public void Exit_Clicked() {
