@@ -27,6 +27,7 @@ public class RoundRunner : MonoBehaviour {
     internal static Puzzle Puzzle;
     internal BoardFiller boardFiller;
     internal GameObject WheelCanvas;
+    internal List<Text> PlayerWinningsTexts;
     internal Text SajakText;
     internal List<Text> UsedLetterText = new List<Text>();
     internal List<char> UsedLetters = new List<char>();
@@ -39,9 +40,9 @@ public class RoundRunner : MonoBehaviour {
     internal int RoundNumber = 0;
     internal int MaxRounds = 0;
     internal bool NotifiedOfRemainingLetters = false;
+    internal bool IsRoundEnded = false;
 
     internal static WedgeData CurrentWedge;
-    private IEnumerator coroutine;
 
     void Start() {
         List<Player> Players = PlayerList.Players;
@@ -53,10 +54,13 @@ public class RoundRunner : MonoBehaviour {
         MaxRounds = Players.Count + 1;
 
         GameObject panel = GameObject.FindGameObjectWithTag("PlayerPanel");
+        PlayerWinningsTexts = new List<Text>();
         foreach (Player p in Players) {
             GameObject panelClone = Instantiate(panel);
-            Text TextObj = panelClone.transform.GetChild(0).GetComponent<Text>();
-            TextObj.text = p.Name;
+            Text NameText = panelClone.transform.GetChild(0).GetComponent<Text>();
+            NameText.text = p.Name;
+            Text WinningsText = panelClone.transform.GetChild(1).GetComponent<Text>();
+            PlayerWinningsTexts.Add(WinningsText);
             panelClone.transform.SetParent(PlayerBar.transform, false);
         }
 
@@ -71,13 +75,14 @@ public class RoundRunner : MonoBehaviour {
         CategoryText = CategoryTextObject.GetComponent<Text>();
         AudioTracks = AudioSource.GetComponent<AudioTracks>();
         SajakText = SajackPanel.transform.GetChild(0).GetComponent<Text>();
-        boardFiller.AudioTracks = AudioTracks;        
+        boardFiller.AudioTracks = AudioTracks;
 
         NewBoard(false);
     }
 
     public void NewBoard(bool isBonus) {
         RoundNumber++;
+        IsRoundEnded = false;
         NotifiedOfRemainingLetters = false;
 
         IsBonusRound = isBonus;
@@ -85,12 +90,6 @@ public class RoundRunner : MonoBehaviour {
         GotoNextPlayer();
 
         SetRoundColors();
-
-        PlayerList.TransferRoundToTotalForCurrentPlayer();
-        foreach (Player p in PlayerList.Players) {
-            p.RoundWinnings = 0;
-            p.FreePlays = 0;
-        }
 
         foreach (Text text in UsedLetterText) {
             text.color = Constants.USED_LETTER_ENABLED_COLOR;
@@ -150,7 +149,7 @@ public class RoundRunner : MonoBehaviour {
             return WheelCanvases.Length - 2;
         } else {
             return toReturn;
-        }        
+        }
     }
 
     private void SetRoundColors() {
@@ -207,26 +206,46 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public IEnumerator SolvedCorrectly() {
-        SolveCanvas.SetActive(false);
+        IsRoundEnded = true;
+        SolveCanvas.GetComponent<Canvas>().enabled = false;
+
+        if (PlayerList.CurrentPlayer.RoundWinnings < 1000) {
+            PlayerList.CurrentPlayer.RoundWinnings = 1000;
+        }
+
         AudioTracks.Play("round_win");
         StartCoroutine(boardFiller.RevealBoard());
 
         string pieceOne = Utilities.RandomString(new string[] { "Congratulations", "Absolutely", "Great job", "Fantastic", "Extraordinary" });
 
+        Debug.Log(pieceOne);
+
         SajakText.text = pieceOne + ", " + PlayerList.CurrentPlayer.Name + ". ";
 
         SajakText.text += "You've won " + PlayerList.CurrentPlayer.RoundWinnings.ToString("C0") + " for Round " + RoundNumber + "!";
 
-        //TODO: make it so the code doesn't jump through this yield
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(5f);
 
         SajakText.text = "Here are the totals won so far!";
-        NextRoundCanvas.SetActive(true);
 
-        yield return 0;   
+        PlayerList.TransferRoundToTotalForCurrentPlayer();
+        int i = 0;
+        foreach(Player p in PlayerList.Players) { 
+            p.RoundWinnings = 0;
+            p.FreePlays = 0;
+            PlayerWinningsTexts[i].text = p.TotalWinnings.ToString("C0");
+            i++;
+        }
+
+        Text buttonText = NextRoundCanvas.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
+        buttonText.text = "CONTINUE TO\nROUND " + (RoundNumber + 1);
+
+        NextRoundCanvas.SetActive(true);
+        SolveCanvas.SetActive(false);
+        SolveCanvas.GetComponent<Canvas>().enabled = true;
     }
 
-    public void SolvedIncorrectly(bool isOutOfTime) {        
+    public void SolvedIncorrectly(bool isOutOfTime) {
         SolveCanvas.SetActive(false);
         AudioTracks.Play("buzzer");
         SajakText.text = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". ";
@@ -236,7 +255,7 @@ public class RoundRunner : MonoBehaviour {
             SajakText.text += "You're out of time. Let's give " + PlayerList.CurrentPlayer.Name + " a";
         } else {
             string statement = Utilities.RandomString(new string[] { "That is incorrect.", "That is not correct.", "That's not right.", "You didn't solve it correctly.", "That's not the right answer." });
-            SajakText.text +=  statement + " Let's give " + PlayerList.CurrentPlayer.Name + " a";
+            SajakText.text += statement + " Let's give " + PlayerList.CurrentPlayer.Name + " a";
         }
 
         string chance = Utilities.RandomString(new string[] { " try.", " chance.", "n opportunity." });
@@ -386,7 +405,7 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public int FindHowManyToReveal(List<char> letters) {
-        for(int i = 0; i < letters.Count; i++) {
+        for (int i = 0; i < letters.Count; i++) {
             letters[i] = char.ToUpper(letters[i]);
         }
 
@@ -472,7 +491,7 @@ public class RoundRunner : MonoBehaviour {
                 if (UsedLetters.Contains(letter)) {
                     SajakText.text = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". " + char.ToUpper(letter) + " has already been used. ";
                     GotoNextPlayer();
-                    SajakText.text += "It's now " + PlayerList.CurrentPlayer.Name + "'s turn.";                    
+                    SajakText.text += "It's now " + PlayerList.CurrentPlayer.Name + "'s turn.";
                 } else {
                     SajakText.text = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ", but that's the incorrect letter type. ";
                     GotoNextPlayer();
@@ -495,21 +514,23 @@ public class RoundRunner : MonoBehaviour {
             }
         }
 
-        for (int i = 0; i < PlayerBar.transform.childCount; i++) {
-            Text nameText = PlayerBar.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<Text>();
-            Text winningText = PlayerBar.transform.GetChild(i).transform.GetChild(1).gameObject.GetComponent<Text>();
+        if (!IsRoundEnded) {
+            for (int i = 0; i < PlayerBar.transform.childCount; i++) {
+                Text nameText = PlayerBar.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<Text>();
+                Text winningText = PlayerBar.transform.GetChild(i).transform.GetChild(1).gameObject.GetComponent<Text>();
 
-            if (PlayerList.CurrentPlayer != null && PlayerList.CurrentPlayer.Name.Equals(nameText.text)) {
-                PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = SajakText.color;
-                nameText.color = Color.black;
-                winningText.color = Color.black;
-            } else {
-                PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.clear;
-                nameText.color = new Color32(255, 255, 255, 125);
-                winningText.color = new Color32(255, 255, 255, 125);
+                if (PlayerList.CurrentPlayer != null && PlayerList.CurrentPlayer.Name.Equals(nameText.text)) {
+                    PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = SajakText.color;
+                    nameText.color = Color.black;
+                    winningText.color = Color.black;
+                } else {
+                    PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.clear;
+                    nameText.color = new Color32(255, 255, 255, 125);
+                    winningText.color = new Color32(255, 255, 255, 125);
+                }
+
+                winningText.text = PlayerList.Players[i].RoundWinnings.ToString("C0");
             }
-
-            winningText.text = PlayerList.Players[i].RoundWinnings.ToString("C0");
         }
     }
 
