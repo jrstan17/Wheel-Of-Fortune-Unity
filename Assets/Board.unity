@@ -206,8 +206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 754013639}
+  Wedge2: {fileID: 0}
 --- !u!50 &7035813
 Rigidbody2D:
   serializedVersion: 4
@@ -380,7 +380,7 @@ RectTransform:
   m_Children:
   - {fileID: 1972974386}
   m_Father: {fileID: 1544352560}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 315}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -573,8 +573,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 2088164234}
+  Wedge2: {fileID: 0}
 --- !u!50 &16184349
 Rigidbody2D:
   serializedVersion: 4
@@ -767,8 +767,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 1190349846}
+  Wedge2: {fileID: 0}
 --- !u!50 &20409098
 Rigidbody2D:
   serializedVersion: 4
@@ -960,7 +960,7 @@ RectTransform:
   m_Children:
   - {fileID: 2130423945}
   m_Father: {fileID: 1544352560}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 210}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1111,13 +1111,13 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 33523199}
-  m_LocalRotation: {x: 0, y: 0, z: 0.9961947, w: 0.08715588}
+  m_LocalRotation: {x: -0, y: -0, z: 0.9961947, w: 0.08715588}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1083259, y: 0.1083259, z: 0}
+  m_LocalScale: {x: 0.108326055, y: 0.108326055, z: 0}
   m_Children:
   - {fileID: 75307026}
   m_Father: {fileID: 1544352560}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 170}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1422,8 +1422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 1851314313}
+  Wedge2: {fileID: 0}
 --- !u!50 &45425893
 Rigidbody2D:
   serializedVersion: 4
@@ -2029,8 +2029,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 93456319}
+  Wedge2: {fileID: 0}
 --- !u!50 &57581750
 Rigidbody2D:
   serializedVersion: 4
@@ -2143,8 +2143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 343953408}
+  Wedge2: {fileID: 0}
 --- !u!50 &57684259
 Rigidbody2D:
   serializedVersion: 4
@@ -2411,7 +2411,7 @@ RectTransform:
   m_Children:
   - {fileID: 1228112996}
   m_Father: {fileID: 1544352560}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3146,8 +3146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 14783986}
+  Wedge2: {fileID: 0}
 --- !u!50 &72579951
 Rigidbody2D:
   serializedVersion: 4
@@ -3265,7 +3265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SortingLayerName: GameCanvas
-  SortingOrder: 90
+  SortingOrder: 79
 --- !u!102 &75307028
 TextMesh:
   serializedVersion: 3
@@ -3373,7 +3373,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -3383,7 +3383,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -3575,7 +3575,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -3585,7 +3585,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -4112,8 +4112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 1148083338}
+  Wedge2: {fileID: 0}
 --- !u!50 &115248086
 Rigidbody2D:
   serializedVersion: 4
@@ -4226,8 +4226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 1915892034}
+  Wedge2: {fileID: 0}
 --- !u!50 &115404861
 Rigidbody2D:
   serializedVersion: 4
@@ -4340,8 +4340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 2142404842}
+  Wedge2: {fileID: 0}
 --- !u!50 &115973456
 Rigidbody2D:
   serializedVersion: 4
@@ -4619,8 +4619,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 878921100}
+  Wedge2: {fileID: 0}
 --- !u!50 &150906516
 Rigidbody2D:
   serializedVersion: 4
@@ -4782,6 +4782,54 @@ SpriteRenderer:
   m_Color: {r: 0.23137257, g: 0.7294118, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &157234715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 157234717}
+  - component: {fileID: 157234716}
+  m_Layer: 0
+  m_Name: WedgeController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &157234716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 157234715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808081571d190b546871c36ba791174e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WheelObjects:
+  - {fileID: 2012431094}
+  - {fileID: 1348101543}
+  - {fileID: 868966285}
+  - {fileID: 735035322}
+  MillionWedges: []
+  MillionColliders: []
+  ReplacementWedge: []
+--- !u!4 &157234717
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 157234715}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -94.56956, y: -85.84515, z: -9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &157497116
 GameObject:
   m_ObjectHideFlags: 0
@@ -4897,8 +4945,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 1679470016}
+  Wedge2: {fileID: 0}
 --- !u!50 &158064660
 Rigidbody2D:
   serializedVersion: 4
@@ -5011,8 +5059,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 399918478}
+  Wedge2: {fileID: 0}
 --- !u!50 &163849696
 Rigidbody2D:
   serializedVersion: 4
@@ -5125,8 +5173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 1684194115}
+  Wedge2: {fileID: 0}
 --- !u!50 &164947663
 Rigidbody2D:
   serializedVersion: 4
@@ -5352,8 +5400,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 1467054574}
+  Wedge2: {fileID: 0}
 --- !u!50 &184495965
 Rigidbody2D:
   serializedVersion: 4
@@ -5466,8 +5514,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 418257138}
+  Wedge2: {fileID: 0}
 --- !u!50 &184702193
 Rigidbody2D:
   serializedVersion: 4
@@ -5717,7 +5765,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -5727,7 +5775,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -6216,8 +6264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 501198238}
+  Wedge2: {fileID: 0}
 --- !u!50 &232108660
 Rigidbody2D:
   serializedVersion: 4
@@ -6422,8 +6470,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 1525373566}
+  Wedge2: {fileID: 0}
 --- !u!50 &249796208
 Rigidbody2D:
   serializedVersion: 4
@@ -6813,8 +6861,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 232382281}
+  Wedge2: {fileID: 0}
 --- !u!50 &270157672
 Rigidbody2D:
   serializedVersion: 4
@@ -6960,8 +7008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 1519893706}
+  Wedge2: {fileID: 0}
 --- !u!50 &270651137
 Rigidbody2D:
   serializedVersion: 4
@@ -7663,8 +7711,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 1245582443}
+  Wedge2: {fileID: 0}
 --- !u!50 &283025205
 Rigidbody2D:
   serializedVersion: 4
@@ -7789,7 +7837,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -7799,7 +7847,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -8340,7 +8388,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -8350,7 +8398,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -8540,8 +8588,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 1428691912}
+  Wedge2: {fileID: 0}
 --- !u!50 &335301971
 Rigidbody2D:
   serializedVersion: 4
@@ -8931,8 +8979,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 458066458}
+  Wedge2: {fileID: 0}
 --- !u!50 &348354668
 Rigidbody2D:
   serializedVersion: 4
@@ -9572,8 +9620,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 393661558}
+  Wedge2: {fileID: 0}
 --- !u!50 &378621004
 Rigidbody2D:
   serializedVersion: 4
@@ -9843,7 +9891,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -9853,7 +9901,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -10479,8 +10527,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 450885125}
+  Wedge2: {fileID: 0}
 --- !u!50 &401453766
 Rigidbody2D:
   serializedVersion: 4
@@ -11176,8 +11224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 467210455}
+  Wedge2: {fileID: 0}
 --- !u!50 &427202155
 Rigidbody2D:
   serializedVersion: 4
@@ -11507,7 +11555,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -11517,7 +11565,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -11818,8 +11866,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 540799802}
+  Wedge2: {fileID: 0}
 --- !u!50 &441873102
 Rigidbody2D:
   serializedVersion: 4
@@ -12233,8 +12281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 1397897047}
+  Wedge2: {fileID: 0}
 --- !u!50 &453412913
 Rigidbody2D:
   serializedVersion: 4
@@ -13062,7 +13110,7 @@ RectTransform:
   m_Children:
   - {fileID: 277239739}
   m_Father: {fileID: 1544352560}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 285}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13461,8 +13509,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 2113962945}
+  Wedge2: {fileID: 0}
 --- !u!50 &489800075
 Rigidbody2D:
   serializedVersion: 4
@@ -14572,6 +14620,98 @@ Transform:
   m_Father: {fileID: 282256161}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &537612369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 537612370}
+  - component: {fileID: 537612373}
+  - component: {fileID: 537612372}
+  - component: {fileID: 537612371}
+  m_Layer: 8
+  m_Name: W12B
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &537612370
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 537612369}
+  m_LocalRotation: {x: 0, y: 0, z: 0.9914449, w: 0.13052626}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.10832593, y: 0.10832593, z: 0}
+  m_Children:
+  - {fileID: 687423015}
+  m_Father: {fileID: 1544352560}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 165}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.0000076293945, y: 0.000000004489266}
+  m_SizeDelta: {x: 6.95, y: 26.7}
+  m_Pivot: {x: -0, y: -0}
+--- !u!114 &537612371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 537612369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 500
+  Text: $500
+  WedgeType: 0
+--- !u!222 &537612372
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 537612369}
+--- !u!212 &537612373
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 537612369}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1953457327
+  m_SortingOrder: 80
+  m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
+  m_Color: {r: 1, g: 0.4156863, b: 0.054901965, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1 &539368207
 GameObject:
   m_ObjectHideFlags: 0
@@ -14892,7 +15032,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -14902,7 +15042,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -15238,7 +15378,7 @@ RectTransform:
   m_Children:
   - {fileID: 1516185918}
   m_Father: {fileID: 1544352560}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15982,7 +16122,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -15992,7 +16132,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -16479,8 +16619,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 597502155}
+  Wedge2: {fileID: 0}
 --- !u!50 &608438631
 Rigidbody2D:
   serializedVersion: 4
@@ -16689,7 +16829,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70ecf52edbacc545bf37298a86867a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timePerChar: 1
 --- !u!114 &609871217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16888,7 +17027,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -16898,7 +17037,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -17176,7 +17315,7 @@ RectTransform:
   m_Children:
   - {fileID: 485833810}
   m_Father: {fileID: 1544352560}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 240}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17398,8 +17537,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 1188351148}
+  Wedge2: {fileID: 0}
 --- !u!50 &630686166
 Rigidbody2D:
   serializedVersion: 4
@@ -17736,8 +17875,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 1293675002}
+  Wedge2: {fileID: 0}
 --- !u!50 &638832065
 Rigidbody2D:
   serializedVersion: 4
@@ -18458,7 +18597,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -18468,7 +18607,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -18685,8 +18824,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 993511122}
+  Wedge2: {fileID: 0}
 --- !u!50 &662998716
 Rigidbody2D:
   serializedVersion: 4
@@ -19229,6 +19368,107 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 686700814}
+--- !u!1 &687423014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 687423015}
+  - component: {fileID: 687423018}
+  - component: {fileID: 687423017}
+  - component: {fileID: 687423016}
+  m_Layer: 8
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &687423015
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 687423014}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7518398, w: 0.6593458}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 537612370}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 180, y: 180, z: 82.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.099999905, y: 12.499998}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &687423016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 687423014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9591119ca8c305246804ab72b4205150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortingLayerName: GameCanvas
+  SortingOrder: 90
+--- !u!102 &687423017
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 687423014}
+  m_Text: $350
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 3
+  m_Alignment: 1
+  m_TabSize: 4
+  m_FontSize: 30
+  m_FontStyle: 1
+  m_RichText: 1
+  m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190080
+--- !u!23 &687423018
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 687423014}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!1 &687554565
 GameObject:
   m_ObjectHideFlags: 0
@@ -19492,7 +19732,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -19502,7 +19742,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -19721,8 +19961,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 39659589}
+  Wedge2: {fileID: 0}
 --- !u!50 &703863500
 Rigidbody2D:
   serializedVersion: 4
@@ -19940,8 +20180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 1409619295}
+  Wedge2: {fileID: 0}
 --- !u!50 &707144588
 Rigidbody2D:
   serializedVersion: 4
@@ -20597,9 +20837,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 735150330}
-  m_LocalRotation: {x: -0, y: -0, z: 0.8433916, w: -0.5372994}
-  m_LocalPosition: {x: -0.137366, y: -0.18193254, z: 0}
-  m_LocalScale: {x: 0.027878936, y: 0.005, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.8433916, w: -0.53729945}
+  m_LocalPosition: {x: -0.137366, y: -0.18193261, z: 0}
+  m_LocalScale: {x: 0.02864153, y: 0.005136768, z: 0}
   m_Children: []
   m_Father: {fileID: 1446415917}
   m_RootOrder: 12
@@ -20615,8 +20855,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 33523199}
+  Wedge2: {fileID: 0}
 --- !u!50 &735150333
 Rigidbody2D:
   serializedVersion: 4
@@ -20830,7 +21070,7 @@ RectTransform:
   m_Children:
   - {fileID: 1230102930}
   m_Father: {fileID: 1544352560}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 300}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -20945,8 +21185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 624643291}
+  Wedge2: {fileID: 0}
 --- !u!50 &746833187
 Rigidbody2D:
   serializedVersion: 4
@@ -21231,8 +21471,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 595180293}
+  Wedge2: {fileID: 0}
 --- !u!50 &760232133
 Rigidbody2D:
   serializedVersion: 4
@@ -21357,7 +21597,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -21367,7 +21607,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -21580,8 +21820,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 210760505}
+  Wedge2: {fileID: 0}
 --- !u!50 &765822939
 Rigidbody2D:
   serializedVersion: 4
@@ -22274,8 +22514,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 400135452}
+  Wedge2: {fileID: 0}
 --- !u!50 &795754004
 Rigidbody2D:
   serializedVersion: 4
@@ -22400,7 +22640,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -22410,7 +22650,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -22530,7 +22770,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -22540,7 +22780,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -24019,8 +24259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 1427176824}
+  Wedge2: {fileID: 0}
 --- !u!50 &846909725
 Rigidbody2D:
   serializedVersion: 4
@@ -24279,9 +24519,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 853005076}
-  m_LocalRotation: {x: -0, y: -0, z: 0.8191522, w: -0.5735763}
-  m_LocalPosition: {x: -0.12567985, y: -0.188934, z: 0}
-  m_LocalScale: {x: 0.02844454, y: 0.005, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.81915224, w: -0.5735763}
+  m_LocalPosition: {x: -0.12567988, y: -0.1889341, z: 0}
+  m_LocalScale: {x: 0.03146285, y: 0.0055305576, z: 0}
   m_Children: []
   m_Father: {fileID: 1446415917}
   m_RootOrder: 13
@@ -24297,8 +24537,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 1371053785}
+  Wedge2: {fileID: 0}
 --- !u!50 &853005079
 Rigidbody2D:
   serializedVersion: 4
@@ -24843,8 +25083,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 482610781}
+  Wedge2: {fileID: 0}
 --- !u!50 &873056904
 Rigidbody2D:
   serializedVersion: 4
@@ -25150,8 +25390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 1685844475}
+  Wedge2: {fileID: 0}
 --- !u!50 &874840745
 Rigidbody2D:
   serializedVersion: 4
@@ -25264,8 +25504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 851234374}
+  Wedge2: {fileID: 0}
 --- !u!50 &876432141
 Rigidbody2D:
   serializedVersion: 4
@@ -25601,8 +25841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 263542306}
+  Wedge2: {fileID: 0}
 --- !u!50 &878332693
 Rigidbody2D:
   serializedVersion: 4
@@ -25819,7 +26059,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -25829,7 +26069,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -27869,8 +28109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 504750620}
+  Wedge2: {fileID: 0}
 --- !u!50 &995207121
 Rigidbody2D:
   serializedVersion: 4
@@ -27983,8 +28223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 67396771}
+  Wedge2: {fileID: 0}
 --- !u!50 &999338453
 Rigidbody2D:
   serializedVersion: 4
@@ -28174,7 +28414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70ecf52edbacc545bf37298a86867a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timePerChar: 0
 --- !u!114 &1004413826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28245,7 +28484,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -28255,7 +28494,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -29501,7 +29740,7 @@ RectTransform:
   m_Children:
   - {fileID: 55225496}
   m_Father: {fileID: 1544352560}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 255}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -30081,7 +30320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70ecf52edbacc545bf37298a86867a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timePerChar: 0
 --- !u!114 &1098761216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30353,8 +30591,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 1370122641}
+  Wedge2: {fileID: 0}
 --- !u!50 &1107634794
 Rigidbody2D:
   serializedVersion: 4
@@ -30971,7 +31209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SortingLayerName: GameCanvas
-  SortingOrder: 90
+  SortingOrder: 79
 --- !u!102 &1131937242
 TextMesh:
   serializedVersion: 3
@@ -31388,8 +31626,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 1132449115}
+  Wedge2: {fileID: 0}
 --- !u!50 &1144785460
 Rigidbody2D:
   serializedVersion: 4
@@ -31606,8 +31844,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 1644984531}
+  Wedge2: {fileID: 0}
 --- !u!50 &1146286319
 Rigidbody2D:
   serializedVersion: 4
@@ -32294,8 +32532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 1246491708}
+  Wedge2: {fileID: 0}
 --- !u!50 &1161911385
 Rigidbody2D:
   serializedVersion: 4
@@ -33361,7 +33599,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -33371,7 +33609,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -34229,8 +34467,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 40087988}
+  Wedge2: {fileID: 0}
 --- !u!50 &1205675366
 Rigidbody2D:
   serializedVersion: 4
@@ -34444,8 +34682,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 59822827}
+  Wedge2: {fileID: 0}
 --- !u!50 &1207490286
 Rigidbody2D:
   serializedVersion: 4
@@ -34725,8 +34963,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 1138028552}
+  Wedge2: {fileID: 0}
 --- !u!50 &1212867417
 Rigidbody2D:
   serializedVersion: 4
@@ -34913,8 +35151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 662910270}
+  Wedge2: {fileID: 0}
 --- !u!50 &1213340723
 Rigidbody2D:
   serializedVersion: 4
@@ -35476,8 +35714,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 1187321161}
+  Wedge2: {fileID: 0}
 --- !u!50 &1228686139
 Rigidbody2D:
   serializedVersion: 4
@@ -35956,8 +36194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 1463934674}
+  Wedge2: {fileID: 0}
 --- !u!50 &1246320976
 Rigidbody2D:
   serializedVersion: 4
@@ -36373,7 +36611,7 @@ RectTransform:
   m_Children:
   - {fileID: 1933800192}
   m_Father: {fileID: 1544352560}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 225}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -36630,8 +36868,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 484059957}
+  Wedge2: {fileID: 0}
 --- !u!50 &1275122154
 Rigidbody2D:
   serializedVersion: 4
@@ -36834,8 +37072,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 1556705637}
+  Wedge2: {fileID: 0}
 --- !u!50 &1284996531
 Rigidbody2D:
   serializedVersion: 4
@@ -37242,8 +37480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 190134698}
+  Wedge2: {fileID: 0}
 --- !u!50 &1300963710
 Rigidbody2D:
   serializedVersion: 4
@@ -37356,8 +37594,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 742058423}
+  Wedge2: {fileID: 0}
 --- !u!50 &1313001568
 Rigidbody2D:
   serializedVersion: 4
@@ -37771,7 +38009,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -37781,7 +38019,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -38246,8 +38484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 731539231}
+  Wedge2: {fileID: 0}
 --- !u!50 &1341915805
 Rigidbody2D:
   serializedVersion: 4
@@ -38360,8 +38598,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 97363171}
+  Wedge2: {fileID: 0}
 --- !u!50 &1342159132
 Rigidbody2D:
   serializedVersion: 4
@@ -38749,8 +38987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 1361983628}
+  Wedge2: {fileID: 0}
 --- !u!50 &1352904473
 Rigidbody2D:
   serializedVersion: 4
@@ -39110,13 +39348,13 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1371053785}
-  m_LocalRotation: {x: 0, y: 0, z: 0.99904823, w: 0.0436195}
+  m_LocalRotation: {x: -0, y: -0, z: 0.99904823, w: 0.0436195}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1083259, y: 0.1083259, z: 0}
+  m_LocalScale: {x: 0.10832597, y: 0.10832597, z: 0}
   m_Children:
   - {fileID: 1131937240}
   m_Father: {fileID: 1544352560}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 175}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -39221,8 +39459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 1849176218}
+  Wedge2: {fileID: 0}
 --- !u!50 &1371792411
 Rigidbody2D:
   serializedVersion: 4
@@ -39347,7 +39585,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -39357,7 +39595,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -39995,8 +40233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 853259485}
+  Wedge2: {fileID: 0}
 --- !u!50 &1400226257
 Rigidbody2D:
   serializedVersion: 4
@@ -40281,8 +40519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 992827523}
+  Wedge2: {fileID: 0}
 --- !u!50 &1403258779
 Rigidbody2D:
   serializedVersion: 4
@@ -40772,8 +41010,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 1650745038}
+  Wedge2: {fileID: 0}
 --- !u!50 &1417548846
 Rigidbody2D:
   serializedVersion: 4
@@ -41326,7 +41564,7 @@ RectTransform:
   m_Children:
   - {fileID: 2031492595}
   m_Father: {fileID: 1544352560}
-  m_RootOrder: 26
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 330}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -41431,8 +41669,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 945497851}
+  Wedge2: {fileID: 0}
 --- !u!50 &1441055243
 Rigidbody2D:
   serializedVersion: 4
@@ -41873,8 +42111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 873644883}
+  Wedge2: {fileID: 0}
 --- !u!50 &1450283585
 Rigidbody2D:
   serializedVersion: 4
@@ -41987,8 +42225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 1264126470}
+  Wedge2: {fileID: 0}
 --- !u!50 &1453617114
 Rigidbody2D:
   serializedVersion: 4
@@ -42901,8 +43139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 22640152}
+  Wedge2: {fileID: 0}
 --- !u!50 &1481124593
 Rigidbody2D:
   serializedVersion: 4
@@ -43015,8 +43253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 2098888510}
+  Wedge2: {fileID: 0}
 --- !u!50 &1484505498
 Rigidbody2D:
   serializedVersion: 4
@@ -43134,7 +43372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70ecf52edbacc545bf37298a86867a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timePerChar: 0
 --- !u!114 &1485295334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44084,8 +44321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 1733902123}
+  Wedge2: {fileID: 0}
 --- !u!50 &1511055602
 Rigidbody2D:
   serializedVersion: 4
@@ -44198,8 +44435,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 2034090983}
+  Wedge2: {fileID: 0}
 --- !u!50 &1513272610
 Rigidbody2D:
   serializedVersion: 4
@@ -44922,8 +45159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 1521624946}
+  Wedge2: {fileID: 0}
 --- !u!50 &1535737116
 Rigidbody2D:
   serializedVersion: 4
@@ -45369,8 +45606,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 1757499006}
+  Wedge2: {fileID: 537612369}
 --- !u!50 &1543274248
 Rigidbody2D:
   serializedVersion: 4
@@ -45480,6 +45717,7 @@ Transform:
   - {fileID: 608680723}
   - {fileID: 873644884}
   - {fileID: 2034090984}
+  - {fileID: 537612370}
   - {fileID: 1757499007}
   - {fileID: 33523200}
   - {fileID: 1371053786}
@@ -45603,8 +45841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 253010652}
+  Wedge2: {fileID: 0}
 --- !u!50 &1548951503
 Rigidbody2D:
   serializedVersion: 4
@@ -46245,8 +46483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 1171932518}
+  Wedge2: {fileID: 0}
 --- !u!50 &1582560954
 Rigidbody2D:
   serializedVersion: 4
@@ -46504,7 +46742,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -46514,7 +46752,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -46726,8 +46964,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 1835208149}
+  Wedge2: {fileID: 0}
 --- !u!50 &1604625061
 Rigidbody2D:
   serializedVersion: 4
@@ -46926,7 +47164,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -46936,7 +47174,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -47224,8 +47462,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 1571641224}
+  Wedge2: {fileID: 0}
 --- !u!50 &1634792376
 Rigidbody2D:
   serializedVersion: 4
@@ -47840,8 +48078,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 1174582582}
+  Wedge2: {fileID: 0}
 --- !u!50 &1649850417
 Rigidbody2D:
   serializedVersion: 4
@@ -48860,8 +49098,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 20423217}
+  Wedge2: {fileID: 0}
 --- !u!50 &1697372340
 Rigidbody2D:
   serializedVersion: 4
@@ -49087,7 +49325,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -49097,7 +49335,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -49502,8 +49740,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1981595392}
   Wedge: {fileID: 1401784519}
+  Wedge2: {fileID: 0}
 --- !u!50 &1720856836
 Rigidbody2D:
   serializedVersion: 4
@@ -50325,7 +50563,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -50335,7 +50573,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -50730,7 +50968,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -50740,7 +50978,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -51044,7 +51282,7 @@ GameObject:
   - component: {fileID: 1757499009}
   - component: {fileID: 1757499008}
   m_Layer: 8
-  m_Name: W12
+  m_Name: W12A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51056,13 +51294,13 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1757499006}
-  m_LocalRotation: {x: 0, y: 0, z: 0.9914449, w: 0.13052626}
+  m_LocalRotation: {x: -0, y: -0, z: 0.9914449, w: 0.13052626}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1083259, y: 0.1083259, z: 0}
+  m_LocalScale: {x: 0.10832605, y: 0.10832605, z: 0}
   m_Children:
   - {fileID: 2098878803}
   m_Father: {fileID: 1544352560}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 165}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -51955,7 +52193,7 @@ RectTransform:
   m_Children:
   - {fileID: 1776629831}
   m_Father: {fileID: 1544352560}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 195}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -52132,8 +52370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 567477392}
+  Wedge2: {fileID: 0}
 --- !u!50 &1804385747
 Rigidbody2D:
   serializedVersion: 4
@@ -52246,8 +52484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 888546758}
+  Wedge2: {fileID: 0}
 --- !u!50 &1806524149
 Rigidbody2D:
   serializedVersion: 4
@@ -52431,12 +52669,12 @@ Prefab:
     - target: {fileID: 224945089609695018, guid: 46b821ab7efdd964daca7c4c4878e8f6,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -40.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224945089609695018, guid: 46b821ab7efdd964daca7c4c4878e8f6,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 80.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224554629433793314, guid: 46b821ab7efdd964daca7c4c4878e8f6,
         type: 2}
@@ -52451,12 +52689,12 @@ Prefab:
     - target: {fileID: 224554629433793314, guid: 46b821ab7efdd964daca7c4c4878e8f6,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -99.450005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224554629433793314, guid: 46b821ab7efdd964daca7c4c4878e8f6,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 74.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114245240630061798, guid: 46b821ab7efdd964daca7c4c4878e8f6,
         type: 2}
@@ -52745,8 +52983,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 644363580}
+  Wedge2: {fileID: 0}
 --- !u!50 &1823944562
 Rigidbody2D:
   serializedVersion: 4
@@ -53013,7 +53251,7 @@ RectTransform:
   m_Children:
   - {fileID: 273029430}
   m_Father: {fileID: 1544352560}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 345}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -53685,8 +53923,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 1570904895}
+  Wedge2: {fileID: 0}
 --- !u!50 &1859238716
 Rigidbody2D:
   serializedVersion: 4
@@ -53799,8 +54037,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 1788212081}
+  Wedge2: {fileID: 0}
 --- !u!50 &1859818255
 Rigidbody2D:
   serializedVersion: 4
@@ -54050,8 +54288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 1941518124}
+  Wedge2: {fileID: 0}
 --- !u!50 &1866470274
 Rigidbody2D:
   serializedVersion: 4
@@ -54479,6 +54717,7 @@ MonoBehaviour:
   Oh: {fileID: 8300000, guid: 41089ac45b69b40459ca627c39e52aa9, type: 3}
   Remains: {fileID: 8300000, guid: d6b24f566ef90de48acfdadc56931d10, type: 3}
   Cheering: {fileID: 8300000, guid: 9cf9ae08f41b48d419a672d1f64cc691, type: 3}
+  FreePlay: {fileID: 8300000, guid: 82fdd7416a4877d4290432580cc13a44, type: 3}
 --- !u!82 &1901116513
 AudioSource:
   m_ObjectHideFlags: 0
@@ -54719,8 +54958,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 608680722}
+  Wedge2: {fileID: 0}
 --- !u!50 &1904217693
 Rigidbody2D:
   serializedVersion: 4
@@ -54905,8 +55144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 1437996803}
+  Wedge2: {fileID: 0}
 --- !u!50 &1908790274
 Rigidbody2D:
   serializedVersion: 4
@@ -55578,7 +55817,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70ecf52edbacc545bf37298a86867a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timePerChar: 0
 --- !u!114 &1928052736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56205,7 +56443,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -27.440002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -56215,7 +56453,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 54.880005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -56323,8 +56561,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 517245067}
+  Wedge2: {fileID: 0}
 --- !u!50 &1940586752
 Rigidbody2D:
   serializedVersion: 4
@@ -56741,8 +56979,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 1061223493}
+  Wedge2: {fileID: 0}
 --- !u!50 &1956328409
 Rigidbody2D:
   serializedVersion: 4
@@ -56855,8 +57093,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 1087064494}
+  Wedge2: {fileID: 0}
 --- !u!50 &1960614465
 Rigidbody2D:
   serializedVersion: 4
@@ -56969,8 +57207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 1536592359}
+  Wedge2: {fileID: 0}
 --- !u!50 &1968832699
 Rigidbody2D:
   serializedVersion: 4
@@ -57306,8 +57544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1544352559}
   Wedge: {fileID: 1794053702}
+  Wedge2: {fileID: 0}
 --- !u!50 &1977657269
 Rigidbody2D:
   serializedVersion: 4
@@ -57724,8 +57962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 1742828323}
+  Wedge2: {fileID: 0}
 --- !u!50 &1985906222
 Rigidbody2D:
   serializedVersion: 4
@@ -58541,8 +58779,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 1404073659}
+  Wedge2: {fileID: 0}
 --- !u!50 &2023967228
 Rigidbody2D:
   serializedVersion: 4
@@ -60642,7 +60880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SortingLayerName: GameCanvas
-  SortingOrder: 90
+  SortingOrder: 79
 --- !u!102 &2098878805
 TextMesh:
   serializedVersion: 3
@@ -60939,8 +61177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 619547698}
+  Wedge2: {fileID: 0}
 --- !u!50 &2115328447
 Rigidbody2D:
   serializedVersion: 4
@@ -61229,8 +61467,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1023932391}
   Wedge: {fileID: 153813979}
+  Wedge2: {fileID: 0}
 --- !u!50 &2119101975
 Rigidbody2D:
   serializedVersion: 4
@@ -61474,8 +61712,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 1410303950}
+  Wedge2: {fileID: 0}
 --- !u!50 &2134295904
 Rigidbody2D:
   serializedVersion: 4
@@ -61588,8 +61826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WheelWithSpinObject: {fileID: 1876057984}
   Wedge: {fileID: 55244760}
+  Wedge2: {fileID: 0}
 --- !u!50 &2134880089
 Rigidbody2D:
   serializedVersion: 4

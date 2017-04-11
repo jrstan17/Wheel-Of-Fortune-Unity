@@ -43,19 +43,20 @@ public class RoundRunner : MonoBehaviour {
     internal bool IsRoundEnded = false;
 
     internal static WedgeData CurrentWedge;
+    internal Coroutine coroutine;
 
     void Start() {
-        List<Player> Players = PlayerList.Players;
-        Players.Add(new Player("Jason"));
-        Players.Add(new Player("Philip"));
-        Players.Add(new Player("David"));
-        Players.Add(new Player("Leslie"));
+        PlayerList.Players.Add(new Player("Jason"));
+        PlayerList.Players.Add(new Player("Philip"));
+        PlayerList.Players.Add(new Player("David"));
+        PlayerList.Players.Add(new Player("Leslie"));
+        PlayerList.RandomizePlayers();
 
-        MaxRounds = Players.Count + 1;
+        MaxRounds = PlayerList.Players.Count + 1;
 
         GameObject panel = GameObject.FindGameObjectWithTag("PlayerPanel");
         PlayerWinningsTexts = new List<Text>();
-        foreach (Player p in Players) {
+        foreach (Player p in PlayerList.Players) {
             GameObject panelClone = Instantiate(panel);
             Text NameText = panelClone.transform.GetChild(0).GetComponent<Text>();
             NameText.text = p.Name;
@@ -120,7 +121,10 @@ public class RoundRunner : MonoBehaviour {
         }
 
         CategoryText.text = Puzzle.Category;
-        SajakText.text = "The category is " + Puzzle.Category + ".";
+        SajakText.text = "The category is " + Puzzle.Category;
+        if (char.IsLetter(Puzzle.Category[Puzzle.Category.Length - 1])) {
+            SajakText.text += ".";
+        }
 
         boardFiller.InitBoard();
         Debug.Log(GetWheelIndex());
@@ -271,18 +275,19 @@ public class RoundRunner : MonoBehaviour {
     public void SolvedIncorrectly(bool isOutOfTime) {
         SolveCanvas.SetActive(false);
         AudioTracks.Play("buzzer");
-        SajakText.text = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". ";
-        GotoNextPlayer();
+        string pre = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". ";
+        string chance = Utilities.RandomString(new string[] { " try.", " chance.", "n opportunity." });
 
         if (isOutOfTime) {
-            SajakText.text += "You're out of time. Let's give " + PlayerList.CurrentPlayer.Name + " a";
+            string yes = pre + "You're out of time.";
+            string no = yes + " Let's give " + PlayerList.NextPlayersName() + " a" + chance;
+            StartCoroutine(AskIfFreePlay(yes, no));
         } else {
             string statement = Utilities.RandomString(new string[] { "That is incorrect.", "That is not correct.", "That's not right.", "You didn't solve it correctly.", "That's not the right answer." });
-            SajakText.text += statement + " Let's give " + PlayerList.CurrentPlayer.Name + " a";
+            string yes = pre + statement;
+            string no = yes + " Let's give " + PlayerList.NextPlayersName() + " a" + chance;
+            StartCoroutine(AskIfFreePlay(yes, no));
         }
-
-        string chance = Utilities.RandomString(new string[] { " try.", " chance.", "n opportunity." });
-        SajakText.text += chance;
     }
 
     public void BonusTextField_Changed() {
@@ -356,9 +361,9 @@ public class RoundRunner : MonoBehaviour {
             SajakText.text += " It's your turn, " + PlayerList.CurrentPlayer.Name + ".";
         } else if (CurrentType == WedgeType.LoseATurn) {
             AudioTracks.Play("buzzer");
-            SajakText.text = "You've lost your turn, " + PlayerList.CurrentPlayer.Name + ".";
-            GotoNextPlayer();
-            SajakText.text += " It's now your turn, " + PlayerList.CurrentPlayer.Name + ".";
+            string yes = "You've lost your turn, " + PlayerList.CurrentPlayer.Name + ".";
+            string no = yes + " It's now your turn, " + PlayerList.NextPlayersName() + ".";
+            StartCoroutine(AskIfFreePlay(yes, no));
         } else if (CurrentType == WedgeType.HighAmount) {
             SajakText.text = CurrentWedge.Value.ToString("C0") + "! Now make your guess count!";
             IsTimeForLetter = true;
@@ -367,6 +372,7 @@ public class RoundRunner : MonoBehaviour {
             IsTimeForLetter = true;
         } else if (CurrentType == WedgeType.FreePlay) {
             SajakText.text = "You have yourself a Free Play, " + PlayerList.CurrentPlayer.Name + ". The current value is " + CurrentWedge.Value + ".";
+            PlayerList.CurrentPlayer.FreePlays++;
             IsTimeForLetter = true;
         } else {
             IsTimeForLetter = true;
@@ -375,7 +381,6 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void OnBankrupt(Player p) {
-        AudioTracks.Play("bankrupt");
         SajakText.text = "You're bankrupt, " + p.Name + ". I'm so sorry.";
         p.RoundWinnings = 0;
     }
@@ -387,6 +392,10 @@ public class RoundRunner : MonoBehaviour {
 
     public void ToggleUIButtons() {
         ToggleUIButtonsParsing("all", false);
+
+        if (KeyPress.IsTimeForFreePlayDecision) {
+            return;
+        }
 
         if (PlayerList.CurrentPlayer.RoundWinnings >= VowelPurchaseCost) {
             ToggleUIButtonsParsing("all", true);
@@ -452,82 +461,86 @@ public class RoundRunner : MonoBehaviour {
             List<char> letters = new List<char>();
             letters.Add(letter);
 
-            //if it's a consonant
-            if (!ShouldBeVowel && !Utilities.IsVowel(letter) && !UsedLetters.Contains(letter)) {
+            bool IsVowel = Utilities.IsVowel(letter);
+
+            if (!UsedLetters.Contains(letter) && (!ShouldBeVowel && !IsVowel || ShouldBeVowel && IsVowel)) {
 
                 BoardFiller.LettersRevealed = FindHowManyToReveal(letters);
                 trilonsRevealed = BoardFiller.LettersRevealed;
 
                 if (!UsedLetters.Contains(letter) && trilonsRevealed > 0) {
-                    UsedLetterText[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
-                    int totalValue = CurrentWedge.Value * trilonsRevealed;
-                    PlayerList.CurrentPlayer.RoundWinnings += totalValue;
-
                     if (trilonsRevealed == 1) {
                         SajakText.text = "There is 1 " + char.ToUpper(letter);
                     } else {
                         SajakText.text = "There are " + trilonsRevealed + " " + char.ToUpper(letter) + "'s";
                     }
 
-                    SajakText.text += " for a value of " + totalValue.ToString("C0");
-                    if (CurrentWedge.WedgeType == WedgeType.HighAmount) {
-                        SajakText.text += "!";
+                    int totalValue = 0;
+                    if (!IsVowel) {
+                        totalValue = CurrentWedge.Value * trilonsRevealed;
+                        PlayerList.CurrentPlayer.RoundWinnings += totalValue;
+
+                        SajakText.text += " for a value of " + totalValue.ToString("C0");
+                        if (CurrentWedge.WedgeType == WedgeType.HighAmount) {
+                            SajakText.text += "!";
+                        } else {
+                            SajakText.text += ".";
+                        }
                     } else {
                         SajakText.text += ".";
                     }
                 } else {
-                    GotoNextPlayer();
-                    SajakText.text = "There are no " + char.ToUpper(letter) + "'s. It's your turn, " + PlayerList.CurrentPlayer.Name + ".";
                     AudioTracks.Play("buzzer");
+                    yield return StartCoroutine(AskIfFreePlay("There are no " + char.ToUpper(letter) + "'s.", "There are no " + char.ToUpper(letter) + "'s. It's your turn, " + PlayerList.NextPlayersName() + "."));                    
                 }
 
                 UsedLetters.Add(letter);
-                yield return StartCoroutine(boardFiller.RevealLetters(letters));
-            } //if it's a vowel
-            else if (ShouldBeVowel && Utilities.IsVowel(letter) && !UsedLetters.Contains(letter)) {
-                BoardFiller.LettersRevealed = FindHowManyToReveal(letters);
-                trilonsRevealed = BoardFiller.LettersRevealed;
-
-                if (!UsedLetters.Contains(letter) && trilonsRevealed > 0) {
-                    UsedLetterText[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
-
-                    if (trilonsRevealed == 1) {
-                        SajakText.text = "There is 1 " + char.ToUpper(letter);
-                    } else {
-                        SajakText.text = "There are " + trilonsRevealed + " " + char.ToUpper(letter) + "'s";
-                    }
-
-                    if (CurrentWedge.WedgeType == WedgeType.HighAmount) {
-                        SajakText.text += "!";
-                    } else {
-                        SajakText.text += ".";
-                    }
-                } else {
-                    GotoNextPlayer();
-                    SajakText.text = "There are no " + char.ToUpper(letter) + "'s. It's your turn, " + PlayerList.CurrentPlayer.Name + ".";
-                    AudioTracks.Play("buzzer");
+                UsedLetterText[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
+                if (!KeyPress.IsTimeForFreePlayDecision) {
+                    yield return StartCoroutine(boardFiller.RevealLetters(letters));
                 }
-
-                UsedLetters.Add(letter);
-                yield return StartCoroutine(boardFiller.RevealLetters(letters));
+                ToggleUIButtons();
             } else {
                 if (UsedLetters.Contains(letter)) {
-                    SajakText.text = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". " + char.ToUpper(letter) + " has already been used. ";
-                    GotoNextPlayer();
-                    SajakText.text += "It's now " + PlayerList.CurrentPlayer.Name + "'s turn.";
+                    string yes = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". " + char.ToUpper(letter) + " has already been used.";
+                    string no = yes + " It's now " + PlayerList.NextPlayersName() + "'s turn.";
+                    yield return StartCoroutine(AskIfFreePlay(yes, no));
                 } else {
-                    SajakText.text = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ", but that's the incorrect letter type. ";
-                    GotoNextPlayer();
-                    SajakText.text += "It's now " + PlayerList.CurrentPlayer.Name + "'s turn.";
+                    string yes = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ", but that's the incorrect letter type.";
+                    string no = yes + " It's now " + PlayerList.NextPlayersName() + "'s turn.";
+                    yield return StartCoroutine(AskIfFreePlay(yes, no));
                 }
 
-                AudioTracks.Play("buzzer");
+                AudioTracks.Play("buzzer");                
             }
 
             ShouldBeVowel = false;
         }
 
         yield return 0;
+    }
+
+    private IEnumerator AskIfFreePlay(string sajakFreePlayExists, string sajakFreePlayDoesNotExist) {
+        if (PlayerList.CurrentPlayer.FreePlays != 0) {
+            SajakText.text = sajakFreePlayExists;
+            yield return new WaitForSeconds(3f);
+            SajakForFreePlayQuestion();
+            KeyPress.IsTimeForFreePlayDecision = true;
+            ToggleUIButtonsParsing("all", false);
+        } else {
+            GotoNextPlayer();
+            SajakText.text = sajakFreePlayDoesNotExist;
+        }
+    }
+
+    void SajakForFreePlayQuestion() {
+        int freePlays = PlayerList.CurrentPlayer.FreePlays;
+
+        if (freePlays == 1) {
+            SajakText.text = "You have a Free Play. Would you like to use it now? (Y/N)";
+        } else if (freePlays > 1) {
+            SajakText.text = "You have " + freePlays + " Free Plays. Would you like to use one now? (Y/N)";
+        }
     }
 
     void Update() {

@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class CountdownTimer : MonoBehaviour {
 
-    public float timePerChar;
+    public static float timePerChar = 1;
 
-    internal float timeLeft;
+    internal float TimeLeft;
     private bool IsStarted = false;
     private Text text;
 
@@ -18,25 +18,24 @@ public class CountdownTimer : MonoBehaviour {
 
     void Update() {
         if (IsStarted) {
-            timeLeft -= Time.deltaTime;
+            TimeLeft -= Time.deltaTime;
 
-            text.text = timeLeft.ToString("N1");
+            text.text = TimeLeft.ToString("N1");
 
-            if (timeLeft < 0) {
-                timeLeft = 0;
+            if (TimeLeft < 0) {
+                TimeLeft = 0;
                 IsStarted = false;
             }
         }
     }
 
     public void StartTimer() {
-        timeLeft = RoundRunner.Puzzle.Text.Length * timePerChar;
+        TimeLeft = RoundRunner.Puzzle.Text.Length * timePerChar;
         IsStarted = true;
     }
 
     public void StopTimer() {
         IsStarted = false;
-        timeLeft = 30;
     }
 
     public bool isRunning() {

@@ -5,27 +5,18 @@ using UnityEngine.UI;
 
 public class NewWedgeEntered : MonoBehaviour {
 
-    public GameObject WheelWithSpinObject;
     public GameObject Wedge;
+    public GameObject Wedge2;
 
     private WedgeData data;
 
-	// Use this for initialization
-	void Start () {
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
-
-    void FixedUpdate() {
-
-    }
-
     void OnTriggerEnter2D(Collider2D col) {
-        data = Wedge.GetComponent<WedgeData>();
+        if (Wedge.activeInHierarchy) {
+            data = Wedge.GetComponent<WedgeData>();
+        } else {
+            data = Wedge2.GetComponent<WedgeData>();
+        }
+
         RoundRunner.CurrentWedge = data;
     }
 }

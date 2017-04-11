@@ -18,9 +18,33 @@ public static class PlayerList {
         return null;
     }
 
+    public static void RandomizePlayers() {
+        List<Player> temp = new List<Player>();
+
+        while (Players.Count != 0) {
+            int i = Random.Range(0, Players.Count);
+            temp.Add(Players[i]);
+            Players.RemoveAt(i);
+        }
+
+        Players = temp;
+    }
+
     public static void TransferRoundToTotalForCurrentPlayer() {
         CurrentPlayer.TotalWinnings += CurrentPlayer.RoundWinnings;
         CurrentPlayer.RoundWinnings = 0;
+    }
+
+    public static string NextPlayersName() {
+        int i = CurrentIndex;
+
+        if (i + 1 == Players.Count) {
+            i = 0;
+        } else {
+            i++;
+        }
+
+        return Players[i].Name;
     }
 
     public static void GotoNextPlayer() {

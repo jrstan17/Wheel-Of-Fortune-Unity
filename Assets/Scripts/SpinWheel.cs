@@ -82,6 +82,12 @@ public class SpinWheel : MonoBehaviour {
         } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.TenThousand) {
             RoundRunner.AudioTracks.Play("cheering");
             waitTime = 2f;
+        } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.FreePlay) {
+            RoundRunner.AudioTracks.Play("freeplay");
+            waitTime = 2f;
+        } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.Bankrupt) {
+            RoundRunner.AudioTracks.Play("bankrupt");
+            waitTime = 2f;
         }
 
         isDebugSpin = false;

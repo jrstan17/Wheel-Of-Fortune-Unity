@@ -16,6 +16,7 @@ public class KeyPress : MonoBehaviour {
     internal bool isMenuActive = false;
     internal bool isWheelActive = false;
     internal InputField DebugInputField;
+    internal static bool IsTimeForFreePlayDecision = false;
 
     internal string[] Splits;
     List<string> History = new List<string>();
@@ -70,6 +71,18 @@ public class KeyPress : MonoBehaviour {
                     }
                 }
             }
+        } else if (IsTimeForFreePlayDecision) {
+            if (Input.GetKeyUp(KeyCode.Y)) {
+                IsTimeForFreePlayDecision = false;
+                RoundRunner.SajakText.text = "Play again, " + PlayerList.CurrentPlayer.Name + ".";
+                PlayerList.CurrentPlayer.FreePlays--;
+                RoundRunner.ToggleUIButtons();                
+            } else if (Input.GetKeyUp(KeyCode.N)) {
+                IsTimeForFreePlayDecision = false;
+                RoundRunner.GotoNextPlayer();
+                RoundRunner.SajakText.text = "It's your turn, " + PlayerList.CurrentPlayer.Name + ".";
+                
+            }
         }
     }
 
@@ -97,6 +110,7 @@ public class KeyPress : MonoBehaviour {
         Bankrupt();
         GotoNextPlayer();
         GotoPrevPlayer();
+        SolveTime();
     }
 
     private void BackgroundColor() {
@@ -210,6 +224,17 @@ public class KeyPress : MonoBehaviour {
         }
     }
 
+    private void SolveTime() {
+        if (Splits[0].Equals("SOLVETIME") && Splits.Length == 2) {
+            float parsed = 0;
+            bool isParsed = float.TryParse(Splits[1], out parsed);
+
+            if (isParsed) {
+                CountdownTimer.timePerChar = parsed;
+            }                    
+        }
+    }
+
     private void GiveMoney() {
         if (Splits[0].Equals("GIVE")) {
             if (Splits.Length >= 3) {
@@ -269,7 +294,7 @@ public class KeyPress : MonoBehaviour {
             if (Splits.Length == 2) {
                 string removedUnderscores = "";
                 Splits[1] = Splits[1].ToUpper();
-                foreach(char c in Splits[1]) {
+                foreach (char c in Splits[1]) {
                     if (c == '_') {
                         removedUnderscores += ' ';
                     } else {
@@ -289,7 +314,7 @@ public class KeyPress : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
             SpinWheel spinWheel = RoundRunner.WheelCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
 
-            if (!isMenuActive && isWheelActive && !spinWheel.HasSpun) {                
+            if (!isMenuActive && isWheelActive && !spinWheel.HasSpun) {
                 yield return StartCoroutine(spinWheel.Spin(false));
             }
         }
@@ -320,8 +345,8 @@ public class KeyPress : MonoBehaviour {
             for (char i = 'a'; i <= 'z'; i++) {
                 string strChar = (i.ToString());
                 if (Input.GetKeyDown(strChar)) {
-                    yield return StartCoroutine(RoundRunner.LetterPressed(i));
-                    RoundRunner.ToggleUIButtons();
+                    RoundRunner.coroutine = StartCoroutine(RoundRunner.LetterPressed(i));
+                    yield return RoundRunner.coroutine;
                 }
             }
         }
