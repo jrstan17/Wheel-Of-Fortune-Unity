@@ -11,11 +11,13 @@ public class SpinWheel : MonoBehaviour {
     internal bool HasSpun;
     internal bool HasPast = false;
 
-    internal bool spinning;
-    internal static float SpinTime = 5f;
-    internal static int minAngle = 275;
-    internal static int maxAngle = 540;
+    public const int DEFAULT_MIN = 360;
+    public const int DEFAULT_MAX = 720;
 
+    internal bool spinning;
+    internal static float SpinTime = 6f;
+    internal static int minAngle = DEFAULT_MIN;
+    internal static int maxAngle = DEFAULT_MAX;
     internal bool isDebugSpin = false;
     internal string debugWedgeText;
 
@@ -91,8 +93,8 @@ public class SpinWheel : MonoBehaviour {
         }
 
         isDebugSpin = false;
-        minAngle = 275;
-        maxAngle = 540;
+        minAngle = DEFAULT_MIN;
+        maxAngle = DEFAULT_MAX;
 
         coroutine = TimesUp(waitTime);
         StartCoroutine(coroutine);
