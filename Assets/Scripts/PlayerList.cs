@@ -47,6 +47,18 @@ public static class PlayerList {
         return Players[i].Name;
     }
 
+    public static Player WinningPlayer() {
+        Player toReturn = null;
+
+        foreach(Player p in Players) {
+            if (toReturn == null || p.TotalWinnings > toReturn.TotalWinnings) {
+                toReturn = p;
+            }
+        }
+
+        return toReturn;
+    }
+
     public static void GotoNextPlayer() {
         if (Players != null && Players.Count != 0) {
             if (CurrentPlayer != null) {

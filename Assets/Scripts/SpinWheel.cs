@@ -87,8 +87,8 @@ public class SpinWheel : MonoBehaviour {
         } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.FreePlay) {
             RoundRunner.AudioTracks.Play("freeplay");
             waitTime = 2f;
-        } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.Bankrupt) {
-            RoundRunner.AudioTracks.Play("bankrupt");
+        } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.Prize) {
+            RoundRunner.AudioTracks.Play("prize");
             waitTime = 2f;
         }
 

@@ -22,6 +22,7 @@ public class RoundRunner : MonoBehaviour {
     public GameObject PlayerBar;
     public GameObject SajackPanel;
     public GameObject Background;
+    public WedgeController WedgeController;
 
     private PuzzleFactory factory;
     internal static Puzzle Puzzle;
@@ -230,10 +231,13 @@ public class RoundRunner : MonoBehaviour {
 
         yield return new WaitForSeconds(5f);
 
-        SajakText.text = "Here are the totals won so far!";
-
         PlayerList.TransferRoundToTotalForCurrentPlayer();
         HighlightCurrentlyWinningPlayerText();
+
+        SajakText.text = "Here are the totals won so far.";
+        yield return new WaitForSeconds(3.5f);
+
+        SajakText.text = "It looks like " + PlayerList.WinningPlayer().Name + " is in the lead with " + PlayerList.WinningPlayer().TotalWinnings.ToString("C0") + "!";
 
         Text buttonText = NextRoundCanvas.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
         buttonText.text = "CONTINUE TO\nROUND " + (RoundNumber + 1);
@@ -364,6 +368,15 @@ public class RoundRunner : MonoBehaviour {
             string yes = "You've lost your turn, " + PlayerList.CurrentPlayer.Name + ".";
             string no = yes + " It's now your turn, " + PlayerList.NextPlayersName() + ".";
             StartCoroutine(AskIfFreePlay(yes, no));
+        } else if (CurrentType == WedgeType.Million) {
+            //AudioTracks.Play("buzzer");
+            SajakText.text = "Million Dollar Wedge! Now make your guess count!";
+            WedgeController.RemoveMillionWedge(GetWheelIndex());
+            IsTimeForLetter = true;
+        } else if (CurrentType == WedgeType.Prize) {
+            SajakText.text = "Prize Wedge! Now make your guess count!";
+            WedgeController.RemovePrizeWedge(GetWheelIndex());
+            IsTimeForLetter = true;
         } else if (CurrentType == WedgeType.HighAmount) {
             SajakText.text = CurrentWedge.Value.ToString("C0") + "! Now make your guess count!";
             IsTimeForLetter = true;
@@ -381,6 +394,7 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void OnBankrupt(Player p) {
+        AudioTracks.Play("bankrupt");
         SajakText.text = "You're bankrupt, " + p.Name + ". I'm so sorry.";
         p.RoundWinnings = 0;
     }

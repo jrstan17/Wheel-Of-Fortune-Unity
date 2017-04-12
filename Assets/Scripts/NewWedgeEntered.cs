@@ -9,9 +9,10 @@ public class NewWedgeEntered : MonoBehaviour {
     public GameObject Wedge2;
 
     private WedgeData data;
+    internal bool UseAlternativeWedge = false;
 
     void OnTriggerEnter2D(Collider2D col) {
-        if (Wedge.activeInHierarchy) {
+        if (!UseAlternativeWedge) {
             data = Wedge.GetComponent<WedgeData>();
         } else {
             data = Wedge2.GetComponent<WedgeData>();
