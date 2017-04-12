@@ -503,6 +503,12 @@ public class RoundRunner : MonoBehaviour {
                     } else {
                         SajakText.text += ".";
                     }
+
+                    if (CurrentWedge.WedgeType == WedgeType.Prize) {
+                        StartCoroutine(SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " got the prize!"));
+                    } else if (CurrentWedge.WedgeType == WedgeType.Million) {
+                        StartCoroutine(SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " received the one million dollar wedge!"));
+                    }
                 } else {
                     AudioTracks.Play("buzzer");
                     yield return StartCoroutine(AskIfFreePlay("There are no " + char.ToUpper(letter) + "'s.", "There are no " + char.ToUpper(letter) + "'s. It's your turn, " + PlayerList.NextPlayersName() + "."));                    
@@ -532,6 +538,12 @@ public class RoundRunner : MonoBehaviour {
         }
 
         yield return 0;
+    }
+
+    private IEnumerator SajakYouGotSomethingGood(string sajakText) {
+        yield return new WaitForSeconds(3f);
+        AudioTracks.Play("freeplay");
+        SajakText.text = sajakText;
     }
 
     private IEnumerator AskIfFreePlay(string sajakFreePlayExists, string sajakFreePlayDoesNotExist) {

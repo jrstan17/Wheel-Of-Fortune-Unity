@@ -81,14 +81,8 @@ public class SpinWheel : MonoBehaviour {
 
         if (RoundRunner.CurrentWedge.WedgeType == WedgeType.HighAmount) {
             RoundRunner.AudioTracks.Play("oh");
-        } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.TenThousand) {
-            RoundRunner.AudioTracks.Play("cheering");
-            waitTime = 2f;
-        } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.FreePlay) {
-            RoundRunner.AudioTracks.Play("freeplay");
-            waitTime = 2f;
-        } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.Prize) {
-            RoundRunner.AudioTracks.Play("prize");
+        } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.TenThousand || RoundRunner.CurrentWedge.WedgeType == WedgeType.FreePlay || RoundRunner.CurrentWedge.WedgeType == WedgeType.Million || RoundRunner.CurrentWedge.WedgeType == WedgeType.Prize) {
+            RoundRunner.AudioTracks.Play("pq");
             waitTime = 2f;
         }
 

@@ -14,6 +14,7 @@ public class AudioTracks : MonoBehaviour {
     public AudioClip Cheering;
     public AudioClip FreePlay;
     public AudioClip Prize;
+    public AudioClip PoliceQuest;
 
     AudioSource AudioSource;
 
@@ -42,6 +43,8 @@ public class AudioTracks : MonoBehaviour {
             AudioSource.clip = FreePlay;
         } else if (name.Equals("prize")) {
             AudioSource.clip = Prize;
+        } else if (name.Equals("pq")) {
+            AudioSource.clip = PoliceQuest;
         } else {
             return;
         }
