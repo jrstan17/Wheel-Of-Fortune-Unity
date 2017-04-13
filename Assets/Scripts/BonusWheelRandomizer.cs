@@ -6,6 +6,8 @@ public class BonusWheelRandomizer : MonoBehaviour {
 
     public GameObject[] Wedges;
 
+    internal 
+
 	// Use this for initialization
 	void Start () {
 		
