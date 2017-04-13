@@ -237,7 +237,11 @@ public class RoundRunner : MonoBehaviour {
         SajakText.text = "Here are the totals won so far.";
         yield return new WaitForSeconds(3.5f);
 
-        SajakText.text = "It looks like " + PlayerList.WinningPlayer().Name + " is in the lead with " + PlayerList.WinningPlayer().TotalWinnings.ToString("C0") + "!";
+        if (RoundNumber != MaxRounds) {
+            SajakText.text = PlayerList.WinningPlayer().Name + " is currently in the lead with " + PlayerList.WinningPlayer().TotalWinnings.ToString("C0") + "!";
+        } else {
+            SajakText.text = PlayerList.WinningPlayer().Name + ", you have won with " + PlayerList.WinningPlayer().TotalWinnings.ToString("C0") + "! You're going to the Bonus Round!";
+        }
 
         Text buttonText = NextRoundCanvas.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
         buttonText.text = "CONTINUE TO\nROUND " + (RoundNumber + 1);
@@ -370,12 +374,10 @@ public class RoundRunner : MonoBehaviour {
             StartCoroutine(AskIfFreePlay(yes, no));
         } else if (CurrentType == WedgeType.Million) {
             //AudioTracks.Play("buzzer");
-            SajakText.text = "Million Dollar Wedge! Now make your guess count!";
-            WedgeController.RemoveMillionWedge(GetWheelIndex());
+            SajakText.text = "Million Dollar Wedge! Now make your guess count!";            
             IsTimeForLetter = true;
         } else if (CurrentType == WedgeType.Prize) {
             SajakText.text = "Prize Wedge! Now make your guess count!";
-            WedgeController.RemovePrizeWedge(GetWheelIndex());
             IsTimeForLetter = true;
         } else if (CurrentType == WedgeType.HighAmount) {
             SajakText.text = CurrentWedge.Value.ToString("C0") + "! Now make your guess count!";
@@ -502,13 +504,7 @@ public class RoundRunner : MonoBehaviour {
                         }
                     } else {
                         SajakText.text += ".";
-                    }
-
-                    if (CurrentWedge.WedgeType == WedgeType.Prize) {
-                        StartCoroutine(SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " got the prize!"));
-                    } else if (CurrentWedge.WedgeType == WedgeType.Million) {
-                        StartCoroutine(SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " received the one million dollar wedge!"));
-                    }
+                    }                    
                 } else {
                     AudioTracks.Play("buzzer");
                     yield return StartCoroutine(AskIfFreePlay("There are no " + char.ToUpper(letter) + "'s.", "There are no " + char.ToUpper(letter) + "'s. It's your turn, " + PlayerList.NextPlayersName() + "."));                    
@@ -516,8 +512,16 @@ public class RoundRunner : MonoBehaviour {
 
                 UsedLetters.Add(letter);
                 UsedLetterText[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
-                if (!KeyPress.IsTimeForFreePlayDecision) {
+                if (!KeyPress.IsTimeForFreePlayDecision && trilonsRevealed > 0) {
                     yield return StartCoroutine(boardFiller.RevealLetters(letters));
+
+                    if (CurrentWedge.WedgeType == WedgeType.Prize) {
+                        WedgeController.RemovePrizeWedge(GetWheelIndex());
+                        SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " receives the Prize wedge!");
+                    } else if (CurrentWedge.WedgeType == WedgeType.Million) {
+                        WedgeController.RemoveMillionWedge(GetWheelIndex());
+                        SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " receives the One Million Dollar wedge!");
+                    }
                 }
                 ToggleUIButtons();
             } else {
@@ -540,9 +544,8 @@ public class RoundRunner : MonoBehaviour {
         yield return 0;
     }
 
-    private IEnumerator SajakYouGotSomethingGood(string sajakText) {
-        yield return new WaitForSeconds(3f);
-        AudioTracks.Play("freeplay");
+    private void SajakYouGotSomethingGood(string sajakText) {
+        AudioTracks.Play("pq");
         SajakText.text = sajakText;
     }
 

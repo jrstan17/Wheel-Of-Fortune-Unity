@@ -31,10 +31,6 @@ public class SpinWheel : MonoBehaviour {
         HasSpun = false;
     }
 
-    void Update() {
-
-    }
-
     public void Randomize() {
         float rndAngle = Random.Range(transform.eulerAngles.z, transform.eulerAngles.z + 360);
         transform.eulerAngles = new Vector3(0, 0, rndAngle);
@@ -79,10 +75,10 @@ public class SpinWheel : MonoBehaviour {
         spinning = false;
         float waitTime = 1f;
 
-        if (RoundRunner.CurrentWedge.WedgeType == WedgeType.HighAmount) {
+        if (RoundRunner.CurrentWedge.WedgeType == WedgeType.HighAmount || RoundRunner.CurrentWedge.WedgeType == WedgeType.TenThousand || RoundRunner.CurrentWedge.WedgeType == WedgeType.Million) {
             RoundRunner.AudioTracks.Play("oh");
-        } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.TenThousand || RoundRunner.CurrentWedge.WedgeType == WedgeType.FreePlay || RoundRunner.CurrentWedge.WedgeType == WedgeType.Million || RoundRunner.CurrentWedge.WedgeType == WedgeType.Prize) {
-            RoundRunner.AudioTracks.Play("pq");
+        } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.FreePlay || RoundRunner.CurrentWedge.WedgeType == WedgeType.Prize) {
+            RoundRunner.AudioTracks.Play("freeplay");
             waitTime = 2f;
         }
 

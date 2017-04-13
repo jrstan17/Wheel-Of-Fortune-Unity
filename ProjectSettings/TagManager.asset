@@ -13,6 +13,7 @@ TagManager:
   - RoundRunner
   - InputFieldText
   - PlayerPanel
+  - CurrentWedgeText
   layers:
   - Default
   - TransparentFX

@@ -6,20 +6,23 @@ public class WedgeController : MonoBehaviour {
     public GameObject[] WheelObjects;
 
     public void RemoveMillionWedge(int wheelIndex) {
-        Transform[] children = WheelObjects[wheelIndex].GetComponentsInChildren<Transform>();
-        foreach (Transform child in children) {
-            if (child.name.Equals("MillionContainer")) {
-                child.gameObject.SetActive(false);
+        for (int i = wheelIndex; i < WheelObjects.Length; i++) {
+            Transform[] children = WheelObjects[i].GetComponentsInChildren<Transform>();
+            foreach (Transform child in children) {
+                if (child.name.Equals("MillionContainer")) {
+                    child.gameObject.SetActive(false);
+                }
             }
-        }
 
-        NewWedgeEntered newWedgeEntered;
-        children = WheelObjects[wheelIndex].GetComponentsInChildren<Transform>();
-        foreach (Transform child in children) {
-            if (child.name.Equals("Collider12")) {
-                newWedgeEntered = child.gameObject.GetComponent<NewWedgeEntered>();
-                newWedgeEntered.UseAlternativeWedge = true;
-                break;
+            NewWedgeEntered newWedgeEntered;
+
+            children = WheelObjects[i].GetComponentsInChildren<Transform>();
+            foreach (Transform child in children) {
+                if (child.name.Equals("Collider12")) {
+                    newWedgeEntered = child.gameObject.GetComponent<NewWedgeEntered>();
+                    newWedgeEntered.UseAlternativeWedge = true;
+                    break;
+                }
             }
         }
     }
