@@ -401,6 +401,7 @@ public class RoundRunner : MonoBehaviour {
         p.RoundWinnings = 0;
         p.RoundPrize = null;
         p.HasMillionWedge = false;
+        p.FreePlays = 0;
     }
 
     public void GotoNextPlayer() {
