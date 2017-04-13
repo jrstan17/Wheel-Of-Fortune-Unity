@@ -399,6 +399,8 @@ public class RoundRunner : MonoBehaviour {
         AudioTracks.Play("bankrupt");
         SajakText.text = "You're bankrupt, " + p.Name + ". I'm so sorry.";
         p.RoundWinnings = 0;
+        p.RoundPrize = null;
+        p.HasMillionWedge = false;
     }
 
     public void GotoNextPlayer() {
@@ -515,12 +517,14 @@ public class RoundRunner : MonoBehaviour {
                 if (!KeyPress.IsTimeForFreePlayDecision && trilonsRevealed > 0) {
                     yield return StartCoroutine(boardFiller.RevealLetters(letters));
 
-                    if (CurrentWedge.WedgeType == WedgeType.Prize) {
+                    if (CurrentWedge.WedgeType == WedgeType.Prize && !PlayerList.CurrentPlayer.HasPrize()) {
+                        PlayerList.CurrentPlayer.RoundPrize = new Prize("A Trip to Spain and Portugal	7800");
                         WedgeController.RemovePrizeWedge(GetWheelIndex());
-                        SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " receives the Prize wedge!");
-                    } else if (CurrentWedge.WedgeType == WedgeType.Million) {
+                        SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up the Prize wedge!");
+                    } else if (CurrentWedge.WedgeType == WedgeType.Million && !PlayerList.CurrentPlayer.HasMillionWedge) {
+                        PlayerList.CurrentPlayer.HasMillionWedge = true;
                         WedgeController.RemoveMillionWedge(GetWheelIndex());
-                        SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " receives the One Million Dollar wedge!");
+                        SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up the One Million wedge!");
                     }
                 }
                 ToggleUIButtons();
