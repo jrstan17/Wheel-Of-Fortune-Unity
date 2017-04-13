@@ -433,22 +433,21 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void ToggleUIButtonsParsing(string buttons, bool enable) {
-        GameObject buttonObj = GameObject.FindGameObjectWithTag("RegularRoundButtons");
         string[] splits = buttons.Split(' ');
 
         foreach (string str in splits) {
             if (str.Equals("spin")) {
-                Button b = buttonObj.transform.GetChild(0).GetComponent<Button>();
+                Button b = RegularRoundButtonsObject.transform.GetChild(0).GetComponent<Button>();
                 b.interactable = enable;
             } else if (str.Equals("buy")) {
-                Button b = buttonObj.transform.GetChild(1).GetComponent<Button>();
+                Button b = RegularRoundButtonsObject.transform.GetChild(1).GetComponent<Button>();
                 b.interactable = enable;
             } else if (str.Equals("solve")) {
-                Button b = buttonObj.transform.GetChild(2).GetComponent<Button>();
+                Button b = RegularRoundButtonsObject.transform.GetChild(2).GetComponent<Button>();
                 b.interactable = enable;
             } else if (str.Equals("all")) {
-                for (int i = 0; i < buttonObj.transform.childCount; i++) {
-                    Button b = buttonObj.transform.GetChild(i).GetComponent<Button>();
+                for (int i = 0; i < RegularRoundButtonsObject.transform.childCount; i++) {
+                    Button b = RegularRoundButtonsObject.transform.GetChild(i).GetComponent<Button>();
                     b.interactable = enable;
                 }
             }
