@@ -59,6 +59,20 @@ public static class PlayerList {
         return toReturn;
     }
 
+    public static bool GotoPlayer(string name) {
+        int currentIndex = CurrentIndex;
+
+        for (int i = 0; i < Players.Count; i++) {
+            if (!name.ToUpper().Equals(CurrentPlayer.Name.ToUpper())) {
+                GotoNextPlayer();
+            } else {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static void GotoNextPlayer() {
         if (Players != null && Players.Count != 0) {
             if (CurrentPlayer != null) {

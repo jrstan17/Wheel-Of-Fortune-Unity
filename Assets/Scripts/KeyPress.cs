@@ -111,6 +111,7 @@ public class KeyPress : MonoBehaviour {
         GotoNextPlayer();
         GotoPrevPlayer();
         SolveTime();
+        SolveFor();
     }
 
     private void BackgroundColor() {
@@ -139,7 +140,7 @@ public class KeyPress : MonoBehaviour {
                     RoundRunner.UsedLetterText[c - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
                 }
 
-                RoundRunner.boardFiller.RevealLetters(letters);
+                StartCoroutine(RoundRunner.boardFiller.RevealLetters(letters));
                 foreach (char c in letters) {
                     RoundRunner.UsedLetters.Add(c);
                 }
@@ -162,6 +163,18 @@ public class KeyPress : MonoBehaviour {
             CustomText = text;
             RoundRunner.RoundNumber--;
             RoundRunner.NewBoard(false);
+        }
+    }
+
+    private void SolveFor() {
+        if (Splits[0].Equals("SOLVEFOR") && Splits.Length == 2) {
+            Player p = PlayerList.Get(Splits[1]);
+            if (p == null) {
+                return;
+            }
+
+            PlayerList.GotoPlayer(Splits[1]);
+            StartCoroutine(RoundRunner.SolvedCorrectly());
         }
     }
 
