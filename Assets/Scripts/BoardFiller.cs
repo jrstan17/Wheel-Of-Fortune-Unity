@@ -21,12 +21,32 @@ public class BoardFiller : MonoBehaviour {
         RoundRunner = GameObject.FindGameObjectWithTag("RoundRunner").GetComponent<RoundRunner>();
     }
 
-    public void InitBoard() {
+    public bool InitBoard() {
         GameObject dataHolder = GameObject.FindGameObjectWithTag("DataHolder");
         data = dataHolder.GetComponent<Data>();
 
         ClearBoard();
+        bool fillRowSuccess = FillRows();
 
+        if (!fillRowSuccess) {
+            Debug.Log("Fill Board Failure!");
+            Rows = new List<Row>();
+            ClearBoard();
+            return false;
+        }
+
+        Trilons = new List<Trilon>();
+        foreach (Row r in Rows) {
+            foreach (Trilon t in r.Trilons) {
+                Trilons.Add(t);
+            }
+        }
+
+        FillBoard();
+        return true;
+    }
+
+    public bool FillRows() {
         Rows = new List<Row>();
         Rows.Add(new Row(12));
         Rows.Add(new Row(14));
@@ -81,14 +101,11 @@ public class BoardFiller : MonoBehaviour {
             }
         }
 
-        Trilons = new List<Trilon>();
-        foreach (Row r in Rows) {
-            foreach (Trilon t in r.Trilons) {
-                Trilons.Add(t);
-            }
+        if (remainders.Length != 0) {
+            return false;
+        } else {
+            return true;
         }
-
-        FillBoard();
     }
 
     public void FillBoard() {
@@ -177,6 +194,7 @@ public class BoardFiller : MonoBehaviour {
     public void ClearBoard() {
         for (int i = 0; i < data.Screens.Count; i++) {
             data.Screens[i].color = ScreenColor;
+            data.Letters[i].color = ScreenColor;
         }
     }
 

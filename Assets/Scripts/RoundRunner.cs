@@ -127,7 +127,11 @@ public class RoundRunner : MonoBehaviour {
             SajakText.text += ".";
         }
 
-        boardFiller.InitBoard();
+        bool success = boardFiller.InitBoard();
+        if (!success) {
+            return;
+        }
+
         Debug.Log(GetWheelIndex());
         WheelCanvas = WheelCanvases[GetWheelIndex()];
         SpinWheel spinWheel = WheelCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
