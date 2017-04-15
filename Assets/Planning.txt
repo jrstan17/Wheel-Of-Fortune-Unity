@@ -1,0 +1,68 @@
+<<Planning Document for Bonus Round>>
+
+For Bonus Round "Envelopes":
+100K/1M =	1
+50K =		2
+45K =		3
+40K = 		4
+35K =		14
+
+1.	Make button say "Continue To Bonus Round!"
+2.	Completely green board (no puzzle)
+3.	Have Sajak say with 3 second intervals, "Welcome to the Bonus Round, <Player Name>."
+4.	"Let's spin the Bonus Wheel to select..."
+5.	"which prize you will be playing for!"
+6.	"The prizes range mostly from $35,000 to $50,000"
+
+No One Million:
+7a.	"with one of the prizes being $100,000!"
+With One Million:
+7b.	"Because you've made it this far with the One Million wedge,"
+8.	"the one, top prize that would normally be $100,000..."
+9.	"has been replaced with $1,000,000!!"
+
+(Show puzzle)
+10.	"To begin, the category is <Category>."
+11.	"Let's now give you RSTLNE."
+
+(Reveal RSTLNE)
+
+12. "We now need from you 3 more consonants and a vowel."
+
+(Wait for player submittal)
+
+13.	"Let's see how much that helps you."
+
+(Reveal player's letters)
+(if no help, pause for 2 seconds)
+
+If no help
+14a.	"Well, I'm sorry <Player's Name>, but those letters were no help at all."
+If a little help (maybe > 25% letters revealed but less than 50%)
+14b.	"Looks like you've got a little help there."
+If a lot of help (maybe > 50%)
+14c.	"Looks like you got quite a bit of help there."
+
+15.	"You now have <N> seconds to solve the puzzle. Good luck."
+
+(Show solve screen)
+
+If won
+16a.	"That's it! You've solved it correctly, <Player's Name>!"
+16b.	"Let's see what you won. Prepare yourself..."
+And not million
+16b.	"It looks like you're going home with $XX,XXX!"
+Is million
+16c.	"How about going home with $1,000,000?!" (Pause this for duration of fanfare)
+(Cue special fanfare)
+
+If lost
+16a.	"I'm sorry, <Player's Name>, it looks like you're out of time."
+16b.	"Let's see what the solution was..."
+(Reveal solution and pause for 3 seconds afterward)
+
+(Cue Wheel theme)
+17.	"<Player's Name>, you're leaving us with a total of $XX,XXX in cash and prizes!" (Pause this for 5 seconds)
+18. "Thank you all for playing Wheel of Fortune! See you next time!"
+
+
