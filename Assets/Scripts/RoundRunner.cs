@@ -24,15 +24,14 @@ public class RoundRunner : MonoBehaviour {
     public GameObject Background;
     public WedgeController WedgeController;
 
-    private PuzzleFactory factory;
+    internal PuzzleFactory factory;
     internal static Puzzle Puzzle;
-    internal BoardFiller boardFiller;
     internal GameObject WheelCanvas;
     internal List<Text> PlayerWinningsTexts;
     internal Text SajakText;
     internal List<Text> UsedLetterText = new List<Text>();
     internal List<char> UsedLetters = new List<char>();
-    private Text CategoryText;
+    internal Text CategoryText;
     internal AudioTracks AudioTracks;
     internal bool IsBonusRound = false;
     internal bool IsTimeForLetter = false;
@@ -42,6 +41,7 @@ public class RoundRunner : MonoBehaviour {
     internal int MaxRounds = 0;
     internal bool NotifiedOfRemainingLetters = false;
     internal bool IsRoundEnded = false;
+    internal BoardFiller BoardFiller;
 
     internal static WedgeData CurrentWedge;
     internal Coroutine coroutine;
@@ -67,7 +67,7 @@ public class RoundRunner : MonoBehaviour {
         }
 
         factory = new PuzzleFactory(DataTextFile);
-        boardFiller = gameObject.AddComponent<BoardFiller>();
+        BoardFiller = gameObject.GetComponent<BoardFiller>();
 
         foreach (GameObject obj in UsedLetterObjects) {
             Text text = obj.GetComponent<Text>();
@@ -77,7 +77,6 @@ public class RoundRunner : MonoBehaviour {
         CategoryText = CategoryTextObject.GetComponent<Text>();
         AudioTracks = AudioSource.GetComponent<AudioTracks>();
         SajakText = SajackPanel.transform.GetChild(0).GetComponent<Text>();
-        boardFiller.AudioTracks = AudioTracks;
 
         NewBoard(false);
     }
@@ -99,12 +98,9 @@ public class RoundRunner : MonoBehaviour {
         UsedLetters = new List<char>();
 
         if (isBonus) {
-            BonusInputText.text = "";
-            RegularRoundButtonsObject.SetActive(false);
-            BonusRoundButtonsObject.SetActive(true);
-            PlayerBar.SetActive(false);
-            Puzzle = factory.NewPuzzle(RoundType.Bonus);
-            EventSystem.current.SetSelectedGameObject(BonusInputText.gameObject);
+            BonusRoundRunner brn = GameObject.FindGameObjectWithTag("BonusRoundRunner").GetComponent<BonusRoundRunner>();
+            StartCoroutine(brn.Run());
+            return;
         } else {
             RegularRoundButtonsObject.SetActive(true);
             BonusRoundButtonsObject.SetActive(false);
@@ -127,7 +123,7 @@ public class RoundRunner : MonoBehaviour {
             SajakText.text += ".";
         }
 
-        bool success = boardFiller.InitBoard();
+        bool success = BoardFiller.InitBoard();
         if (!success) {
             return;
         }
@@ -161,7 +157,7 @@ public class RoundRunner : MonoBehaviour {
         }
     }
 
-    private void SetRoundColors() {
+    internal void SetRoundColors() {
         int colorIndex;
 
         if (RoundNumber == Utilities.RoundColors.Count + 1) {
@@ -170,6 +166,14 @@ public class RoundRunner : MonoBehaviour {
             colorIndex = RoundNumber - 1;
         }
 
+        SetRoundColorsImplementation(colorIndex);
+    }
+
+    internal void SetRoundColors(int colorIndex) {
+        SetRoundColorsImplementation(colorIndex);
+    }
+
+    private void SetRoundColorsImplementation(int colorIndex) {
         Color color = Utilities.RoundColors[colorIndex];
         Background.gameObject.GetComponent<Renderer>().material.SetColor("_Color", color);
 
@@ -199,7 +203,8 @@ public class RoundRunner : MonoBehaviour {
             screen.b = 128;
         }
 
-        boardFiller.ScreenColor = screen;
+        BoardFiller.ScreenColor = screen;
+        BoardFiller.RefreshBoardColor();
     }
 
     public void NewBonus_Clicked() {
@@ -223,7 +228,7 @@ public class RoundRunner : MonoBehaviour {
         }
 
         AudioTracks.Play("round_win");
-        StartCoroutine(boardFiller.RevealBoard());
+        StartCoroutine(BoardFiller.RevealBoard());
 
         string pieceOne = Utilities.RandomString(new string[] { "Congratulations", "Absolutely", "Great job", "Fantastic", "Extraordinary" });
 
@@ -312,20 +317,6 @@ public class RoundRunner : MonoBehaviour {
         BonusInputText.text = toReturn;
     }
 
-    public void SubmitLetters_Clicked() {
-        List<char> inputedList = new List<char>();
-        foreach (char c in BonusInputText.text) {
-            if (char.IsLetter(c)) {
-                char lower = char.ToLower(c);
-                inputedList.Add(lower);
-                UsedLetterText[lower - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
-                UsedLetters.Add(lower);
-            }
-        }
-
-        boardFiller.RevealLetters(inputedList);
-    }
-
     public void Continue_Clicked() {
         NextRoundCanvas.SetActive(false);
         NewBoard(false);
@@ -339,7 +330,7 @@ public class RoundRunner : MonoBehaviour {
         MenuCanvas.SetActive(false);
         KeyPress.isMenuActive = true;
         AudioTracks.Play("round_win");
-        StartCoroutine(boardFiller.RevealBoard());
+        StartCoroutine(BoardFiller.RevealBoard());
     }
 
     public void Spin_Clicked() {
@@ -359,6 +350,21 @@ public class RoundRunner : MonoBehaviour {
         IsTimeForLetter = true;
         ShouldBeVowel = true;
         PlayerList.CurrentPlayer.RoundWinnings -= VowelPurchaseCost;
+    }
+
+    public void SubmitLetters_Clicked() {
+        List<char> inputedList = new List<char>();
+        foreach (char c in BonusInputText.text) {
+            if (char.IsLetter(c)) {
+                char lower = char.ToLower(c);
+                inputedList.Add(lower);
+                UsedLetterText[lower - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
+                UsedLetters.Add(lower);
+            }
+        }
+
+        BonusRoundRunner brn = GameObject.FindGameObjectWithTag("BonusRoundRunner").GetComponent<BonusRoundRunner>();
+        StartCoroutine(brn.LettersSubmitted(inputedList));
     }
 
     public void WheelWindowClosed() {
@@ -426,12 +432,12 @@ public class RoundRunner : MonoBehaviour {
             ToggleUIButtonsParsing("spin solve", true);
         }
 
-        if (boardFiller.PuzzleContainsOnly(LetterType.Both)) {
+        if (BoardFiller.PuzzleContainsOnly(LetterType.Both)) {
             ToggleUIButtonsParsing("spin buy", false);
             ToggleUIButtonsParsing("solve", true);
-        } else if (boardFiller.PuzzleContainsOnly(LetterType.Vowel)) {
+        } else if (BoardFiller.PuzzleContainsOnly(LetterType.Vowel)) {
             ToggleUIButtonsParsing("spin", false);
-        } else if (boardFiller.PuzzleContainsOnly(LetterType.Consonant)) {
+        } else if (BoardFiller.PuzzleContainsOnly(LetterType.Consonant)) {
             ToggleUIButtonsParsing("buy", false);
         }
     }
@@ -519,7 +525,7 @@ public class RoundRunner : MonoBehaviour {
                 UsedLetters.Add(letter);
                 UsedLetterText[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
                 if (!KeyPress.IsTimeForFreePlayDecision && trilonsRevealed > 0) {
-                    yield return StartCoroutine(boardFiller.RevealLetters(letters));
+                    yield return StartCoroutine(BoardFiller.RevealLetters(letters));
 
                     if (CurrentWedge.WedgeType == WedgeType.Prize && !PlayerList.CurrentPlayer.HasPrize()) {
                         PlayerList.CurrentPlayer.RoundPrize = new Prize("A Trip to Spain and Portugal	7800");
@@ -581,12 +587,6 @@ public class RoundRunner : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.anyKeyDown) {
-            if (Input.GetKey(KeyCode.Return) && IsInputFieldValid(BonusInputText.text)) {
-                SubmitLetters_Clicked();
-            }
-        }
-
         if (!IsRoundEnded) {
             for (int i = 0; i < PlayerBar.transform.childCount; i++) {
                 Text nameText = PlayerBar.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<Text>();

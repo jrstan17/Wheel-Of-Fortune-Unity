@@ -108,6 +108,15 @@ public class BoardFiller : MonoBehaviour {
         }
     }
 
+    public void RefreshBoardColor() {
+        if (Trilons != null && data != null) {
+            for (int i = 0; i < Trilons.Count; i++) {
+                data.Letters[i].color = ScreenColor;
+                data.Screens[i].color = ScreenColor;
+            }
+        }
+    }
+
     public void FillBoard() {
         List<int> InUseIndexes = new List<int>();
         for (int i = 0; i < Trilons.Count; i++) {
@@ -181,14 +190,14 @@ public class BoardFiller : MonoBehaviour {
             }
         }
 
-        if (RoundRunner.IsBonusRound) {
-            yield return StartCoroutine(RevealLetters(Utilities.RSTLNE));
-        }
-
         if (!RoundRunner.IsBonusRound) {
             RoundRunner.SajakText.text = "Start us off with a spin, " + PlayerList.CurrentPlayer.Name + ".";
             RoundRunner.ToggleUIButtons();
         }
+    }
+
+    public IEnumerator RevealRSTLNE() {
+        yield return StartCoroutine(RevealLetters(Utilities.RSTLNE));
     }
 
     public void ClearBoard() {

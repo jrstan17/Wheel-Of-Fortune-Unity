@@ -140,7 +140,7 @@ public class KeyPress : MonoBehaviour {
                     RoundRunner.UsedLetterText[c - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
                 }
 
-                StartCoroutine(RoundRunner.boardFiller.RevealLetters(letters));
+                StartCoroutine(RoundRunner.BoardFiller.RevealLetters(letters));
                 foreach (char c in letters) {
                     RoundRunner.UsedLetters.Add(c);
                 }
