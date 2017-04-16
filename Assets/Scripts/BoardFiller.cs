@@ -284,8 +284,7 @@ public class BoardFiller : MonoBehaviour {
         }
 
         if (!PuzzleContainsOnly(LetterType.Both)) {
-            if (PuzzleContainsOnly(LetterType.Vowel) && !RoundRunner.NotifiedOfRemainingLetters) {
-                //yield return new WaitForSeconds(1f);
+            if (PuzzleContainsOnly(LetterType.Vowel) && !RoundRunner.NotifiedOfRemainingLetters && !RoundRunner.IsBonusRound) {
                 AudioTracks.Play("remains");
                 RoundRunner.SajakText.text = "Only vowels remain!";
                 RoundRunner.NotifiedOfRemainingLetters = true;
@@ -297,8 +296,7 @@ public class BoardFiller : MonoBehaviour {
                     }
                     RoundRunner.UsedLetterText[c - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
                 }
-            } else if (PuzzleContainsOnly(LetterType.Consonant) && !RoundRunner.NotifiedOfRemainingLetters) {
-                //yield return new WaitForSeconds(1f);
+            } else if (PuzzleContainsOnly(LetterType.Consonant) && !RoundRunner.NotifiedOfRemainingLetters && !RoundRunner.IsBonusRound) {
                 AudioTracks.Play("remains");
                 RoundRunner.SajakText.text = "Only consonants remain!";
                 RoundRunner.NotifiedOfRemainingLetters = true;

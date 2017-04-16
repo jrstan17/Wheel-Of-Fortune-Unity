@@ -56,6 +56,7 @@ public class BonusSolveFunctions : MonoBehaviour {
         }
 
         if (solveText.Equals(sb.ToString())) {
+            timerStopFlag = true;
             Countdown.StopTimer();
             BonusRoundRunner.SolvedCorrectly();
             GetComponent<Canvas>().enabled = false;

@@ -13,16 +13,6 @@ public class BonusRoundRunner : MonoBehaviour {
 
     public const float NORMAL_SAJAK_SPEED = 5f;
 
-	// Use this for initialization
-	void Start () {
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
-
     public IEnumerator Run() {
         Debug.Log(RoundRunner.Puzzle.Text);
 
@@ -86,6 +76,7 @@ public class BonusRoundRunner : MonoBehaviour {
         }
 
         yield return UpdateSajak("You now have 30 seconds to solve the puzzle. Good luck.", NORMAL_SAJAK_SPEED);
+        yield return UpdateSajak("", 0f);
         BonusSolveCanvas.SetActive(true);
     }
 

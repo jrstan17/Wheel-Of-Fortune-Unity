@@ -60,8 +60,6 @@ public static class PlayerList {
     }
 
     public static bool GotoPlayer(string name) {
-        int currentIndex = CurrentIndex;
-
         for (int i = 0; i < Players.Count; i++) {
             if (!name.ToUpper().Equals(CurrentPlayer.Name.ToUpper())) {
                 GotoNextPlayer();
