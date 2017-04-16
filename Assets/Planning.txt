@@ -57,7 +57,7 @@ Is million
 (Cue special fanfare)
 
 If lost
-16a.	"I'm sorry, <Player's Name>, it looks like you're out of time."
+16a.	"I'm sorry, <Player's Name>, but it looks like you're out of time."
 16b.	"Let's see what the solution was..."
 (Reveal solution and pause for 3 seconds afterward)
 

@@ -15,6 +15,8 @@ public class AudioTracks : MonoBehaviour {
     public AudioClip FreePlay;
     public AudioClip Prize;
     public AudioClip PoliceQuest;
+    public AudioClip Theme;
+    public AudioClip Ah;
 
     AudioSource AudioSource;
 
@@ -23,6 +25,8 @@ public class AudioTracks : MonoBehaviour {
     }
 
     public void Play(string name) {
+        AudioSource.loop = false;
+
         if (name.Equals("reveal")) {
             AudioSource.clip = PuzzleReveal;
         } else if (name.Equals("ding")) {
@@ -45,6 +49,11 @@ public class AudioTracks : MonoBehaviour {
             AudioSource.clip = Prize;
         } else if (name.Equals("pq")) {
             AudioSource.clip = PoliceQuest;
+        } else if (name.Equals("theme")) {
+            AudioSource.clip = Theme;
+            AudioSource.loop = true;
+        } else if (name.Equals("ah")) {
+            AudioSource.clip = Ah;
         } else {
             return;
         }

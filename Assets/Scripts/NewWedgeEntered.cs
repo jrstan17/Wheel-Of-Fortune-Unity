@@ -24,6 +24,5 @@ public class NewWedgeEntered : MonoBehaviour {
         }
 
         RoundRunner.CurrentWedge = data;
-        CurrentWedgeText.text = data.Text;
     }
 }

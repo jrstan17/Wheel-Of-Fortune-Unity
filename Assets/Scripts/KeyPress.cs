@@ -112,6 +112,7 @@ public class KeyPress : MonoBehaviour {
         GotoPrevPlayer();
         SolveTime();
         SolveFor();
+        Rounds();
     }
 
     private void BackgroundColor() {
@@ -298,6 +299,17 @@ public class KeyPress : MonoBehaviour {
             int movement = PlayerList.Players.Count - 1;
             for (int i = 0; i < movement; i++) {
                 RoundRunner.GotoNextPlayer();
+            }
+        }
+    }
+
+    private void Rounds() {
+        if (Splits[0].Equals("ROUNDS")) {
+            int parsed = 0;
+            bool isParsed = int.TryParse(Splits[1], out parsed);
+
+            if (isParsed) {
+                RoundRunner.MaxRounds = parsed;
             }
         }
     }

@@ -49,11 +49,12 @@ public class RoundRunner : MonoBehaviour {
     void Start() {
         PlayerList.Players.Add(new Player("Jason"));
         PlayerList.Players.Add(new Player("Philip"));
-        PlayerList.Players.Add(new Player("David"));
+        //PlayerList.Players.Add(new Player("David"));
         PlayerList.Players.Add(new Player("Leslie"));
         PlayerList.RandomizePlayers();
 
-        MaxRounds = PlayerList.Players.Count + 1;
+        //MaxRounds = PlayerList.Players.Count + 1;
+        MaxRounds = 1;
 
         GameObject panel = GameObject.FindGameObjectWithTag("PlayerPanel");
         PlayerWinningsTexts = new List<Text>();
@@ -243,17 +244,30 @@ public class RoundRunner : MonoBehaviour {
         PlayerList.TransferRoundToTotalForCurrentPlayer();
         HighlightCurrentlyWinningPlayerText();
 
-        SajakText.text = "Here are the totals won so far.";
-        yield return new WaitForSeconds(3.5f);
-
         if (RoundNumber != MaxRounds) {
-            SajakText.text = PlayerList.WinningPlayer().Name + " is currently in the lead with " + PlayerList.WinningPlayer().TotalWinnings.ToString("C0") + "!";
-        } else {
-            SajakText.text = PlayerList.WinningPlayer().Name + ", you have won with " + PlayerList.WinningPlayer().TotalWinnings.ToString("C0") + "! You're going to the Bonus Round!";
+            SajakText.text = "Here are the totals won so far.";
+            yield return new WaitForSeconds(3.5f);
         }
 
         Text buttonText = NextRoundCanvas.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
-        buttonText.text = "CONTINUE TO\nROUND " + (RoundNumber + 1);
+
+        if (RoundNumber != MaxRounds) {
+            SajakText.text = PlayerList.WinningPlayer().Name + " is currently in the lead with " + PlayerList.WinningPlayer().TotalWinnings.ToString("C0") + "!";
+            buttonText.text = "CONTINUE TO\nROUND " + (RoundNumber + 1);
+        } else {
+            yield return UpdateSajak(PlayerList.WinningPlayer().Name + ", you have won the game with " + PlayerList.WinningPlayer().TotalWinnings.ToString("C0") + "!", 5f);
+
+            int players = PlayerList.Players.Count;
+            if (players == 2) {
+                yield return UpdateSajak("Thank you for playing, " + PlayerList.NextPlayersName() + ".", 5f);
+            } else {
+                yield return UpdateSajak("To the other players, thank you for playing.", 5f);
+            }
+
+            yield return UpdateSajak("Now follow me, " + PlayerList.WinningPlayer().Name + ".", 4f);
+            yield return UpdateSajak("We're going to the Bonus Round!", 2f);
+            buttonText.text = "CONTINUE TO\nBONUS ROUND!";
+        }        
 
         NextRoundCanvas.SetActive(true);
         SolveCanvas.SetActive(false);
@@ -319,7 +333,12 @@ public class RoundRunner : MonoBehaviour {
 
     public void Continue_Clicked() {
         NextRoundCanvas.SetActive(false);
-        NewBoard(false);
+
+        if (RoundNumber != MaxRounds) {
+            NewBoard(false);
+        } else {
+            NewBoard(true);
+        }
     }
 
     public void Exit_Clicked() {
@@ -605,6 +624,11 @@ public class RoundRunner : MonoBehaviour {
                 winningText.text = PlayerList.Players[i].RoundWinnings.ToString("C0");
             }
         }
+    }
+
+    public IEnumerator UpdateSajak(string text, float time) {
+        SajakText.text = text;
+        yield return new WaitForSeconds(time);
     }
 
     public bool IsInputFieldValid(string inputText) {

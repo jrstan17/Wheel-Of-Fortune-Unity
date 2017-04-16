@@ -7,6 +7,7 @@ public class BonusRoundRunner : MonoBehaviour {
 
     public RoundRunner RoundRunner;
     public BoardFiller BoardFiller;
+    public GameObject BonusSolveCanvas;
 
     internal Player Winner;
 
@@ -37,10 +38,10 @@ public class BonusRoundRunner : MonoBehaviour {
         BoardFiller.ClearBoard();
         RoundRunner.SetRoundColors(0);
 
-        //yield return UpdateSajak("Welcome to the Bonus Round, " + Winner.Name + ".", NORMAL_SAJAK_SPEED);
-        //yield return UpdateSajak("Let's spin the Bonus Wheel to select...", NORMAL_SAJAK_SPEED);
-        //yield return UpdateSajak("which prize you will be playing for!", NORMAL_SAJAK_SPEED);
-        //yield return UpdateSajak("The prizes range mostly from $35,000 to $50,000", NORMAL_SAJAK_SPEED);
+        yield return UpdateSajak("Welcome to the Bonus Round, " + Winner.Name + ".", NORMAL_SAJAK_SPEED);
+        yield return UpdateSajak("Let's spin the Bonus Wheel to select...", NORMAL_SAJAK_SPEED);
+        yield return UpdateSajak("which prize you will be playing for!", NORMAL_SAJAK_SPEED);
+        yield return UpdateSajak("The prizes range mostly from $35,000 to $50,000", NORMAL_SAJAK_SPEED);
 
         if (Winner.HasMillionWedge) {
             yield return UpdateSajak("But because you've made it this far with the One Million wedge,", NORMAL_SAJAK_SPEED);
@@ -57,7 +58,7 @@ public class BonusRoundRunner : MonoBehaviour {
 
         yield return UpdateSajak("Now let's reveal RSTLNE to help you.", 3f);
         yield return BoardFiller.RevealRSTLNE();
-        yield return Wait(1.5f);
+        yield return new WaitForSeconds(1.5f);
 
         yield return UpdateSajak("We now need 3 more consonants and a vowel. Please enter them now.", 1f);
 
@@ -67,6 +68,7 @@ public class BonusRoundRunner : MonoBehaviour {
     }
 
     public IEnumerator LettersSubmitted(List<char> inputedList) {
+        RoundRunner.BonusRoundButtonsObject.SetActive(false);
         yield return UpdateSajak("OK, let's see what we've got...", 0);
         yield return BoardFiller.RevealLetters(inputedList);
 
@@ -79,21 +81,37 @@ public class BonusRoundRunner : MonoBehaviour {
         } else if (revealed == 1) {
             yield return UpdateSajak("Looks like that's it.", NORMAL_SAJAK_SPEED);
         } else {
-            yield return Wait(2f);
+            yield return new WaitForSeconds(3f);
             yield return UpdateSajak("Well, I'm sorry " + Winner.Name + ", but those letters were no help at all.", NORMAL_SAJAK_SPEED);
         }
 
-        yield return UpdateSajak("You now have <N> seconds to solve the puzzle. Good luck.", NORMAL_SAJAK_SPEED);
+        yield return UpdateSajak("You now have 30 seconds to solve the puzzle. Good luck.", NORMAL_SAJAK_SPEED);
+        BonusSolveCanvas.SetActive(true);
+    }
+
+    public void SolvedCorrectly() {
+        Closeout();
+    }
+
+    public IEnumerator SolvedIncorrectly() {
+        RoundRunner.AudioTracks.Play("buzzer");
+        yield return UpdateSajak("I'm sorry, " + Winner.Name + ", but it looks like you're out of time.", NORMAL_SAJAK_SPEED);
+        yield return UpdateSajak("Let's see what the solution was...", 2f);
+        yield return BoardFiller.RevealBoard();
+        RoundRunner.AudioTracks.Play("ah");
+        yield return new WaitForSeconds(3f);
+
+        yield return Closeout();
+    }
+
+    public IEnumerator Closeout() {
+        RoundRunner.AudioTracks.Play("theme");
+        yield return UpdateSajak(Winner.Name + ", you're leaving us with a total of " + Winner.TotalWinnings.ToString("C0") + " in cash and prizes!", 5f);
+        yield return UpdateSajak("Thank you all for playing Wheel of Fortune! See you next time!", 0f);
     }
 
     public IEnumerator UpdateSajak(string text, float time) {
         RoundRunner.SajakText.text = text;
         yield return new WaitForSeconds(time);
     }
-
-    public IEnumerator Wait(float time) {
-        yield return new WaitForSeconds(time);
-    }
-
-
 }
