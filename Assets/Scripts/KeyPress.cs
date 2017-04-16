@@ -113,6 +113,8 @@ public class KeyPress : MonoBehaviour {
         SolveTime();
         SolveFor();
         Rounds();
+        BPuzzleMax();
+        RPuzzleMin();
     }
 
     private void BackgroundColor() {
@@ -182,6 +184,28 @@ public class KeyPress : MonoBehaviour {
     private void RevealSajak() {
         if (Splits[0].Equals("REVEALSAJAK")) {
             RoundRunner.SajakText.text = "Puzzle Solution: " + RoundRunner.Puzzle.Text;
+        }
+    }
+
+    private void BPuzzleMax() {
+        if (Splits[0].Equals("BPUZZLEMAX") && Splits.Length == 2) {
+            int parsed = 0;
+            bool isParsed = int.TryParse(Splits[1], out parsed);
+
+            if (isParsed) {
+                PuzzleFactory.BONUS_ROUND_PUZZLE_SIZE_MAX = parsed;
+            }
+        }
+    }
+
+    private void RPuzzleMin() {
+        if (Splits[0].Equals("RPUZZLEMIN") && Splits.Length == 2) {
+            int parsed = 0;
+            bool isParsed = int.TryParse(Splits[1], out parsed);
+
+            if (isParsed) {
+                PuzzleFactory.REGULAR_ROUND_PUZZLE_SIZE_MIN = parsed;
+            }
         }
     }
 

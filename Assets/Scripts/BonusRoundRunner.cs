@@ -29,16 +29,14 @@ public class BonusRoundRunner : MonoBehaviour {
         RoundRunner.SetRoundColors(0);
 
         yield return UpdateSajak("Welcome to the Bonus Round, " + Winner.Name + ".", NORMAL_SAJAK_SPEED);
-        yield return UpdateSajak("Let's spin the Bonus Wheel to select...", NORMAL_SAJAK_SPEED);
-        yield return UpdateSajak("which prize you will be playing for!", NORMAL_SAJAK_SPEED);
-        yield return UpdateSajak("The prizes range mostly from $35,000 to $50,000", NORMAL_SAJAK_SPEED);
+        yield return UpdateSajak("Let's begin by spinning for a prize on the Bonus Wheel!", NORMAL_SAJAK_SPEED);
 
         if (Winner.HasMillionWedge) {
-            yield return UpdateSajak("But because you've made it this far with the One Million wedge,", NORMAL_SAJAK_SPEED);
-            yield return UpdateSajak("the one, top prize that would normally be $100,000...", NORMAL_SAJAK_SPEED);
-            yield return UpdateSajak("has been replaced with $1,000,000!!", NORMAL_SAJAK_SPEED);
+            yield return UpdateSajak("But because you've made it here with the One Million Dollar wedge,", NORMAL_SAJAK_SPEED);
+            yield return UpdateSajak("the top prize that would normally be $100,000...", NORMAL_SAJAK_SPEED);
+            yield return UpdateSajak("has been replaced with ONE MILLION DOLLARS!!", NORMAL_SAJAK_SPEED);
         } else {
-            yield return UpdateSajak("with one of the prizes being $100,000!", NORMAL_SAJAK_SPEED);
+            yield return UpdateSajak("With the top prize being $100,000!", NORMAL_SAJAK_SPEED);
         }
 
         RoundRunner.CategoryText.text = RoundRunner.Puzzle.Category;
@@ -59,10 +57,12 @@ public class BonusRoundRunner : MonoBehaviour {
 
     public IEnumerator LettersSubmitted(List<char> inputedList) {
         RoundRunner.BonusRoundButtonsObject.SetActive(false);
-        yield return UpdateSajak("OK, let's see what we've got...", 0);
+        yield return UpdateSajak("OK, let's see what we've got...", 1f);
         yield return BoardFiller.RevealLetters(inputedList);
 
-        int revealed = RoundRunner.FindHowManyToReveal(inputedList);        
+        int revealed = RoundRunner.FindHowManyToReveal(inputedList);
+
+        yield return new WaitForSeconds(2.5f);        
 
         if (revealed > 3) {
             yield return UpdateSajak("Looks like you got quite a bit of help there.", NORMAL_SAJAK_SPEED);
@@ -71,7 +71,6 @@ public class BonusRoundRunner : MonoBehaviour {
         } else if (revealed == 1) {
             yield return UpdateSajak("Looks like that's it.", NORMAL_SAJAK_SPEED);
         } else {
-            yield return new WaitForSeconds(3f);
             yield return UpdateSajak("Well, I'm sorry " + Winner.Name + ", but those letters were no help at all.", NORMAL_SAJAK_SPEED);
         }
 

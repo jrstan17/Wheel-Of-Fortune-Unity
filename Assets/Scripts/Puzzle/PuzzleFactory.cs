@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class PuzzleFactory {
 
-    const int REGULAR_ROUND_PUZZLE_SIZE_MIN = 16;
-    const int BONUS_ROUND_PUZZLE_SIZE_MAX = 16;
+    public static int REGULAR_ROUND_PUZZLE_SIZE_MIN = 16;
+    public static int BONUS_ROUND_PUZZLE_SIZE_MAX = 16;
+    const int TIMEOUT = 1000000;
 
     List<Puzzle> Puzzles;
     int previousPuzzleIndex = -1;
@@ -18,9 +19,18 @@ public class PuzzleFactory {
     public Puzzle NewPuzzle(RoundType roundType) {
         int randomIndex = -1;
         randomIndex = Random.Range(0, Puzzles.Count);
-        while (previousPuzzleIndex == randomIndex || !IsRandomRoundPuzzleValid(randomIndex, roundType)) {
+
+        int i = 1;
+        while (previousPuzzleIndex == randomIndex || !IsRandomRoundPuzzleValid(randomIndex, roundType) || i > TIMEOUT) {
             randomIndex = Random.Range(0, Puzzles.Count);
+            i++;
         }
+
+        if (i > TIMEOUT) {
+            Debug.LogError("Puzzle Generation Timeout!");
+            return null;
+        }
+
         previousPuzzleIndex = randomIndex;
 
         return Puzzles[randomIndex];
