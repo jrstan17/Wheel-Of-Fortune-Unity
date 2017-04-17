@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -304,11 +304,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5698065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 289301326}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &5698068
 Rigidbody2D:
   serializedVersion: 4
@@ -1757,11 +1757,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 43832837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 1724181418}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &43832840
 Rigidbody2D:
   serializedVersion: 4
@@ -2111,6 +2111,7 @@ MonoBehaviour:
   BoardObject: {fileID: 1525156003}
   DebugInputObject: {fileID: 1591516180}
   Background: {fileID: 492834044}
+  BonusWheelSpin: {fileID: 812792663}
 --- !u!4 &50168774
 Transform:
   m_ObjectHideFlags: 0
@@ -3921,7 +3922,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 576.32916
+      value: 573.2897
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -3931,7 +3932,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 58.689457
+      value: 58.435505
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -4123,7 +4124,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1131.7643
+      value: 1134.2173
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -4133,7 +4134,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 60.56739
+      value: 61.028698
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -4531,7 +4532,6 @@ GameObject:
   - component: {fileID: 101968769}
   - component: {fileID: 101968772}
   - component: {fileID: 101968771}
-  - component: {fileID: 101968770}
   m_Layer: 8
   m_Name: W11
   m_TagString: Untagged
@@ -4558,20 +4558,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &101968770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 101968768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 350
-  Text: $350
-  WedgeType: 0
 --- !u!222 &101968771
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5346,7 +5332,6 @@ GameObject:
   - component: {fileID: 151644149}
   - component: {fileID: 151644148}
   - component: {fileID: 151644147}
-  - component: {fileID: 151644146}
   m_Layer: 8
   m_Name: W7
   m_TagString: Untagged
@@ -5373,20 +5358,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &151644146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 151644144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 3000
-  Text: $3000
-  WedgeType: 2
 --- !u!114 &151644147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6482,7 +6453,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1316.2833
+      value: 1319.8965
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -6492,7 +6463,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 62.445328
+      value: 61.028698
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -7185,11 +7156,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 217170310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 0}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &217170313
 Rigidbody2D:
   serializedVersion: 4
@@ -7268,6 +7239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 229703947}
   - component: {fileID: 229703946}
+  - component: {fileID: 229703948}
   m_Layer: 0
   m_Name: BonusRoundRunner
   m_TagString: BonusRoundRunner
@@ -7289,6 +7261,9 @@ MonoBehaviour:
   RoundRunner: {fileID: 2044940848}
   BoardFiller: {fileID: 2044940850}
   BonusSolveCanvas: {fileID: 991620823}
+  WheelObject: {fileID: 1590133277}
+  KeyPress: {fileID: 50168773}
+  BonusWheelSpin: {fileID: 812792663}
 --- !u!4 &229703947
 Transform:
   m_ObjectHideFlags: 0
@@ -7302,6 +7277,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &229703948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 229703945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff3571e551430542a22b8b2959be6b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BonusAmounts: a086010060ea000060ea000050c3000050c3000050c30000c8af0000c8af0000c8af0000c8af0000409c0000409c0000409c0000409c0000409c0000b8880000b8880000b8880000b8880000b8880000b8880000b8880000b8880000b8880000
 --- !u!1 &232020232
 GameObject:
   m_ObjectHideFlags: 0
@@ -7649,11 +7636,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 234203419}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 1338520936}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &234203422
 Rigidbody2D:
   serializedVersion: 4
@@ -9516,7 +9503,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 156.11331
+      value: 152.57175
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -9526,7 +9513,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 62.445328
+      value: 61.028698
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -9606,7 +9593,6 @@ GameObject:
   - component: {fileID: 289301327}
   - component: {fileID: 289301330}
   - component: {fileID: 289301329}
-  - component: {fileID: 289301328}
   m_Layer: 8
   m_Name: W3
   m_TagString: Untagged
@@ -9633,20 +9619,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &289301328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 289301326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 500
-  Text: $500
-  WedgeType: 0
 --- !u!222 &289301329
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10353,7 +10325,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 520.4566
+      value: 517.4473
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -10363,7 +10335,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 53.055656
+      value: 53.24912
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -11989,7 +11961,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 946.3062
+      value: 948.53796
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -11999,7 +11971,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 60.56739
+      value: 61.028698
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -13754,7 +13726,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 884.79987
+      value: 886.21265
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -13764,7 +13736,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 62.445328
+      value: 63.621887
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -13924,7 +13896,6 @@ GameObject:
   - component: {fileID: 435392917}
   - component: {fileID: 435392920}
   - component: {fileID: 435392919}
-  - component: {fileID: 435392918}
   m_Layer: 8
   m_Name: W9
   m_TagString: Untagged
@@ -13951,20 +13922,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &435392918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 435392916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 950
-  Text: $950
-  WedgeType: 0
 --- !u!222 &435392919
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14387,11 +14344,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 443547675}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 940125381}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &443547678
 Rigidbody2D:
   serializedVersion: 4
@@ -14501,11 +14458,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 447961943}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 101968768}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &447961946
 Rigidbody2D:
   serializedVersion: 4
@@ -16866,11 +16823,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 507731365}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 1160021554}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &507731368
 Rigidbody2D:
   serializedVersion: 4
@@ -18148,7 +18105,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 636.89655
+      value: 634.31836
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -18158,7 +18115,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 62.445328
+      value: 63.621887
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -18416,7 +18373,6 @@ GameObject:
   - component: {fileID: 559244698}
   - component: {fileID: 559244697}
   - component: {fileID: 559244696}
-  - component: {fileID: 559244695}
   m_Layer: 8
   m_Name: W17
   m_TagString: Untagged
@@ -18443,20 +18399,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.00000035762787}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &559244695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 559244693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 500
-  Text: PRIZE
-  WedgeType: 5
 --- !u!114 &559244696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19155,7 +19097,6 @@ GameObject:
   - component: {fileID: 586819586}
   - component: {fileID: 586819589}
   - component: {fileID: 586819588}
-  - component: {fileID: 586819587}
   m_Layer: 8
   m_Name: W24
   m_TagString: Untagged
@@ -19182,20 +19123,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.0000076293945, y: -0.00000035729317}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &586819587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 586819585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 500
-  Text: $500
-  WedgeType: 0
 --- !u!222 &586819588
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19531,7 +19458,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1253.838
+      value: 1257.5712
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -19541,7 +19468,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 62.445328
+      value: 63.621887
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -20510,7 +20437,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1444.9298
+      value: 1447.1403
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -20520,7 +20447,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 62.445328
+      value: 61.028698
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -21219,7 +21146,6 @@ GameObject:
   - component: {fileID: 634440568}
   - component: {fileID: 634440571}
   - component: {fileID: 634440570}
-  - component: {fileID: 634440569}
   m_Layer: 8
   m_Name: W8
   m_TagString: Untagged
@@ -21246,20 +21172,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &634440569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 634440567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 550
-  Text: $550
-  WedgeType: 0
 --- !u!222 &634440570
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22296,11 +22208,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 658853221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 1718417113}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &658853224
 Rigidbody2D:
   serializedVersion: 4
@@ -22420,7 +22332,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 758.9703
+      value: 757.6723
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -22430,7 +22342,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 64.32326
+      value: 66.21508
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -23605,7 +23517,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 400.2608
+      value: 395.38995
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -23615,7 +23527,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 62.445328
+      value: 63.621887
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -25487,7 +25399,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 822.35455
+      value: 822.5908
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -25497,7 +25409,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 62.445328
+      value: 63.621887
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -25640,11 +25552,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 762905497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 1200493639}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &762905500
 Rigidbody2D:
   serializedVersion: 4
@@ -26946,7 +26858,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1007.81256
+      value: 1010.8633
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -26956,7 +26868,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 62.445328
+      value: 63.621887
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -27076,7 +26988,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 218.55865
+      value: 213.60043
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -27086,7 +26998,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 62.445328
+      value: 61.028698
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -27375,6 +27287,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   RoundRunner: {fileID: 2044940848}
+  BonusRoundRunner: {fileID: 229703946}
   KeyPress: {fileID: 50168773}
 --- !u!114 &812792664
 MonoBehaviour:
@@ -27387,31 +27300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff3571e551430542a22b8b2959be6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedges:
-  - {fileID: 1539752836}
-  - {fileID: 1338520936}
-  - {fileID: 289301326}
-  - {fileID: 1433485791}
-  - {fileID: 825782465}
-  - {fileID: 1718417113}
-  - {fileID: 151644144}
-  - {fileID: 634440567}
-  - {fileID: 435392916}
-  - {fileID: 1200493639}
-  - {fileID: 101968768}
-  - {fileID: 1357170027}
-  - {fileID: 1376972928}
-  - {fileID: 1160021554}
-  - {fileID: 2059929582}
-  - {fileID: 940125381}
-  - {fileID: 559244693}
-  - {fileID: 2006578642}
-  - {fileID: 2066042786}
-  - {fileID: 2079839563}
-  - {fileID: 1537901005}
-  - {fileID: 1190361228}
-  - {fileID: 1724181418}
-  - {fileID: 586819585}
+  BonusAmounts: a086010060ea000060ea000050c3000050c3000050c30000c8af0000c8af0000c8af0000c8af0000409c0000409c0000409c0000409c0000409c0000b8880000b8880000b8880000b8880000b8880000b8880000b8880000b8880000b8880000
 --- !u!1 &816178920
 GameObject:
   m_ObjectHideFlags: 0
@@ -27753,7 +27642,6 @@ GameObject:
   - component: {fileID: 825782466}
   - component: {fileID: 825782469}
   - component: {fileID: 825782468}
-  - component: {fileID: 825782467}
   m_Layer: 8
   m_Name: W5
   m_TagString: Untagged
@@ -27780,20 +27668,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &825782467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 825782465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 350
-  Text: $350
-  WedgeType: 0
 --- !u!222 &825782468
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -28938,7 +28812,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 991620825}
         m_MethodName: Submit_Clicked
         m_Mode: 1
         m_Arguments:
@@ -31138,7 +31012,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1070.2579
+      value: 1073.1886
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -31148,7 +31022,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 62.445328
+      value: 61.028698
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -32240,11 +32114,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 922092989}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 1376972928}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &922092992
 Rigidbody2D:
   serializedVersion: 4
@@ -32636,11 +32510,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 935166519}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 2066042786}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &935166522
 Rigidbody2D:
   serializedVersion: 4
@@ -32720,7 +32594,6 @@ GameObject:
   - component: {fileID: 940125382}
   - component: {fileID: 940125385}
   - component: {fileID: 940125384}
-  - component: {fileID: 940125383}
   m_Layer: 8
   m_Name: W16
   m_TagString: Untagged
@@ -32747,20 +32620,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.00000035762787}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &940125383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 940125381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 650
-  Text: $650
-  WedgeType: 0
 --- !u!222 &940125384
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34290,7 +34149,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1192.3317
+      value: 1195.246
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -34300,7 +34159,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 60.56739
+      value: 61.028698
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -34564,11 +34423,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1019048452}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 1190361228}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &1019048455
 Rigidbody2D:
   serializedVersion: 4
@@ -34757,6 +34616,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   RoundRunner: {fileID: 2044940848}
+  BonusRoundRunner: {fileID: 0}
   KeyPress: {fileID: 50168773}
 --- !u!1 &1026228339
 GameObject:
@@ -35934,11 +35794,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1091011928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 2059929582}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &1091011931
 Rigidbody2D:
   serializedVersion: 4
@@ -36539,11 +36399,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1110206862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 634440567}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &1110206865
 Rigidbody2D:
   serializedVersion: 4
@@ -36686,11 +36546,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1111882623}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 151644144}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &1111882626
 Rigidbody2D:
   serializedVersion: 4
@@ -38774,7 +38634,6 @@ GameObject:
   - component: {fileID: 1160021555}
   - component: {fileID: 1160021558}
   - component: {fileID: 1160021557}
-  - component: {fileID: 1160021556}
   m_Layer: 8
   m_Name: W14
   m_TagString: Untagged
@@ -38801,20 +38660,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.00000011920929}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &1160021556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1160021554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 450
-  Text: $450
-  WedgeType: 0
 --- !u!222 &1160021557
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -40062,7 +39907,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1507.3751
+      value: 1508.169
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -40072,7 +39917,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 62.445328
+      value: 61.028698
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -40337,7 +40182,6 @@ GameObject:
   - component: {fileID: 1190361233}
   - component: {fileID: 1190361232}
   - component: {fileID: 1190361231}
-  - component: {fileID: 1190361230}
   m_Layer: 8
   m_Name: W22
   m_TagString: Untagged
@@ -40364,20 +40208,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.00000035762787}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &1190361230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1190361228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 500
-  Text: FREE PLAY
-  WedgeType: 6
 --- !u!114 &1190361231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40628,7 +40458,6 @@ GameObject:
   - component: {fileID: 1200493640}
   - component: {fileID: 1200493643}
   - component: {fileID: 1200493642}
-  - component: {fileID: 1200493641}
   m_Layer: 8
   m_Name: W10
   m_TagString: Untagged
@@ -40655,20 +40484,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &1200493641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1200493639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 750
-  Text: $750
-  WedgeType: 0
 --- !u!222 &1200493642
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -42104,11 +41919,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1220829662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 435392916}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &1220829665
 Rigidbody2D:
   serializedVersion: 4
@@ -44240,11 +44055,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1290011330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 825782465}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &1290011333
 Rigidbody2D:
   serializedVersion: 4
@@ -45090,7 +44905,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 31.222664
+      value: 30.514349
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -45100,7 +44915,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 62.445328
+      value: 61.028698
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -45415,7 +45230,6 @@ GameObject:
   - component: {fileID: 1338520937}
   - component: {fileID: 1338520940}
   - component: {fileID: 1338520939}
-  - component: {fileID: 1338520938}
   m_Layer: 8
   m_Name: W2
   m_TagString: Untagged
@@ -45442,20 +45256,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &1338520938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1338520936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 550
-  Text: $550
-  WedgeType: 0
 --- !u!222 &1338520939
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -46142,7 +45942,6 @@ GameObject:
   - component: {fileID: 1357170028}
   - component: {fileID: 1357170031}
   - component: {fileID: 1357170030}
-  - component: {fileID: 1357170029}
   m_Layer: 8
   m_Name: W12
   m_TagString: Untagged
@@ -46169,20 +45968,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.0000076293945, y: 0.000000004489266}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &1357170029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1357170027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 500
-  Text: $500
-  WedgeType: 0
 --- !u!222 &1357170030
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -46264,11 +46049,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1359629556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 1537901005}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &1359629559
 Rigidbody2D:
   serializedVersion: 4
@@ -46850,7 +46635,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 280.065
+      value: 274.62915
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -46860,7 +46645,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 60.56739
+      value: 61.028698
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -46940,7 +46725,6 @@ GameObject:
   - component: {fileID: 1376972929}
   - component: {fileID: 1376972932}
   - component: {fileID: 1376972931}
-  - component: {fileID: 1376972930}
   m_Layer: 8
   m_Name: W13
   m_TagString: Untagged
@@ -46967,20 +46751,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &1376972930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1376972928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 600
-  Text: $600
-  WedgeType: 0
 --- !u!222 &1376972931
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -47483,11 +47253,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1400195746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 2079839563}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &1400195749
 Rigidbody2D:
   serializedVersion: 4
@@ -48089,11 +47859,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1404779307}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 0}
-  Wedge2: {fileID: 1357170027}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &1404779310
 Rigidbody2D:
   serializedVersion: 4
@@ -49086,7 +48856,6 @@ GameObject:
   - component: {fileID: 1433485792}
   - component: {fileID: 1433485795}
   - component: {fileID: 1433485794}
-  - component: {fileID: 1433485793}
   m_Layer: 8
   m_Name: W4
   m_TagString: Untagged
@@ -49113,20 +48882,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &1433485793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1433485791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 550
-  Text: $550
-  WedgeType: 0
 --- !u!222 &1433485794
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -53407,7 +53162,6 @@ GameObject:
   - component: {fileID: 1537901006}
   - component: {fileID: 1537901009}
   - component: {fileID: 1537901008}
-  - component: {fileID: 1537901007}
   m_Layer: 8
   m_Name: W21
   m_TagString: Untagged
@@ -53434,20 +53188,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.00000035762787}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &1537901007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1537901005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 700
-  Text: $700
-  WedgeType: 0
 --- !u!222 &1537901008
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -53600,7 +53340,6 @@ GameObject:
   - component: {fileID: 1539752837}
   - component: {fileID: 1539752840}
   - component: {fileID: 1539752839}
-  - component: {fileID: 1539752838}
   m_Layer: 8
   m_Name: W1
   m_TagString: Untagged
@@ -53627,20 +53366,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &1539752838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1539752836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 850
-  Text: $850
-  WedgeType: 0
 --- !u!222 &1539752839
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -54055,6 +53780,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   RoundRunner: {fileID: 2044940848}
+  BonusRoundRunner: {fileID: 0}
   KeyPress: {fileID: 50168773}
 --- !u!1 &1548951500
 GameObject:
@@ -54613,7 +54339,7 @@ GameObject:
   - component: {fileID: 1590133279}
   m_Layer: 8
   m_Name: BonusObject
-  m_TagString: WheelObject
+  m_TagString: BonusWheelObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54833,7 +54559,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 339.69342
+      value: 334.36124
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -54843,7 +54569,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 58.689457
+      value: 58.435505
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -55255,7 +54981,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1568.8815
+      value: 1569.1976
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -55265,7 +54991,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 60.56739
+      value: 61.028698
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -55447,11 +55173,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1615330198}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 2006578642}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &1615330201
 Rigidbody2D:
   serializedVersion: 4
@@ -56080,11 +55806,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1642809461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 1539752836}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &1642809464
 Rigidbody2D:
   serializedVersion: 4
@@ -56769,11 +56495,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1663657606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 559244693}
-  Wedge2: {fileID: 586819585}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &1663657609
 Rigidbody2D:
   serializedVersion: 4
@@ -57942,7 +57668,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 697.4639
+      value: 695.34705
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -57952,7 +57678,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 58.689457
+      value: 58.435505
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -58296,7 +58022,6 @@ GameObject:
   - component: {fileID: 1718417114}
   - component: {fileID: 1718417117}
   - component: {fileID: 1718417116}
-  - component: {fileID: 1718417115}
   m_Layer: 8
   m_Name: W6
   m_TagString: Untagged
@@ -58323,20 +58048,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &1718417115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1718417113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 0
-  Text: BANKRUPT
-  WedgeType: 3
 --- !u!222 &1718417116
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -58636,7 +58347,6 @@ GameObject:
   - component: {fileID: 1724181419}
   - component: {fileID: 1724181422}
   - component: {fileID: 1724181421}
-  - component: {fileID: 1724181420}
   m_Layer: 8
   m_Name: W23
   m_TagString: Untagged
@@ -58663,20 +58373,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.00000035762787}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &1724181420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1724181418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 750
-  Text: $750
-  WedgeType: 0
 --- !u!222 &1724181421
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -59364,7 +59060,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 93.66799
+      value: 91.543045
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -59374,7 +59070,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 62.445328
+      value: 61.028698
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -59660,7 +59356,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1380.6066
+      value: 1383.5183
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -59670,7 +59366,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 66.201195
+      value: 66.21508
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -62242,11 +61938,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1831166665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac7f5bc64c8f3a49b5ea7b389e17c49, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917d31c48c1e9f43a403fb21c7b573c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wedge: {fileID: 1433485791}
-  Wedge2: {fileID: 0}
+  Randomizer: {fileID: 229703948}
+  Text: {fileID: 0}
 --- !u!50 &1831166668
 Rigidbody2D:
   serializedVersion: 4
@@ -63707,6 +63403,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   RoundRunner: {fileID: 2044940848}
+  BonusRoundRunner: {fileID: 0}
   KeyPress: {fileID: 50168773}
 --- !u!1 &1882963377
 GameObject:
@@ -65963,7 +65660,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 462.70612
+      value: 459.01184
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -65973,7 +65670,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 62.445328
+      value: 63.621887
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -67465,6 +67162,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   RoundRunner: {fileID: 2044940848}
+  BonusRoundRunner: {fileID: 0}
   KeyPress: {fileID: 50168773}
 --- !u!1 &1985746743
 GameObject:
@@ -67830,7 +67528,6 @@ GameObject:
   - component: {fileID: 2006578643}
   - component: {fileID: 2006578646}
   - component: {fileID: 2006578645}
-  - component: {fileID: 2006578644}
   m_Layer: 8
   m_Name: W18
   m_TagString: Untagged
@@ -67857,20 +67554,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.00000035762787}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &2006578644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2006578642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 550
-  Text: $550
-  WedgeType: 0
 --- !u!222 &2006578645
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -69735,7 +69418,6 @@ GameObject:
   - component: {fileID: 2059929583}
   - component: {fileID: 2059929586}
   - component: {fileID: 2059929585}
-  - component: {fileID: 2059929584}
   m_Layer: 8
   m_Name: W15
   m_TagString: Untagged
@@ -69762,20 +69444,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.00000023841858}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &2059929584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2059929582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 550
-  Text: $550
-  WedgeType: 0
 --- !u!222 &2059929585
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -69858,7 +69526,6 @@ GameObject:
   - component: {fileID: 2066042787}
   - component: {fileID: 2066042790}
   - component: {fileID: 2066042789}
-  - component: {fileID: 2066042788}
   m_Layer: 8
   m_Name: W19
   m_TagString: Untagged
@@ -69885,20 +69552,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.00000035762787}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &2066042788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2066042786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 950
-  Text: $950
-  WedgeType: 0
 --- !u!222 &2066042789
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -70199,7 +69852,6 @@ GameObject:
   - component: {fileID: 2079839564}
   - component: {fileID: 2079839567}
   - component: {fileID: 2079839566}
-  - component: {fileID: 2079839565}
   m_Layer: 8
   m_Name: W20
   m_TagString: Untagged
@@ -70226,20 +69878,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.00000011920929}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &2079839565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2079839563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c618f3996b08884d8e5e3826fe31f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 0
-  Text: BANKRUPT
-  WedgeType: 3
 --- !u!222 &2079839566
 CanvasRenderer:
   m_ObjectHideFlags: 0

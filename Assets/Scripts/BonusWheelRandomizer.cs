@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class BonusWheelRandomizer : MonoBehaviour {
 
-    public GameObject[] Wedges;
-
-    internal 
+    public List<int> BonusAmounts;
 
 	// Use this for initialization
 	void Start () {
-		
+
 	}
 	
 	// Update is called once per frame

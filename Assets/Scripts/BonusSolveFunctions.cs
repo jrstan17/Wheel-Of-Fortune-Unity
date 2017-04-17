@@ -24,7 +24,7 @@ public class BonusSolveFunctions : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
         if (!timerStopFlag) {
             SolveField.ActivateInputField();
             SolveField.text = SolveField.text.ToUpper();
@@ -47,10 +47,10 @@ public class BonusSolveFunctions : MonoBehaviour {
         solveText = solveText.ToUpper();
 
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < RoundRunner.Puzzle.Text.Length; i++) {
+        for (int i = 0; i < RoundRunner.Puzzle.Text.Length; i++) {
             sb.Append(RoundRunner.Puzzle.Text[i]);
 
-            if (RoundRunner.Puzzle.Text[i] == '-' && RoundRunner.Puzzle.Text[i+1] == ' ') {
+            if (RoundRunner.Puzzle.Text[i] == '-' && RoundRunner.Puzzle.Text[i + 1] == ' ') {
                 i++;
             }
         }
@@ -58,10 +58,11 @@ public class BonusSolveFunctions : MonoBehaviour {
         if (solveText.Equals(sb.ToString())) {
             timerStopFlag = true;
             Countdown.StopTimer();
-            BonusRoundRunner.SolvedCorrectly();
             GetComponent<Canvas>().enabled = false;
+            StartCoroutine(BonusRoundRunner.SolvedCorrectly());
         } else {
             SolveField.text = "";
+            RoundRunner.AudioTracks.Play("buzzer");
         }
     }
 }

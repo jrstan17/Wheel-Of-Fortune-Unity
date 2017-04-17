@@ -15,6 +15,7 @@ TagManager:
   - PlayerPanel
   - CurrentWedgeText
   - BonusRoundRunner
+  - BonusWheelObject
   layers:
   - Default
   - TransparentFX

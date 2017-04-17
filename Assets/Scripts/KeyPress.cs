@@ -11,10 +11,12 @@ public class KeyPress : MonoBehaviour {
     public GameObject BoardObject;
     public GameObject DebugInputObject;
     public GameObject Background;
+    public SpinWheel BonusWheelSpin;
 
     private RoundRunner RoundRunner;
     internal bool isMenuActive = false;
     internal bool isWheelActive = false;
+    internal bool isBonusWheelActive = false;
     internal InputField DebugInputField;
     internal static bool IsTimeForFreePlayDecision = false;
 
@@ -367,6 +369,10 @@ public class KeyPress : MonoBehaviour {
                 if (!isMenuActive && !spinWheel.HasSpun) {
                     yield return StartCoroutine(spinWheel.Spin(false));
                 }
+            } else if (isBonusWheelActive) {
+                if (!isMenuActive && !BonusWheelSpin.HasSpun) {
+                    yield return StartCoroutine(BonusWheelSpin.Spin(false));
+                }                
             } else {
                 Button b = RoundRunner.RegularRoundButtonsObject.transform.GetChild(0).GetComponent<Button>();
                 if (b.interactable == true) {

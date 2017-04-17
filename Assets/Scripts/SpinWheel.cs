@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class SpinWheel : MonoBehaviour {
     public List<AnimationCurve> animationCurves;
     public RoundRunner RoundRunner;
+    public BonusRoundRunner BonusRoundRunner;
     public KeyPress KeyPress;
 
     internal bool HasSpun;
     internal bool HasPast = false;
+    internal bool IsBonusSpin = false;
 
     public const int DEFAULT_MIN = 360;
     public const int DEFAULT_MAX = 720;
@@ -75,11 +77,13 @@ public class SpinWheel : MonoBehaviour {
         spinning = false;
         float waitTime = 1f;
 
-        if (RoundRunner.CurrentWedge.WedgeType == WedgeType.HighAmount || RoundRunner.CurrentWedge.WedgeType == WedgeType.TenThousand || RoundRunner.CurrentWedge.WedgeType == WedgeType.Million) {
-            RoundRunner.AudioTracks.Play("oh");
-        } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.FreePlay || RoundRunner.CurrentWedge.WedgeType == WedgeType.Prize) {
-            RoundRunner.AudioTracks.Play("freeplay");
-            waitTime = 2f;
+        if (!IsBonusSpin) {
+            if (RoundRunner.CurrentWedge.WedgeType == WedgeType.HighAmount || RoundRunner.CurrentWedge.WedgeType == WedgeType.TenThousand || RoundRunner.CurrentWedge.WedgeType == WedgeType.Million) {
+                RoundRunner.AudioTracks.Play("oh");
+            } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.FreePlay || RoundRunner.CurrentWedge.WedgeType == WedgeType.Prize) {
+                RoundRunner.AudioTracks.Play("freeplay");
+                waitTime = 2f;
+            }
         }
 
         isDebugSpin = false;
@@ -93,10 +97,16 @@ public class SpinWheel : MonoBehaviour {
     public IEnumerator TimesUp(float time) {
         yield return new WaitForSeconds(time);
 
-        GameObject wheelObject = GameObject.FindGameObjectWithTag("WheelObject");
-
-        KeyPress.isWheelActive = false;
-        wheelObject.SetActive(false);
-        RoundRunner.WheelWindowClosed();
+        if (IsBonusSpin) {
+            GameObject wheelObject = GameObject.FindGameObjectWithTag("BonusWheelObject");
+            KeyPress.isBonusWheelActive = false;
+            wheelObject.SetActive(false);
+            BonusRoundRunner.WheelWindowClosed();
+        } else {
+            GameObject wheelObject = GameObject.FindGameObjectWithTag("WheelObject");
+            KeyPress.isWheelActive = false;
+            wheelObject.SetActive(false);
+            RoundRunner.WheelWindowClosed();
+        }
     }
 }

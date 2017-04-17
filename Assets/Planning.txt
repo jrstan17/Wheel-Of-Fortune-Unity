@@ -1,11 +1,12 @@
 <<Planning Document for Bonus Round>>
 
-For Bonus Round "Envelopes":
+Bonus Round "Envelopes":
 100K/1M =	1
-50K =		2
-45K =		3
-40K = 		4
-35K =		14
+60K =		2
+50K =		3
+45K = 		4
+40K =		5
+35K =		9
 
 1.	Make button say "Continue To Bonus Round!"
 2.	Completely green board (no puzzle)
