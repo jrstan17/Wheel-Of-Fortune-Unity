@@ -54,7 +54,7 @@ public class RoundRunner : MonoBehaviour {
         PlayerList.RandomizePlayers();
 
         //MaxRounds = PlayerList.Players.Count + 1;
-        MaxRounds = 1;
+        MaxRounds = 10;
 
         GameObject panel = GameObject.FindGameObjectWithTag("PlayerPanel");
         PlayerWinningsTexts = new List<Text>();
@@ -129,8 +129,10 @@ public class RoundRunner : MonoBehaviour {
             return;
         }
 
-        Debug.Log(GetWheelIndex());
-        WheelCanvas = WheelCanvases[GetWheelIndex()];
+        int wheelIndex = GetWheelIndex();
+        Debug.Log(wheelIndex);
+        WheelCanvas = WheelCanvases[wheelIndex];
+        WedgeController.TogglePrizeWedge(wheelIndex, true);
         SpinWheel spinWheel = WheelCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
         spinWheel.Randomize();
 
@@ -548,7 +550,7 @@ public class RoundRunner : MonoBehaviour {
 
                     if (CurrentWedge.WedgeType == WedgeType.Prize && !PlayerList.CurrentPlayer.HasPrize()) {
                         PlayerList.CurrentPlayer.RoundPrize = new Prize("A Trip to Spain and Portugal	7800");
-                        WedgeController.RemovePrizeWedge(GetWheelIndex());
+                        WedgeController.TogglePrizeWedge(GetWheelIndex(), false);
                         SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up the Prize wedge!");
                     } else if (CurrentWedge.WedgeType == WedgeType.Million && !PlayerList.CurrentPlayer.HasMillionWedge) {
                         PlayerList.CurrentPlayer.HasMillionWedge = true;

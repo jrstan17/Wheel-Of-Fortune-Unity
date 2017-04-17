@@ -10,10 +10,9 @@ public class NewWedgeEntered : MonoBehaviour {
 
     private WedgeData data;
     internal bool UseAlternativeWedge = false;
-    internal TextMesh CurrentWedgeText;
 
     private void Start() {
-        CurrentWedgeText = GameObject.FindGameObjectWithTag("CurrentWedgeText").GetComponent<TextMesh>();
+
     }
 
     void OnTriggerEnter2D(Collider2D col) {

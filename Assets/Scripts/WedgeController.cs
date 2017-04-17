@@ -27,11 +27,14 @@ public class WedgeController : MonoBehaviour {
         }
     }
 
-    public void RemovePrizeWedge(int wheelIndex) {
+    public void TogglePrizeWedge(int wheelIndex, bool enable) {
         Transform[] children = WheelObjects[wheelIndex].GetComponentsInChildren<Transform>();
         foreach (Transform child in children) {
             if (child.name.Equals("W19A")) {
-                child.gameObject.SetActive(false);
+                SpriteRenderer renderer = child.gameObject.GetComponent<SpriteRenderer>();
+                renderer.enabled = enable;
+                MeshRenderer mesh = child.GetChild(0).GetComponent<MeshRenderer>();
+                mesh.enabled = enable;
             }
         }
 
@@ -40,7 +43,7 @@ public class WedgeController : MonoBehaviour {
         foreach (Transform child in children) {
             if (child.name.Equals("Collider19")) {
                 newWedgeEntered = child.gameObject.GetComponent<NewWedgeEntered>();
-                newWedgeEntered.UseAlternativeWedge = true;
+                newWedgeEntered.UseAlternativeWedge = !enable;
                 break;
             }
         }
