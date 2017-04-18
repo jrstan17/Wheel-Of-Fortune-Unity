@@ -147,20 +147,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2438651}
-  m_Text: $950
+  m_Text: I
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &2438655
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1421,7 +1421,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 40f1c907dca871c4c8d9652996870d14, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.5019608, b: 0.5058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &33523199
@@ -4596,7 +4596,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.23137257, g: 0.7294118, b: 1, a: 1}
+  m_Color: {r: 0.019607844, g: 0.019607844, b: 0.6784314, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &111475811
@@ -5331,7 +5331,6 @@ GameObject:
   - component: {fileID: 151644145}
   - component: {fileID: 151644149}
   - component: {fileID: 151644148}
-  - component: {fileID: 151644147}
   m_Layer: 8
   m_Name: W7
   m_TagString: Untagged
@@ -5358,22 +5357,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &151644147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 151644144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f585c33890dd4040b55dc9344e2282a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FrontStartColor: {r: 0, g: 0, b: 0, a: 1}
-  FrontFinishColor: {r: 0.6332403, g: 0.6204044, b: 0.99264705, a: 1}
-  BackStartColor: {r: 0.6313726, g: 0.61960787, b: 0.9921569, a: 1}
-  BackFinishColor: {r: 0, g: 0.034431938, b: 0.71323526, a: 1}
-  AverageSpeed: 0.5
 --- !u!222 &151644148
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5412,7 +5395,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.054901958, g: 0.061419822, b: 1, a: 1}
+  m_Color: {r: 0.019607844, g: 0.019607844, b: 0.6784314, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &153813979
@@ -6339,10 +6322,10 @@ RectTransform:
   m_Father: {fileID: 1590133278}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0000012965954}
-  m_SizeDelta: {x: 1497.7528, y: 798.73596}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -33}
+  m_SizeDelta: {x: 1597.7528, y: 499.36798}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &190936529
 MonoBehaviour:
@@ -6872,7 +6855,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 180, y: 180, z: 82.5}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.099999905, y: 12.499998}
+  m_AnchoredPosition: {x: -0.75, y: 12.5}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &208910557
@@ -6895,20 +6878,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 208910555}
-  m_Text: $3000
+  m_Text: '*'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 28
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &208910559
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8923,6 +8906,7 @@ GameObject:
   m_Component:
   - component: {fileID: 275768628}
   - component: {fileID: 275768629}
+  - component: {fileID: 275768630}
   m_Layer: 8
   m_Name: wheel-center
   m_TagString: Untagged
@@ -8938,7 +8922,7 @@ Transform:
   m_GameObject: {fileID: 275768627}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.20352687, y: 0.2035269, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0}
   m_Children: []
   m_Father: {fileID: 812792661}
   m_RootOrder: 0
@@ -8975,9 +8959,25 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 40f1c907dca871c4c8d9652996870d14, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.41430578, g: 0.41430578, b: 0.71323526, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!114 &275768630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 275768627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f585c33890dd4040b55dc9344e2282a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FrontStartColor: {r: 0, g: 0, b: 0, a: 0}
+  FrontFinishColor: {r: 0, g: 0, b: 0, a: 0}
+  BackStartColor: {r: 1, g: 1, b: 1, a: 1}
+  BackFinishColor: {r: 0.57634085, g: 0.57895833, b: 0.9558824, a: 1}
+  AverageSpeed: 0.5
 --- !u!1 &276819637
 GameObject:
   m_ObjectHideFlags: 0
@@ -9408,20 +9408,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 283701523}
-  m_Text: $550
+  m_Text: S
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &283701527
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9657,7 +9657,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.9607843, g: 0.6, b: 0.5803922, a: 1}
+  m_Color: {r: 0.019941155, g: 0.019941155, b: 0.678, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &295056559
@@ -10086,20 +10086,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 315349317}
-  m_Text: $550
+  m_Text: G
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &315349321
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13312,20 +13312,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 425341961}
-  m_Text: PRIZE
+  m_Text: O
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 25
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &425341965
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13572,7 +13572,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 2c6ebbb20d0d8aa45a4d33ab72e44d71, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &430347292
@@ -13960,7 +13960,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.9960785, g: 0.9490197, b: 0.058823533, a: 1}
+  m_Color: {r: 0.015686275, g: 0.015686275, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &436255568
@@ -14639,7 +14639,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 2c6ebbb20d0d8aa45a4d33ab72e44d71, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!222 &449235280
@@ -14901,20 +14901,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 452112514}
-  m_Text: $700
+  m_Text: E
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &452112518
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17358,7 +17358,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 265.2, y: -0.1}
+  m_AnchoredPosition: {x: 265.2, y: -0.1000061}
   m_SizeDelta: {x: 2.5, y: 0.98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &519301179
@@ -17438,7 +17438,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 2c6ebbb20d0d8aa45a4d33ab72e44d71, type: 3}
-  m_Color: {r: 0, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.5955882, g: 0.5955882, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &521931368
@@ -18372,7 +18372,6 @@ GameObject:
   - component: {fileID: 559244694}
   - component: {fileID: 559244698}
   - component: {fileID: 559244697}
-  - component: {fileID: 559244696}
   m_Layer: 8
   m_Name: W17
   m_TagString: Untagged
@@ -18399,22 +18398,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.00000035762787}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &559244696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 559244693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f585c33890dd4040b55dc9344e2282a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FrontStartColor: {r: 0.9558824, g: 0.78719723, b: 0.93726885, a: 1}
-  FrontFinishColor: {r: 0.70980394, g: 0.1254902, b: 0.6431373, a: 1}
-  BackStartColor: {r: 0.70980394, g: 0.1254902, b: 0.6431373, a: 1}
-  BackFinishColor: {r: 0.9568628, g: 0.78823537, b: 0.93725497, a: 1}
-  AverageSpeed: 0.5
 --- !u!222 &559244697
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18453,7 +18436,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 80
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.70980394, g: 0.1254902, b: 0.6431373, a: 1}
+  m_Color: {r: 0.015686275, g: 0.015686275, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &560414496
@@ -18609,7 +18592,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 40f1c907dca871c4c8d9652996870d14, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.5019608, b: 0.5058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &567477392
@@ -18909,7 +18892,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 2c6ebbb20d0d8aa45a4d33ab72e44d71, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &578817141
@@ -19161,7 +19144,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 49
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.67058825, g: 0.47450984, b: 0.86274517, a: 1}
+  m_Color: {r: 0.22352943, g: 0.22352943, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &590744279
@@ -21210,7 +21193,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.23529413, g: 0.72156864, b: 0.47450984, a: 1}
+  m_Color: {r: 0.23137257, g: 0.23137257, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &635115961
@@ -21867,14 +21850,14 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 647884300}
-  m_Text: BANKRUPT
+  m_Text: L
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 16
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
@@ -26252,20 +26235,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 775585306}
-  m_Text: FREE  PLAY
+  m_Text: E
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 15
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &775585310
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27390,20 +27373,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 823181421}
-  m_Text: $350
+  m_Text: E
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &823181425
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27706,7 +27689,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 1, g: 0.41568628, b: 0.05490196, a: 1}
+  m_Color: {r: 0.015686275, g: 0.015686275, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &827495350
@@ -28149,7 +28132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 180, y: 180, z: 82.5}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.099999905, y: 12.499998}
+  m_AnchoredPosition: {x: 0, y: 12.5}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &834097289
@@ -28172,20 +28155,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 834097287}
-  m_Text: $750
+  m_Text: B
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &834097291
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29028,20 +29011,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 847328068}
-  m_Text: $550
+  m_Text: F
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &847328072
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30917,20 +30900,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 884665188}
-  m_Text: $450
+  m_Text: U
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &884665192
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32658,7 +32641,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.9960785, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.22352943, g: 0.22352943, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &945497851
@@ -33214,7 +33197,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 180, y: 180, z: 82.5}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.099999905, y: 12.499998}
+  m_AnchoredPosition: {x: -0.97, y: 12.21}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &964752363
@@ -33237,20 +33220,22 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 964752361}
-  m_Text: $800
+  m_Text: '*
+
+    *'
   m_OffsetZ: 0
   m_CharacterSize: 1
-  m_LineSpacing: 1
+  m_LineSpacing: 0.49
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &964752365
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37416,7 +37401,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 180, y: 180, z: 82.5}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.099999905, y: 12.499998}
+  m_AnchoredPosition: {x: -0.42, y: 13.06}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1136690570
@@ -37439,20 +37424,22 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1136690568}
-  m_Text: $350
+  m_Text: '*
+
+    **'
   m_OffsetZ: 0
   m_CharacterSize: 1
-  m_LineSpacing: 1
+  m_LineSpacing: 0.36
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &1136690572
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38698,7 +38685,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.9960785, g: 0.9490197, b: 0.058823533, a: 1}
+  m_Color: {r: 0.027450982, g: 0.30980393, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1161911382
@@ -38920,7 +38907,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 180, y: 180, z: 82.5}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.099999905, y: 12.499998}
+  m_AnchoredPosition: {x: 0, y: 12.5}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1170474599
@@ -38943,14 +38930,14 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1170474597}
-  m_Text: BANKRUPT
+  m_Text: B
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 16
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
@@ -39762,7 +39749,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 40f1c907dca871c4c8d9652996870d14, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.5019608, b: 0.5058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1187321161
@@ -40181,7 +40168,6 @@ GameObject:
   - component: {fileID: 1190361229}
   - component: {fileID: 1190361233}
   - component: {fileID: 1190361232}
-  - component: {fileID: 1190361231}
   m_Layer: 8
   m_Name: W22
   m_TagString: Untagged
@@ -40208,22 +40194,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.00000035762787}
   m_SizeDelta: {x: 6.95, y: 26.7}
   m_Pivot: {x: -0, y: -0}
---- !u!114 &1190361231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1190361228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f585c33890dd4040b55dc9344e2282a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FrontStartColor: {r: 0.015686275, g: 0.015686275, b: 0.53333336, a: 1}
-  FrontFinishColor: {r: 0.9960785, g: 1, b: 0.011764707, a: 1}
-  BackStartColor: {r: 0.9960785, g: 1, b: 0.011764707, a: 1}
-  BackFinishColor: {r: 0.015686275, g: 0.015686275, b: 0.53333336, a: 1}
-  AverageSpeed: 0.5
 --- !u!222 &1190361232
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -40262,7 +40232,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.015686275, g: 0.015686275, b: 0.53333336, a: 1}
+  m_Color: {r: 0.027450982, g: 0.30980393, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1194049621 stripped
@@ -40522,7 +40492,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.9960785, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.039215688, g: 0.3137255, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1201014910
@@ -43588,20 +43558,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1270919068}
-  m_Text: $650
+  m_Text: R
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &1270919072
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -44012,7 +43982,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 40f1c907dca871c4c8d9652996870d14, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.5019608, b: 0.5058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1290011330
@@ -45294,7 +45264,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.67058825, g: 0.4745098, b: 0.8627451, a: 1}
+  m_Color: {r: 0.027450982, g: 0.30980393, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1338872943
@@ -46006,7 +45976,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 1, g: 0.4156863, b: 0.054901965, a: 1}
+  m_Color: {r: 0.22352943, g: 0.22352943, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1359629556
@@ -46789,7 +46759,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 80
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.67058825, g: 0.47450984, b: 0.86274517, a: 1}
+  m_Color: {r: 0.015686275, g: 0.015686275, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1384984124
@@ -48474,20 +48444,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1420476333}
-  m_Text: $550
+  m_Text: N
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &1420476337
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -48920,7 +48890,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.23529412, g: 0.72156864, b: 0.4745098, a: 1}
+  m_Color: {r: 0.22506668, g: 0.22506668, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1434490721
@@ -53226,7 +53196,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.67058825, g: 0.47450984, b: 0.86274517, a: 1}
+  m_Color: {r: 0.015686275, g: 0.015686275, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1538513583
@@ -53404,7 +53374,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.99607843, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.015686275, g: 0.015686275, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1542871977
@@ -54343,7 +54313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1590133278
 RectTransform:
   m_ObjectHideFlags: 0
@@ -54352,7 +54322,7 @@ RectTransform:
   m_GameObject: {fileID: 1590133277}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -9}
-  m_LocalScale: {x: 0.36795998, y: 0.36795998, z: 0.36795998}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.36795998}
   m_Children:
   - {fileID: 190936528}
   m_Father: {fileID: 622650568}
@@ -54360,7 +54330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -135.6, y: 4.798584}
+  m_AnchoredPosition: {x: -57.7, y: 66.6}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1590133279
@@ -56729,20 +56699,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1676851593}
-  m_Text: $500
+  m_Text: U
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &1676851597
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -58086,7 +58056,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.027450982, g: 0.30980393, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1718906425
@@ -58411,7 +58381,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.23137257, g: 0.7294118, b: 1, a: 1}
+  m_Color: {r: 0.019607844, g: 0.019607844, b: 0.6784314, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1727377074
@@ -58864,20 +58834,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1735877981}
-  m_Text: $750
+  m_Text: H
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &1735877985
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -59492,20 +59462,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1751088402}
-  m_Text: $600
+  m_Text: N
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &1751088406
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60467,7 +60437,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 2c6ebbb20d0d8aa45a4d33ab72e44d71, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1784645673
@@ -63461,20 +63431,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1882963377}
-  m_Text: $550
+  m_Text: T
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &1882963381
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -65464,20 +65434,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1936925074}
-  m_Text: PRIZE
+  m_Text: W
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &1936925078
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66214,20 +66184,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1955470359}
-  m_Text: $950
+  m_Text: OF
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 29
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &1955470363
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -67592,7 +67562,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.23529413, g: 0.72156864, b: 0.47450984, a: 1}
+  m_Color: {r: 0.027450982, g: 0.30980393, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &2009608111
@@ -67651,20 +67621,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2009608111}
-  m_Text: $350
+  m_Text: O
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 46
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: a1ac7155eb41b0e418173657b8e4bdee, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!23 &2009608115
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -69482,7 +69452,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.9607844, g: 0.6, b: 0.5803922, a: 1}
+  m_Color: {r: 0.019607844, g: 0.019607844, b: 0.6784314, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &2064585311
@@ -69590,7 +69560,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0.9607844, g: 0.6, b: 0.5803922, a: 1}
+  m_Color: {r: 0.019607844, g: 0.019607844, b: 0.6784314, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &2069444531
@@ -69916,7 +69886,7 @@ SpriteRenderer:
   m_SortingLayerID: 1953457327
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 4f891ff0d4fab2542aefa0035730c0df, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.22352943, g: 0.22352943, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &2081983239
