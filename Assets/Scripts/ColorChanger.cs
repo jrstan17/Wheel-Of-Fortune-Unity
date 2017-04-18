@@ -15,14 +15,16 @@ public class ColorChanger : MonoBehaviour {
     // Use this for initialization
     void Start () {
         sr = gameObject.GetComponent<SpriteRenderer>();
-        textMesh = gameObject.transform.GetChild(0).GetComponent<TextMesh>();
+        //textMesh = gameObject.transform.GetChild(0).GetComponent<TextMesh>();
         speed = PlusMinusRandomPercent(AverageSpeed, 0.1f);
     }
 	
 	// Update is called once per frame
 	void Update () {
         sr.color = Color.Lerp(BackStartColor, BackFinishColor, Mathf.PingPong(Time.time * speed, 1));
-        textMesh.color = Color.Lerp(FrontStartColor, FrontFinishColor, Mathf.PingPong(Time.time * speed, 1));
+        if (textMesh != null) {
+            textMesh.color = Color.Lerp(FrontStartColor, FrontFinishColor, Mathf.PingPong(Time.time * speed, 1));
+        }
     }
 
     float PlusMinusRandomPercent(float num, float maxPercent) {

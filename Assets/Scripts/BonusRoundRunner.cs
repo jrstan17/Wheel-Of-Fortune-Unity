@@ -41,7 +41,7 @@ public class BonusRoundRunner : MonoBehaviour {
             yield return UpdateSajak("the top prize that would normally be $100,000...", NORMAL_SAJAK_SPEED);
             yield return UpdateSajak("has been replaced with ONE MILLION DOLLARS!!", NORMAL_SAJAK_SPEED);
         } else {
-            yield return UpdateSajak("With the top prize being $100,000!", NORMAL_SAJAK_SPEED);
+            yield return UpdateSajak("For a chance to win up to $100,000!", NORMAL_SAJAK_SPEED);
         }
 
         KeyPress.isBonusWheelActive = true;
