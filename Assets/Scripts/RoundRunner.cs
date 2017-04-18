@@ -42,6 +42,7 @@ public class RoundRunner : MonoBehaviour {
     internal bool NotifiedOfRemainingLetters = false;
     internal bool IsRoundEnded = false;
     internal BoardFiller BoardFiller;
+    internal static HighScore HighScore;
 
     internal static WedgeData CurrentWedge;
     internal Coroutine coroutine;
@@ -55,6 +56,8 @@ public class RoundRunner : MonoBehaviour {
 
         //MaxRounds = PlayerList.Players.Count + 1;
         MaxRounds = 10;
+
+        HighScore = new HighScore();
 
         GameObject panel = GameObject.FindGameObjectWithTag("PlayerPanel");
         PlayerWinningsTexts = new List<Text>();

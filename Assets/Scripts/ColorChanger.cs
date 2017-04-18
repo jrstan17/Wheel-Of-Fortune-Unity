@@ -15,7 +15,7 @@ public class ColorChanger : MonoBehaviour {
     // Use this for initialization
     void Start () {
         sr = gameObject.GetComponent<SpriteRenderer>();
-        //textMesh = gameObject.transform.GetChild(0).GetComponent<TextMesh>();
+        textMesh = gameObject.transform.GetChild(0).GetComponent<TextMesh>();
         speed = PlusMinusRandomPercent(AverageSpeed, 0.1f);
     }
 	
