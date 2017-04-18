@@ -34,7 +34,7 @@ public class BonusRoundRunner : MonoBehaviour {
         RoundRunner.SetRoundColors(0);
 
         yield return UpdateSajak("Welcome to the Bonus Round, " + Winner.Name + ".", NORMAL_SAJAK_SPEED);
-        yield return UpdateSajak("Let's begin by spinning for a prize on the Bonus Wheel!", NORMAL_SAJAK_SPEED);
+        yield return UpdateSajak("Let's begin by spinning for a prize on the Bonus Wheel", NORMAL_SAJAK_SPEED);
 
         if (Winner.HasMillionWedge) {
             yield return UpdateSajak("But because you've made it here with the One Million Dollar wedge,", NORMAL_SAJAK_SPEED);
@@ -126,7 +126,7 @@ public class BonusRoundRunner : MonoBehaviour {
 
     public IEnumerator Closeout() {
         RoundRunner.AudioTracks.Play("theme");
-        int highScorePlace = RoundRunner.HighScore.UpdateHighScores(Winner.Name, Winner.TotalWinnings);
+        int highScorePlace = HighScore.UpdateHighScores(Winner.Name, Winner.TotalWinnings);
 
         if (highScorePlace > 0) {
             yield return UpdateSajak(Winner.Name + ", you have a new high score!", NORMAL_SAJAK_SPEED);

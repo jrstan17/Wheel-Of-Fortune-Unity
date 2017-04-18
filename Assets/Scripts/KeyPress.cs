@@ -117,6 +117,8 @@ public class KeyPress : MonoBehaviour {
         Rounds();
         BPuzzleMax();
         RPuzzleMin();
+        ResetHighScores();
+        AddHighScore();
     }
 
     private void BackgroundColor() {
@@ -336,6 +338,23 @@ public class KeyPress : MonoBehaviour {
 
             if (isParsed) {
                 RoundRunner.MaxRounds = parsed;
+            }
+        }
+    }
+
+    private void ResetHighScores() {
+        if (Splits[0].Equals("RESETHS")) {
+            HighScore.Reset();
+        }
+    }
+
+    private void AddHighScore() {
+        if (Splits[0].Equals("ADDHS") && Splits.Length == 3) {
+            int parsed = 0;
+            bool isParsed = int.TryParse(Splits[2], out parsed);
+
+            if (isParsed) {
+                HighScore.UpdateHighScores(Splits[1], parsed);
             }
         }
     }

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class RoundRunner : MonoBehaviour {
 
+    public Camera MainCamera;
+    public Camera HighScoresCamera;
     public TextAsset DataTextFile;
     public List<GameObject> UsedLetterObjects;
     public GameObject[] WheelCanvases;
@@ -23,6 +25,7 @@ public class RoundRunner : MonoBehaviour {
     public GameObject SajackPanel;
     public GameObject Background;
     public WedgeController WedgeController;
+    public Populator HighScorePopulator;
 
     internal PuzzleFactory factory;
     internal static Puzzle Puzzle;
@@ -48,6 +51,9 @@ public class RoundRunner : MonoBehaviour {
     internal Coroutine coroutine;
 
     void Start() {
+        MainCamera.enabled = true;
+        HighScoresCamera.enabled = false;
+
         PlayerList.Players.Add(new Player("Jason"));
         PlayerList.Players.Add(new Player("Philip"));
         PlayerList.Players.Add(new Player("David"));
@@ -657,5 +663,16 @@ public class RoundRunner : MonoBehaviour {
         }
 
         return (vowelCount == 1 && consonantCount == 3);
+    }
+
+    public void HighScores_Clicked() {
+        HighScorePopulator.Refresh();
+        MainCamera.enabled = false;
+        HighScoresCamera.enabled = true;
+    }
+
+    public void HighScoresReturn_Clicked() {
+        MainCamera.enabled = true;
+        HighScoresCamera.enabled = false;
     }
 }
