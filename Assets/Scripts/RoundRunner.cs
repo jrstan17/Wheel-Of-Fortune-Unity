@@ -51,8 +51,8 @@ public class RoundRunner : MonoBehaviour {
     internal Coroutine coroutine;
 
     void Start() {
-        MainCamera.enabled = true;
-        HighScoresCamera.enabled = false;
+        MainCamera.gameObject.SetActive(true);
+        HighScoresCamera.gameObject.SetActive(false);
 
         PlayerList.Players.Add(new Player("Jason"));
         PlayerList.Players.Add(new Player("Philip"));
@@ -666,12 +666,12 @@ public class RoundRunner : MonoBehaviour {
 
     public void HighScores_Clicked() {
         HighScorePopulator.Refresh();
-        MainCamera.enabled = false;
-        HighScoresCamera.enabled = true;
+        MainCamera.gameObject.SetActive(false);
+        HighScoresCamera.gameObject.SetActive(true);
     }
 
     public void HighScoresReturn_Clicked() {
-        MainCamera.enabled = true;
-        HighScoresCamera.enabled = false;
+        MainCamera.gameObject.SetActive(true);
+        HighScoresCamera.gameObject.SetActive(false);
     }
 }
