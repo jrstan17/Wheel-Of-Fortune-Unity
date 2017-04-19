@@ -354,7 +354,16 @@ public class KeyPress : MonoBehaviour {
             bool isParsed = int.TryParse(Splits[2], out parsed);
 
             if (isParsed) {
-                HighScore.UpdateHighScores(Splits[1], parsed);
+                string str = "";
+                for (int i = 0; i < Splits[1].Length; i++) {
+                    if (i != 0) {
+                        str += char.ToLower(Splits[1][i]);
+                    } else {
+                        str += Splits[1][i];
+                    }
+                }
+
+                HighScore.UpdateHighScores(str, parsed);
             }
         }
     }

@@ -60,8 +60,7 @@ public class RoundRunner : MonoBehaviour {
         PlayerList.Players.Add(new Player("Leslie"));
         PlayerList.RandomizePlayers();
 
-        //MaxRounds = PlayerList.Players.Count + 1;
-        MaxRounds = 10;
+        MaxRounds = PlayerList.Players.Count + 1;
 
         HighScore = new HighScore();
 
