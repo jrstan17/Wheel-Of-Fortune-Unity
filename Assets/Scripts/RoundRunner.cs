@@ -668,6 +668,9 @@ public class RoundRunner : MonoBehaviour {
         HighScorePopulator.Refresh();
         MainCamera.gameObject.SetActive(false);
         HighScoresCamera.gameObject.SetActive(true);
+
+        RandomColorChanger rcc = HighScoresCamera.transform.GetChild(0).GetChild(0).GetComponent<RandomColorChanger>();
+        rcc.StartColorChange();
     }
 
     public void HighScoresReturn_Clicked() {
