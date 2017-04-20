@@ -436,7 +436,7 @@ public class RoundRunner : MonoBehaviour {
 
     public void OnBankrupt(Player p) {
         AudioTracks.Play("bankrupt");
-        SajakText.text = "You're bankrupt, " + p.Name + ". I'm so sorry.";
+        SajakText.text = "You're bankrupt, " + p.Name + ". I'm very sorry.";
         p.RoundWinnings = 0;
         p.RoundPrize = null;
         p.HasMillionWedge = false;
