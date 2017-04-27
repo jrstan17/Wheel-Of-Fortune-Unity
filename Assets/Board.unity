@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -10564,7 +10564,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &279232483
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10597,7 +10597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoundRunner: {fileID: 2044940848}
   BonusRoundRunner: {fileID: 229703946}
-  SolveField: {fileID: 0}
+  SolveField: {fileID: 375094508}
   Countdown: {fileID: 107180768}
 --- !u!114 &279232485
 MonoBehaviour:
