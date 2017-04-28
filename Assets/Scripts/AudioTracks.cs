@@ -7,6 +7,7 @@ public class AudioTracks : MonoBehaviour {
     public AudioClip PuzzleReveal;
     public AudioClip LetterReveal;
     public AudioClip Buzzer;
+    public AudioClip DoubleBuzzer;
     public AudioClip RoundWin;
     public AudioClip Bankrupt;
     public AudioClip Oh;
@@ -16,6 +17,7 @@ public class AudioTracks : MonoBehaviour {
     public AudioClip Prize;
     public AudioClip PoliceQuest;
     public AudioClip Theme;
+    public AudioClip CountdownMusic;
     public AudioClip Ah;
 
     AudioSource AudioSource;
@@ -33,6 +35,8 @@ public class AudioTracks : MonoBehaviour {
             AudioSource.clip = LetterReveal;
         } else if (name.Equals("buzzer")) {
             AudioSource.clip = Buzzer;
+        } else if (name.Equals("double_buzzer")) {
+            AudioSource.clip = DoubleBuzzer;
         } else if (name.Equals("round_win")) {
             AudioSource.clip = RoundWin;
         } else if (name.Equals("bankrupt")) {
@@ -54,10 +58,17 @@ public class AudioTracks : MonoBehaviour {
             AudioSource.loop = true;
         } else if (name.Equals("ah")) {
             AudioSource.clip = Ah;
+        } else if (name.Equals("countdown")) {
+            AudioSource.clip = CountdownMusic;
+            AudioSource.loop = true;
         } else {
             return;
         }
 
         AudioSource.Play();
+    }
+
+    public void Stop() {
+        AudioSource.Stop();
     }
 }

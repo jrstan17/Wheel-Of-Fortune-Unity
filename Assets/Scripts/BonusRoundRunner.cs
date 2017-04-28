@@ -75,7 +75,7 @@ public class BonusRoundRunner : MonoBehaviour {
 
     internal IEnumerator StartWheelClosedDialog() {
         RoundRunner.CategoryText.text = RoundRunner.Puzzle.Category;
-        RoundRunner.AudioTracks.Play("reveal");
+        RoundRunner.SFXAudioTracks.Play("reveal");
         BoardFiller.InitBoard();
         yield return UpdateSajak("To begin, the category is " + RoundRunner.Puzzle.Category + ".", NORMAL_SAJAK_SPEED);
 
@@ -94,7 +94,7 @@ public class BonusRoundRunner : MonoBehaviour {
     }
 
     public IEnumerator SolvedCorrectly() {
-        RoundRunner.AudioTracks.Play("round_win");
+        RoundRunner.SFXAudioTracks.Play("round_win");
         StartCoroutine(BoardFiller.RevealBoard());
 
         yield return UpdateSajak("That's right, " + Winner.Name + "!", NORMAL_SAJAK_SPEED);
@@ -109,23 +109,23 @@ public class BonusRoundRunner : MonoBehaviour {
     }
 
     public IEnumerator SolvedIncorrectly() {
-        RoundRunner.AudioTracks.Play("buzzer");
+        RoundRunner.SFXAudioTracks.Play("double_buzzer");
         yield return UpdateSajak("I'm sorry, " + Winner.Name + ", but it looks like you're out of time.", NORMAL_SAJAK_SPEED);
         yield return UpdateSajak("Let's see what the solution was...", 4f);
         yield return BoardFiller.RevealBoard();
-        RoundRunner.AudioTracks.Play("ah");
+        RoundRunner.SFXAudioTracks.Play("ah");
         yield return new WaitForSeconds(4f);
 
         yield return UpdateSajak("Let's open the envelope and see what you would have won...", 4f);
 
-        RoundRunner.AudioTracks.Play("bankrupt");
+        RoundRunner.SFXAudioTracks.Play("bankrupt");
         yield return UpdateSajak(PrizeAmount.ToString("C0") + ". I'm sorry.", NORMAL_SAJAK_SPEED);
 
         yield return Closeout();
     }
 
     public IEnumerator Closeout() {
-        RoundRunner.AudioTracks.Play("theme");
+        RoundRunner.MusicAudioTracks.Play("theme");
         int highScorePlace = HighScore.UpdateHighScores(Winner.Name, Winner.TotalWinnings);
 
         if (highScorePlace > 0) {

@@ -79,9 +79,9 @@ public class SpinWheel : MonoBehaviour {
 
         if (!IsBonusSpin) {
             if (RoundRunner.CurrentWedge.WedgeType == WedgeType.HighAmount || RoundRunner.CurrentWedge.WedgeType == WedgeType.TenThousand || RoundRunner.CurrentWedge.WedgeType == WedgeType.Million) {
-                RoundRunner.AudioTracks.Play("oh");
+                RoundRunner.SFXAudioTracks.Play("oh");
             } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.FreePlay || RoundRunner.CurrentWedge.WedgeType == WedgeType.Prize) {
-                RoundRunner.AudioTracks.Play("freeplay");
+                RoundRunner.SFXAudioTracks.Play("freeplay");
                 waitTime = 2f;
             }
         }
