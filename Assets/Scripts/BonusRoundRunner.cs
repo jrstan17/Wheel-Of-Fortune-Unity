@@ -29,7 +29,7 @@ public class BonusRoundRunner : MonoBehaviour {
         RoundRunner.RegularRoundButtonsObject.SetActive(false);
 
         RoundRunner.PlayerBar.SetActive(false);
-        RoundRunner.Puzzle = RoundRunner.factory.NewPuzzle(RoundType.Bonus);
+        RoundRunner.Puzzle = RoundRunner.PuzzleFactory.NewPuzzle(RoundType.Bonus);
         BoardFiller.ClearBoard();
         RoundRunner.SetRoundColors(0);
 

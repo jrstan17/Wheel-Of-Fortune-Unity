@@ -10,6 +10,7 @@ public class RoundRunner : MonoBehaviour {
     public Camera MainCamera;
     public Camera HighScoresCamera;
     public TextAsset DataTextFile;
+    public TextAsset PrizeTextFile;
     public List<GameObject> UsedLetterObjects;
     public GameObject[] WheelCanvases;
     public GameObject MenuCanvas;
@@ -27,8 +28,17 @@ public class RoundRunner : MonoBehaviour {
     public WedgeController WedgeController;
     public Populator HighScorePopulator;
 
-    internal PuzzleFactory factory;
+    public GameObject PrizeCanvas;
+    public Text RoundText;
+    public Text PrizeText;
+    public Text PrizeValueText;
+
+    internal PuzzleFactory PuzzleFactory;
     internal static Puzzle Puzzle;
+
+    internal PrizeFactory PrizeFactory;
+    internal static Prize Prize;
+
     internal GameObject WheelCanvas;
     internal List<Text> PlayerWinningsTexts;
     internal Text SajakText;
@@ -75,7 +85,9 @@ public class RoundRunner : MonoBehaviour {
             panelClone.transform.SetParent(PlayerBar.transform, false);
         }
 
-        factory = new PuzzleFactory(DataTextFile);
+        PuzzleFactory = new PuzzleFactory(DataTextFile);
+        PrizeFactory = new PrizeFactory(PrizeTextFile);
+
         BoardFiller = gameObject.GetComponent<BoardFiller>();
 
         foreach (GameObject obj in UsedLetterObjects) {
@@ -87,7 +99,7 @@ public class RoundRunner : MonoBehaviour {
         AudioTracks = AudioSource.GetComponent<AudioTracks>();
         SajakText = SajackPanel.transform.GetChild(0).GetComponent<Text>();
 
-        NewBoard(false);
+        InitPrizeCanvas();
     }
 
     public void NewBoard(bool isBonus) {
@@ -117,9 +129,9 @@ public class RoundRunner : MonoBehaviour {
             ToggleUIButtonsParsing("all", false);
 
             if (KeyPress.CustomText == null) {
-                Puzzle = factory.NewPuzzle(RoundType.Regular);
+                Puzzle = PuzzleFactory.NewPuzzle(RoundType.Regular);
             } else {
-                Puzzle = factory.NewPuzzle(KeyPress.CustomText);
+                Puzzle = PuzzleFactory.NewPuzzle(KeyPress.CustomText);
                 KeyPress.CustomText = null;
             }
 
@@ -145,6 +157,15 @@ public class RoundRunner : MonoBehaviour {
         spinWheel.Randomize();
 
         EventSystem.current.SetSelectedGameObject(gameObject);
+    }
+
+    private void InitPrizeCanvas() {
+        RoundText.text = "ROUND " + (RoundNumber + 1);
+        Prize = PrizeFactory.GetRandom();
+        PrizeText.text = Prize.Text;
+        PrizeValueText.text = Prize.Value.ToString("C0");
+        PrizeCanvas.SetActive(true);
+        PrizeCanvas.GetComponent<RandomColorChanger>().StartColorChange();
     }
 
     private int GetWheelIndex() {
@@ -233,6 +254,8 @@ public class RoundRunner : MonoBehaviour {
     public IEnumerator SolvedCorrectly() {
         IsRoundEnded = true;
         SolveCanvas.GetComponent<Canvas>().enabled = false;
+
+        PlayerList.CurrentPlayer.MovePrizeToBank();
 
         if (PlayerList.CurrentPlayer.RoundWinnings < 1000) {
             PlayerList.CurrentPlayer.RoundWinnings = 1000;
@@ -345,7 +368,8 @@ public class RoundRunner : MonoBehaviour {
         NextRoundCanvas.SetActive(false);
 
         if (RoundNumber != MaxRounds) {
-            NewBoard(false);
+            InitPrizeCanvas();
+            PrizeCanvas.SetActive(true);
         } else {
             NewBoard(true);
         }
@@ -557,7 +581,7 @@ public class RoundRunner : MonoBehaviour {
                     yield return StartCoroutine(BoardFiller.RevealLetters(letters));
 
                     if (CurrentWedge.WedgeType == WedgeType.Prize && !PlayerList.CurrentPlayer.HasPrize()) {
-                        PlayerList.CurrentPlayer.RoundPrize = new Prize("A Trip to Spain and Portugal	7800");
+                        PlayerList.CurrentPlayer.RoundPrize = Prize;
                         WedgeController.TogglePrizeWedge(GetWheelIndex(), false);
                         SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up the Prize wedge!");
                     } else if (CurrentWedge.WedgeType == WedgeType.Million && !PlayerList.CurrentPlayer.HasMillionWedge) {
@@ -676,5 +700,10 @@ public class RoundRunner : MonoBehaviour {
     public void HighScoresReturn_Clicked() {
         MainCamera.gameObject.SetActive(true);
         HighScoresCamera.gameObject.SetActive(false);
+    }
+
+    public void StartRound_Clicked() {
+        PrizeCanvas.SetActive(false);
+        NewBoard(false);
     }
 }

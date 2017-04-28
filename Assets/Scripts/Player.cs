@@ -21,8 +21,11 @@ public class Player {
     }
 
     public void MovePrizeToBank() {
-        TotalPrizes.Add(RoundPrize.DeepCopy());
-        RoundPrize = null;
+        if (RoundPrize != null) {
+            TotalPrizes.Add(RoundPrize.DeepCopy());
+            RoundWinnings += RoundPrize.Value;
+            RoundPrize = null;
+        }
     }
 
     public bool HasPrize() {

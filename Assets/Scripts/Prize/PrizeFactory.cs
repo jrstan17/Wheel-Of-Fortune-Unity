@@ -5,16 +5,23 @@ using UnityEngine;
 class PrizeFactory {
 
     List<Prize> Prizes;
-    public PrizeFactory() {
-        Prizes = new List<Prize>();
-        StreamReader reader = new StreamReader(@"Prizes\prizes.txt");
-
-        while (!reader.EndOfStream) {
-            Prizes.Add(new Prize(reader.ReadLine()));
-        }
+    public PrizeFactory(TextAsset textAsset) {
+        InitPrizeList(textAsset);
     }
 
     public Prize GetRandom() {
         return Prizes[Random.Range(0, Prizes.Count)];
+    }
+
+    private void InitPrizeList(TextAsset textAsset) {
+        if (Prizes == null) {
+            Prizes = new List<Prize>();
+            string text = textAsset.text;
+            string[] textSplits = textAsset.text.Split('\n');
+
+            foreach (string str in textSplits) {
+                Prizes.Add(new Prize(str));
+            }
+        }
     }
 }
