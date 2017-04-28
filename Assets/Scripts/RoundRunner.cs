@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -67,9 +68,9 @@ public class RoundRunner : MonoBehaviour {
         HighScoresCamera.gameObject.SetActive(false);
 
         PlayerList.Players.Add(new Player("Jason"));
-        //PlayerList.Players.Add(new Player("Philip"));
+        PlayerList.Players.Add(new Player("Philip"));
         PlayerList.Players.Add(new Player("David"));
-        //PlayerList.Players.Add(new Player("Leslie"));
+        PlayerList.Players.Add(new Player("Leslie"));
         PlayerList.RandomizePlayers();
 
         MaxRounds = PlayerList.Players.Count + 1;
@@ -293,12 +294,7 @@ public class RoundRunner : MonoBehaviour {
         } else {
             yield return UpdateSajak(PlayerList.WinningPlayer().Name + ", you have won the game with " + PlayerList.WinningPlayer().TotalWinnings.ToString("C0") + "!", 5f);
 
-            int players = PlayerList.Players.Count;
-            if (players == 2) {
-                yield return UpdateSajak("Thank you for playing, " + PlayerList.NextPlayersName() + ".", 5f);
-            } else {
-                yield return UpdateSajak("To the other players, thank you for playing.", 5f);
-            }
+            yield return UpdateSajak("To " + NonWinnerListForSajak() + ": Thanks for playing!", 5f);
 
             yield return UpdateSajak("Now follow me, " + PlayerList.WinningPlayer().Name + ".", 4f);
             yield return UpdateSajak("We're going to the Bonus Round!", 2f);
@@ -308,6 +304,38 @@ public class RoundRunner : MonoBehaviour {
         NextRoundCanvas.SetActive(true);
         SolveCanvas.SetActive(false);
         SolveCanvas.GetComponent<Canvas>().enabled = true;
+    }
+
+    private string NonWinnerListForSajak() {
+        StringBuilder sb = new StringBuilder();
+        List<Player> losers = new List<Player>();
+        Player winner = PlayerList.WinningPlayer();
+
+        foreach(Player p in PlayerList.Players) {
+            if (!p.Equals(winner)) {
+                losers.Add(p);
+            }
+        }
+
+        if (losers.Count == 1) {
+            sb.Append(losers[0].Name);
+        } else if (losers.Count == 2) {
+            sb.Append(losers[0].Name);
+            sb.Append(" & ");
+            sb.Append(losers[1].Name);
+        } else {
+            for (int i = 0; i < losers.Count; i++) {
+                if (i != losers.Count - 1) {
+                    sb.Append(losers[i].Name);
+                    sb.Append(", ");
+                } else {
+                    sb.Append("& ");
+                    sb.Append(losers[i].Name);
+                }
+            }
+        }
+
+        return sb.ToString();
     }
 
     public void HighlightCurrentlyWinningPlayerText() {
