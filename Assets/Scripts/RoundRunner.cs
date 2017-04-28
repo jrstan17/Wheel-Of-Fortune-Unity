@@ -294,10 +294,10 @@ public class RoundRunner : MonoBehaviour {
         } else {
             yield return UpdateSajak(PlayerList.WinningPlayer().Name + ", you have won the game with " + PlayerList.WinningPlayer().TotalWinnings.ToString("C0") + "!", 5f);
 
-            yield return UpdateSajak("To " + NonWinnerListForSajak() + ": Thanks for playing!", 5f);
+            yield return UpdateSajak("To " + NonWinnerListForSajak() + ": Thanks for playing!", 6f);
 
             yield return UpdateSajak("Now follow me, " + PlayerList.WinningPlayer().Name + ".", 4f);
-            yield return UpdateSajak("We're going to the Bonus Round!", 2f);
+            yield return UpdateSajak("We're going to the Bonus Round!", 3f);
             buttonText.text = "CONTINUE TO\nBONUS ROUND!";
         }        
 

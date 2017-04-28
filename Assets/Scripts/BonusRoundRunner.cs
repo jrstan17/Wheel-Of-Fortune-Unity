@@ -99,27 +99,34 @@ public class BonusRoundRunner : MonoBehaviour {
 
         yield return UpdateSajak("That's right, " + Winner.Name + "!", NORMAL_SAJAK_SPEED);
 
-        yield return UpdateSajak("Let's open the envelope and see what you win...", 4f);
+        yield return UpdateSajak("Now let's open the envelope to see what you won.", 4f);
+        RoundRunner.SFXAudioTracks.Play("drumroll");
+        yield return UpdateSajak(Winner.Name + ", you'll be going home with...", 4f);
 
         Winner.TotalWinnings += PrizeAmount;
 
-        yield return UpdateSajak(Winner.Name + ", you won " + PrizeAmount.ToString("C0") + "! Congratulations!", 3f);
+        RoundRunner.MusicAudioTracks.Play("cymbal_crash");
+        RoundRunner.SFXAudioTracks.Play("cheer_applause");
+        yield return UpdateSajak(PrizeAmount.ToString("C0") + "!  Congratulations!", 7f);
 
         yield return Closeout();
     }
 
     public IEnumerator SolvedIncorrectly() {
         RoundRunner.SFXAudioTracks.Play("double_buzzer");
-        yield return UpdateSajak("I'm sorry, " + Winner.Name + ", but it looks like you're out of time.", NORMAL_SAJAK_SPEED);
-        yield return UpdateSajak("Let's see what the solution was...", 4f);
+        yield return UpdateSajak("I'm sorry, " + Winner.Name + ", but you're out of time.", NORMAL_SAJAK_SPEED);
+        yield return UpdateSajak("Let's reveal the solution.", 3f);
         yield return BoardFiller.RevealBoard();
         RoundRunner.SFXAudioTracks.Play("ah");
         yield return new WaitForSeconds(4f);
 
-        yield return UpdateSajak("Let's open the envelope and see what you would have won...", 4f);
+        yield return UpdateSajak("Now let's open the envelope to see what you would have won.", 4f);
+        RoundRunner.SFXAudioTracks.Play("drumroll");
+        yield return UpdateSajak("And you would have won...", 4f);
 
+        RoundRunner.MusicAudioTracks.Play("cymbal_crash");
         RoundRunner.SFXAudioTracks.Play("bankrupt");
-        yield return UpdateSajak(PrizeAmount.ToString("C0") + ". I'm sorry.", NORMAL_SAJAK_SPEED);
+        yield return UpdateSajak(PrizeAmount.ToString("C0") + ". I'm so sorry.", NORMAL_SAJAK_SPEED);
 
         yield return Closeout();
     }

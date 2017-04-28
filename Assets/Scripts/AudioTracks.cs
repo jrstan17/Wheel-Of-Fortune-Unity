@@ -8,10 +8,13 @@ public class AudioTracks : MonoBehaviour {
     public AudioClip LetterReveal;
     public AudioClip Buzzer;
     public AudioClip DoubleBuzzer;
+    public AudioClip Drumroll;
+    public AudioClip CymbalCrash;
     public AudioClip RoundWin;
     public AudioClip Bankrupt;
     public AudioClip Oh;
     public AudioClip Remains;
+    public AudioClip CheerApplause;
     public AudioClip Cheering;
     public AudioClip FreePlay;
     public AudioClip Prize;
@@ -58,6 +61,12 @@ public class AudioTracks : MonoBehaviour {
             AudioSource.loop = true;
         } else if (name.Equals("ah")) {
             AudioSource.clip = Ah;
+        } else if (name.Equals("drumroll")) {
+            AudioSource.clip = Drumroll;
+        } else if (name.Equals("cymbal_crash")) {
+            AudioSource.clip = CymbalCrash;
+        } else if (name.Equals("cheer_applause")) {
+            AudioSource.clip = CheerApplause;
         } else if (name.Equals("countdown")) {
             AudioSource.clip = CountdownMusic;
             AudioSource.loop = true;
