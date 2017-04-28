@@ -65,6 +65,7 @@ public class BonusRoundRunner : MonoBehaviour {
         } else if (revealed == 1) {
             yield return UpdateSajak("Looks like that's it.", NORMAL_SAJAK_SPEED);
         } else {
+            yield return new WaitForSeconds(2f);
             yield return UpdateSajak("Well, I'm sorry " + Winner.Name + ", but those letters were no help at all.", NORMAL_SAJAK_SPEED);
         }
 
@@ -74,16 +75,17 @@ public class BonusRoundRunner : MonoBehaviour {
     }
 
     internal IEnumerator StartWheelClosedDialog() {
-        RoundRunner.CategoryText.text = RoundRunner.Puzzle.Category;
+        RoundRunner.CategoryText.text = RoundRunner.Puzzle.Category;        
+        yield return UpdateSajak("The category is " + RoundRunner.Puzzle.Category + ".", 1f);
         RoundRunner.SFXAudioTracks.Play("reveal");
         BoardFiller.InitBoard();
-        yield return UpdateSajak("To begin, the category is " + RoundRunner.Puzzle.Category + ".", NORMAL_SAJAK_SPEED);
+        yield return new WaitForSeconds(4f);
 
-        yield return UpdateSajak("Now let's reveal RSTLNE to help you.", 3f);
+        yield return UpdateSajak("Let's help you by revealing RSTLNE.", 3f);
         yield return BoardFiller.RevealRSTLNE();
         yield return new WaitForSeconds(1.5f);
 
-        yield return UpdateSajak("We now need 3 more consonants and a vowel. Please enter them now.", 1f);
+        yield return UpdateSajak("Now it's your turn. Please enter 3 more consonants and a vowel.", 1f);
 
         RoundRunner.BonusRoundButtonsObject.SetActive(true);
         EventSystem.current.SetSelectedGameObject(RoundRunner.BonusInputText.gameObject);

@@ -299,7 +299,7 @@ public class RoundRunner : MonoBehaviour {
             yield return UpdateSajak("Now follow me, " + PlayerList.WinningPlayer().Name + ".", 4f);
             yield return UpdateSajak("We're going to the Bonus Round!", 3f);
             buttonText.text = "CONTINUE TO\nBONUS ROUND!";
-        }        
+        }
 
         NextRoundCanvas.SetActive(true);
         SolveCanvas.SetActive(false);
@@ -311,7 +311,7 @@ public class RoundRunner : MonoBehaviour {
         List<Player> losers = new List<Player>();
         Player winner = PlayerList.WinningPlayer();
 
-        foreach(Player p in PlayerList.Players) {
+        foreach (Player p in PlayerList.Players) {
             if (!p.Equals(winner)) {
                 losers.Add(p);
             }
@@ -437,18 +437,65 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void SubmitLetters_Clicked() {
+        if (DoesSubmitLettersHaveRSTLNE(BonusInputText.text)) {
+            SajakText.text = "Please select letters other than RSTLNE.";
+            return;
+        }
+
+        if (!AreSubmitLettersValid(BonusInputText.text)) {
+            SajakText.text = "We must have 3 unique consonants and a vowel. Please try again.";
+            return;
+        }
+
         List<char> inputedList = new List<char>();
         foreach (char c in BonusInputText.text) {
-            if (char.IsLetter(c)) {
-                char lower = char.ToLower(c);
-                inputedList.Add(lower);
-                UsedLetterText[lower - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
-                UsedLetters.Add(lower);
-            }
+            char lower = char.ToLower(c);
+            inputedList.Add(lower);
+            UsedLetterText[lower - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
+            UsedLetters.Add(lower);
         }
 
         BonusRoundRunner brn = GameObject.FindGameObjectWithTag("BonusRoundRunner").GetComponent<BonusRoundRunner>();
         StartCoroutine(brn.LettersSubmitted(inputedList));
+    }
+
+    public bool DoesSubmitLettersHaveRSTLNE(string letters) {
+        letters = letters.ToUpper();
+
+        foreach (char c in letters) {
+            if (Utilities.RSTLNE.Contains(c)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool AreSubmitLettersValid(string letters) {
+        if (letters.Length != 4) {
+            return false;
+        }
+
+        letters = letters.ToUpper();
+        int vowels = 0;
+        int consonants = 0;
+        List<char> used = new List<char>();
+
+        foreach (char c in letters) {
+            if (char.IsLetter(c) && !used.Contains(c) && !Utilities.RSTLNE.Contains(c)) {
+                if (Utilities.IsVowel(c)) {
+                    vowels++;
+                } else {
+                    consonants++;
+                }
+
+                used.Add(c);
+            } else {
+                return false;
+            }
+        }
+
+        return (vowels == 1 && consonants == 3);
     }
 
     public void WheelWindowClosed() {
@@ -467,11 +514,10 @@ public class RoundRunner : MonoBehaviour {
             string no = yes + " It's now your turn, " + PlayerList.NextPlayersName() + ".";
             StartCoroutine(AskIfFreePlay(yes, no));
         } else if (CurrentType == WedgeType.Million) {
-            //AudioTracks.Play("buzzer");
-            SajakText.text = "Million Dollar Wedge! Now make your guess count!";            
+            SajakText.text = SajakText.text = "You've landed on the Million Dollar wedge! The current value is " + CurrentWedge.Value + ".";
             IsTimeForLetter = true;
         } else if (CurrentType == WedgeType.Prize) {
-            SajakText.text = "Prize Wedge! Now make your guess count!";
+            SajakText.text = "You've landed on the Prize wedge! The current value is " + CurrentWedge.Value + ".";
             IsTimeForLetter = true;
         } else if (CurrentType == WedgeType.HighAmount) {
             SajakText.text = CurrentWedge.Value.ToString("C0") + "! Now make your guess count!";
@@ -600,10 +646,10 @@ public class RoundRunner : MonoBehaviour {
                         }
                     } else {
                         SajakText.text += ".";
-                    }                    
+                    }
                 } else {
                     SFXAudioTracks.Play("buzzer");
-                    yield return StartCoroutine(AskIfFreePlay("There are no " + char.ToUpper(letter) + "'s.", "There are no " + char.ToUpper(letter) + "'s. It's your turn, " + PlayerList.NextPlayersName() + "."));                    
+                    yield return StartCoroutine(AskIfFreePlay("There are no " + char.ToUpper(letter) + "'s.", "There are no " + char.ToUpper(letter) + "'s. It's your turn, " + PlayerList.NextPlayersName() + "."));
                 }
 
                 UsedLetters.Add(letter);
@@ -633,7 +679,7 @@ public class RoundRunner : MonoBehaviour {
                     yield return StartCoroutine(AskIfFreePlay(yes, no));
                 }
 
-                SFXAudioTracks.Play("buzzer");                
+                SFXAudioTracks.Play("buzzer");
             }
 
             ShouldBeVowel = false;
