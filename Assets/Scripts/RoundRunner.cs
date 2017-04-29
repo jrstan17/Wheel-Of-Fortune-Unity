@@ -29,6 +29,7 @@ public class RoundRunner : MonoBehaviour {
     public GameObject Background;
     public WedgeController WedgeController;
     public Populator HighScorePopulator;
+    public Texture2D CursorTexture;
 
     public GameObject PrizeCanvas;
     public Text RoundText;
@@ -64,6 +65,8 @@ public class RoundRunner : MonoBehaviour {
     internal Coroutine coroutine;
 
     void Start() {
+        Cursor.SetCursor(CursorTexture, new Vector2(0, 0), CursorMode.ForceSoftware);
+
         MainCamera.gameObject.SetActive(true);
         HighScoresCamera.gameObject.SetActive(false);
 

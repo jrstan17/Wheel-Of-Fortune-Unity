@@ -216,9 +216,7 @@ public class BoardFiller : MonoBehaviour {
         }
 
         coroutine = RevealingTimer(0.025f, LetterIndexes);
-        StartCoroutine(coroutine);
-
-        yield return 0;
+        yield return StartCoroutine(coroutine);
     }
 
     public IEnumerator RevealingTimer(float time, List<int> indexes) {

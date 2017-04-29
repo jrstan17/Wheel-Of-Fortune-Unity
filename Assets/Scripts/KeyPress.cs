@@ -119,6 +119,7 @@ public class KeyPress : MonoBehaviour {
         RPuzzleMin();
         ResetHighScores();
         AddHighScore();
+        StopSounds();
     }
 
     private void BackgroundColor() {
@@ -365,6 +366,13 @@ public class KeyPress : MonoBehaviour {
 
                 HighScore.UpdateHighScores(str, parsed);
             }
+        }
+    }
+
+    private void StopSounds() {
+        if (Splits[0].Equals("STOPSOUNDS") && Splits.Length == 1) {
+            RoundRunner.SFXAudioTracks.Stop();
+            RoundRunner.MusicAudioTracks.Stop();
         }
     }
 
