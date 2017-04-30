@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Enums;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class BonusRoundRunner : MonoBehaviour {
     public RoundRunner RoundRunner;
     public BoardFiller BoardFiller;
     public GameObject BonusSolveCanvas;
+    public GameObject PlayerBar;
     public GameObject WheelObject;
     public KeyPress KeyPress;
     public SpinWheel BonusWheelSpin;
@@ -143,6 +145,9 @@ public class BonusRoundRunner : MonoBehaviour {
         }
 
         yield return UpdateSajak(Winner.Name + ", you're leaving us with a total of " + Winner.TotalWinnings.ToString("C0") + " in cash and prizes!", 7f);
+
+        PlayerBar.SetActive(true);
+        RoundRunner.UpdatePlayerBar(WinningsType.TOTAL);
         yield return UpdateSajak("Thank you everyone for playing Wheel of Fortune! See you next time!", 0f);
     }
 

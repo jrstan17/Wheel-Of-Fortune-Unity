@@ -7868,6 +7868,7 @@ MonoBehaviour:
   RoundRunner: {fileID: 2044940848}
   BoardFiller: {fileID: 2044940850}
   BonusSolveCanvas: {fileID: 991620823}
+  PlayerBar: {fileID: 2086419857}
   WheelObject: {fileID: 1590133277}
   KeyPress: {fileID: 50168773}
   BonusWheelSpin: {fileID: 812792663}
@@ -10127,7 +10128,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextObjects:
   - {fileID: 1695377158}
-  SpriteObjects: []
   Speed: 25
 --- !u!114 &279232485
 MonoBehaviour:
@@ -76623,6 +76623,7 @@ GameObject:
   - component: {fileID: 2044940848}
   - component: {fileID: 2044940850}
   - component: {fileID: 2044940851}
+  - component: {fileID: 2044940852}
   m_Layer: 0
   m_Name: RoundRunner
   m_TagString: RoundRunner
@@ -76734,6 +76735,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorVisibleTime: 3
+--- !u!114 &2044940852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2044940847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3899d0fa802624eb87a4be120d410f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TextObjects: []
+  Speed: 50
 --- !u!1 &2049533090
 GameObject:
   m_ObjectHideFlags: 0
@@ -77331,7 +77345,6 @@ MonoBehaviour:
   TextObjects:
   - {fileID: 1401673394}
   - {fileID: 285588726}
-  SpriteObjects: []
   Speed: 50
 --- !u!1 &2064585311
 GameObject:

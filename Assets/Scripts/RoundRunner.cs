@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Enums;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -719,12 +720,12 @@ public class RoundRunner : MonoBehaviour {
         }
     }
 
-    void Update() {
-        if (!IsRoundEnded) {
-            for (int i = 0; i < PlayerBar.transform.childCount; i++) {
-                Text nameText = PlayerBar.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<Text>();
-                Text winningText = PlayerBar.transform.GetChild(i).transform.GetChild(1).gameObject.GetComponent<Text>();
+    public void UpdatePlayerBar(WinningsType winningType) {
+        for (int i = 0; i < PlayerBar.transform.childCount; i++) {
+            Text nameText = PlayerBar.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<Text>();
+            Text winningText = PlayerBar.transform.GetChild(i).transform.GetChild(1).gameObject.GetComponent<Text>();
 
+            if (winningType == WinningsType.ROUND) {
                 if (PlayerList.CurrentPlayer != null && PlayerList.CurrentPlayer.Name.Equals(nameText.text)) {
                     PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = SajakText.color;
                     nameText.color = Color.black;
@@ -736,7 +737,32 @@ public class RoundRunner : MonoBehaviour {
                 }
 
                 winningText.text = PlayerList.Players[i].RoundWinnings.ToString("C0");
+            } else {
+                if (!PlayerList.WinningPlayer().Equals(PlayerList.Players[i])) {
+                    PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.clear;
+                    nameText.color = new Color32(255, 255, 255, 125);
+                    winningText.color = new Color32(255, 255, 255, 125);
+                } else {
+                    RandomColorChanger rcc = GetComponent<RandomColorChanger>();
+                    rcc.Image = PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>();
+                    rcc.StartColorChange();
+
+                    nameText.color = Color.white;
+                    winningText.color = Color.white;
+                }
+
+                if (PlayerList.Players[i].TotalWinnings < 1000) {
+                    winningText.text = 1000.ToString("C0");
+                } else {
+                    winningText.text = PlayerList.Players[i].TotalWinnings.ToString("C0");
+                }
             }
+        }
+    }
+
+    void Update() {
+        if (!IsRoundEnded && !IsBonusRound) {
+            UpdatePlayerBar(WinningsType.ROUND);
         }
     }
 

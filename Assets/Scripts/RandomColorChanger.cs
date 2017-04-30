@@ -6,32 +6,23 @@ using UnityEngine.UI;
 public class RandomColorChanger : MonoBehaviour {
 
     public Text[] TextObjects;
-    public SpriteRenderer[] SpriteObjects;
+    internal Image Image;
     public float Speed;
 
     internal Color32 start;
     internal Color32 finish;
     internal static bool isStarted = false;
     internal float elapsedTime = 0;
-    internal List<SpriteRenderer> Subset;
 
 	// Use this for initialization
 	void Start () {
         start = GetRandomColor();
         finish = GetRandomColor();
-
-        Subset = new List<SpriteRenderer>();
     }
 	
 	public void StartColorChange() {
         isStarted = true;
         StartCoroutine(Next());
-    }
-
-    public void SetSubset(List<Trilon> trilons) {
-        foreach(SpriteRenderer sr in SpriteObjects) {
-            Subset.Add(sr);
-        }
     }
 
     public void StopColorChange() {
@@ -51,10 +42,8 @@ public class RandomColorChanger : MonoBehaviour {
                 }
             }
 
-            if (Subset != null && Subset.Count != 0) {
-                foreach (SpriteRenderer sr in Subset) {
-                    sr.color = nextColor;
-                }
+            if (Image != null) {
+                Image.color = nextColor;
             }
 
             elapsedTime += (Speed / 1000);
