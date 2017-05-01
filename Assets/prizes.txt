@@ -1,15 +1,3 @@
-A Vacation to the Scrub Island Resort in the British Virgin Islands	a British Virgin Island vacation	7362
-A Trip to the Breezes Bahamas Resort & Spa in the Bahamas	a trip to the Bahamas	7002
-A Stay at the Hyatt Regency Resort in Lahaina, Hawaii	a stay in Maui	10250
-A Vacation to Morritt's Tortuga Club in the Cayman Islands	a vacation to the Cayman Islands	8119
-A Greece Tour courtesy of Collette Vacations	a tour of Greece	11669
-A Trip to the Peace Lodge in Costa Rica	a trip to Costa Rica	6190
-A Stay at the Oneiro Resort in Cluj-Napoca,Romania	a stay in Romania	8017
-A Vacation to the Divi Little Bay Resort on Saint-Martin Island	a vacation to Saint-Martin Island	6295
-A Croatia Tour courtest of Collette Vacations	a tour of Croatia	10595
-A Trip to the Diva Phoenix Beach Resort in Aruba	a trip to Aruba	7398
-A Stay at Hotel Dorado Pacifico in Ixtapa, Mexico	a trip to Ixtapa, Mexico	5984
-A Vaction at the Crown Reed Resort in Myrtle Beach	a vacation to Myrtle Beach	5700
 A River Cruise by American Cruise Lines to New Orleans	a river cruise to New Orleans	9964
 A Stay at the Verandah Resort in Antigua	a trip to Antigua	7040
 A Trip to Jamaica	a trip to Jamaica	6765
@@ -22,3 +10,35 @@ A Trip to London & Paris by Collette Vacations	a trip to London & Paris	10720
 A Stay at St. James's Club in Morgan Bay, St. Lucia	a trip to the Caribbean	7233
 A Trip to the Sandals LaSource Resort in St. George's, Grenada	a trip to Grenada	7890
 A Stay at the Gamboa Rainforest Resort in Panama City	a vacation to Panama	6069
+A Vacation to the Scrub Island Resort in the British Virgin Islands	a British Virgin Island vacation	7362
+A Trip to the Breezes Bahamas Resort & Spa in the Bahamas	a trip to the Bahamas	7002
+A Stay at the Hyatt Regency Resort in Lahaina, Hawaii	a stay in Maui	10250
+A Vacation to Morritt's Tortuga Club in the Cayman Islands	a vacation to the Cayman Islands	8119
+A Greece Tour courtesy of Collette Vacations	a tour of Greece	11669
+A Trip to the Peace Lodge in Costa Rica	a trip to Costa Rica	6190
+A Stay at the Oneiro Resort in Cluj-Napoca,Romania	a stay in Romania	8017
+A Vacation to the Divi Little Bay Resort on Saint-Martin Island	a vacation to Saint-Martin Island	6295
+A Croatia Tour courtest of Collette Vacations	a tour of Croatia	10595
+A Trip to the Diva Phoenix Beach Resort in Aruba	a trip to Aruba	7398
+A Stay at the Hyatt Regency Hotel at Waikiki Beach	a visit to Waikiki Beach	7254
+A Vacation to Madrid courtesy of Madrid.buzz	a vacation to Madrid	7816
+A Vacation to Westin Dawn Beach Resort & Spa in Sint Maarten, Caribbean	a vacation to the Caribbean	8239
+A Vacation to Riu Bambu in the Dominican Republic	a vacation to the Dominican Republic	7151
+A shopping spree courtesy of ShopYourWay.com	a Shop Your Way shopping spree	7662
+A Vacation to the Azul Ocean Club in Costa Rica	a vacation to Costa Rica	6947
+A Tour of Ireland via Aer Lingus Vacation Store	a tour of Ireland	6130
+A Stay at Galley Bay Resort in Antigua	a stay in Antigua	9113
+A Stay at the Aston Lakeland Village at Lake Tahoe	a stay at Lake Tahoe	6794
+A Trip to the Long Bay Beach Club in the British Virgin Islands	a British Virgin Island vacation	6845
+A Shopping Spree courtesy of Overstock.com	An Overstock shopping spree	6130
+A Trip to Iberostar Rose Hall Beach in Montego Bay, Jamaica	a trip to Jamaica	6833
+A Beyond The Rack Gift Certificate	a gift certificate	6130
+A Trip to Frenchman's Reef Marriott in the Caribbean	a trip to the Caribbean	6947
+A Nissan Versa Note S	a Nissan	15299
+A Stay at Hilton Waikoloa Village in Hawaii	a stay in Hawaii	6961
+A New Brunswick Tour courtesy of Caravan.com	a tour of New Brunswick	6130
+An Aruba Tour courtesy of Hotels.com	an Aruba tour	7151
+A Stay at the Chongwe River Camp in Zambia	a stay in Zambia	9227
+A Tour of the Canadian Rockies courtesy of Caravan.com	a tour of the Rockies	6151
+A Stay at Riu Bambu in The Dominican Republic	a stay in the Dominican Republic	7177
+A Stay at Si Como No in Costa Rica	a stay in Costa Rica	7103
