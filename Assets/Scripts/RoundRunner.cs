@@ -263,7 +263,7 @@ public class RoundRunner : MonoBehaviour {
         IsRoundEnded = true;
         SolveCanvas.GetComponent<Canvas>().enabled = false;
 
-        PlayerList.CurrentPlayer.MovePrizeToBank();
+        
 
         if (PlayerList.CurrentPlayer.RoundWinnings < 1000) {
             PlayerList.CurrentPlayer.RoundWinnings = 1000;
@@ -277,16 +277,31 @@ public class RoundRunner : MonoBehaviour {
         Debug.Log(pieceOne);
 
         SajakText.text = pieceOne + ", " + PlayerList.CurrentPlayer.Name + ". ";
-
-        SajakText.text += "You've won " + PlayerList.CurrentPlayer.RoundWinnings.ToString("C0") + " for Round " + RoundNumber + "!";
-
         yield return new WaitForSeconds(5f);
 
-        PlayerList.TransferRoundToTotalForCurrentPlayer();
+        if (PlayerList.CurrentPlayer.HasPrize()) {
+            SajakText.text = "You've won " + PlayerList.CurrentPlayer.RoundWinnings.ToString("C0") + " in cash";
+            yield return new WaitForSeconds(5f);
+            SajakText.text = "As well as " + PlayerList.CurrentPlayer.RoundPrize.Value.ToString("C0") + " for " + PlayerList.CurrentPlayer.RoundPrize.SajakText + "!";
+            yield return new WaitForSeconds(5f);
+
+            PlayerList.CurrentPlayer.MovePrizeToBank();
+
+            SajakText.text = "Bringing you to a total of " + PlayerList.CurrentPlayer.RoundWinnings.ToString("C0") + " in cash and prizes for Round" + RoundNumber + "!";
+
+            PlayerList.TransferRoundToTotalForCurrentPlayer();
+
+            yield return new WaitForSeconds(8f);
+        } else {            
+            SajakText.text += "You've won " + PlayerList.CurrentPlayer.RoundWinnings.ToString("C0") + " for Round " + RoundNumber + "!";
+            PlayerList.TransferRoundToTotalForCurrentPlayer();
+            yield return new WaitForSeconds(5f);
+        }
+
         HighlightCurrentlyWinningPlayerText();
 
         if (RoundNumber != MaxRounds) {
-            SajakText.text = "Here are the totals won so far.";
+            SajakText.text = "Here are the totals so far.";
             yield return new WaitForSeconds(3.5f);
         }
 
@@ -664,7 +679,7 @@ public class RoundRunner : MonoBehaviour {
                     if (CurrentWedge.WedgeType == WedgeType.Prize && !PlayerList.CurrentPlayer.HasPrize()) {
                         PlayerList.CurrentPlayer.RoundPrize = Prize;
                         WedgeController.TogglePrizeWedge(GetWheelIndex(), false);
-                        SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up the Prize wedge!");
+                        SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up the Prize wedge worth " + Prize.Value.ToString("C0") + "!");
                     } else if (CurrentWedge.WedgeType == WedgeType.Million && !PlayerList.CurrentPlayer.HasMillionWedge) {
                         PlayerList.CurrentPlayer.HasMillionWedge = true;
                         WedgeController.RemoveMillionWedge(GetWheelIndex());

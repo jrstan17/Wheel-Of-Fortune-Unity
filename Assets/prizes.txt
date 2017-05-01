@@ -1,3 +1,15 @@
+A Vacation to the Scrub Island Resort in the British Virgin Islands	a British Virgin Island vacation	7362
+A Trip to the Breezes Bahamas Resort & Spa in the Bahamas	a trip to the Bahamas	7002
+A Stay at the Hyatt Regency Resort in Lahaina, Hawaii	a stay in Maui	10250
+A Vacation to Morritt's Tortuga Club in the Cayman Islands	a vacation to the Cayman Islands	8119
+A Greece Tour courtesy of Collette Vacations	a tour of Greece	11669
+A Trip to the Peace Lodge in Costa Rica	a trip to Costa Rica	6190
+A Stay at the Oneiro Resort in Cluj-Napoca,Romania	a stay in Romania	8017
+A Vacation to the Divi Little Bay Resort on Saint-Martin Island	a vacation to Saint-Martin Island	6295
+A Croatia Tour courtest of Collette Vacations	a tour of Croatia	10595
+A Trip to the Diva Phoenix Beach Resort in Aruba	a trip to Aruba	7398
+A Stay at Hotel Dorado Pacifico in Ixtapa, Mexico	a trip to Ixtapa, Mexico	5984
+A Vaction at the Crown Reed Resort in Myrtle Beach	a vacation to Myrtle Beach	5700
 A River Cruise by American Cruise Lines to New Orleans	a river cruise to New Orleans	9964
 A Stay at the Verandah Resort in Antigua	a trip to Antigua	7040
 A Trip to Jamaica	a trip to Jamaica	6765
@@ -10,13 +22,3 @@ A Trip to London & Paris by Collette Vacations	a trip to London & Paris	10720
 A Stay at St. James's Club in Morgan Bay, St. Lucia	a trip to the Caribbean	7233
 A Trip to the Sandals LaSource Resort in St. George's, Grenada	a trip to Grenada	7890
 A Stay at the Gamboa Rainforest Resort in Panama City	a vacation to Panama	6069
-A Vacation to the Scrub Island Resort in the British Virgin Islands	a British Virgin Island vacation	7362
-A Trip to the Breezes Bahamas Resort & Spa in the Bahamas	a trip to the Bahamas	7002
-A Stay at the Hyatt Regency Resort in Lahaina, Hawaii	a stay in Maui	10250
-A Vacation to Morritt's Tortuga Club in the Cayman Islands	a vacation to the Cayman Islands	8119
-A Greece Tour courtesy of Collette Vacations	a tour of Greece	11669
-A Trip to the Peace Lodge in Costa Rica	a trip to Costa Rica	6190
-A Stay at the Oneiro Resort in Cluj-Napoca,Romania	a stay in Romania	8017
-A Vacation to the Divi Little Bay Resort on Saint-Martin Island	a vacation to Saint-Martin Island	6295
-A Croatia Tour courtest of Collette Vacations	a tour of Croatia	10595
-A Trip to the Diva Phoenix Beach Resort in Aruba	a trip to Aruba	7398

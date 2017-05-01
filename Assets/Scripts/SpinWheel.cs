@@ -67,7 +67,7 @@ public class SpinWheel : MonoBehaviour {
             transform.eulerAngles = new Vector3(0.0f, 0.0f, angle + startAngle);
             timer += Time.deltaTime;
 
-            if (isDebugSpin && RoundRunner.CurrentWedge.Text.Equals(debugWedgeText)) {
+            if (RoundRunner.CurrentWedge != null && isDebugSpin && RoundRunner.CurrentWedge.Text.Equals(debugWedgeText)) {
                 break;
             }
 
