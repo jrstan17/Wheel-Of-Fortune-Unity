@@ -42,3 +42,11 @@ A Stay at the Chongwe River Camp in Zambia	a stay in Zambia	9227
 A Tour of the Canadian Rockies courtesy of Caravan.com	a tour of the Rockies	6151
 A Stay at Riu Bambu in The Dominican Republic	a stay in the Dominican Republic	7177
 A Stay at Si Como No in Costa Rica	a stay in Costa Rica	7103
+A Tour of Morocco by Intrepid Travel	a tour of Morocco	7689
+A Cruise to the Caribbean by Costa Cruises	a Caribbean cruise	6151
+A Vacation to the Crane Resort in Barbados	a vacation to Barbados	8653
+A Cruise through the Mediterranean Sea	a Mediterranean cruise	6664
+A Vacation to the Oasis at Sunset Resort in Jamaica	a vacation to Jamaica	9631
+A Tour of Sydney, Australia courtesy of Sydney.buzz	a tour of Sydney	8714
+A Trip to the Napili Kai Beach Resort in Maui	a trip to Maui	6971
+A Tour of the French Riviera and Paris	a tour of Paris	11683
