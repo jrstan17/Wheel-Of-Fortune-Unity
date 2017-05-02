@@ -1,3 +1,4 @@
+A Stay at Quail Lodge & Golf Club in Carmel Valley, California	a stay in Carmel Valley, CA	8045
 A River Cruise by American Cruise Lines to New Orleans	a river cruise to New Orleans	9964
 A Stay at the Verandah Resort in Antigua	a trip to Antigua	7040
 A Trip to Jamaica	a trip to Jamaica	6765
@@ -50,3 +51,9 @@ A Vacation to the Oasis at Sunset Resort in Jamaica	a vacation to Jamaica	9631
 A Tour of Sydney, Australia courtesy of Sydney.buzz	a tour of Sydney	8714
 A Trip to the Napili Kai Beach Resort in Maui	a trip to Maui	6971
 A Tour of the French Riviera and Paris	a tour of Paris	11683
+A Tour of Honolulu, Hawaii courtesy of Honolulu.buzz	a tour of Honolulu	7643
+A Vacation at the Qamea Resort & Spa in Fiji	a vacation in Fiji	9362
+A Vacation at the Bolongo Bay Beach Resort in the Virgin Islands	a vacation to the Virgin Islands	6540
+A Tour of Italy courtesy of Collette Vacations	a tour of Italy	9577
+A Vacation to the Coconut Bay Beach Resort & Spa in Saint Lucia	a vacation in St. Lucia	9477
+A Tour of London by Lonely Planet Tours	a tour of London	7713
