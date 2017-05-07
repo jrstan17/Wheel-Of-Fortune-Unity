@@ -20,7 +20,6 @@ public class WedgeController : MonoBehaviour {
             foreach (Transform child in children) {
                 if (child.name.Equals("Collider12")) {
                     newWedgeEntered = child.gameObject.GetComponent<NewWedgeEntered>();
-                    newWedgeEntered.UseAlternativeWedge = true;
                     break;
                 }
             }
@@ -43,7 +42,6 @@ public class WedgeController : MonoBehaviour {
         foreach (Transform child in children) {
             if (child.name.Equals("Collider19")) {
                 newWedgeEntered = child.gameObject.GetComponent<NewWedgeEntered>();
-                newWedgeEntered.UseAlternativeWedge = !enable;
                 break;
             }
         }

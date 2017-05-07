@@ -28,7 +28,6 @@ public class RoundRunner : MonoBehaviour {
     public GameObject PlayerBar;
     public GameObject SajackPanel;
     public GameObject Background;
-    public WedgeController WedgeController;
     public Populator HighScorePopulator;
     public Texture2D CursorTexture;
 
@@ -160,8 +159,18 @@ public class RoundRunner : MonoBehaviour {
         int wheelIndex = GetWheelIndex();
         Debug.Log(wheelIndex);
         WheelCanvas = WheelCanvases[wheelIndex];
-        WedgeController.TogglePrizeWedge(wheelIndex, true);
-        SpinWheel spinWheel = WheelCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
+
+        if (RoundNumber != MaxRounds) {
+            GameObject WheelBaseObject = WheelCanvas.transform.GetChild(0).gameObject;
+            WedgeChangeContainer millionChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[0];
+            if (PlayerList.DoesSomeoneHaveMillionWedge()) {
+                millionChange.ToggleAfter();
+            } else {
+                millionChange.ToggleBefore();
+            }
+        }
+
+        SpinWheel spinWheel = WheelCanvas.transform.GetChild(0).gameObject.GetComponent<SpinWheel>();
         spinWheel.Randomize();
 
         EventSystem.current.SetSelectedGameObject(gameObject);
@@ -263,7 +272,7 @@ public class RoundRunner : MonoBehaviour {
         IsRoundEnded = true;
         SolveCanvas.GetComponent<Canvas>().enabled = false;
 
-        
+
 
         if (PlayerList.CurrentPlayer.RoundWinnings < 1000) {
             PlayerList.CurrentPlayer.RoundWinnings = 1000;
@@ -283,16 +292,16 @@ public class RoundRunner : MonoBehaviour {
             SajakText.text = "You've won " + PlayerList.CurrentPlayer.RoundWinnings.ToString("C0") + " in cash";
             yield return new WaitForSeconds(5f);
             SajakText.text = "As well as " + PlayerList.CurrentPlayer.RoundPrize.Value.ToString("C0") + " for " + PlayerList.CurrentPlayer.RoundPrize.SajakText + "!";
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(6f);
 
             PlayerList.CurrentPlayer.MovePrizeToBank();
 
-            SajakText.text = "Bringing you to a total of " + PlayerList.CurrentPlayer.RoundWinnings.ToString("C0") + " in cash and prizes for Round" + RoundNumber + "!";
+            SajakText.text = "Bringing you to a total of " + PlayerList.CurrentPlayer.RoundWinnings.ToString("C0") + " for Round " + RoundNumber + "!";
 
             PlayerList.TransferRoundToTotalForCurrentPlayer();
 
             yield return new WaitForSeconds(8f);
-        } else {            
+        } else {
             SajakText.text += "You've won " + PlayerList.CurrentPlayer.RoundWinnings.ToString("C0") + " for Round " + RoundNumber + "!";
             PlayerList.TransferRoundToTotalForCurrentPlayer();
             yield return new WaitForSeconds(5f);
@@ -559,7 +568,17 @@ public class RoundRunner : MonoBehaviour {
         SajakText.text = "You're bankrupt, " + p.Name + ". I'm very sorry.";
         p.RoundWinnings = 0;
         p.RoundPrize = null;
-        p.HasMillionWedge = false;
+
+        if (p.HasMillionWedge) {
+            p.HasMillionWedge = false;
+
+            if (GetWheelIndex() != WheelCanvases.Length - 1) {
+                GameObject WheelBaseObject = WheelCanvas.transform.GetChild(0).gameObject;
+                WedgeChangeContainer millionChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[0];
+                millionChange.ToggleBefore();
+            }
+        }
+
         p.FreePlays = 0;
     }
 
@@ -678,11 +697,24 @@ public class RoundRunner : MonoBehaviour {
 
                     if (CurrentWedge.WedgeType == WedgeType.Prize && !PlayerList.CurrentPlayer.HasPrize()) {
                         PlayerList.CurrentPlayer.RoundPrize = Prize;
-                        WedgeController.TogglePrizeWedge(GetWheelIndex(), false);
+
+                        GameObject WheelBaseObject = WheelCanvas.transform.GetChild(0).gameObject;
+                        WedgeChangeContainer prizeChange;
+                        if (RoundNumber == MaxRounds) {
+                            prizeChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[0];
+                        } else {
+                            prizeChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[1];
+                        }
+                        prizeChange.ToggleAfter();
+
                         SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up the Prize wedge worth " + Prize.Value.ToString("C0") + "!");
                     } else if (CurrentWedge.WedgeType == WedgeType.Million && !PlayerList.CurrentPlayer.HasMillionWedge) {
                         PlayerList.CurrentPlayer.HasMillionWedge = true;
-                        WedgeController.RemoveMillionWedge(GetWheelIndex());
+
+                        GameObject WheelBaseObject = WheelCanvas.transform.GetChild(0).gameObject;
+                        WedgeChangeContainer millionChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[0];
+                        millionChange.ToggleAfter();
+
                         SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up the One Million wedge!");
                     }
                 }

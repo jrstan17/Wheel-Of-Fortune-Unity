@@ -84,4 +84,14 @@ public static class PlayerList {
             CurrentPlayer = Players[CurrentIndex];
         }
     }
+
+    public static bool DoesSomeoneHaveMillionWedge() {
+        foreach(Player p in Players) {
+            if (p.HasMillionWedge) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

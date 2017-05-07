@@ -389,7 +389,7 @@ public class KeyPress : MonoBehaviour {
                     }
                 }
 
-                SpinWheel spinWheel = RoundRunner.WheelCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
+                SpinWheel spinWheel = RoundRunner.WheelCanvas.transform.GetChild(0).GetComponent<SpinWheel>();
 
                 spinWheel.debugWedgeText = removedUnderscores;
                 yield return StartCoroutine(spinWheel.Spin(true));
@@ -400,7 +400,7 @@ public class KeyPress : MonoBehaviour {
     private IEnumerator IfNoDebugField() {
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (isWheelActive) {
-                SpinWheel spinWheel = RoundRunner.WheelCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<SpinWheel>();
+                SpinWheel spinWheel = RoundRunner.WheelCanvas.transform.GetChild(0).gameObject.GetComponent<SpinWheel>();
 
                 if (!isMenuActive && !spinWheel.HasSpun) {
                     yield return StartCoroutine(spinWheel.Spin(false));

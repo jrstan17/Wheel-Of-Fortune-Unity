@@ -2,18 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WedgeData : MonoBehaviour {
+public class WedgeData {
     public int Value;
     public string Text;
     public WedgeType WedgeType;
 
-	// Use this for initialization
-	void Start () {
-        gameObject.GetComponentInChildren<TextMesh>().text = Text;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public WedgeData(int value, string text, WedgeType type) {
+        Value = value;
+        Text = text;
+        WedgeType = type;
+    }
 }
