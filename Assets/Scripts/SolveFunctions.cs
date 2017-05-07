@@ -31,26 +31,32 @@ public class SolveFunctions : MonoBehaviour {
     }
 
     public void Submit_Clicked() {
-        string solveText = SolveField.GetComponent<InputField>().text;
-        solveText = solveText.ToUpper();
-
         Countdown.StopTimer();
 
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < RoundRunner.Puzzle.Text.Length; i++) {
-            sb.Append(RoundRunner.Puzzle.Text[i]);
+        string solveText = SolveField.GetComponent<InputField>().text;
+        solveText = solveText.ToUpper();
+        solveText = RemoveSpaces(solveText);
 
-            if (RoundRunner.Puzzle.Text[i] == '-' && RoundRunner.Puzzle.Text[i+1] == ' ') {
-                i++;
-            }
-        }
+        string correct = RemoveSpaces(RoundRunner.Puzzle.Text);
 
-        if (solveText.Equals(sb.ToString())) {
+        if (solveText.Equals(correct)) {
             RoundRunner.ToggleUIButtonsParsing("all", false);
             StartCoroutine(RoundRunner.SolvedCorrectly());
         } else {
             RoundRunner.ToggleUIButtonsParsing("all", false);
             RoundRunner.SolvedIncorrectly(false);
         }
+    }
+
+    public string RemoveSpaces(string str) {
+        StringBuilder sb = new StringBuilder();
+
+        foreach(char c in str){
+            if (c != ' ') {
+                sb.Append(c);
+            }
+        }
+
+        return sb.ToString();
     }
 }
