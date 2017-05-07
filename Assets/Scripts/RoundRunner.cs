@@ -157,17 +157,22 @@ public class RoundRunner : MonoBehaviour {
         }
 
         int wheelIndex = GetWheelIndex();
-        Debug.Log(wheelIndex);
+        Debug.Log("Using Wheel #" + (wheelIndex+1));
         WheelCanvas = WheelCanvases[wheelIndex];
 
-        if (RoundNumber != MaxRounds) {
-            GameObject WheelBaseObject = WheelCanvas.transform.GetChild(0).gameObject;
+        GameObject WheelBaseObject = WheelCanvas.transform.GetChild(0).gameObject;
+        if (RoundNumber != MaxRounds) {            
             WedgeChangeContainer millionChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[0];
+            WedgeChangeContainer prizeChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[1];
+            prizeChange.ToggleBefore();
             if (PlayerList.DoesSomeoneHaveMillionWedge()) {
                 millionChange.ToggleAfter();
             } else {
                 millionChange.ToggleBefore();
             }
+        } else {
+            WedgeChangeContainer prizeChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[0];
+            prizeChange.ToggleBefore();
         }
 
         SpinWheel spinWheel = WheelCanvas.transform.GetChild(0).gameObject.GetComponent<SpinWheel>();
