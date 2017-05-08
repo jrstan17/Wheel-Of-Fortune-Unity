@@ -265,11 +265,10 @@ public class RoundRunner : MonoBehaviour {
         NewGameInit();
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
-
     }
 
     public void NewGameInit() {
-        PlayerList.Players = new List<Player>();
+        PlayerList.ResetForNewGame();
     }
 
     public IEnumerator SolvedCorrectly() {
@@ -284,8 +283,6 @@ public class RoundRunner : MonoBehaviour {
         StartCoroutine(BoardFiller.RevealBoard());
 
         string pieceOne = Utilities.RandomString(new string[] { "Congratulations", "Absolutely", "Great job", "Fantastic", "Extraordinary" });
-
-        Debug.Log(pieceOne);
 
         SajakText.text = pieceOne + ", " + PlayerList.CurrentPlayer.Name + ". ";
         yield return new WaitForSeconds(5f);
@@ -304,17 +301,12 @@ public class RoundRunner : MonoBehaviour {
 
             yield return new WaitForSeconds(8f);
         } else {
-            SajakText.text += "You've won " + PlayerList.CurrentPlayer.RoundWinnings.ToString("C0") + " for Round " + RoundNumber + "!";
+            SajakText.text = "You've won " + PlayerList.CurrentPlayer.RoundWinnings.ToString("C0") + " for Round " + RoundNumber + "!";
             PlayerList.TransferRoundToTotalForCurrentPlayer();
             yield return new WaitForSeconds(5f);
         }
 
         HighlightCurrentlyWinningPlayerText();
-
-        if (RoundNumber != MaxRounds) {
-            SajakText.text = "Here are the totals so far.";
-            yield return new WaitForSeconds(3.5f);
-        }
 
         Text buttonText = NextRoundCanvas.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
 
@@ -328,7 +320,7 @@ public class RoundRunner : MonoBehaviour {
 
             yield return UpdateSajak("Now follow me, " + PlayerList.WinningPlayer().Name + ".", 4f);
             yield return UpdateSajak("We're going to the Bonus Round!", 3f);
-            buttonText.text = "CONTINUE TO\nBONUS ROUND!";
+            buttonText.text = "CONTINUE TO\nTHE BONUS ROUND!";
         }
 
         NextRoundCanvas.SetActive(true);
@@ -785,7 +777,9 @@ public class RoundRunner : MonoBehaviour {
                     winningText.color = new Color32(255, 255, 255, 125);
                 }
 
-                winningText.text = PlayerList.Players[i].RoundWinnings.ToString("C0");
+                if (PlayerList.Players != null && PlayerList.Players.Count != 0) {
+                    winningText.text = PlayerList.Players[i].RoundWinnings.ToString("C0");
+                }
             } else {
                 if (!PlayerList.WinningPlayer().Equals(PlayerList.Players[i])) {
                     PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.clear;

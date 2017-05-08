@@ -8,6 +8,12 @@ public static class PlayerList {
     public static Player CurrentPlayer;
     private static int CurrentIndex = 0;
 
+    public static void ResetForNewGame() {
+        Players = new List<Player>();
+        CurrentPlayer = null;
+        CurrentIndex = 0;
+    }
+
     public static Player Get(string name) {
         foreach (Player p in Players) {
             if (p.Name.ToUpper().Equals(name.ToUpper())) {
