@@ -157,11 +157,11 @@ public class RoundRunner : MonoBehaviour {
         }
 
         int wheelIndex = GetWheelIndex();
-        Debug.Log("Using Wheel #" + (wheelIndex+1));
+        Debug.Log("Using Wheel #" + (wheelIndex + 1));
         WheelCanvas = WheelCanvases[wheelIndex];
 
         GameObject WheelBaseObject = WheelCanvas.transform.GetChild(0).gameObject;
-        if (RoundNumber != MaxRounds) {            
+        if (RoundNumber != MaxRounds) {
             WedgeChangeContainer millionChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[0];
             WedgeChangeContainer prizeChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[1];
             prizeChange.ToggleBefore();
@@ -261,23 +261,20 @@ public class RoundRunner : MonoBehaviour {
         BoardFiller.RefreshBoardColor();
     }
 
-    public void NewBonus_Clicked() {
-        MenuCanvas.SetActive(false);
-        KeyPress.isMenuActive = false;
-        NewBoard(true);
+    public void NewGame_Clicked() {
+        NewGameInit();
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+
     }
 
-    public void NewRegular_Clicked() {
-        MenuCanvas.SetActive(false);
-        KeyPress.isMenuActive = false;
-        NewBoard(false);
+    public void NewGameInit() {
+        PlayerList.Players = new List<Player>();
     }
 
     public IEnumerator SolvedCorrectly() {
         IsRoundEnded = true;
         SolveCanvas.GetComponent<Canvas>().enabled = false;
-
-
 
         if (PlayerList.CurrentPlayer.RoundWinnings < 1000) {
             PlayerList.CurrentPlayer.RoundWinnings = 1000;

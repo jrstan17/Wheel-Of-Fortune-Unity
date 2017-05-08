@@ -417,11 +417,6 @@ public class KeyPress : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F1)) {
-            RoundRunner.NewRegular_Clicked();
-            yield return 0;
-        }
-
         if (Input.GetKeyDown(KeyCode.F2)) {
             RoundRunner.Reveal_Clicked();
             yield return 0;
