@@ -11,6 +11,7 @@ public class RoundRunner : MonoBehaviour {
 
     public Camera MainCamera;
     public Camera HighScoresCamera;
+    public Camera PlayerCreationCamera;
     public TextAsset DataTextFile;
     public TextAsset PrizeTextFile;
     public List<GameObject> UsedLetterObjects;
@@ -64,17 +65,12 @@ public class RoundRunner : MonoBehaviour {
     internal static WedgeData CurrentWedge;
     internal Coroutine coroutine;
 
-    void Start() {
+    public void Initialize() {
         Cursor.SetCursor(CursorTexture, new Vector2(0, 0), CursorMode.ForceSoftware);
 
         MainCamera.gameObject.SetActive(true);
         HighScoresCamera.gameObject.SetActive(false);
-
-        PlayerList.Players.Add(new Player("Jason"));
-        PlayerList.Players.Add(new Player("Philip"));
-        PlayerList.Players.Add(new Player("David"));
-        PlayerList.Players.Add(new Player("Leslie"));
-        PlayerList.RandomizePlayers();
+        PlayerCreationCamera.gameObject.SetActive(false);
 
         MaxRounds = PlayerList.Players.Count + 1;
 
