@@ -30,7 +30,6 @@ public class RoundRunner : MonoBehaviour {
     public GameObject SajackPanel;
     public GameObject Background;
     public Populator HighScorePopulator;
-    public Texture2D CursorTexture;
 
     public GameObject PrizeCanvas;
     public Text RoundText;
@@ -66,8 +65,6 @@ public class RoundRunner : MonoBehaviour {
     internal Coroutine coroutine;
 
     public void Initialize() {
-        Cursor.SetCursor(CursorTexture, new Vector2(0, 0), CursorMode.ForceSoftware);
-
         MainCamera.gameObject.SetActive(true);
         HighScoresCamera.gameObject.SetActive(false);
         PlayerCreationCamera.gameObject.SetActive(false);

@@ -33,13 +33,10 @@ public class SolveFunctions : MonoBehaviour {
     public void Submit_Clicked() {
         Countdown.StopTimer();
 
-        string solveText = SolveField.GetComponent<InputField>().text;
-        solveText = solveText.ToUpper();
-        solveText = RemoveSpaces(solveText);
+        string guess = Format(SolveField.GetComponent<InputField>().text);
+        string correct = Format(RoundRunner.Puzzle.Text);
 
-        string correct = RemoveSpaces(RoundRunner.Puzzle.Text);
-
-        if (solveText.Equals(correct)) {
+        if (guess.Equals(correct)) {
             RoundRunner.ToggleUIButtonsParsing("all", false);
             StartCoroutine(RoundRunner.SolvedCorrectly());
         } else {
@@ -48,11 +45,20 @@ public class SolveFunctions : MonoBehaviour {
         }
     }
 
-    public string RemoveSpaces(string str) {
+    public string Format(string str) {
         StringBuilder sb = new StringBuilder();
 
-        foreach(char c in str){
-            if (c != ' ') {
+        string replacementWord = "AND";
+
+        for(int i = 0; i < str.Length; i++) {
+            char c = str[i];
+
+            if (!char.IsLetter(c)) {
+                if (c == '&') {
+                    sb.Append(replacementWord);
+                }
+            } else {
+                c = char.ToUpper(c);
                 sb.Append(c);
             }
         }
