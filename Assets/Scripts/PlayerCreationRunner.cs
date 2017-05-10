@@ -11,13 +11,14 @@ public class PlayerCreationRunner : MonoBehaviour {
 
     public InputField AddPlayerField;
     public GameObject PlayerBar;
-    public Text PlayerPrefab;
+    public Button PlayerPrefab;
     public RoundRunner RoundRunner;
     public Texture2D CursorTexture;
     public Button AddPlayerButton;
+    public Button StartButton;
 
+    private List<Button> playerButtons = new List<Button>();
     private List<string> names = new List<string>();
-    private List<Text> textboxes = new List<Text>();
 
     void Start() {
         Cursor.SetCursor(CursorTexture, new Vector2(0, 0), CursorMode.ForceSoftware);
@@ -30,24 +31,65 @@ public class PlayerCreationRunner : MonoBehaviour {
         }
     }
 
+    public bool ToggleStartButton() {
+        if (playerButtons.Count > 1) {
+            StartButton.interactable = true;
+        } else {
+            StartButton.interactable = false;
+        }
+
+        return StartButton.interactable;
+    }
+
     public void AddPlayer_Clicked() {
         EventSystem.current.SetSelectedGameObject(AddPlayerButton.gameObject, null);
 
         if (IsNameValid(AddPlayerField.text)) {
-            Text textClone = Instantiate(PlayerPrefab);
-            textClone.color = new Color32(0, 255, 0, 255);
-            textClone.text = AddPlayerField.text;
-            textClone.text = InsureFirstLetterUppercase(textClone.text);
-            textClone.raycastTarget = true;
-            textClone.transform.SetParent(PlayerBar.transform, false);
+            Button playerButton = Instantiate(PlayerPrefab);
+            playerButton.gameObject.SetActive(true);
+            Text playerText = playerButton.transform.GetChild(0).GetComponent<Text>();
+            playerText.color = new Color32(0, 255, 0, 255);
+            playerText.text = AddPlayerField.text;
+            playerText.text = InsureFirstLetterUppercase(playerText.text);
+            playerText.raycastTarget = true;
+            playerButton.transform.SetParent(PlayerBar.transform, false);
             AddPlayerField.text = "";
-            names.Add(textClone.text);
-            textboxes.Add(textClone);
-
-            PlayerList.Players.Add(new Player(textClone.text));
+            playerButtons.Add(playerButton);
+            ToggleStartButton();
         }
 
         EventSystem.current.SetSelectedGameObject(AddPlayerField.gameObject, null);
+    }
+
+    public void Name_Clicked(GameObject obj, PointerEventData ped) {
+        foreach (Button b in playerButtons) {
+            b.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+            b.transform.GetChild(0).GetComponent<Text>().color = new Color32(0, 255, 0, 255);
+        }
+
+        Button button = obj.GetComponent<Button>();
+        Text text = obj.transform.GetChild(0).GetComponent<Text>();
+        button.GetComponent<Image>().color = new Color32(0, 255, 0, 255);
+        text.color = new Color32(0, 0, 0, 255);
+
+        AddPlayerField.text = text.text;
+    }
+
+    public void RemovePlayer_Clicked() {
+        for (int i = 0; i < PlayerBar.transform.childCount; i++) {
+            GameObject go = PlayerBar.transform.GetChild(i).gameObject;
+            if (go.transform.GetChild(0).GetComponent<Text>().text.Equals(AddPlayerField.text)) {
+                AddPlayerField.text = "";
+                playerButtons.Remove(go.GetComponent<Button>());
+                Destroy(go);
+
+                if (!ToggleStartButton()) {
+                    EventSystem.current.SetSelectedGameObject(AddPlayerField.gameObject, null);
+                }
+
+                return;
+            }
+        }
     }
 
     private string InsureFirstLetterUppercase(string name) {
@@ -71,15 +113,23 @@ public class PlayerCreationRunner : MonoBehaviour {
     }
 
     public void StartGame_Clicked() {
+        foreach (Button b in playerButtons) {
+            names.Add(b.GetComponentInChildren<Text>().text);
+        }
+
         StartCoroutine(RandomizePlayers());
     }
 
     public IEnumerator RandomizePlayers() {
         float start = Time.time;
         float randomizeDuration = 5f;
-        
+
         while (Time.time < (start + randomizeDuration)) {
             yield return StartCoroutine(RandomizePlayerLoop());
+        }
+
+        foreach(string name in names) {
+            PlayerList.Players.Add(new Player(name));
         }
 
         PlayerList.RandomizePlayers();
@@ -90,7 +140,7 @@ public class PlayerCreationRunner : MonoBehaviour {
         List<string> temp = new List<string>();
 
         List<string> namesCopy = new List<string>();
-        foreach (string str in names) {
+        foreach(string str in names) {
             namesCopy.Add(str);
         }
 
@@ -100,10 +150,10 @@ public class PlayerCreationRunner : MonoBehaviour {
             namesCopy.RemoveAt(index);
         }
 
-        for (int i = 0; i < textboxes.Count; i++) {
-            textboxes[i].text = temp[i];
+        for (int i = 0; i < playerButtons.Count; i++) {
+            playerButtons[i].transform.GetChild(0).GetComponent<Text>().text = temp[i];
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.25f);
     }
 }
