@@ -7,10 +7,12 @@ public class RandomColorChanger : MonoBehaviour {
 
     public Text[] TextObjects;
     internal Image Image;
+    public MeshRenderer MeshRenderer;
     public SpriteRenderer Sprite;
     public float Speed;
     public byte Alpha = 255;
 
+    Material material;
     internal Color32 start;
     internal Color32 finish;
     internal static bool isStarted = false;
@@ -20,6 +22,10 @@ public class RandomColorChanger : MonoBehaviour {
 	void Start () {
         start = GetRandomColor();
         finish = GetRandomColor();
+
+        if (MeshRenderer != null) {
+            material = MeshRenderer.materials[0];
+        }
     }
 	
 	public void StartColorChange() {
@@ -52,6 +58,10 @@ public class RandomColorChanger : MonoBehaviour {
                 Sprite.color = nextColor;
             }
 
+            if (material != null) {
+                material.color = nextColor;
+            }
+
             elapsedTime += (Speed / 1000);
 
             if (elapsedTime > 1) {
@@ -60,7 +70,7 @@ public class RandomColorChanger : MonoBehaviour {
                 finish = GetRandomColor();
             }
 
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
         }        
     }
 

@@ -19,7 +19,7 @@ public class PerpetualSpinWheel : MonoBehaviour {
         while (true) {
             transform.eulerAngles = new Vector3(0.0f, 0.0f, currentAngle);
             currentAngle -= Speed;
-            yield return 0;
+            yield return new WaitForFixedUpdate();
         }
     }
 }
