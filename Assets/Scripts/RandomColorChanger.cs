@@ -7,7 +7,9 @@ public class RandomColorChanger : MonoBehaviour {
 
     public Text[] TextObjects;
     internal Image Image;
+    public SpriteRenderer Sprite;
     public float Speed;
+    public byte Alpha = 255;
 
     internal Color32 start;
     internal Color32 finish;
@@ -34,7 +36,7 @@ public class RandomColorChanger : MonoBehaviour {
             float r = Mathf.Lerp(start.r, finish.r, elapsedTime);
             float g = Mathf.Lerp(start.g, finish.g, elapsedTime);
             float b = Mathf.Lerp(start.b, finish.b, elapsedTime);
-            Color32 nextColor = new Color32((byte)r, (byte)g, (byte)b, 255);
+            Color32 nextColor = new Color32((byte)r, (byte)g, (byte)b, Alpha);
 
             if (TextObjects.Length != 0) {
                 foreach (Text t in TextObjects) {
@@ -44,6 +46,10 @@ public class RandomColorChanger : MonoBehaviour {
 
             if (Image != null) {
                 Image.color = nextColor;
+            }
+
+            if (Sprite != null) {
+                Sprite.color = nextColor;
             }
 
             elapsedTime += (Speed / 1000);
@@ -58,7 +64,7 @@ public class RandomColorChanger : MonoBehaviour {
         }        
     }
 
-    private static Color32 GetRandomColor() {
-        return new Color32((byte)Random.Range(0, 256), (byte)Random.Range(0, 256), (byte)Random.Range(0, 256), 255);
+    private Color32 GetRandomColor() {
+        return new Color32((byte)Random.Range(0, 256), (byte)Random.Range(0, 256), (byte)Random.Range(0, 256), Alpha);
     }
 }
