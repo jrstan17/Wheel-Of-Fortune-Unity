@@ -25,9 +25,9 @@ AnimationClip:
         tangentMode: 0
       - serializedVersion: 2
         time: 5.3333335
-        value: {x: 263.51, y: -15.8, z: 13.764734}
-        inSlope: {x: 61.804913, y: -7.0626707, z: 0}
-        outSlope: {x: 61.804913, y: -7.0626707, z: 0}
+        value: {x: 264, y: -149.7, z: 13.764734}
+        inSlope: {x: 62.12534, y: -77.05177, z: 0}
+        outSlope: {x: 62.12534, y: -77.05177, z: 0}
         tangentMode: 0
       - serializedVersion: 2
         time: 10.216666
@@ -240,9 +240,9 @@ AnimationClip:
         tangentMode: 136
       - serializedVersion: 2
         time: 5.3333335
-        value: 263.51
-        inSlope: 61.804913
-        outSlope: 61.804913
+        value: 264
+        inSlope: 62.12534
+        outSlope: 62.12534
         tangentMode: 136
       - serializedVersion: 2
         time: 10.216666
@@ -274,9 +274,9 @@ AnimationClip:
         tangentMode: 136
       - serializedVersion: 2
         time: 5.3333335
-        value: -15.8
-        inSlope: -7.0626707
-        outSlope: -7.0626707
+        value: -149.7
+        inSlope: -77.05177
+        outSlope: -77.05177
         tangentMode: 136
       - serializedVersion: 2
         time: 10.216666
@@ -357,4 +357,11 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 10.216666
+    functionName: Destroy
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
