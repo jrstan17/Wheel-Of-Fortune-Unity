@@ -63,14 +63,14 @@ public class PlayerCreationRunner : MonoBehaviour {
 
     public void Name_Clicked(GameObject obj, PointerEventData ped) {
         foreach (Button b in playerButtons) {
-            b.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-            b.transform.GetChild(0).GetComponent<Text>().color = new Color32(0, 255, 0, 255);
+            b.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            b.transform.GetChild(0).GetComponent<Text>().color = new Color32(128, 128, 128, 255);
         }
 
         Button button = obj.GetComponent<Button>();
         Text text = obj.transform.GetChild(0).GetComponent<Text>();
-        button.GetComponent<Image>().color = new Color32(0, 255, 0, 255);
-        text.color = new Color32(0, 0, 0, 255);
+        button.GetComponent<Image>().color = new Color32(0, 0, 0, 255);
+        text.color = new Color32(200, 200, 200, 255);
 
         AddPlayerField.text = text.text;
     }

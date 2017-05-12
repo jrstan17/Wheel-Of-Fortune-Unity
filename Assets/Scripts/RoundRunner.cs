@@ -11,7 +11,7 @@ public class RoundRunner : MonoBehaviour {
 
     public Camera MainCamera;
     public Camera HighScoresCamera;
-    public Camera PlayerCreationCamera;
+    public Camera TitleCamera;
     public TextAsset DataTextFile;
     public TextAsset PrizeTextFile;
     public List<GameObject> UsedLetterObjects;
@@ -67,7 +67,7 @@ public class RoundRunner : MonoBehaviour {
     public void Initialize() {
         MainCamera.gameObject.SetActive(true);
         HighScoresCamera.gameObject.SetActive(false);
-        PlayerCreationCamera.gameObject.SetActive(false);
+        TitleCamera.gameObject.SetActive(false);
 
         MaxRounds = PlayerList.Players.Count + 1;
 
@@ -845,6 +845,7 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void StartRound_Clicked() {
+        MusicAudioTracks.Stop();
         PrizeCanvas.SetActive(false);
         NewBoard(false);
     }
