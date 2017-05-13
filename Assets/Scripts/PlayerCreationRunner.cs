@@ -13,15 +13,13 @@ public class PlayerCreationRunner : MonoBehaviour {
     public GameObject PlayerBar;
     public Button PlayerPrefab;
     public RoundRunner RoundRunner;
-    public Texture2D CursorTexture;
     public Button AddPlayerButton;
     public Button StartButton;
 
     private List<Button> playerButtons = new List<Button>();
     private List<string> names = new List<string>();
 
-    void Start() {
-        Cursor.SetCursor(CursorTexture, new Vector2(0, 0), CursorMode.ForceSoftware);
+    void Start() {        
         EventSystem.current.SetSelectedGameObject(AddPlayerField.gameObject, null);
     }
 

@@ -11,6 +11,8 @@ public class TitleRunner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Cursor.visible = false;
+        CursorToggler.ToggleCursor(false);
         MusicTracks.Play("theme");
         BackgroundRCC.StartColorChange();
         JasonWedgeReplacer.StartJasonTimer();
@@ -19,9 +21,4 @@ public class TitleRunner : MonoBehaviour {
             rcc.StartColorChange();
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
