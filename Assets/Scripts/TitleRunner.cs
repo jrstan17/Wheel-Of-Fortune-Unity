@@ -5,19 +5,17 @@ using UnityEngine;
 public class TitleRunner : MonoBehaviour {
 
     public AudioTracks MusicTracks;
-    public RandomColorChanger BackgroundRCC;
-    public RandomColorChanger[] BoardRCCS;
+    public RandomColorChanger[] ColorChangersToBoot;
     public MeWedgeReplacer JasonWedgeReplacer;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         Cursor.visible = false;
         CursorToggler.ToggleCursor(false);
         MusicTracks.Play("theme");
-        BackgroundRCC.StartColorChange();
         JasonWedgeReplacer.StartJasonTimer();
 
-        foreach(RandomColorChanger rcc in BoardRCCS) {
+        foreach(RandomColorChanger rcc in ColorChangersToBoot) {
             rcc.StartColorChange();
         }
     }
