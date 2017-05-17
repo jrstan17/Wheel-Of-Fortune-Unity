@@ -9,6 +9,7 @@ public class RandomColorChanger : MonoBehaviour {
     internal Image Image;
     public MeshRenderer MeshRenderer;
     public SpriteRenderer Sprite;
+    public Light Light;
     public float Speed;
     public byte Alpha = 255;
 
@@ -38,7 +39,7 @@ public class RandomColorChanger : MonoBehaviour {
     }
 
     private IEnumerator Next() {
-        while (isStarted) {
+        while (isStarted && Speed != 0) {
             float r = Mathf.Lerp(start.r, finish.r, elapsedTime);
             float g = Mathf.Lerp(start.g, finish.g, elapsedTime);
             float b = Mathf.Lerp(start.b, finish.b, elapsedTime);
@@ -60,6 +61,10 @@ public class RandomColorChanger : MonoBehaviour {
 
             if (material != null) {
                 material.color = nextColor;
+            }
+
+            if (Light != null) {
+                Light.color = nextColor;
             }
 
             elapsedTime += (Speed / 1000);
