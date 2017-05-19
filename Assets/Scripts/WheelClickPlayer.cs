@@ -17,16 +17,16 @@ public class WheelClickPlayer : MonoBehaviour {
     }
 
     private void Update() {
-        int playing = 0;
+        //int playing = 0;
 
-        foreach(AudioSource source in Clicks) {
-            if (source.isPlaying) {
-                playing++;
-            }
-        }
+        //foreach(AudioSource source in Clicks) {
+        //    if (source.isPlaying) {
+        //        playing++;
+        //    }
+        //}
 
-        if (playing == Clicks.Length) {
-            Debug.LogWarning("Wheel click audio overflow!");
-        }
+        //if (playing == Clicks.Length) {
+        //    Debug.LogWarning("Wheel click audio overflow!");
+        //}
     }
 }

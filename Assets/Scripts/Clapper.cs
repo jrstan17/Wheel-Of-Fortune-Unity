@@ -10,13 +10,25 @@ public class Clapper : MonoBehaviour {
     public AudioClip ClapFinish;
 
     public IEnumerator Play() {
-        ClapSource.clip = ClapStart;
-        ClapSource.Play();
-        yield return new WaitForSeconds(ClapStart.length);
+        if (ClapSource.clip != ClapSustain) {
+            ClapSource.clip = ClapStart;
+            ClapSource.Play();
+            yield return new WaitForSeconds(ClapStart.length);
+        }
 
         ClapSource.loop = true;
         ClapSource.clip = ClapSustain;
         ClapSource.Play();
+    }
+
+    public IEnumerator PlayFor(float seconds) {
+        if (ClapSource.clip == ClapSustain && ClapSource.isPlaying) {
+            seconds += ClapStart.length;
+        }
+
+        yield return Play();
+        yield return new WaitForSeconds(seconds);
+        Stop();
     }
 
     public void Stop() {

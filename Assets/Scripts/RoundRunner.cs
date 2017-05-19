@@ -30,6 +30,7 @@ public class RoundRunner : MonoBehaviour {
     public GameObject SajackPanel;
     public GameObject Background;
     public Populator HighScorePopulator;
+    public Clapper Clapper;
 
     public GameObject PrizeCanvas;
     public Text RoundText;
@@ -274,6 +275,7 @@ public class RoundRunner : MonoBehaviour {
 
         SFXAudioTracks.Play("round_win");
         StartCoroutine(BoardFiller.RevealBoard());
+        StartCoroutine(Clapper.PlayFor(2f));
 
         string pieceOne = Utilities.RandomString(new string[] { "Congratulations", "Absolutely", "Great job", "Fantastic", "Extraordinary" });
 
@@ -652,6 +654,14 @@ public class RoundRunner : MonoBehaviour {
                 trilonsRevealed = BoardFiller.LettersRevealed;
 
                 if (!UsedLetters.Contains(letter) && trilonsRevealed > 0) {
+                    float clapSeconds = 0;
+                    float clapMinLength = Clapper.ClapStart.length + Clapper.ClapFinish.length;
+
+                    if (trilonsRevealed * 2 > clapMinLength) {
+                        clapSeconds = trilonsRevealed * 2 - clapMinLength + 1;
+                    }
+                    StartCoroutine(Clapper.PlayFor(clapSeconds));
+
                     if (trilonsRevealed == 1) {
                         SajakText.text = "There is 1 " + char.ToUpper(letter);
                     } else {
