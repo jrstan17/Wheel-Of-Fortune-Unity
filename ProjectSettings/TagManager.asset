@@ -17,6 +17,7 @@ TagManager:
   - BonusRoundRunner
   - BonusWheelObject
   - PlayerNameText
+  - WheelClickAudio
   layers:
   - Default
   - TransparentFX
