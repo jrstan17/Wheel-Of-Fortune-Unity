@@ -9,16 +9,25 @@ public class Clapper : MonoBehaviour {
     public AudioClip ClapSustain;
     public AudioClip ClapFinish;
 
-    public IEnumerator Play() {
-        if (ClapSource.clip != ClapSustain) {
-            ClapSource.clip = ClapStart;
-            ClapSource.Play();
-            yield return new WaitForSeconds(ClapStart.length);
-        }
+    AudioSource SustainSource;
+    AudioSource FinishSource;
 
-        ClapSource.loop = true;
-        ClapSource.clip = ClapSustain;
+    private void Start() {
+        SustainSource = gameObject.AddComponent<AudioSource>();
+        SustainSource.clip = ClapSustain;
+
+        FinishSource = gameObject.AddComponent<AudioSource>();
+        FinishSource.clip = ClapFinish;
+    }
+
+    public IEnumerator Play() {
+        SustainSource.loop = true;
+
+        ClapSource.clip = ClapStart;
         ClapSource.Play();
+        yield return new WaitForSeconds(ClapStart.length - 0.1f);
+
+        SustainSource.Play();
     }
 
     public IEnumerator PlayFor(float seconds) {
@@ -27,13 +36,18 @@ public class Clapper : MonoBehaviour {
         }
 
         yield return Play();
-        yield return new WaitForSeconds(seconds);
-        Stop();
+        yield return new WaitForSeconds(seconds - 0.1f);
+        yield return Stop();
     }
 
-    public void Stop() {
-        ClapSource.loop = false;
-        ClapSource.clip = ClapFinish;
-        ClapSource.Play();
+    public IEnumerator Stop() {
+        SustainSource.loop = false;
+
+        while (SustainSource.isPlaying) {
+            yield return 0;
+        }
+
+        FinishSource.clip = ClapFinish;
+        FinishSource.Play();
     }
 }

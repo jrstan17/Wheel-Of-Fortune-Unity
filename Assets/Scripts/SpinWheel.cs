@@ -9,7 +9,6 @@ public class SpinWheel : MonoBehaviour {
     public BonusRoundRunner BonusRoundRunner;
     public KeyPress KeyPress;
     public WheelClickPlayer ClickPlayer;
-    public Clapper Clapper;
 
     internal bool HasSpun;
     internal bool HasPast = false;
@@ -49,7 +48,6 @@ public class SpinWheel : MonoBehaviour {
 
         if (!spinning && !HasSpun) {
             float rndAngle = transform.eulerAngles.z + RandomGrabBag.Grab() + Random.Range(0, 1f);
-            StartCoroutine(Clapper.Play());
             yield return StartCoroutine(SpinTheWheel(SpinTime, rndAngle));
         }
     }
@@ -93,7 +91,6 @@ public class SpinWheel : MonoBehaviour {
         minAngle = DEFAULT_MIN;
         maxAngle = DEFAULT_MAX;
 
-        Clapper.Stop();
         StartCoroutine(TimesUp(waitTime));
     }
 
