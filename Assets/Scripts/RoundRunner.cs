@@ -194,7 +194,20 @@ public class RoundRunner : MonoBehaviour {
         PrizeCanvas.GetComponent<RandomColorChanger>().StartColorChange();
     }
 
-    private int GetWheelIndex() {
+    public void ToggleWildCard(bool enable) {
+        if (GetWheelIndex() != WheelCanvases.Length - 1) {
+            GameObject WheelBaseObject = WheelCanvas.transform.GetChild(0).gameObject;
+            WedgeChangeContainer wildChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[2];
+
+            if (enable) {
+                wildChange.ToggleBefore();
+            } else {
+                wildChange.ToggleAfter();
+            }
+        }
+    }
+
+    public int GetWheelIndex() {
         if (RoundNumber == 1) {
             return 0;
         } else if (RoundNumber == MaxRounds) {
@@ -546,11 +559,7 @@ public class RoundRunner : MonoBehaviour {
         } else if (CurrentType == WedgeType.Wild) {
             SajakText.text = "You have yourself a Wild card! The current value is " + CurrentWedge.Value + ".";
             IsTimeForLetter = true;
-
-            GameObject WheelBaseObject = WheelCanvas.transform.GetChild(0).gameObject;
-            WedgeChangeContainer wildChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[2];
-            wildChange.ToggleAfter();
-
+            ToggleWildCard(false);
             PlayerList.CurrentPlayer.Wilds++;
         } else if (CurrentType == WedgeType.Prize) {
             SajakText.text = "You've landed on the Prize wedge! The current value is " + CurrentWedge.Value + ".";
@@ -595,12 +604,7 @@ public class RoundRunner : MonoBehaviour {
 
         if (p.Wilds != 0) {
             p.Wilds = 0;
-
-            if (GetWheelIndex() != WheelCanvases.Length - 1) {
-                GameObject WheelBaseObject = WheelCanvas.transform.GetChild(0).gameObject;
-                WedgeChangeContainer wildChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[2];
-                wildChange.ToggleBefore();
-            }
+            ToggleWildCard(true);
         }
 
         p.FreePlays = 0;

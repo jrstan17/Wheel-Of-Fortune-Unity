@@ -100,6 +100,8 @@ public class KeyPress : MonoBehaviour {
                     RoundRunner.ItemManager.ToggleWild(false);
                 }
 
+
+
                 RoundRunner.ToggleUIButtons();
             } else if (Input.GetKeyUp(KeyCode.N)) {
                 IsTimeForWildDecision = false;
