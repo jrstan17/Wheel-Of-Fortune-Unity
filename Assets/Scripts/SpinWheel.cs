@@ -79,11 +79,20 @@ public class SpinWheel : MonoBehaviour {
         float waitTime = 1f;
 
         if (!IsBonusSpin) {
-            if (RoundRunner.CurrentWedge.WedgeType == WedgeType.HighAmount || RoundRunner.CurrentWedge.WedgeType == WedgeType.TenThousand) {
+            WedgeType currentType = RoundRunner.CurrentWedge.WedgeType;
+
+            if (currentType == WedgeType.HighAmount || currentType == WedgeType.TenThousand) {
                 RoundRunner.SFXAudioTracks.Play("oh");
-            } else if (RoundRunner.CurrentWedge.WedgeType == WedgeType.FreePlay || RoundRunner.CurrentWedge.WedgeType == WedgeType.Prize || RoundRunner.CurrentWedge.WedgeType == WedgeType.Million) {
+            } else if (currentType == WedgeType.FreePlay || currentType == WedgeType.Prize || currentType == WedgeType.Million || currentType == WedgeType.Wild) {
                 RoundRunner.SFXAudioTracks.Play("freeplay");
                 waitTime = 2f;
+            }
+
+            ItemManager itemManager = RoundRunner.ItemManager;
+            if (currentType == WedgeType.FreePlay) {
+                itemManager.ToggleFreePlay(true);
+            } else if (currentType == WedgeType.Wild) {
+                itemManager.ToggleWild(true);
             }
         }
 

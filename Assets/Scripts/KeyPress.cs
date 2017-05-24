@@ -19,6 +19,7 @@ public class KeyPress : MonoBehaviour {
     internal bool isBonusWheelActive = false;
     internal InputField DebugInputField;
     internal static bool IsTimeForFreePlayDecision = false;
+    internal static bool IsTimeForWildDecision = false;
 
     internal string[] Splits;
     List<string> History = new List<string>();
@@ -78,12 +79,32 @@ public class KeyPress : MonoBehaviour {
                 IsTimeForFreePlayDecision = false;
                 RoundRunner.SajakText.text = "Play again, " + PlayerList.CurrentPlayer.Name + ".";
                 PlayerList.CurrentPlayer.FreePlays--;
+
+                if (PlayerList.CurrentPlayer.FreePlays == 0) {
+                    RoundRunner.ItemManager.ToggleFreePlay(false);
+                }
+
                 RoundRunner.ToggleUIButtons();                
             } else if (Input.GetKeyUp(KeyCode.N)) {
                 IsTimeForFreePlayDecision = false;
                 RoundRunner.GotoNextPlayer();
                 RoundRunner.SajakText.text = "It's your turn, " + PlayerList.CurrentPlayer.Name + ".";
-                
+            }
+        } else if (IsTimeForWildDecision) {
+            if (Input.GetKeyUp(KeyCode.Y)) {
+                IsTimeForWildDecision = false;
+                RoundRunner.SajakText.text = "Please select another consonant for " + RoundRunner.CurrentWedge.Value.ToString("N0") + ".";
+                PlayerList.CurrentPlayer.Wilds--;
+
+                if (PlayerList.CurrentPlayer.Wilds == 0) {
+                    RoundRunner.ItemManager.ToggleWild(false);
+                }
+
+                RoundRunner.ToggleUIButtons();
+            } else if (Input.GetKeyUp(KeyCode.N)) {
+                IsTimeForWildDecision = false;
+                RoundRunner.IsTimeForLetter = false;
+                RoundRunner.SajakText.text = "Play again, " + PlayerList.CurrentPlayer.Name + ".";
             }
         }
     }
@@ -434,12 +455,11 @@ public class KeyPress : MonoBehaviour {
             yield return 0;
         }
 
-        if (RoundRunner.IsTimeForLetter) {
+        if (RoundRunner.IsTimeForLetter && !IsTimeForWildDecision) {
             for (char i = 'a'; i <= 'z'; i++) {
                 string strChar = (i.ToString());
                 if (Input.GetKeyDown(strChar)) {
-                    RoundRunner.coroutine = StartCoroutine(RoundRunner.LetterPressed(i));
-                    yield return RoundRunner.coroutine;
+                    yield return StartCoroutine(RoundRunner.LetterPressed(i));
                 }
             }
         }

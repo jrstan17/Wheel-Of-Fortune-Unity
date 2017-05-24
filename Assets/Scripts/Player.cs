@@ -10,6 +10,7 @@ public class Player {
     internal List<Prize> TotalPrizes { get; set; }
     public int FreePlays { get; set; }
     public bool HasMillionWedge { get; set; }
+    public int Wilds { get; set; }
 
     public Player(string name) {
         Name = name;

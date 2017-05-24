@@ -10,6 +10,7 @@ public enum WedgeType {
     LoseATurn,
     Prize,
     FreePlay,
+    Wild,
     Million,
     TenThousand
 }
