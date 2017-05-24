@@ -96,17 +96,22 @@ public class KeyPress : MonoBehaviour {
                 RoundRunner.SajakText.text = "Please select another consonant for " + RoundRunner.CurrentWedge.Value.ToString("N0") + ".";
                 PlayerList.CurrentPlayer.Wilds--;
 
+                if (WedgeRules.RoundUsesWedge(RoundRunner, WedgeType.Wild)) {
+                    GameObject WheelBaseObject = RoundRunner.WheelCanvas.transform.GetChild(0).gameObject;
+                    int index = WedgeRules.GetWedgeChangeIndex("wild", WheelBaseObject);
+                    WedgeChangeContainer wildChange = 
+                        WheelBaseObject.GetComponents<WedgeChangeContainer>()[index];
+                    wildChange.ToggleBefore();
+                }
+
                 if (PlayerList.CurrentPlayer.Wilds == 0) {
                     RoundRunner.ItemManager.ToggleWild(false);
                 }
-
-
-
-                RoundRunner.ToggleUIButtons();
             } else if (Input.GetKeyUp(KeyCode.N)) {
                 IsTimeForWildDecision = false;
                 RoundRunner.IsTimeForLetter = false;
                 RoundRunner.SajakText.text = "Play again, " + PlayerList.CurrentPlayer.Name + ".";
+                RoundRunner.ToggleUIButtons();
             }
         }
     }

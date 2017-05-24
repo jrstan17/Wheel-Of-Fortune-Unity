@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WedgeChangeContainer : MonoBehaviour {
 
+    public string RuleName;
+
     public GameObject[] BeforeColliders;
     public GameObject BeforeWedge;
     public GameObject[] AfterColliders;

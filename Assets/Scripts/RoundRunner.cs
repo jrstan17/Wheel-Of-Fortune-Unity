@@ -161,21 +161,26 @@ public class RoundRunner : MonoBehaviour {
         WheelCanvas = WheelCanvases[wheelIndex];
 
         GameObject WheelBaseObject = WheelCanvas.transform.GetChild(0).gameObject;
-        if (RoundNumber != MaxRounds) {
-            WedgeChangeContainer millionChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[0];
-            WedgeChangeContainer prizeChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[1];
-            prizeChange.ToggleBefore();
-            WedgeChangeContainer wildChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[2];
-            wildChange.ToggleBefore();
+        int index;
+
+        index = WedgeRules.GetWedgeChangeIndex("million", WheelBaseObject);
+        if (index != -1) {
+            WedgeChangeContainer millionChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[index];
+
             if (PlayerList.DoesSomeoneHaveMillionWedge()) {
                 millionChange.ToggleAfter();
             } else {
                 millionChange.ToggleBefore();
             }
-        } else {
-            WedgeChangeContainer prizeChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[0];
-            prizeChange.ToggleBefore();
-            WedgeChangeContainer wildChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[1];
+        }
+
+        index = WedgeRules.GetWedgeChangeIndex("prize", WheelBaseObject);
+        WedgeChangeContainer prizeChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[index];
+        prizeChange.ToggleBefore();
+
+        index = WedgeRules.GetWedgeChangeIndex("wild", WheelBaseObject);
+        if (index != -1) {
+            WedgeChangeContainer wildChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[index];
             wildChange.ToggleBefore();
         }
 
@@ -195,9 +200,11 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void ToggleWildCard(bool enable) {
-        if (GetWheelIndex() != WheelCanvases.Length - 1) {
+        if (WedgeRules.RoundUsesWedge(this, WedgeType.Wild)) {
             GameObject WheelBaseObject = WheelCanvas.transform.GetChild(0).gameObject;
-            WedgeChangeContainer wildChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[2];
+            int index = WedgeRules.GetWedgeChangeIndex("wild", WheelBaseObject);
+
+            WedgeChangeContainer wildChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[index];
 
             if (enable) {
                 wildChange.ToggleBefore();
@@ -595,9 +602,10 @@ public class RoundRunner : MonoBehaviour {
         if (p.HasMillionWedge) {
             p.HasMillionWedge = false;
 
-            if (GetWheelIndex() != WheelCanvases.Length - 1) {
+            if (WedgeRules.RoundUsesWedge(this, WedgeType.Million)) {
                 GameObject WheelBaseObject = WheelCanvas.transform.GetChild(0).gameObject;
-                WedgeChangeContainer millionChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[0];
+                int index = WedgeRules.GetWedgeChangeIndex("million", WheelBaseObject);
+                WedgeChangeContainer millionChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[index];
                 millionChange.ToggleBefore();
             }
         }
@@ -756,6 +764,9 @@ public class RoundRunner : MonoBehaviour {
 
                 UsedLetters.Add(letter);
                 UsedLetterText[letter - 97].color = Constants.USED_LETTER_DISABLED_COLOR;
+
+                bool hasWild = false;
+
                 if (!KeyPress.IsTimeForFreePlayDecision && trilonsRevealed > 0) {
                     yield return StartCoroutine(BoardFiller.RevealLetters(letters));
 
@@ -764,12 +775,8 @@ public class RoundRunner : MonoBehaviour {
                         ItemManager.TogglePrize(true);
 
                         GameObject WheelBaseObject = WheelCanvas.transform.GetChild(0).gameObject;
-                        WedgeChangeContainer prizeChange;
-                        if (RoundNumber == MaxRounds) {
-                            prizeChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[0];
-                        } else {
-                            prizeChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[1];
-                        }
+                        int index = WedgeRules.GetWedgeChangeIndex("prize", WheelBaseObject);
+                        WedgeChangeContainer prizeChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[index];
                         prizeChange.ToggleAfter();
 
                         SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up the Prize wedge worth " + Prize.Value.ToString("C0") + "!");
@@ -778,16 +785,20 @@ public class RoundRunner : MonoBehaviour {
                         ItemManager.ToggleMillion(true);
 
                         GameObject WheelBaseObject = WheelCanvas.transform.GetChild(0).gameObject;
-                        WedgeChangeContainer millionChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[0];
+                        int index = WedgeRules.GetWedgeChangeIndex("million", WheelBaseObject);
+                        WedgeChangeContainer millionChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[index];
                         millionChange.ToggleAfter();
 
                         SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up the One Million wedge!");
                     }
 
-                    yield return new WaitForSeconds(3f);
-                    AskIfWild();
+                    yield return new WaitForSeconds(2.5f);
+                    hasWild = AskIfWild();
                 }
-                ToggleUIButtons();
+
+                if (!hasWild) {
+                    ToggleUIButtons();
+                }
             } else {
                 if (UsedLetters.Contains(letter)) {
                     string yes = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". " + char.ToUpper(letter) + " has already been used.";
@@ -813,13 +824,16 @@ public class RoundRunner : MonoBehaviour {
         SajakText.text = sajakText;
     }
 
-    private void AskIfWild() {
+    private bool AskIfWild() {
         if (PlayerList.CurrentPlayer.Wilds != 0) {
             SajakForWildCardQuestion();
             KeyPress.IsTimeForWildDecision = true;
             IsTimeForLetter = true;
             ToggleUIButtonsParsing("all", false);
+            return true;
         }
+
+        return false;
     }
 
     private IEnumerator AskIfFreePlay(string sajakFreePlayExists, string sajakFreePlayDoesNotExist) {
