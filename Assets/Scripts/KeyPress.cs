@@ -20,6 +20,8 @@ public class KeyPress : MonoBehaviour {
     internal InputField DebugInputField;
     internal static bool IsTimeForFreePlayDecision = false;
     internal static bool IsTimeForWildDecision = false;
+    internal static bool IsTimeForMysteryDecision = false;
+    internal MysteryWedgeLanded mysteryWedgeLanded;
 
     internal string[] Splits;
     List<string> History = new List<string>();
@@ -84,11 +86,19 @@ public class KeyPress : MonoBehaviour {
                     RoundRunner.ItemManager.ToggleFreePlay(false);
                 }
 
-                RoundRunner.ToggleUIButtons();                
+                RoundRunner.ToggleUIButtons();
             } else if (Input.GetKeyUp(KeyCode.N)) {
                 IsTimeForFreePlayDecision = false;
                 RoundRunner.GotoNextPlayer();
                 RoundRunner.SajakText.text = "It's your turn, " + PlayerList.CurrentPlayer.Name + ".";
+            }
+        } else if (IsTimeForMysteryDecision) {
+            if (Input.GetKeyUp(KeyCode.Alpha2) || Input.GetKeyUp(KeyCode.Keypad2)) {
+                IsTimeForMysteryDecision = false;
+                StartCoroutine(mysteryWedgeLanded.TakeChance());
+            } else if (Input.GetKeyUp(KeyCode.Alpha1) || Input.GetKeyUp(KeyCode.Keypad1)) {
+                IsTimeForMysteryDecision = false;
+                mysteryWedgeLanded.DontTakeChance();
             }
         } else if (IsTimeForWildDecision) {
             if (Input.GetKeyUp(KeyCode.Y)) {
@@ -99,7 +109,7 @@ public class KeyPress : MonoBehaviour {
                 if (WedgeRules.RoundUsesWedge(RoundRunner, WedgeType.Wild)) {
                     GameObject WheelBaseObject = RoundRunner.WheelCanvas.transform.GetChild(0).gameObject;
                     int index = WedgeRules.GetWedgeChangeIndex("wild", WheelBaseObject);
-                    WedgeChangeContainer wildChange = 
+                    WedgeChangeContainer wildChange =
                         WheelBaseObject.GetComponents<WedgeChangeContainer>()[index];
                     wildChange.ToggleBefore();
                 }
@@ -302,7 +312,7 @@ public class KeyPress : MonoBehaviour {
 
             if (isParsed) {
                 CountdownTimer.timePerChar = parsed;
-            }                    
+            }
         }
     }
 
@@ -436,7 +446,7 @@ public class KeyPress : MonoBehaviour {
             } else if (isBonusWheelActive) {
                 if (!isMenuActive && !BonusWheelSpin.HasSpun) {
                     yield return StartCoroutine(BonusWheelSpin.Spin(false));
-                }                
+                }
             } else {
                 Button b = RoundRunner.RegularRoundButtonsObject.transform.GetChild(0).GetComponent<Button>();
                 if (b.interactable == true) {

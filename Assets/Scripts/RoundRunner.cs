@@ -572,6 +572,10 @@ public class RoundRunner : MonoBehaviour {
         } else if (CurrentType == WedgeType.Prize) {
             SajakText.text = "You've landed on the Prize wedge! The current value is " + CurrentWedge.Value + ".";
             IsTimeForLetter = true;
+        } else if (CurrentType == WedgeType.Mystery) {
+            MysteryWedgeLanded mwl = gameObject.AddComponent<MysteryWedgeLanded>();
+            mwl.Start();
+            StartCoroutine(mwl.Landed());
         } else if (CurrentType == WedgeType.HighAmount) {
             SajakText.text = CurrentWedge.Value.ToString("C0") + "! Now make your guess count!";
             IsTimeForLetter = true;
@@ -591,7 +595,10 @@ public class RoundRunner : MonoBehaviour {
     public void OnBankrupt(Player p) {
         SFXAudioTracks.Play("bankrupt");
         SajakText.text = "You're bankrupt, " + p.Name + ". I'm very sorry.";
+        doBankruptLogic(p);
+    }
 
+    public void doBankruptLogic(Player p) {
         ItemManager.ToggleFreePlay(false);
         ItemManager.ToggleMillion(false);
         ItemManager.ToggleWild(false);
