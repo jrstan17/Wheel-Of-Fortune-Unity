@@ -4,19 +4,35 @@ using UnityEngine;
 
 public class TitleRunner : MonoBehaviour {
 
+    internal static bool useQuickStart = true;
+
     public AudioTracks MusicTracks;
     public RandomColorChanger[] ColorChangersToBoot;
     public MeWedgeReplacer JasonWedgeReplacer;
 
+    public Camera MainCamera;
+    public Camera TitleCamera;
+    public RoundRunner RoundRunner;
+
     // Use this for initialization
     void Start () {
-        Cursor.visible = false;
-        CursorToggler.ToggleCursor(false);
-        MusicTracks.Play("theme");
-        JasonWedgeReplacer.StartJasonTimer();
+        if (!useQuickStart) {
+            Cursor.visible = false;
+            CursorToggler.ToggleCursor(false);
+            MusicTracks.Play("theme");
+            JasonWedgeReplacer.StartJasonTimer();
 
-        foreach(RandomColorChanger rcc in ColorChangersToBoot) {
-            rcc.StartColorChange();
+            foreach (RandomColorChanger rcc in ColorChangersToBoot) {
+                rcc.StartColorChange();
+            }
+        } else {
+            PlayerList.Players.Add(new Player("Jason"));
+            PlayerList.Players.Add(new Player("Philip"));
+            PlayerList.Players.Add(new Player("Leslie"));
+            PlayerList.Players.Add(new Player("David"));
+            PlayerList.RandomizePlayers();
+
+            RoundRunner.Initialize();
         }
     }
 }

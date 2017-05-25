@@ -23,4 +23,8 @@ public class WheelGetter {
     public int Get(int currentRound) {
         return wheelsData[currentRound - 1];
     }
+
+    public void Set(int currentRound, int wheelNumber) {
+        wheelsData[currentRound - 1] = wheelNumber - 1;
+    }
 }

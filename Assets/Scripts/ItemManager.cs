@@ -1,46 +1,92 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemManager : MonoBehaviour {
 
     public Sprite[] Sprites;
-    public SpriteRenderer[] Renderers;
+    public Image[] ButtonImages;
+
+    internal Coroutine wildCardFlash;
+    public static float FLASH_SPEED = 0.5f;
 
     public void ToggleFreePlay(bool enable) {
         if (enable) {
-            Renderers[0].sprite = Sprites[1];
+            ButtonImages[0].sprite = Sprites[1];
         } else {
-            Renderers[0].sprite = Sprites[0];
-        }
-    }
-
-    public void ToggleWild(bool enable) {
-        if (enable) {
-            Renderers[1].sprite = Sprites[3];
-        } else {
-            Renderers[1].sprite = Sprites[2];
+            ButtonImages[0].sprite = Sprites[0];
         }
     }
 
     public void TogglePrize(bool enable) {
         if (enable) {
-            Renderers[2].sprite = Sprites[5];
+            ButtonImages[2].sprite = Sprites[5];
         } else {
-            Renderers[2].sprite = Sprites[4];
+            ButtonImages[2].sprite = Sprites[4];
         }
     }
 
     public void ToggleMillion(bool enable) {
         if (enable) {
-            Renderers[3].sprite = Sprites[7];
+            ButtonImages[3].sprite = Sprites[7];
         } else {
-            Renderers[3].sprite = Sprites[6];
+            ButtonImages[3].sprite = Sprites[6];
         }
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
+    public void ToggleWild(IconState state) {
+        if (wildCardFlash != null) {
+            StopCoroutine(wildCardFlash);
+            wildCardFlash = null;
+        }
+
+        if (state == IconState.Enabled) {
+            ButtonImages[1].sprite = Sprites[3];
+        } else if (state == IconState.Disabled) {
+            ButtonImages[1].sprite = Sprites[2];
+        } else if (state == IconState.Flashing) {
+            wildCardFlash = StartCoroutine(FlashCoroutine());
+        }
+    }
+
+    public IEnumerator FlashCoroutine() {
+        while (true) {
+            if (ButtonImages[1].sprite == Sprites[3]) {
+                ButtonImages[1].sprite = Sprites[2];
+            } else {
+                ButtonImages[1].sprite = Sprites[3];
+            }
+
+            yield return new WaitForSeconds(FLASH_SPEED);
+        }
+    }
+
+    public void WildCard_Clicked() {
+        if (KeyPress.IsTimeForWildDecision) {
+            RoundRunner RoundRunner = GetComponent<RoundRunner>();
+
+            RoundRunner.ToggleUIButtonsParsing("all", false);
+
+            RoundRunner.SajakText.text = "Please select another consonant for " + RoundRunner.CurrentWedge.Value.ToString("N0") + ".";
+            PlayerList.CurrentPlayer.Wilds--;
+
+            if (WedgeRules.RoundUsesWedge(RoundRunner, WedgeType.Wild)) {
+                GameObject WheelBaseObject = RoundRunner.WheelCanvas.transform.GetChild(0).gameObject;
+                int index = WedgeRules.GetWedgeChangeIndex("wild", WheelBaseObject);
+                WedgeChangeContainer wildChange =
+                    WheelBaseObject.GetComponents<WedgeChangeContainer>()[index];
+                wildChange.ToggleBefore();
+            }
+
+            if (PlayerList.CurrentPlayer.Wilds == 0) {
+                ToggleWild(IconState.Disabled);
+            } else {
+                ToggleWild(IconState.Enabled);
+            }
+
+            KeyPress.IsTimeForWildDecision = false;
+            RoundRunner.IsTimeForLetter = true;
+        }
+    }
 }

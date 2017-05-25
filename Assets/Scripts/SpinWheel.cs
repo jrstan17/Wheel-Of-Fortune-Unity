@@ -92,7 +92,7 @@ public class SpinWheel : MonoBehaviour {
             if (currentType == WedgeType.FreePlay) {
                 itemManager.ToggleFreePlay(true);
             } else if (currentType == WedgeType.Wild) {
-                itemManager.ToggleWild(true);
+                itemManager.ToggleWild(IconState.Enabled);
             }
         }
 

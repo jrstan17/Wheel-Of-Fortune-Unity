@@ -22,6 +22,7 @@ public class KeyPress : MonoBehaviour {
     internal static bool IsTimeForWildDecision = false;
     internal static bool IsTimeForMysteryDecision = false;
     internal MysteryWedgeLanded mysteryWedgeLanded;
+    internal Coroutine MysteryWedgeCoroutine;
 
     internal string[] Splits;
     List<string> History = new List<string>();
@@ -95,33 +96,12 @@ public class KeyPress : MonoBehaviour {
         } else if (IsTimeForMysteryDecision) {
             if (Input.GetKeyUp(KeyCode.Alpha2) || Input.GetKeyUp(KeyCode.Keypad2)) {
                 IsTimeForMysteryDecision = false;
+                StopCoroutine(MysteryWedgeCoroutine);
                 StartCoroutine(mysteryWedgeLanded.TakeChance());
             } else if (Input.GetKeyUp(KeyCode.Alpha1) || Input.GetKeyUp(KeyCode.Keypad1)) {
                 IsTimeForMysteryDecision = false;
+                StopCoroutine(MysteryWedgeCoroutine);
                 mysteryWedgeLanded.DontTakeChance();
-            }
-        } else if (IsTimeForWildDecision) {
-            if (Input.GetKeyUp(KeyCode.Y)) {
-                IsTimeForWildDecision = false;
-                RoundRunner.SajakText.text = "Please select another consonant for " + RoundRunner.CurrentWedge.Value.ToString("N0") + ".";
-                PlayerList.CurrentPlayer.Wilds--;
-
-                if (WedgeRules.RoundUsesWedge(RoundRunner, WedgeType.Wild)) {
-                    GameObject WheelBaseObject = RoundRunner.WheelCanvas.transform.GetChild(0).gameObject;
-                    int index = WedgeRules.GetWedgeChangeIndex("wild", WheelBaseObject);
-                    WedgeChangeContainer wildChange =
-                        WheelBaseObject.GetComponents<WedgeChangeContainer>()[index];
-                    wildChange.ToggleBefore();
-                }
-
-                if (PlayerList.CurrentPlayer.Wilds == 0) {
-                    RoundRunner.ItemManager.ToggleWild(false);
-                }
-            } else if (Input.GetKeyUp(KeyCode.N)) {
-                IsTimeForWildDecision = false;
-                RoundRunner.IsTimeForLetter = false;
-                RoundRunner.SajakText.text = "Play again, " + PlayerList.CurrentPlayer.Name + ".";
-                RoundRunner.ToggleUIButtons();
             }
         }
     }
@@ -158,6 +138,8 @@ public class KeyPress : MonoBehaviour {
         ResetHighScores();
         AddHighScore();
         StopSounds();
+        UseWheel();
+        ResetWheel();
     }
 
     private void BackgroundColor() {
@@ -212,6 +194,13 @@ public class KeyPress : MonoBehaviour {
         }
     }
 
+    private void ResetWheel() {
+        if (Splits[0].Equals("RESETWHEEL")) {
+            GameObject WheelBaseObject = RoundRunner.WheelCanvas.transform.GetChild(0).gameObject;
+            RoundRunner.ResetWheel(WheelBaseObject, true);
+        }
+    }
+
     private void SolveFor() {
         if (Splits[0].Equals("SOLVEFOR") && Splits.Length == 2) {
             Player p = PlayerList.Get(Splits[1]);
@@ -259,6 +248,18 @@ public class KeyPress : MonoBehaviour {
 
             if (isParsed) {
                 SpinWheel.SpinTime = parsed;
+            }
+        }
+    }
+
+    private void UseWheel() {
+        if (Splits[0].Equals("USEWHEEL") && Splits.Length == 2) {
+            int parsed = 0;
+            bool isParsed = int.TryParse(Splits[1], out parsed);
+
+            if (isParsed) {
+                RoundRunner.WheelCanvas = RoundRunner.WheelCanvases[parsed - 1];
+                Debug.Log("Using Wheel #" + (parsed));
             }
         }
     }
