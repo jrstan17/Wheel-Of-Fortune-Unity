@@ -341,7 +341,7 @@ public class RoundRunner : MonoBehaviour {
         } else {
             yield return UpdateSajak(PlayerList.WinningPlayer().Name + ", you have won the game with " + PlayerList.WinningPlayer().TotalWinnings.ToString("C0") + "!", 5f);
 
-            yield return UpdateSajak("To " + NonWinnerListForSajak() + ": Thanks for playing!", 6f);
+            yield return UpdateSajak(NonWinnerListForSajak() + ":  Thanks for playing!", 6f);
 
             yield return UpdateSajak("Now follow me, " + PlayerList.WinningPlayer().Name + ".", 4f);
             yield return UpdateSajak("We're going to the Bonus Round!", 3f);
@@ -490,7 +490,7 @@ public class RoundRunner : MonoBehaviour {
         }
 
         if (!AreSubmitLettersValid(BonusInputText.text)) {
-            SajakText.text = "We must have 3 unique consonants and a vowel. Please try again.";
+            SajakText.text = "We must have " + BonusRoundRunner.consonants + " unique consonants and a vowel. Please try again.";
             return;
         }
 
@@ -519,7 +519,7 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public bool AreSubmitLettersValid(string letters) {
-        if (letters.Length != 4) {
+        if (letters.Length != BonusRoundRunner.consonants + 1) {
             return false;
         }
 
@@ -542,7 +542,8 @@ public class RoundRunner : MonoBehaviour {
             }
         }
 
-        return (vowels == 1 && consonants == 3);
+        return (BonusRoundRunner.consonants == 3 && vowels == 1 && consonants == 3 ||
+            BonusRoundRunner.consonants == 4 && vowels == 1 && consonants == 4);
     }
 
     public void WheelWindowClosed() {

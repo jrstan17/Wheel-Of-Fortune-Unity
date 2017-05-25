@@ -7,9 +7,9 @@ public class WedgeChangeContainer : MonoBehaviour {
     public string RuleName;
 
     public GameObject[] BeforeColliders;
-    public GameObject BeforeWedge;
+    public GameObject[] BeforeWedges;
     public GameObject[] AfterColliders;
-    public GameObject AfterWedge;
+    public GameObject[] AfterWedges;
 
 	public void ToggleAfter() {
         ToggleForAfter(true);
@@ -23,11 +23,17 @@ public class WedgeChangeContainer : MonoBehaviour {
         foreach (GameObject go in BeforeColliders) {
             go.SetActive(!toggle);
         }
-        BeforeWedge.SetActive(!toggle);
+
+        foreach (GameObject go in BeforeWedges) {
+            go.SetActive(!toggle);
+        }
 
         foreach (GameObject go in AfterColliders) {
             go.SetActive(toggle);
         }
-        AfterWedge.SetActive(toggle);
+
+        foreach (GameObject go in AfterWedges) {
+            go.SetActive(toggle);
+        }
     }
 }

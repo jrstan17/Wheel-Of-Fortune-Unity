@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class BonusRoundRunner : MonoBehaviour {
 
@@ -14,9 +15,11 @@ public class BonusRoundRunner : MonoBehaviour {
     public GameObject WheelObject;
     public KeyPress KeyPress;
     public SpinWheel BonusWheelSpin;
+    public Text PlaceHolderText;
 
     internal static int PrizeAmount;
     internal Player Winner;
+    internal static int consonants = 3;
 
     public const float NORMAL_SAJAK_SPEED = 5f;
 
@@ -83,12 +86,20 @@ public class BonusRoundRunner : MonoBehaviour {
         BoardFiller.InitBoard();
         yield return new WaitForSeconds(4f);
 
-        yield return UpdateSajak("Let's help you by revealing RSTLNE.", 3f);
+        yield return UpdateSajak("Let's reveal RSTLNE.", 3f);
         yield return BoardFiller.RevealRSTLNE();
         yield return new WaitForSeconds(1.5f);
 
-        yield return UpdateSajak("Now it's your turn. Please enter 3 more consonants and a vowel.", 1f);
+        if (Winner.Wilds > 0) {
+            consonants = 4;
+            yield return UpdateSajak("Because you brought a Wild Card to the Bonus Round,", NORMAL_SAJAK_SPEED);
+            yield return UpdateSajak("You get to choose 4 more consonants instead of 3!", NORMAL_SAJAK_SPEED);
+            yield return UpdateSajak("Please enter 4 more consonants and a vowel now.", 1f);
+        } else {
+            yield return UpdateSajak("Now it's your turn. Please enter 3 more consonants and a vowel.", 1f);
+        }
 
+        PlaceHolderText.text = consonants + " More Consonants\nAnd A Vowel";
         RoundRunner.BonusRoundButtonsObject.SetActive(true);
         EventSystem.current.SetSelectedGameObject(RoundRunner.BonusInputText.gameObject);
     }
@@ -105,7 +116,7 @@ public class BonusRoundRunner : MonoBehaviour {
 
         yield return UpdateSajak("Now let's open the envelope to see what you won.", 4f);
         RoundRunner.SFXAudioTracks.Play("drumroll");
-        yield return UpdateSajak(Winner.Name + ", you'll be going home with...", 4f);
+        yield return UpdateSajak(Winner.Name + ", you'll be going home with an extra...", 4f);
 
         Winner.TotalWinnings += PrizeAmount;
 
@@ -126,7 +137,7 @@ public class BonusRoundRunner : MonoBehaviour {
 
         yield return UpdateSajak("Now let's open the envelope to see what you would have won.", 4f);
         RoundRunner.SFXAudioTracks.Play("drumroll");
-        yield return UpdateSajak("And you would have won...", 4f);
+        yield return UpdateSajak("And you would have won an extra...", 4f);
 
         RoundRunner.MusicAudioTracks.Play("cymbal_crash");
         RoundRunner.SFXAudioTracks.Play("bankrupt");
