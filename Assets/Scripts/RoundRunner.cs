@@ -116,9 +116,7 @@ public class RoundRunner : MonoBehaviour {
 
         IsBonusRound = isBonus;
         ShouldBeVowel = false;
-        GotoNextPlayer();
-
-        SetRoundColors();
+        GotoNextPlayer();        
 
         foreach (Text text in UsedLetterText) {
             text.color = Constants.USED_LETTER_ENABLED_COLOR;
@@ -130,6 +128,7 @@ public class RoundRunner : MonoBehaviour {
             StartCoroutine(brn.Run());
             return;
         } else {
+            SetRoundColors(wheelGetter.Get(RoundNumber));
             RegularRoundButtonsObject.SetActive(true);
             BonusRoundButtonsObject.SetActive(false);
             PlayerBar.SetActive(true);
@@ -229,45 +228,29 @@ public class RoundRunner : MonoBehaviour {
         }
     }
 
-    public int GetWheelIndex() {
-        if (RoundNumber == 1) {
-            return 0;
-        } else if (RoundNumber == MaxRounds) {
-            return WheelCanvases.Length - 1;
-        }
+    //public int GetWheelIndex() {
+    //    if (RoundNumber == 1) {
+    //        return 0;
+    //    } else if (RoundNumber == MaxRounds) {
+    //        return WheelCanvases.Length - 1;
+    //    }
 
-        float WheelsPerRound = (float)(WheelCanvases.Length - 2) / (MaxRounds - 2);
-        int toReturn = (int)Mathf.Round(WheelsPerRound * RoundNumber);
+    //    float WheelsPerRound = (float)(WheelCanvases.Length - 2) / (MaxRounds - 2);
+    //    int toReturn = (int)Mathf.Round(WheelsPerRound * RoundNumber);
 
-        if (toReturn >= WheelCanvases.Length) {
-            return toReturn / 2;
-        }
+    //    if (toReturn >= WheelCanvases.Length) {
+    //        return toReturn / 2;
+    //    }
 
-        if (toReturn == WheelCanvases.Length - 1 && RoundNumber != MaxRounds) {
-            return WheelCanvases.Length - 2;
-        } else {
-            return toReturn;
-        }
-    }
+    //    if (toReturn == WheelCanvases.Length - 1 && RoundNumber != MaxRounds) {
+    //        return WheelCanvases.Length - 2;
+    //    } else {
+    //        return toReturn;
+    //    }
+    //}
 
-    internal void SetRoundColors() {
-        int colorIndex;
-
-        if (RoundNumber == Utilities.RoundColors.Count + 1) {
-            colorIndex = 0;
-        } else {
-            colorIndex = RoundNumber - 1;
-        }
-
-        SetRoundColorsImplementation(colorIndex);
-    }
-
-    internal void SetRoundColors(int colorIndex) {
-        SetRoundColorsImplementation(colorIndex);
-    }
-
-    private void SetRoundColorsImplementation(int colorIndex) {
-        Color color = Utilities.RoundColors[colorIndex];
+    public void SetRoundColors(int wheelIndex) {
+        Color color = Utilities.RoundColors[wheelIndex];
         Background.gameObject.GetComponent<Renderer>().material.SetColor("_Color", color);
 
         SajackPanel.GetComponent<Image>().color = new Color(color.r, color.g, color.b, 0.5f);

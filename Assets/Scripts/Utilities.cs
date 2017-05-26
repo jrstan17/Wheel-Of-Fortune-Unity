@@ -27,17 +27,17 @@ class Utilities {
 
     private static List<Color32> FillColors() {
         List<Color32> toReturn = new List<Color32>();
-        toReturn.Add(new Color32(0, 70, 0, 255)); //green        
+        toReturn.Add(new Color32(0, 70, 0, 255)); //green 
         toReturn.Add(new Color32(0, 70, 70, 255)); //indigo
         toReturn.Add(new Color32(70, 0, 70, 255)); //purple
         toReturn.Add(new Color32(70, 70, 0, 255)); //yellow
-        toReturn.Add(new Color32(70, 70, 70, 255)); //white
-        toReturn.Add(new Color32(70, 0, 0, 255)); //red
-        toReturn.Add(new Color32(0, 70, 70, 255)); //indigo
-        toReturn.Add(new Color32(70, 0, 70, 255)); //purple
-        toReturn.Add(new Color32(70, 70, 0, 255)); //yellow
-        toReturn.Add(new Color32(70, 70, 70, 255)); //white
-        toReturn.Add(new Color32(70, 0, 0, 255)); //red
+        //toReturn.Add(new Color32(70, 70, 70, 255)); //white
+        //toReturn.Add(new Color32(70, 0, 0, 255)); //red
+        //toReturn.Add(new Color32(0, 70, 70, 255)); //indigo
+        //toReturn.Add(new Color32(70, 0, 70, 255)); //purple
+        //toReturn.Add(new Color32(70, 70, 0, 255)); //yellow
+        //toReturn.Add(new Color32(70, 70, 70, 255)); //white
+        //toReturn.Add(new Color32(70, 0, 0, 255)); //red
         return toReturn;
     }
 
