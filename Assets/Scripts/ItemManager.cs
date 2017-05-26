@@ -11,6 +11,16 @@ public class ItemManager : MonoBehaviour {
     internal Coroutine wildCardFlash;
     public static float FLASH_SPEED = 0.5f;
 
+    public void ToggleCar(IconState state) {
+        if (state == IconState.Disabled) {
+            ButtonImages[4].sprite = Sprites[8];
+        } else if (state == IconState.HalfCar) {
+            ButtonImages[4].sprite = Sprites[9];
+        } else if (state == IconState.WholeCar) {
+            ButtonImages[4].sprite = Sprites[10];
+        }
+    }
+
     public void ToggleFreePlay(bool enable) {
         if (enable) {
             ButtonImages[0].sprite = Sprites[1];

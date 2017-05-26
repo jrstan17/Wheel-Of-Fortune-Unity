@@ -17,6 +17,10 @@ public class WedgeRules : MonoBehaviour {
             return currentWheel == 0 || currentWheel == 1; 
         }
 
+        if (type == WedgeType.HalfCar) {
+            return currentWheel == 1;
+        }
+
         if (type == WedgeType.TenThousand) {
             return currentWheel == runner.WheelCanvases.Length - 1;
         }

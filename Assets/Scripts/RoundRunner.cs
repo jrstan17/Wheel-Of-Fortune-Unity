@@ -31,6 +31,7 @@ public class RoundRunner : MonoBehaviour {
     public GameObject Background;
     public Populator HighScorePopulator;
     public Clapper Clapper;
+    public NewWedgeEntered[] Wheel2Colliders;
 
     public GameObject PrizeCanvas;
     public Text RoundText;
@@ -116,7 +117,7 @@ public class RoundRunner : MonoBehaviour {
 
         IsBonusRound = isBonus;
         ShouldBeVowel = false;
-        GotoNextPlayer();        
+        GotoNextPlayer();
 
         foreach (Text text in UsedLetterText) {
             text.color = Constants.USED_LETTER_ENABLED_COLOR;
@@ -227,27 +228,6 @@ public class RoundRunner : MonoBehaviour {
             }
         }
     }
-
-    //public int GetWheelIndex() {
-    //    if (RoundNumber == 1) {
-    //        return 0;
-    //    } else if (RoundNumber == MaxRounds) {
-    //        return WheelCanvases.Length - 1;
-    //    }
-
-    //    float WheelsPerRound = (float)(WheelCanvases.Length - 2) / (MaxRounds - 2);
-    //    int toReturn = (int)Mathf.Round(WheelsPerRound * RoundNumber);
-
-    //    if (toReturn >= WheelCanvases.Length) {
-    //        return toReturn / 2;
-    //    }
-
-    //    if (toReturn == WheelCanvases.Length - 1 && RoundNumber != MaxRounds) {
-    //        return WheelCanvases.Length - 2;
-    //    } else {
-    //        return toReturn;
-    //    }
-    //}
 
     public void SetRoundColors(int wheelIndex) {
         Color color = Utilities.RoundColors[wheelIndex];
@@ -578,6 +558,9 @@ public class RoundRunner : MonoBehaviour {
             IsTimeForLetter = true;
             ToggleWildCard(false);
             PlayerList.CurrentPlayer.Wilds++;
+        } else if (CurrentType == WedgeType.HalfCar) {
+            SajakText.text = "You've landed on a Half Car plate! The current value is " + CurrentWedge.Value + ".";
+            IsTimeForLetter = true;
         } else if (CurrentType == WedgeType.Prize) {
             SajakText.text = "You've landed on the Prize wedge! The current value is " + CurrentWedge.Value + ".";
             IsTimeForLetter = true;
@@ -602,6 +585,27 @@ public class RoundRunner : MonoBehaviour {
         }
     }
 
+    public void ToggleHalfCar(string wedgeText, bool enable) {
+        GameObject WheelBaseObject = WheelCanvas.transform.GetChild(0).gameObject;
+
+        int index;
+        if (wedgeText.Equals("HALFCARRED")) {
+            index = WedgeRules.GetWedgeChangeIndex("halfcar1", WheelBaseObject);
+        } else if (wedgeText.Equals("HALFCARGREEN")) {
+            index = WedgeRules.GetWedgeChangeIndex("halfcar2", WheelBaseObject);
+        } else {
+            return;
+        }
+
+        WedgeChangeContainer halfCarChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[index];
+
+        if (enable) {
+            halfCarChange.ToggleBefore();
+        } else {
+            halfCarChange.ToggleAfter();
+        }
+    }
+
     public void OnBankrupt(Player p) {
         SFXAudioTracks.Play("bankrupt");
         SajakText.text = "You're bankrupt, " + p.Name + ". I'm very sorry.";
@@ -613,6 +617,7 @@ public class RoundRunner : MonoBehaviour {
         ItemManager.ToggleMillion(false);
         ItemManager.ToggleWild(IconState.Disabled);
         ItemManager.TogglePrize(false);
+        ItemManager.ToggleCar(IconState.Disabled);
 
         p.RoundWinnings = 0;
         p.RoundPrize = null;
@@ -628,12 +633,42 @@ public class RoundRunner : MonoBehaviour {
             }
         }
 
+        if (p.LicensePlates != 0) {
+            p.LicensePlates = 0;
+            List<string> notMissing = WhichHalfCarsExistOnTheWheel();
+
+            if (!notMissing.Contains("HALFCARRED")) {
+                ToggleHalfCar("HALFCARRED", true);
+            }
+
+            if (!notMissing.Contains("HALFCARGREEN")) {
+                ToggleHalfCar("HALFCARGREEN", true);
+            }
+        }
+
+
         if (p.Wilds != 0) {
             p.Wilds = 0;
             ToggleWildCard(true);
         }
 
         p.FreePlays = 0;
+    }
+
+    public List<string> WhichHalfCarsExistOnTheWheel() {
+        List<string> toReturn = new List<string>();
+
+        foreach (NewWedgeEntered nwe in Wheel2Colliders) {
+            if (nwe.gameObject.activeInHierarchy) {
+                if (nwe.WedgeText.Equals("HALFCARRED")) {
+                    toReturn.Add("HALFCARRED");
+                } else if (nwe.WedgeText.Equals("HALFCARGREEN")) {
+                    toReturn.Add("HALFCARGREEN");
+                }
+            }
+        }
+
+        return toReturn;
     }
 
     public void GotoNextPlayer() {
@@ -805,6 +840,16 @@ public class RoundRunner : MonoBehaviour {
                         millionChange.ToggleAfter();
 
                         SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up the One Million wedge!");
+                    } else if (CurrentWedge.WedgeType == WedgeType.HalfCar) {
+                        if (PlayerList.CurrentPlayer.LicensePlates == 0) {
+                            SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up a Half Car plate!");
+                            ItemManager.ToggleCar(IconState.HalfCar);
+                        } else {
+                            SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " now has a whole car!");
+                            ItemManager.ToggleCar(IconState.WholeCar);
+                        }
+                        PlayerList.CurrentPlayer.LicensePlates++;
+                        ToggleHalfCar(CurrentWedge.Text, false);
                     }
 
                     if (!IsVowel && PlayerList.CurrentPlayer.Wilds > 0) {

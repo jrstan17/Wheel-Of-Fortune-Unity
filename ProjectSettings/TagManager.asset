@@ -18,6 +18,7 @@ TagManager:
   - BonusWheelObject
   - PlayerNameText
   - WheelClickAudio
+  - Wheel2Colliders
   layers:
   - Default
   - TransparentFX

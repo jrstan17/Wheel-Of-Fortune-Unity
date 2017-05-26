@@ -1,5 +1,7 @@
 ﻿public enum IconState {
     Enabled,
     Disabled,
-    Flashing
+    Flashing,
+    HalfCar,
+    WholeCar
 }

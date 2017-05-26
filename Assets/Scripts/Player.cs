@@ -11,6 +11,7 @@ public class Player {
     public int FreePlays { get; set; }
     public bool HasMillionWedge { get; set; }
     public int Wilds { get; set; }
+    public int LicensePlates { get; set; }
 
     public Player(string name) {
         Name = name;

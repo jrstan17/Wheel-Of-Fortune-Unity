@@ -13,5 +13,6 @@ public enum WedgeType {
     Mystery,
     Wild,
     Million,
-    TenThousand
+    TenThousand,
+    HalfCar
 }
