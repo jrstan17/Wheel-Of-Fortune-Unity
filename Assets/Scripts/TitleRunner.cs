@@ -28,8 +28,8 @@ public class TitleRunner : MonoBehaviour {
         } else {
             PlayerList.Players.Add(new Player("Jason"));
             PlayerList.Players.Add(new Player("Philip"));
-            //PlayerList.Players.Add(new Player("Leslie"));
-            //PlayerList.Players.Add(new Player("David"));
+            PlayerList.Players.Add(new Player("Leslie"));
+            PlayerList.Players.Add(new Player("David"));
             //PlayerList.Players.Add(new Player("Rod"));
             //PlayerList.Players.Add(new Player("Jane"));
             //PlayerList.Players.Add(new Player("Ken"));
