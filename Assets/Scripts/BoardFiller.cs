@@ -134,27 +134,30 @@ public class BoardFiller : MonoBehaviour {
     }
 
     public bool PuzzleContainsOnly(LetterType type) {
+        bool hasConsonants = false;
+        bool hasVowels = false;
+
         if (Trilons != null) {
             foreach (Trilon t in Trilons) {
-                if (type == LetterType.Vowel) {
-                    if (t.State == TrilonState.Unrevealed && !Utilities.IsVowel(t.Letter)) {
-                        return false;
-                    }
-                } else if (type == LetterType.Consonant) {
-                    if (t.State == TrilonState.Unrevealed && Utilities.IsVowel(t.Letter)) {
-                        return false;
-                    }
-                } else if (type == LetterType.Both) {
-                    if (t.State == TrilonState.Unrevealed) {
-                        return false;
+                if (t.State == TrilonState.Unrevealed) {
+                    if (Utilities.IsVowel(t.Letter) && !hasVowels) {
+                        hasVowels = true;
+                    } else if (!Utilities.IsVowel(t.Letter) && !hasConsonants) {
+                        hasConsonants = true;
                     }
                 }
+
+                if (hasConsonants && hasVowels) {
+                    break;
+                }
             }
-        } else {
-            return false;
+
+            return ((type == LetterType.Vowel && hasVowels && !hasConsonants) ||
+                (type == LetterType.Consonant && !hasVowels && hasConsonants) ||
+                (type == LetterType.Both && hasVowels && hasConsonants));
         }
 
-        return true;
+        return false;
     }
 
     public bool IsPuzzleFullyRevealed() {

@@ -715,10 +715,7 @@ public class RoundRunner : MonoBehaviour {
             ToggleUIButtonsParsing("spin solve", true);
         }
 
-        if (BoardFiller.PuzzleContainsOnly(LetterType.Both)) {
-            ToggleUIButtonsParsing("spin buy", false);
-            ToggleUIButtonsParsing("solve", true);
-        } else if (BoardFiller.PuzzleContainsOnly(LetterType.Vowel)) {
+        if (BoardFiller.PuzzleContainsOnly(LetterType.Vowel)) {
             ToggleUIButtonsParsing("spin", false);
         } else if (BoardFiller.PuzzleContainsOnly(LetterType.Consonant)) {
             ToggleUIButtonsParsing("buy", false);
@@ -852,7 +849,7 @@ public class RoundRunner : MonoBehaviour {
                         ToggleHalfCar(CurrentWedge.Text, false);
                     }
 
-                    if (!IsVowel && PlayerList.CurrentPlayer.Wilds > 0 && BoardFiller.PuzzleContainsOnly(LetterType.Consonant)) {
+                    if (!IsVowel && PlayerList.CurrentPlayer.Wilds > 0 && (BoardFiller.PuzzleContainsOnly(LetterType.Consonant) || BoardFiller.PuzzleContainsOnly(LetterType.Both))) {
                         KeyPress.IsTimeForWildDecision = true;
                         ItemManager.ToggleWild(IconState.Flashing);
                     }

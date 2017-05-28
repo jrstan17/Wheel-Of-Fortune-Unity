@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TitleRunner : MonoBehaviour {
 
-    internal static bool useQuickStart = false;
+    internal static bool useQuickStart = true;
 
     public AudioTracks MusicTracks;
     public RandomColorChanger[] ColorChangersToBoot;

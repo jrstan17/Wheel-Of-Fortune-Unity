@@ -26338,9 +26338,9 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: e40c541d473bda140a0fc27539efe114, type: 3}
     m_FontSize: 26
     m_FontStyle: 1
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
-    m_MaxSize: 30
+    m_MaxSize: 26
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -26349,7 +26349,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'CONTINUE TO
 
-    ROUND 1'
+    BONUS ROUND'
 --- !u!222 &773073096
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -45254,7 +45254,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 31.117828
+      value: 31.117798
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
