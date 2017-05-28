@@ -323,7 +323,7 @@ public class RoundRunner : MonoBehaviour {
 
             yield return UpdateSajak("Now follow me, " + PlayerList.WinningPlayer().Name + ".", 4f);
             yield return UpdateSajak("We're going to the Bonus Round!", 3f);
-            buttonText.text = "CONTINUE TO\nTHE BONUS ROUND!";
+            buttonText.text = "CONTINUE TO\nBONUS ROUND!";
         }
 
         NextRoundCanvas.SetActive(true);
@@ -852,7 +852,7 @@ public class RoundRunner : MonoBehaviour {
                         ToggleHalfCar(CurrentWedge.Text, false);
                     }
 
-                    if (!IsVowel && PlayerList.CurrentPlayer.Wilds > 0) {
+                    if (!IsVowel && PlayerList.CurrentPlayer.Wilds > 0 && BoardFiller.PuzzleContainsOnly(LetterType.Consonant)) {
                         KeyPress.IsTimeForWildDecision = true;
                         ItemManager.ToggleWild(IconState.Flashing);
                     }
