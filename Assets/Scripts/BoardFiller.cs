@@ -5,26 +5,26 @@ using UnityEngine.UI;
 
 public class BoardFiller : MonoBehaviour {
 
+    public List<SpriteRenderer> Screens;
+    public List<SpriteRenderer> Letters;
+    LetterGetter LetterGetter;
+
     public List<Row> Rows;
     public List<Trilon> Trilons;
     public AudioTracks AudioTracks;
-    internal RoundRunner RoundRunner;
+    internal RoundRunner RR;
     internal Color32 ScreenColor;
 
     internal static int LettersRevealed = 0;
 
-    Data data;
-
     private IEnumerator coroutine;
 
     void Start() {
-        RoundRunner = GameObject.FindGameObjectWithTag("RoundRunner").GetComponent<RoundRunner>();
+        RR = gameObject.GetComponent<RoundRunner>();
+        LetterGetter = GetComponent<LetterGetter>();
     }
 
     public bool InitBoard() {
-        GameObject dataHolder = GameObject.FindGameObjectWithTag("DataHolder");
-        data = dataHolder.GetComponent<Data>();
-
         ClearBoard();
         bool fillRowSuccess = FillRows();
 
@@ -109,10 +109,10 @@ public class BoardFiller : MonoBehaviour {
     }
 
     public void RefreshBoardColor() {
-        if (Trilons != null && data != null) {
+        if (Trilons != null) {
             for (int i = 0; i < Trilons.Count; i++) {
-                data.Letters[i].color = ScreenColor;
-                data.Screens[i].color = ScreenColor;
+                Letters[i].color = ScreenColor;
+                Screens[i].color = ScreenColor;
             }
         }
     }
@@ -120,9 +120,8 @@ public class BoardFiller : MonoBehaviour {
     public void FillBoard() {
         List<int> InUseIndexes = new List<int>();
         for (int i = 0; i < Trilons.Count; i++) {
-            string letter = Trilons[i].Letter.ToString();
-            data.Letters[i].text = letter;
-            data.Letters[i].color = ScreenColor;
+            Letters[i].sprite = LetterGetter.GetSprite(Trilons[i].Letter);
+            Letters[i].color = ScreenColor;
 
             if (Trilons[i].State != TrilonState.NotInUse) {
                 InUseIndexes.Add(i);
@@ -176,8 +175,8 @@ public class BoardFiller : MonoBehaviour {
 
     private IEnumerator RevealWhiteScreens(float time, List<int> InUseIndexes) {
         foreach (int i in InUseIndexes) {
-            data.Letters[i].color = Color.white;
-            data.Screens[i].color = Color.white;
+            Letters[i].color = Color.white;
+            Screens[i].color = Color.white;
             yield return new WaitForSeconds(time);
         }
 
@@ -185,7 +184,7 @@ public class BoardFiller : MonoBehaviour {
 
         if (RoundRunner.Puzzle.HasNonLetters()) {
             float start = Time.time;
-            RoundRunner.SajakText.text = "But first, let's reveal some punctuation.";
+            RR.SajakText.text = "But first, let's reveal some punctuation.";
             yield return StartCoroutine(RevealLetters(Utilities.NonLetters));
 
             if (Time.time < start + 4) {
@@ -193,9 +192,9 @@ public class BoardFiller : MonoBehaviour {
             }
         }
 
-        if (!RoundRunner.IsBonusRound) {
-            RoundRunner.SajakText.text = "Start us off with a spin, " + PlayerList.CurrentPlayer.Name + ".";
-            RoundRunner.ToggleUIButtons();
+        if (!RR.IsBonusRound) {
+            RR.SajakText.text = "Start us off with a spin, " + PlayerList.CurrentPlayer.Name + ".";
+            RR.ToggleUIButtons();
         }
     }
 
@@ -204,9 +203,9 @@ public class BoardFiller : MonoBehaviour {
     }
 
     public void ClearBoard() {
-        for (int i = 0; i < data.Screens.Count; i++) {
-            data.Screens[i].color = ScreenColor;
-            data.Letters[i].color = ScreenColor;
+        for (int i = 0; i < Screens.Count; i++) {
+            Screens[i].color = ScreenColor;
+            Letters[i].color = ScreenColor;
         }
     }
 
@@ -225,8 +224,8 @@ public class BoardFiller : MonoBehaviour {
     public IEnumerator RevealingTimer(float time, List<int> indexes) {
         foreach (int i in indexes) {
             Trilons[i].Reveal();
-            data.Letters[i].color = Color.black;
-            data.Screens[i].color = Color.white;
+            Letters[i].color = Color.black;
+            Screens[i].color = Color.white;
             yield return new WaitForSeconds(time);
         }
     }
@@ -238,20 +237,21 @@ public class BoardFiller : MonoBehaviour {
 
         foreach (char letter in letters) {
             if (char.IsLetter(letter)) {
-                RoundRunner.UsedLetterText[letter - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
+                RR.UsedLetterText[letter - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
             }
         }
 
-        List<int> LetterIndexes = new List<int>();
+
+        List<RevealData> revealData = new List<RevealData>();
         for (int i = 0; i < letters.Count; i++) {
             for (int j = 0; j < Trilons.Count; j++) {
-                if (data.Letters[j].text.Equals(letters[i].ToString())) {
-                    LetterIndexes.Add(j);
+                if (Trilons[j].Letter == letters[i]) {
+                    revealData.Add(new RevealData() { Index = j, LetterSprite = LetterGetter.GetSprite(letters[i]) });
                 }
             }
         }
 
-        if (LetterIndexes.Count == 0 && !RoundRunner.IsBonusRound) {
+        if (revealData.Count == 0 && !RR.IsBonusRound) {
             AudioTracks.Play("buzzer");
             yield return 0;
         }
@@ -264,50 +264,54 @@ public class BoardFiller : MonoBehaviour {
             }
         }
 
-        LettersRevealed = LetterIndexes.Count;
+        LettersRevealed = revealData.Count;
 
-        yield return StartCoroutine(WaitForLetter(1f, letters, LetterIndexes));
+        yield return StartCoroutine(WaitForLetter(1f, letters, revealData));
     }
 
-    private IEnumerator WaitForLetter(float waitTime, List<char> letters, List<int> Indexes) {
-        foreach (int i in Indexes) {
+    private IEnumerator WaitForLetter(float waitTime, List<char> letters, List<RevealData> revealData) {
+        foreach (RevealData rd in revealData) {
+            int i = rd.Index;
+            Sprite sprite = rd.LetterSprite;
+
             AudioTracks.Play("ding");
 
-            data.Letters[i].color = Color.blue;
-            data.Screens[i].color = Color.blue;
+            Screens[i].color = Color.blue;
+            Letters[i].color = Color.blue;
 
             yield return new WaitForSeconds(1f);
 
-            data.Letters[i].color = Color.black;
-            data.Screens[i].color = Color.white;
+            Letters[i].sprite = sprite;
+            Letters[i].color = Color.black;
+            Screens[i].color = Color.white;
 
             yield return new WaitForSeconds(waitTime);
         }
 
         if (!PuzzleContainsOnly(LetterType.Both)) {
-            if (PuzzleContainsOnly(LetterType.Vowel) && !RoundRunner.NotifiedOfRemainingLetters && !RoundRunner.IsBonusRound) {
+            if (PuzzleContainsOnly(LetterType.Vowel) && !RR.NotifiedOfRemainingLetters && !RR.IsBonusRound) {
                 AudioTracks.Play("remains");
-                RoundRunner.SajakText.text = "Only vowels remain!";
-                RoundRunner.NotifiedOfRemainingLetters = true;
-                RoundRunner.ToggleUIButtons();
+                RR.SajakText.text = "Only vowels remain!";
+                RR.NotifiedOfRemainingLetters = true;
+                RR.ToggleUIButtons();
 
                 foreach (char c in Utilities.Consonants) {
-                    if (!RoundRunner.UsedLetters.Contains(c)) {
-                        RoundRunner.UsedLetters.Add(c);
+                    if (!RR.UsedLetters.Contains(c)) {
+                        RR.UsedLetters.Add(c);
                     }
-                    RoundRunner.UsedLetterText[c - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
+                    RR.UsedLetterText[c - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
                 }
-            } else if (PuzzleContainsOnly(LetterType.Consonant) && !RoundRunner.NotifiedOfRemainingLetters && !RoundRunner.IsBonusRound) {
+            } else if (PuzzleContainsOnly(LetterType.Consonant) && !RR.NotifiedOfRemainingLetters && !RR.IsBonusRound) {
                 AudioTracks.Play("remains");
-                RoundRunner.SajakText.text = "Only consonants remain!";
-                RoundRunner.NotifiedOfRemainingLetters = true;
-                RoundRunner.ToggleUIButtons();
+                RR.SajakText.text = "Only consonants remain!";
+                RR.NotifiedOfRemainingLetters = true;
+                RR.ToggleUIButtons();
 
                 foreach (char c in Utilities.Vowels) {
-                    if (!RoundRunner.UsedLetters.Contains(c)) {
-                        RoundRunner.UsedLetters.Add(c);
+                    if (!RR.UsedLetters.Contains(c)) {
+                        RR.UsedLetters.Add(c);
                     }
-                    RoundRunner.UsedLetterText[c - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
+                    RR.UsedLetterText[c - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
                 }
             }
         }
@@ -319,5 +323,10 @@ public class BoardFiller : MonoBehaviour {
         foreach (Row r in Rows) {
             r.Clear();
         }
+    }
+
+    private class RevealData {
+        public int Index { get; set; }
+        public Sprite LetterSprite { get; set; }
     }
 }

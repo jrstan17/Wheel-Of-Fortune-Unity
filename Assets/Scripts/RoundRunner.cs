@@ -39,7 +39,7 @@ public class RoundRunner : MonoBehaviour {
     public Text PrizeValueText;
 
     internal PuzzleFactory PuzzleFactory;
-    internal static Puzzle Puzzle;
+    public static Puzzle Puzzle;
 
     internal PrizeFactory PrizeFactory;
     internal static Prize Prize;
