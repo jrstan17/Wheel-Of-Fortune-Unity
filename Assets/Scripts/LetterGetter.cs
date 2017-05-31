@@ -32,4 +32,9 @@ public class LetterGetter : MonoBehaviour {
                 return null;
         }
     }
+
+    public Sprite GetRandomLetter() {
+        int index = Random.Range(0, 26);
+        return LetterSprites[index];
+    }
 }

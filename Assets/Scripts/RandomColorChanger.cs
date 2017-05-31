@@ -8,7 +8,7 @@ public class RandomColorChanger : MonoBehaviour {
     public Text[] TextObjects;
     internal Image Image;
     public MeshRenderer MeshRenderer;
-    public SpriteRenderer Sprite;
+    public SpriteRenderer[] Sprites;
     public Light Light;
     public float Speed;
     public byte Alpha = 255;
@@ -55,8 +55,10 @@ public class RandomColorChanger : MonoBehaviour {
                 Image.color = nextColor;
             }
 
-            if (Sprite != null) {
-                Sprite.color = nextColor;
+            if (Sprites != null) {
+                foreach(SpriteRenderer sr in Sprites) {
+                    sr.color = nextColor;
+                }                
             }
 
             if (material != null) {

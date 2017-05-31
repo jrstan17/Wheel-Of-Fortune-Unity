@@ -22,6 +22,9 @@ public class TitleRunner : MonoBehaviour {
             MusicTracks.Play("theme");
             JasonWedgeReplacer.StartJasonTimer();
 
+            HalfBoardLetterRandomizer hblr = GetComponent<HalfBoardLetterRandomizer>();
+            hblr.StartRandomizing();
+
             foreach (RandomColorChanger rcc in ColorChangersToBoot) {
                 rcc.StartColorChange();
             }
