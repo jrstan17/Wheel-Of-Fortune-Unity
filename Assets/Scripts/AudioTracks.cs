@@ -22,6 +22,7 @@ public class AudioTracks : MonoBehaviour {
     public AudioClip Theme;
     public AudioClip CountdownMusic;
     public AudioClip Ah;
+    public AudioClip Boo;
 
     AudioSource AudioSource;
 
@@ -70,6 +71,8 @@ public class AudioTracks : MonoBehaviour {
         } else if (name.Equals("countdown")) {
             AudioSource.clip = CountdownMusic;
             AudioSource.loop = true;
+        } else if (name.Equals("boo")) {
+            AudioSource.clip = Boo;
         } else {
             return;
         }

@@ -142,7 +142,7 @@ public class RoundRunner : MonoBehaviour {
                 KeyPress.CustomText = null;
             }
 
-            SFXAudioTracks.Play("reveal");
+            MusicAudioTracks.Play("reveal");
         }
 
         CategoryText.text = Puzzle.Category;
@@ -370,6 +370,7 @@ public class RoundRunner : MonoBehaviour {
             Player p = PlayerList.Players[i];
             p.RoundWinnings = 0;
             p.FreePlays = 0;
+            p.RoundPrize = null;
             PlayerWinningsTexts[i].text = p.TotalWinnings.ToString("C0");
             if (p.TotalWinnings >= maxMoney) {
                 maxMoney = p.TotalWinnings;
@@ -608,6 +609,7 @@ public class RoundRunner : MonoBehaviour {
 
     public void OnBankrupt(Player p) {
         SFXAudioTracks.Play("bankrupt");
+        MusicAudioTracks.Play("boo");
         SajakText.text = "You're bankrupt, " + p.Name + ". I'm very sorry.";
         doBankruptLogic(p);
     }

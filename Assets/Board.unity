@@ -38651,7 +38651,7 @@ MonoBehaviour:
   - {fileID: 895491462}
   - {fileID: 1394139596}
   - {fileID: 1690398556}
-  PitchBend: 0.05
+  PitchBend: 0.025
 --- !u!4 &1322181782
 Transform:
   m_ObjectHideFlags: 0
@@ -38875,7 +38875,7 @@ Prefab:
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 31.117798
+      value: 31.117828
       objectReference: {fileID: 0}
     - target: {fileID: 224113186434497606, guid: e0e5fa63369e14f4290375c9cb82925f,
         type: 2}
@@ -46640,6 +46640,7 @@ MonoBehaviour:
   Theme: {fileID: 8300000, guid: ac2b8cdea1c5b924887190c9ec5d0ff5, type: 3}
   CountdownMusic: {fileID: 8300000, guid: 7769e7fc6b46cd04797bcca1e0029cba, type: 3}
   Ah: {fileID: 8300000, guid: 72b57894e07fe24488257703ca40346a, type: 3}
+  Boo: {fileID: 8300000, guid: 3f51d5ec65325874ca56dfc753ae8bb9, type: 3}
 --- !u!82 &1586773262
 AudioSource:
   m_ObjectHideFlags: 0
@@ -55854,6 +55855,7 @@ MonoBehaviour:
   Theme: {fileID: 8300000, guid: ac2b8cdea1c5b924887190c9ec5d0ff5, type: 3}
   CountdownMusic: {fileID: 8300000, guid: 7769e7fc6b46cd04797bcca1e0029cba, type: 3}
   Ah: {fileID: 8300000, guid: 72b57894e07fe24488257703ca40346a, type: 3}
+  Boo: {fileID: 8300000, guid: 3f51d5ec65325874ca56dfc753ae8bb9, type: 3}
 --- !u!82 &1901116513
 AudioSource:
   m_ObjectHideFlags: 0
