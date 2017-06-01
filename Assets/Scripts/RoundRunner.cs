@@ -709,6 +709,11 @@ public class RoundRunner : MonoBehaviour {
             return;
         }
 
+        if (BoardFiller.PuzzleContainsOnly(LetterType.Neither)) {
+            ToggleUIButtonsParsing("solve", true);
+            return;
+        }
+
         if (PlayerList.CurrentPlayer.RoundWinnings >= VowelPurchaseCost) {
             ToggleUIButtonsParsing("all", true);
         } else {

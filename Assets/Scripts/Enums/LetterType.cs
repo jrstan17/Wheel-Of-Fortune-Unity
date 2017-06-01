@@ -1,5 +1,6 @@
 ﻿    public enum LetterType {
         Consonant,
             Vowel,
-            Both
+            Both,
+            Neither
     }

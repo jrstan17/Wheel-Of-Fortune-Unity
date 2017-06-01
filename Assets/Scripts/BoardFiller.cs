@@ -153,7 +153,8 @@ public class BoardFiller : MonoBehaviour {
 
             return ((type == LetterType.Vowel && hasVowels && !hasConsonants) ||
                 (type == LetterType.Consonant && !hasVowels && hasConsonants) ||
-                (type == LetterType.Both && hasVowels && hasConsonants));
+                (type == LetterType.Both && hasVowels && hasConsonants) ||
+                (type == LetterType.Neither && !hasVowels && !hasConsonants));
         }
 
         return false;
