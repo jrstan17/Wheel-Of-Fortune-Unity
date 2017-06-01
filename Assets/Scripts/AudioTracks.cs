@@ -23,6 +23,7 @@ public class AudioTracks : MonoBehaviour {
     public AudioClip CountdownMusic;
     public AudioClip Ah;
     public AudioClip Boo;
+    public AudioClip CarHorn;
 
     AudioSource AudioSource;
 
@@ -49,6 +50,8 @@ public class AudioTracks : MonoBehaviour {
             AudioSource.clip = Oh;
         } else if (name.Equals("remains")) {
             AudioSource.clip = Remains;
+        } else if (name.Equals("car_horn")) {
+            AudioSource.clip = CarHorn;
         } else if (name.Equals("cheering")) {
             AudioSource.clip = Cheering;
         } else if (name.Equals("freeplay")) {

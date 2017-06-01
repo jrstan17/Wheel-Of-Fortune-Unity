@@ -83,7 +83,7 @@ public class SpinWheel : MonoBehaviour {
 
             if (currentType == WedgeType.HighAmount || currentType == WedgeType.TenThousand) {
                 RoundRunner.SFXAudioTracks.Play("oh");
-            } else if (currentType == WedgeType.FreePlay || currentType == WedgeType.Prize || currentType == WedgeType.Million || currentType == WedgeType.Wild || currentType == WedgeType.Mystery || currentType == WedgeType.HalfCar) {
+            } else if (currentType == WedgeType.FreePlay || currentType == WedgeType.Prize || currentType == WedgeType.Million || currentType == WedgeType.Wild || currentType == WedgeType.Mystery) {
                 RoundRunner.SFXAudioTracks.Play("freeplay");
                 waitTime = 2f;
             }

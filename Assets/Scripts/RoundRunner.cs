@@ -560,7 +560,17 @@ public class RoundRunner : MonoBehaviour {
             ToggleWildCard(false);
             PlayerList.CurrentPlayer.Wilds++;
         } else if (CurrentType == WedgeType.HalfCar) {
-            SajakText.text = "You've landed on a Half Car plate! The current value is " + CurrentWedge.Value + ".";
+            MusicAudioTracks.Play("car_horn");
+            if (PlayerList.CurrentPlayer.LicensePlates == 0) {
+                SajakText.text = "You have yourself a Half Car plate! The current value is " + CurrentWedge.Value + ".";
+                ItemManager.ToggleCar(IconState.HalfCar);
+            } else {
+                SajakText.text = "You have yourself a Whole Car! The current value is " + CurrentWedge.Value + ".";
+                ItemManager.ToggleCar(IconState.WholeCar);
+            }
+            PlayerList.CurrentPlayer.LicensePlates++;
+            ToggleHalfCar(CurrentWedge.Text, false);
+
             IsTimeForLetter = true;
         } else if (CurrentType == WedgeType.Prize) {
             SajakText.text = "You've landed on the Prize wedge! The current value is " + CurrentWedge.Value + ".";
@@ -844,16 +854,6 @@ public class RoundRunner : MonoBehaviour {
                         millionChange.ToggleAfter();
 
                         SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up the One Million wedge!");
-                    } else if (CurrentWedge.WedgeType == WedgeType.HalfCar) {
-                        if (PlayerList.CurrentPlayer.LicensePlates == 0) {
-                            SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up a Half Car plate!");
-                            ItemManager.ToggleCar(IconState.HalfCar);
-                        } else {
-                            SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " now has a whole car!");
-                            ItemManager.ToggleCar(IconState.WholeCar);
-                        }
-                        PlayerList.CurrentPlayer.LicensePlates++;
-                        ToggleHalfCar(CurrentWedge.Text, false);
                     }
 
                     if (!IsVowel && PlayerList.CurrentPlayer.Wilds > 0 && (BoardFiller.PuzzleContainsOnly(LetterType.Consonant) || BoardFiller.PuzzleContainsOnly(LetterType.Both))) {
