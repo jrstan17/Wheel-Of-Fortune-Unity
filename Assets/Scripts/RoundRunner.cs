@@ -712,6 +712,14 @@ public class RoundRunner : MonoBehaviour {
         } else {
             ItemManager.ToggleMillion(false);
         }
+
+        if (p.LicensePlates == 0) {
+            ItemManager.ToggleCar(IconState.Disabled);
+        } else if (p.LicensePlates == 1) {
+            ItemManager.ToggleCar(IconState.HalfCar);
+        } else if (p.LicensePlates == 2) {
+            ItemManager.ToggleCar(IconState.WholeCar);
+        }
     }
 
     public void ToggleUIButtons() {
@@ -959,8 +967,9 @@ public class RoundRunner : MonoBehaviour {
                     PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.clear;
                     nameText.color = new Color32(255, 255, 255, 125);
                     winningText.color = new Color32(255, 255, 255, 125);
-                } else {
-                    RandomColorChanger rcc = GetComponent<RandomColorChanger>();
+                } else {                    
+                    RandomColorChanger rcc = gameObject.AddComponent<RandomColorChanger>();
+                    rcc.Speed = 60;
                     rcc.Image = PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>();
                     rcc.StartColorChange();
 

@@ -45,7 +45,7 @@ public class RandomColorChanger : MonoBehaviour {
             float b = Mathf.Lerp(start.b, finish.b, elapsedTime);
             Color32 nextColor = new Color32((byte)r, (byte)g, (byte)b, Alpha);
 
-            if (TextObjects.Length != 0) {
+            if (TextObjects != null && TextObjects.Length != 0) {
                 foreach (Text t in TextObjects) {
                     t.color = nextColor;
                 }
