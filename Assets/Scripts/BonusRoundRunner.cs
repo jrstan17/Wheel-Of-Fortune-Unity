@@ -82,7 +82,7 @@ public class BonusRoundRunner : MonoBehaviour {
     internal IEnumerator StartWheelClosedDialog() {
         RoundRunner.CategoryText.text = RoundRunner.Puzzle.Category;        
         yield return UpdateSajak("The category is " + RoundRunner.Puzzle.Category + ".", 1f);
-        RoundRunner.SFXAudioTracks.Play("reveal");
+        RoundRunner.AudioTracks.Play("reveal");
         BoardFiller.InitBoard();
         yield return new WaitForSeconds(4f);
 
@@ -109,45 +109,45 @@ public class BonusRoundRunner : MonoBehaviour {
     }
 
     public IEnumerator SolvedCorrectly() {
-        RoundRunner.SFXAudioTracks.Play("round_win");
+        RoundRunner.AudioTracks.Play("round_win");
         StartCoroutine(BoardFiller.RevealBoard());
 
         yield return UpdateSajak("That's right, " + Winner.Name + "!", NORMAL_SAJAK_SPEED);
 
         yield return UpdateSajak("Now let's open the envelope to see what you won.", 4f);
-        RoundRunner.SFXAudioTracks.Play("drumroll");
+        RoundRunner.AudioTracks.Play("drumroll");
         yield return UpdateSajak(Winner.Name + ", you'll be going home with an extra...", 4f);
 
         Winner.TotalWinnings += PrizeAmount;
 
-        RoundRunner.MusicAudioTracks.Play("cymbal_crash");
-        RoundRunner.SFXAudioTracks.Play("cheer_applause");
+        RoundRunner.AudioTracks.Play("cymbal_crash");
+        RoundRunner.AudioTracks.Play("cheer_applause");
         yield return UpdateSajak(PrizeAmount.ToString("C0") + "!  Congratulations!", 7f);
 
         yield return Closeout();
     }
 
     public IEnumerator SolvedIncorrectly() {
-        RoundRunner.SFXAudioTracks.Play("double_buzzer");
+        RoundRunner.AudioTracks.Play("double_buzzer");
         yield return UpdateSajak("I'm sorry, " + Winner.Name + ", but you're out of time.", NORMAL_SAJAK_SPEED);
         yield return UpdateSajak("Let's reveal the solution.", 3f);
         yield return BoardFiller.RevealBoard();
-        RoundRunner.SFXAudioTracks.Play("ah");
+        RoundRunner.AudioTracks.Play("ah");
         yield return new WaitForSeconds(4f);
 
         yield return UpdateSajak("Now let's open the envelope to see what you would have won.", 4f);
-        RoundRunner.SFXAudioTracks.Play("drumroll");
+        RoundRunner.AudioTracks.Play("drumroll");
         yield return UpdateSajak("And you would have won an extra...", 4f);
 
-        RoundRunner.MusicAudioTracks.Play("cymbal_crash");
-        RoundRunner.SFXAudioTracks.Play("bankrupt");
+        RoundRunner.AudioTracks.Play("cymbal_crash");
+        RoundRunner.AudioTracks.Play("bankrupt");
         yield return UpdateSajak(PrizeAmount.ToString("C0") + ". I'm so sorry.", NORMAL_SAJAK_SPEED);
 
         yield return Closeout();
     }
 
     public IEnumerator Closeout() {
-        RoundRunner.MusicAudioTracks.Play("theme");
+        RoundRunner.AudioTracks.Play("theme");
         int highScorePlace = HighScore.UpdateHighScores(Winner.Name, Winner.TotalWinnings);
 
         if (highScorePlace > 0) {

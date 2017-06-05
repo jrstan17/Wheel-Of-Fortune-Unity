@@ -9,14 +9,14 @@ public class NewWedgeEntered : MonoBehaviour {
     public int WedgeValue;
     public WedgeType WedgeType;
 
-    WheelClickPlayer wcp;
+    AudioTracks AudioTracks;
 
     private void Start() {
-        wcp = GameObject.FindGameObjectWithTag("WheelClickAudio").GetComponent<WheelClickPlayer>();
+        AudioTracks = GameObject.FindGameObjectWithTag("RoundRunner").GetComponent<RoundRunner>().AudioTracks;
     }
 
     void OnTriggerEnter2D(Collider2D col) {
         RoundRunner.CurrentWedge = new WedgeData(WedgeValue, WedgeText, WedgeType);
-        wcp.Play();
+        AudioTracks.Play("wheel_click");
     }
 }

@@ -31,20 +31,20 @@ public class MysteryWedgeLanded : MonoBehaviour {
     internal IEnumerator TakeChance() {
         int picked = Random.Range(0, 2);
 
-        RoundRunner.SFXAudioTracks.Play("drumroll");
+        RoundRunner.AudioTracks.Play("drumroll");
         Sajak.text = "Underneath the Mystery Wedge is...";
-        yield return new WaitForSeconds(RoundRunner.SFXAudioTracks.Drumroll.length);
-        RoundRunner.MusicAudioTracks.Play("cymbal_crash");
+        yield return new WaitForSeconds(RoundRunner.AudioTracks.Drumroll.length);
+        RoundRunner.AudioTracks.Play("cymbal_crash");
 
         if (picked == 0) {
-            RoundRunner.SFXAudioTracks.Play("bankrupt");
+            RoundRunner.AudioTracks.Play("bankrupt");
             yield return SaySajak("A BANKRUPT!", 3.5f);
             yield return SaySajak("I'm sorry, " + PlayerList.CurrentPlayer.Name + ". That's the risk of the Mystery Wedge.", 5f);
             RoundRunner.doBankruptLogic(PlayerList.CurrentPlayer);
             RoundRunner.GotoNextPlayer();
             Sajak.text = "It's now " + PlayerList.CurrentPlayer.Name + "'s turn.";
         } else {
-            RoundRunner.SFXAudioTracks.Play("pq");
+            RoundRunner.AudioTracks.Play("pq");
             PlayerList.CurrentPlayer.RoundWinnings += Constants.MYSTERY_WEDGE_WIN;
             yield return SaySajak(Constants.MYSTERY_WEDGE_WIN.ToString("C0") + "!  Luck was on your side!", 6f);
             Sajak.text = "Please select a consonant for " + RoundRunner.CurrentWedge.Value.ToString("N0") + ".";

@@ -410,8 +410,8 @@ public class KeyPress : MonoBehaviour {
 
     private void StopSounds() {
         if (Splits[0].Equals("STOPSOUNDS") && Splits.Length == 1) {
-            RoundRunner.SFXAudioTracks.Stop();
-            RoundRunner.MusicAudioTracks.Stop();
+            RoundRunner.AudioTracks.Stop();
+            RoundRunner.AudioTracks.Stop();
         }
     }
 

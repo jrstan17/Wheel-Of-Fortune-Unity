@@ -82,9 +82,9 @@ public class SpinWheel : MonoBehaviour {
             WedgeType currentType = RoundRunner.CurrentWedge.WedgeType;
 
             if (currentType == WedgeType.HighAmount || currentType == WedgeType.TenThousand) {
-                RoundRunner.SFXAudioTracks.Play("oh");
+                RoundRunner.AudioTracks.Play("oh");
             } else if (currentType == WedgeType.FreePlay || currentType == WedgeType.Prize || currentType == WedgeType.Million || currentType == WedgeType.Wild || currentType == WedgeType.Mystery) {
-                RoundRunner.SFXAudioTracks.Play("freeplay");
+                RoundRunner.AudioTracks.Play("freeplay");
                 waitTime = 2f;
             }
 

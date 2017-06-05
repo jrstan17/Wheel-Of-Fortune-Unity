@@ -21,7 +21,7 @@ public class BonusSolveFunctions : MonoBehaviour {
             Countdown.TimeLeft = 30f;
             SolveField.text = "";
             BoardFiller = BonusRoundRunner.BoardFiller;
-            RoundRunner.MusicAudioTracks.Play("countdown");
+            RoundRunner.AudioTracks.Play("countdown");
     }
 
     // Update is called once per frame
@@ -37,7 +37,7 @@ public class BonusSolveFunctions : MonoBehaviour {
             if (Countdown.TimeLeft == 0) {
                 timerStopFlag = true;
                 Countdown.StopTimer();
-                RoundRunner.MusicAudioTracks.Stop();
+                RoundRunner.AudioTracks.Stop();
                 StartCoroutine(BonusRoundRunner.SolvedIncorrectly());
                 GetComponent<Canvas>().enabled = false;
             }
@@ -60,12 +60,12 @@ public class BonusSolveFunctions : MonoBehaviour {
         if (solveText.Equals(sb.ToString())) {
             timerStopFlag = true;
             Countdown.StopTimer();
-            RoundRunner.MusicAudioTracks.Stop();
+            RoundRunner.AudioTracks.Stop();
             GetComponent<Canvas>().enabled = false;
             StartCoroutine(BonusRoundRunner.SolvedCorrectly());
         } else {
             SolveField.text = "";
-            RoundRunner.SFXAudioTracks.Play("double_buzzer");
+            RoundRunner.AudioTracks.Play("double_buzzer");
         }
     }
 }

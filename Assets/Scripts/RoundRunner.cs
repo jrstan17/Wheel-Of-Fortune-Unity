@@ -21,8 +21,6 @@ public class RoundRunner : MonoBehaviour {
     public GameObject SolveCanvas;
     public GameObject CategoryTextObject;
     public KeyPress KeyPress;
-    public GameObject SFXAudioSource;
-    public GameObject MusicAudioSource;
     public GameObject RegularRoundButtonsObject;
     public GameObject BonusRoundButtonsObject;
     public InputField BonusInputText;
@@ -31,6 +29,7 @@ public class RoundRunner : MonoBehaviour {
     public GameObject Background;
     public Populator HighScorePopulator;
     public Clapper Clapper;
+    public AudioTracks AudioTracks;
     public NewWedgeEntered[] Wheel2Colliders;
 
     public GameObject PrizeCanvas;
@@ -50,8 +49,6 @@ public class RoundRunner : MonoBehaviour {
     internal List<Text> UsedLetterText = new List<Text>();
     internal List<char> UsedLetters = new List<char>();
     internal Text CategoryText;
-    internal AudioTracks SFXAudioTracks;
-    internal AudioTracks MusicAudioTracks;
     internal bool IsBonusRound = false;
     internal bool IsTimeForLetter = false;
     internal int VowelPurchaseCost = 250;
@@ -98,8 +95,6 @@ public class RoundRunner : MonoBehaviour {
         }
 
         CategoryText = CategoryTextObject.GetComponent<Text>();
-        SFXAudioTracks = SFXAudioSource.GetComponent<AudioTracks>();
-        MusicAudioTracks = MusicAudioSource.GetComponent<AudioTracks>();
         SajakText = SajackPanel.transform.GetChild(0).GetComponent<Text>();
 
         InitPrizeCanvas();
@@ -142,7 +137,7 @@ public class RoundRunner : MonoBehaviour {
                 KeyPress.CustomText = null;
             }
 
-            MusicAudioTracks.Play("reveal");
+            AudioTracks.Play("reveal");
         }
 
         CategoryText.text = Puzzle.Category;
@@ -281,7 +276,7 @@ public class RoundRunner : MonoBehaviour {
             PlayerList.CurrentPlayer.RoundWinnings = 1000;
         }
 
-        SFXAudioTracks.Play("round_win");
+        AudioTracks.Play("round_win");
         StartCoroutine(BoardFiller.RevealBoard());
         StartCoroutine(Clapper.PlayFor(2f));
 
@@ -395,7 +390,7 @@ public class RoundRunner : MonoBehaviour {
 
     public void SolvedIncorrectly(bool isOutOfTime) {
         SolveCanvas.SetActive(false);
-        SFXAudioTracks.Play("buzzer");
+        AudioTracks.Play("buzzer");
         string pre = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". ";
         string chance = Utilities.RandomString(new string[] { " try.", " chance.", "n opportunity." });
 
@@ -439,7 +434,7 @@ public class RoundRunner : MonoBehaviour {
     public void Reveal_Clicked() {
         MenuCanvas.SetActive(false);
         KeyPress.isMenuActive = true;
-        SFXAudioTracks.Play("round_win");
+        AudioTracks.Play("round_win");
         StartCoroutine(BoardFiller.RevealBoard());
     }
 
@@ -547,7 +542,7 @@ public class RoundRunner : MonoBehaviour {
             GotoNextPlayer();
             SajakText.text += " It's your turn, " + PlayerList.CurrentPlayer.Name + ".";
         } else if (CurrentType == WedgeType.LoseATurn) {
-            SFXAudioTracks.Play("buzzer");
+            AudioTracks.Play("buzzer");
             string yes = "You've lost your turn, " + PlayerList.CurrentPlayer.Name + ".";
             string no = yes + " It's now your turn, " + PlayerList.NextPlayersName() + ".";
             StartCoroutine(AskIfFreePlay(yes, no));
@@ -560,7 +555,7 @@ public class RoundRunner : MonoBehaviour {
             ToggleWildCard(false);
             PlayerList.CurrentPlayer.Wilds++;
         } else if (CurrentType == WedgeType.HalfCar) {
-            MusicAudioTracks.Play("car_horn");
+            AudioTracks.Play("car_horn");
             if (PlayerList.CurrentPlayer.LicensePlates == 0) {
                 SajakText.text = "You have yourself a Half Car plate! The current value is " + CurrentWedge.Value + ".";
                 ItemManager.ToggleCar(IconState.HalfCar);
@@ -618,8 +613,8 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void OnBankrupt(Player p) {
-        SFXAudioTracks.Play("bankrupt");
-        MusicAudioTracks.Play("boo");
+        AudioTracks.Play("bankrupt");
+        AudioTracks.Play("boo");
         SajakText.text = "You're bankrupt, " + p.Name + ". I'm very sorry.";
         doBankruptLogic(p);
     }
@@ -805,7 +800,7 @@ public class RoundRunner : MonoBehaviour {
 
                 if (!UsedLetters.Contains(letter) && trilonsRevealed > 0) {
                     float clapSeconds = 0;
-                    float clapMinLength = Clapper.ClapStart.length + Clapper.ClapFinish.length;
+                    float clapMinLength = AudioTracks.ClapStart.length + AudioTracks.ClapFinish.length;
 
                     if (trilonsRevealed * 2 > clapMinLength) {
                         clapSeconds = trilonsRevealed * 2 - clapMinLength + 1;
@@ -833,7 +828,7 @@ public class RoundRunner : MonoBehaviour {
                         SajakText.text += ".";
                     }
                 } else {
-                    SFXAudioTracks.Play("buzzer");
+                    AudioTracks.Play("buzzer");
                     yield return StartCoroutine(AskIfFreePlay("There are no " + char.ToUpper(letter) + "'s.", "There are no " + char.ToUpper(letter) + "'s. It's your turn, " + PlayerList.NextPlayersName() + "."));
                 }
 
@@ -882,7 +877,7 @@ public class RoundRunner : MonoBehaviour {
                     yield return StartCoroutine(AskIfFreePlay(yes, no));
                 }
 
-                SFXAudioTracks.Play("buzzer");
+                AudioTracks.Play("buzzer");
             }
 
             ShouldBeVowel = false;
@@ -892,7 +887,7 @@ public class RoundRunner : MonoBehaviour {
     }
 
     private void SajakYouGotSomethingGood(string sajakText) {
-        SFXAudioTracks.Play("pq");
+        AudioTracks.Play("pq");
         SajakText.text = sajakText;
     }
 
@@ -1035,7 +1030,7 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void StartRound_Clicked() {
-        MusicAudioTracks.Stop();
+        AudioTracks.Stop();
         PrizeCanvas.SetActive(false);
         NewBoard(false);
     }
