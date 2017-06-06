@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
-class Prize {
+public class Prize {
+    public int Number { get; set; }
     public string Text { get; set; }
     public string SajakText { get; set; }
     public int Value { get; set; }
+    public Sprite Sprite { get; set; }
 
     private Prize(string text, string sajakText, int value) {
         Text = text;
@@ -11,12 +13,16 @@ class Prize {
         Value = value;
     }
 
-    public Prize(string line) {
+    public Prize(string line, PrizeSpriteGetter spriteGetter) {
         string[] splits = line.Split('\t');
-        Text = splits[0];
-        SajakText = splits[1];
 
-        int tempValue = int.Parse(splits[2]);
+        Number = int.Parse(splits[0]);
+        Sprite = spriteGetter.Get(Number);
+
+        Text = splits[1];
+        SajakText = splits[2];
+
+        int tempValue = 3500;
         int wholePercentage = Random.Range(0, 10);
         double decimalPercentage = Random.value;
         double percentage = wholePercentage + decimalPercentage;

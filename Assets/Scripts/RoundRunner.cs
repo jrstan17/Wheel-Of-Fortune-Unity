@@ -31,16 +31,17 @@ public class RoundRunner : MonoBehaviour {
     public Clapper Clapper;
     public AudioTracks AudioTracks;
     public NewWedgeEntered[] Wheel2Colliders;
+    public PrizeFactory PrizeFactory;
 
     public GameObject PrizeCanvas;
     public Text RoundText;
+    public SpriteRenderer PrizeSprite;
     public Text PrizeText;
     public Text PrizeValueText;
 
     internal PuzzleFactory PuzzleFactory;
     public static Puzzle Puzzle;
 
-    internal PrizeFactory PrizeFactory;
     internal static Prize Prize;
 
     internal GameObject WheelCanvas;
@@ -85,7 +86,7 @@ public class RoundRunner : MonoBehaviour {
         }
 
         PuzzleFactory = new PuzzleFactory(DataTextFile);
-        PrizeFactory = new PrizeFactory(PrizeTextFile);
+        PrizeFactory.InitPrizeList(PrizeTextFile);
 
         BoardFiller = gameObject.GetComponent<BoardFiller>();
 
@@ -204,6 +205,7 @@ public class RoundRunner : MonoBehaviour {
         RoundText.text = "ROUND " + (RoundNumber + 1);
         Prize = PrizeFactory.GetRandom();
         PrizeText.text = Prize.Text;
+        PrizeSprite.sprite = Prize.Sprite;
         PrizeValueText.text = Prize.Value.ToString("C0");
         PrizeCanvas.SetActive(true);
         PrizeCanvas.GetComponent<RandomColorChanger>().StartColorChange();

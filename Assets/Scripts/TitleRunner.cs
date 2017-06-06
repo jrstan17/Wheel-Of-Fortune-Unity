@@ -19,7 +19,6 @@ public class TitleRunner : MonoBehaviour {
         if (!useQuickStart) {
             Cursor.visible = false;
             CursorToggler.ToggleCursor(false);
-            MusicTracks.Play("theme");
             JasonWedgeReplacer.StartJasonTimer();
 
             HalfBoardLetterRandomizer hblr = GetComponent<HalfBoardLetterRandomizer>();
@@ -41,5 +40,9 @@ public class TitleRunner : MonoBehaviour {
 
             RoundRunner.Initialize();
         }
+    }
+
+    public void StartMusic() {
+        MusicTracks.Play("theme");
     }
 }

@@ -1,59 +1,29 @@
-A Stay at Quail Lodge & Golf Club in Carmel Valley, California	a stay in Carmel Valley, CA	8045
-A River Cruise by American Cruise Lines to New Orleans	a river cruise to New Orleans	9964
-A Stay at the Verandah Resort in Antigua	a trip to Antigua	7040
-A Trip to Jamaica	a trip to Jamaica	6765
-A Trip through the American Southwest courtesy of Caravan.com	a trip through the Souhtwest	6069
-A Stay at the Zoetry Villa Rolandi Resort in Isla Mujeres, Cancun	a trip to Cancun	6980
-A Stay at the Ka'anapali Beach Hotel in Maui	a trip to Maui	6548
-A San Francisco Tour by Collette Vacations	a tour of San Francisco	6069
-A Tour of New York City	a tour of New York City	6069
-A Trip to London & Paris by Collette Vacations	a trip to London & Paris	10720
-A Stay at St. James's Club in Morgan Bay, St. Lucia	a trip to the Caribbean	7233
-A Trip to the Sandals LaSource Resort in St. George's, Grenada	a trip to Grenada	7890
-A Stay at the Gamboa Rainforest Resort in Panama City	a vacation to Panama	6069
-A Vacation to the Scrub Island Resort in the British Virgin Islands	a British Virgin Island vacation	7362
-A Trip to the Breezes Bahamas Resort & Spa in the Bahamas	a trip to the Bahamas	7002
-A Stay at the Hyatt Regency Resort in Lahaina, Hawaii	a stay in Maui	10250
-A Vacation to Morritt's Tortuga Club in the Cayman Islands	a vacation to the Cayman Islands	8119
-A Greece Tour courtesy of Collette Vacations	a tour of Greece	11669
-A Trip to the Peace Lodge in Costa Rica	a trip to Costa Rica	6190
-A Stay at the Oneiro Resort in Cluj-Napoca,Romania	a stay in Romania	8017
-A Vacation to the Divi Little Bay Resort on Saint-Martin Island	a vacation to Saint-Martin Island	6295
-A Croatia Tour courtest of Collette Vacations	a tour of Croatia	10595
-A Trip to the Diva Phoenix Beach Resort in Aruba	a trip to Aruba	7398
-A Stay at the Hyatt Regency Hotel at Waikiki Beach	a visit to Waikiki Beach	7254
-A Vacation to Madrid courtesy of Madrid.buzz	a vacation to Madrid	7816
-A Vacation to Westin Dawn Beach Resort & Spa in Sint Maarten, Caribbean	a vacation to the Caribbean	8239
-A Vacation to Riu Bambu in the Dominican Republic	a vacation to the Dominican Republic	7151
-A shopping spree courtesy of ShopYourWay.com	a Shop Your Way shopping spree	7662
-A Vacation to the Azul Ocean Club in Costa Rica	a vacation to Costa Rica	6947
-A Tour of Ireland via Aer Lingus Vacation Store	a tour of Ireland	6130
-A Stay at Galley Bay Resort in Antigua	a stay in Antigua	9113
-A Stay at the Aston Lakeland Village at Lake Tahoe	a stay at Lake Tahoe	6794
-A Trip to the Long Bay Beach Club in the British Virgin Islands	a British Virgin Island vacation	6845
-A Shopping Spree courtesy of Overstock.com	An Overstock shopping spree	6130
-A Trip to Iberostar Rose Hall Beach in Montego Bay, Jamaica	a trip to Jamaica	6833
-A Beyond The Rack Gift Certificate	a gift certificate	6130
-A Trip to Frenchman's Reef Marriott in the Caribbean	a trip to the Caribbean	6947
-A Nissan Versa Note S	a Nissan	15299
-A Stay at Hilton Waikoloa Village in Hawaii	a stay in Hawaii	6961
-A New Brunswick Tour courtesy of Caravan.com	a tour of New Brunswick	6130
-An Aruba Tour courtesy of Hotels.com	an Aruba tour	7151
-A Stay at the Chongwe River Camp in Zambia	a stay in Zambia	9227
-A Tour of the Canadian Rockies courtesy of Caravan.com	a tour of the Rockies	6151
-A Stay at Riu Bambu in The Dominican Republic	a stay in the Dominican Republic	7177
-A Stay at Si Como No in Costa Rica	a stay in Costa Rica	7103
-A Tour of Morocco by Intrepid Travel	a tour of Morocco	7689
-A Cruise to the Caribbean by Costa Cruises	a Caribbean cruise	6151
-A Vacation to the Crane Resort in Barbados	a vacation to Barbados	8653
-A Cruise through the Mediterranean Sea	a Mediterranean cruise	6664
-A Vacation to the Oasis at Sunset Resort in Jamaica	a vacation to Jamaica	9631
-A Tour of Sydney, Australia courtesy of Sydney.buzz	a tour of Sydney	8714
-A Trip to the Napili Kai Beach Resort in Maui	a trip to Maui	6971
-A Tour of the French Riviera and Paris	a tour of Paris	11683
-A Tour of Honolulu, Hawaii courtesy of Honolulu.buzz	a tour of Honolulu	7643
-A Vacation at the Qamea Resort & Spa in Fiji	a vacation in Fiji	9362
-A Vacation at the Bolongo Bay Beach Resort in the Virgin Islands	a vacation to the Virgin Islands	6540
-A Tour of Italy courtesy of Collette Vacations	a tour of Italy	9577
-A Vacation to the Coconut Bay Beach Resort & Spa in Saint Lucia	a vacation in St. Lucia	9477
-A Tour of London by Lonely Planet Tours	a tour of London	7713
+@Price Ranges: $3,000 - $4,000
+
+@Televisions
+1000	A Sony 75-Inch 4K Ultra HD Smart LED TV	a Sony television
+1001	A Samsung 75-Inch 4K Ultra HD Smart LED TV	a Samsung television
+1002	A Samsung Curved 65-Inch 4K Ultra HD Smart QLED TV	a Samsung television
+
+@Washer/Dryers
+2000	A Miele W3038 Washer & Miele T8023C Electric Ventless Dryer Combo	a washer & dryer
+
+@Dishwasher
+3000	An Gaggenau Undercounter High Temp Dishwasher	an Gaggenau dishwasher
+
+@Jewelry
+4000	A Raymond Weil Freelancer Piper Men's Watch	a Raymon Weil watch
+4001	A TAG Heuer Formula 1 Women's Watch	a TAG Heuer watch
+4002	A Neil Lane 1 ct Diamond 14K White Gold Ring	a white gold ring
+
+@Ranges
+5000	A Kucht 36" Professional-Class Stainless Steel Gas Range	a gas range
+5001	A Verona 36" Pro-Style Dual-Fuel Programmable Range	a programmable range
+
+@Refrigerator/Freezers
+6000	A Western Pacific 81" Three Locking Doors Commercial Freezer	a large freezer
+
+@Etcetera
+7000	A Scotsman Brilliance Series 15" Undercounter Ice Maker	an ice maker
+7001	A Jura Z6 Automatic Aluminum Espresso Machine	an espresso machine
+7002	A Vinotemp 300-Bottle Dual-Zone Wine Cooler	a wine cooler

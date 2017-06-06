@@ -2,25 +2,29 @@
 using System.IO;
 using UnityEngine;
 
-class PrizeFactory {
+public class PrizeFactory : MonoBehaviour{
 
     List<Prize> Prizes;
-    public PrizeFactory(TextAsset textAsset) {
-        InitPrizeList(textAsset);
+    PrizeSpriteGetter PrizeSpriteGetter;
+
+    private void Start() {
+        PrizeSpriteGetter = gameObject.GetComponent<PrizeSpriteGetter>();
     }
 
     public Prize GetRandom() {
         return Prizes[Random.Range(0, Prizes.Count)];
     }
 
-    private void InitPrizeList(TextAsset textAsset) {
+    public void InitPrizeList(TextAsset textAsset) {
         if (Prizes == null) {
             Prizes = new List<Prize>();
             string text = textAsset.text;
             string[] textSplits = textAsset.text.Split('\n');
 
             foreach (string str in textSplits) {
-                Prizes.Add(new Prize(str));
+                if (!str.Equals("") && str[0] != '@') {
+                    Prizes.Add(new Prize(str, PrizeSpriteGetter));
+                }
             }
         }
     }
