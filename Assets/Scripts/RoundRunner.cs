@@ -794,13 +794,14 @@ public class RoundRunner : MonoBehaviour {
 
     public IEnumerator LetterPressed(char letter) {
         if (IsTimeForLetter) {
+            bool IsVowel = Utilities.IsVowel(letter);
+
             IsTimeForLetter = false;
             int trilonsRevealed = 0;
 
-            KeyPress.expressWedgeLanded.StopTimer();
             if (KeyPress.expressWedgeLanded.IsExpressRunning) {
-                if (PlayerList.CurrentPlayer.RoundWinnings < 250) {
-                    yield return 0;
+                if (PlayerList.CurrentPlayer.RoundWinnings >= 250 && IsVowel || !IsVowel) {
+                    KeyPress.expressWedgeLanded.StopTimer();
                 }
 
                 LetterTypeWanted = LetterType.Both;
@@ -808,8 +809,6 @@ public class RoundRunner : MonoBehaviour {
 
             List<char> letters = new List<char>();
             letters.Add(letter);
-
-            bool IsVowel = Utilities.IsVowel(letter);
 
             if (!UsedLetters.Contains(letter) && (LetterTypeWanted == LetterType.Consonant && !IsVowel || LetterTypeWanted == LetterType.Vowel && IsVowel || LetterTypeWanted == LetterType.Both)) {
 
@@ -831,7 +830,9 @@ public class RoundRunner : MonoBehaviour {
                         if (IsVowel) {
                             if (PlayerList.CurrentPlayer.RoundWinnings < 250) {
                                 AudioTracks.Play("buzzer");
-                                yield return 0;
+                                trilonsRevealed = -1;
+                                IsTimeForLetter = true;
+                                yield break;
                             } else {
                                 PlayerList.CurrentPlayer.RoundWinnings -= 250;
                             }
@@ -840,7 +841,7 @@ public class RoundRunner : MonoBehaviour {
 
                     if (trilonsRevealed == 1) {
                         SajakText.text = "There is 1 " + char.ToUpper(letter);
-                    } else {
+                    } else if (trilonsRevealed >= 0) {
                         SajakText.text = "There are " + trilonsRevealed + " " + char.ToUpper(letter) + "'s";
                     }
 
@@ -855,7 +856,7 @@ public class RoundRunner : MonoBehaviour {
                         } else {
                             SajakText.text += ".";
                         }
-                    } else {
+                    } else if (!KeyPress.expressWedgeLanded.IsExpressRunning) {
                         SajakText.text += ".";
                     }
                 } else {
