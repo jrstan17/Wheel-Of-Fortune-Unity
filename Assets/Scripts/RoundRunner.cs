@@ -53,7 +53,7 @@ public class RoundRunner : MonoBehaviour {
     internal bool IsBonusRound = false;
     internal bool IsTimeForLetter = false;
     internal int VowelPurchaseCost = 250;
-    internal bool ShouldBeVowel = false;
+    internal LetterType LetterTypeWanted = LetterType.Consonant;
     internal int RoundNumber = 0;
     internal int MaxRounds = 0;
     internal bool NotifiedOfRemainingLetters = false;
@@ -112,7 +112,7 @@ public class RoundRunner : MonoBehaviour {
         NotifiedOfRemainingLetters = false;
 
         IsBonusRound = isBonus;
-        ShouldBeVowel = false;
+        LetterTypeWanted = LetterType.Consonant;
         GotoNextPlayer();
 
         foreach (Text text in UsedLetterText) {
@@ -442,12 +442,13 @@ public class RoundRunner : MonoBehaviour {
 
     public void Spin_Clicked() {
         AnyRegularButtonClicked();
-        ShouldBeVowel = false;
+        LetterTypeWanted = LetterType.Consonant;
         KeyPress.isWheelActive = true;
         WheelCanvas.SetActive(true);
     }
 
     public void Solve_Clicked() {
+        KeyPress.expressWedgeLanded.StopTimer();
         AnyRegularButtonClicked();
         SolveCanvas.SetActive(true);
     }
@@ -455,7 +456,7 @@ public class RoundRunner : MonoBehaviour {
     public void Buy_Clicked() {
         AnyRegularButtonClicked();
         IsTimeForLetter = true;
-        ShouldBeVowel = true;
+        LetterTypeWanted = LetterType.Vowel;
         PlayerList.CurrentPlayer.RoundWinnings -= VowelPurchaseCost;
     }
 
@@ -569,6 +570,10 @@ public class RoundRunner : MonoBehaviour {
             ToggleHalfCar(CurrentWedge.Text, false);
 
             IsTimeForLetter = true;
+        } else if (CurrentType == WedgeType.Express) {
+            ExpressWedgeLanded ewl = gameObject.AddComponent<ExpressWedgeLanded>();
+            ewl.Start();
+            KeyPress.ExpressWedgeCoroutine = StartCoroutine(ewl.Landed());
         } else if (CurrentType == WedgeType.Prize) {
             SajakText.text = "You've landed on the Prize wedge! The current value is " + CurrentWedge.Value + ".";
             IsTimeForLetter = true;
@@ -622,6 +627,8 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void doBankruptLogic(Player p) {
+        KeyPress.expressWedgeLanded.IsExpressRunning = false;
+
         ItemManager.ToggleFreePlay(false);
         ItemManager.ToggleMillion(false);
         ItemManager.ToggleWild(IconState.Disabled);
@@ -726,7 +733,7 @@ public class RoundRunner : MonoBehaviour {
             return;
         }
 
-        if (BoardFiller.PuzzleContainsOnly(LetterType.Neither)) {
+        if (BoardFiller.PuzzleContainsOnly(LetterType.Neither) || KeyPress.expressWedgeLanded.IsExpressRunning) {
             ToggleUIButtonsParsing("solve", true);
             return;
         }
@@ -790,24 +797,46 @@ public class RoundRunner : MonoBehaviour {
             IsTimeForLetter = false;
             int trilonsRevealed = 0;
 
+            KeyPress.expressWedgeLanded.StopTimer();
+            if (KeyPress.expressWedgeLanded.IsExpressRunning) {
+                if (PlayerList.CurrentPlayer.RoundWinnings < 250) {
+                    yield return 0;
+                }
+
+                LetterTypeWanted = LetterType.Both;
+            }
+
             List<char> letters = new List<char>();
             letters.Add(letter);
 
             bool IsVowel = Utilities.IsVowel(letter);
 
-            if (!UsedLetters.Contains(letter) && (!ShouldBeVowel && !IsVowel || ShouldBeVowel && IsVowel)) {
+            if (!UsedLetters.Contains(letter) && (LetterTypeWanted == LetterType.Consonant && !IsVowel || LetterTypeWanted == LetterType.Vowel && IsVowel || LetterTypeWanted == LetterType.Both)) {
 
                 BoardFiller.LettersRevealed = FindHowManyToReveal(letters);
                 trilonsRevealed = BoardFiller.LettersRevealed;
 
                 if (!UsedLetters.Contains(letter) && trilonsRevealed > 0) {
-                    float clapSeconds = 0;
-                    float clapMinLength = AudioTracks.ClapStart.length + AudioTracks.ClapFinish.length;
 
-                    if (trilonsRevealed * 2 > clapMinLength) {
-                        clapSeconds = trilonsRevealed * 2 - clapMinLength + 1;
+                    if (!KeyPress.expressWedgeLanded.IsExpressRunning) {
+                        float clapSeconds = 0;
+                        float clapMinLength = AudioTracks.ClapStart.length + AudioTracks.ClapFinish.length;
+
+                        if (trilonsRevealed * 2 > clapMinLength) {
+                            clapSeconds = trilonsRevealed * 2 - clapMinLength + 1;
+                        }
+
+                        StartCoroutine(Clapper.PlayFor(clapSeconds));
+                    } else {
+                        if (IsVowel) {
+                            if (PlayerList.CurrentPlayer.RoundWinnings < 250) {
+                                AudioTracks.Play("buzzer");
+                                yield return 0;
+                            } else {
+                                PlayerList.CurrentPlayer.RoundWinnings -= 250;
+                            }
+                        }
                     }
-                    StartCoroutine(Clapper.PlayFor(clapSeconds));
 
                     if (trilonsRevealed == 1) {
                         SajakText.text = "There is 1 " + char.ToUpper(letter);
@@ -830,8 +859,19 @@ public class RoundRunner : MonoBehaviour {
                         SajakText.text += ".";
                     }
                 } else {
-                    AudioTracks.Play("buzzer");
-                    yield return StartCoroutine(AskIfFreePlay("There are no " + char.ToUpper(letter) + "'s.", "There are no " + char.ToUpper(letter) + "'s. It's your turn, " + PlayerList.NextPlayersName() + "."));
+                    if (KeyPress.expressWedgeLanded.IsExpressRunning) {
+                        AudioTracks.Stop("express_music");
+                        KeyPress.expressWedgeLanded.StopTimer();
+                        AudioTracks.Play("buzzer");
+                        AudioTracks.Play("ah");
+                        SajakText.text = "There are no " + char.ToUpper(letter) + "'s. The Express ride is over.";
+                        yield return new WaitForSeconds(5f);
+                        OnBankrupt(PlayerList.CurrentPlayer);
+                        GotoNextPlayer();
+                    } else {
+                        AudioTracks.Play("buzzer");
+                        yield return StartCoroutine(AskIfFreePlay("There are no " + char.ToUpper(letter) + "'s.", "There are no " + char.ToUpper(letter) + "'s. It's your turn, " + PlayerList.NextPlayersName() + "."));
+                    }
                 }
 
                 UsedLetters.Add(letter);
@@ -861,6 +901,16 @@ public class RoundRunner : MonoBehaviour {
                         SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up the One Million wedge!");
                     }
 
+                    if (KeyPress.expressWedgeLanded.IsExpressRunning) {
+                        if (BoardFiller.PuzzleContainsOnly(LetterType.Neither)) {
+                            IsTimeForLetter = false;
+                        } else {
+                            IsTimeForLetter = true;
+                        }
+
+                        KeyPress.expressWedgeLanded.StartTimer();
+                    }
+
                     if (!IsVowel && PlayerList.CurrentPlayer.Wilds > 0 && (BoardFiller.PuzzleContainsOnly(LetterType.Consonant) || BoardFiller.PuzzleContainsOnly(LetterType.Both))) {
                         KeyPress.IsTimeForWildDecision = true;
                         ItemManager.ToggleWild(IconState.Flashing);
@@ -869,23 +919,47 @@ public class RoundRunner : MonoBehaviour {
 
                 ToggleUIButtons();
             } else {
-                if (UsedLetters.Contains(letter)) {
-                    string yes = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". " + char.ToUpper(letter) + " has already been used.";
-                    string no = yes + " It's now " + PlayerList.NextPlayersName() + "'s turn.";
-                    yield return StartCoroutine(AskIfFreePlay(yes, no));
-                } else {
-                    string yes = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ", but that's the incorrect letter type.";
-                    string no = yes + " It's now " + PlayerList.NextPlayersName() + "'s turn.";
-                    yield return StartCoroutine(AskIfFreePlay(yes, no));
-                }
+                if (KeyPress.expressWedgeLanded.IsExpressRunning) {
+                    AudioTracks.Stop("express_music");
+                    KeyPress.expressWedgeLanded.StopTimer();
+                    AudioTracks.Play("buzzer");
 
-                AudioTracks.Play("buzzer");
+                    SajakText.text = char.ToUpper(letter) + " has already been used. The Express ride is over.";
+
+                    yield return new WaitForSeconds(5f);
+                    OnBankrupt(PlayerList.CurrentPlayer);
+                    GotoNextPlayer();
+                } else {
+                    AudioTracks.Play("buzzer");
+
+                    if (UsedLetters.Contains(letter)) {
+                        string yes = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". " + char.ToUpper(letter) + " has already been used.";
+                        string no = yes + " It's now " + PlayerList.NextPlayersName() + "'s turn.";
+                        yield return StartCoroutine(AskIfFreePlay(yes, no));
+                    } else {
+                        string yes = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ", but that's the incorrect letter type.";
+                        string no = yes + " It's now " + PlayerList.NextPlayersName() + "'s turn.";
+                        yield return StartCoroutine(AskIfFreePlay(yes, no));
+                    }
+                }
             }
 
-            ShouldBeVowel = false;
+            LetterTypeWanted = LetterType.Consonant;
         }
 
         yield return 0;
+    }
+
+    public IEnumerator ExpressTimeElapsed() {
+        AudioTracks.Stop("express_music");
+        KeyPress.expressWedgeLanded.StopTimer();
+        AudioTracks.Play("buzzer");
+
+        SajakText.text = "You took too long to respond. The Express ride is over.";
+
+        yield return new WaitForSeconds(5f);
+        OnBankrupt(PlayerList.CurrentPlayer);
+        GotoNextPlayer();
     }
 
     private void SajakYouGotSomethingGood(string sajakText) {
@@ -964,7 +1038,7 @@ public class RoundRunner : MonoBehaviour {
                     PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.clear;
                     nameText.color = new Color32(255, 255, 255, 125);
                     winningText.color = new Color32(255, 255, 255, 125);
-                } else {                    
+                } else {
                     RandomColorChanger rcc = gameObject.AddComponent<RandomColorChanger>();
                     rcc.Speed = 60;
                     rcc.Image = PlayerBar.transform.GetChild(i).gameObject.GetComponent<Image>();
@@ -1032,7 +1106,7 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void StartRound_Clicked() {
-        AudioTracks.Stop();
+        AudioTracks.StopAll();
         PrizeCanvas.SetActive(false);
         NewBoard(false);
     }

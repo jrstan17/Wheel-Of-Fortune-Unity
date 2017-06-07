@@ -28,6 +28,8 @@ public class AudioTracks : MonoBehaviour {
     public AudioClip ClapStart;
     public AudioClip ClapSustain;
     public AudioClip ClapFinish;
+    public AudioClip ExpressLanded;
+    public AudioClip ExpressMusic;
 
     public float PitchBend = 0.25f;
 
@@ -83,6 +85,11 @@ public class AudioTracks : MonoBehaviour {
             AudioSource.clip = ClapFinish;
         } else if (name.Equals("bankrupt")) {
             AudioSource.clip = Bankrupt;
+        } else if (name.Equals("express_landed")) {
+            AudioSource.clip = ExpressLanded;
+        } else if (name.Equals("express_music")) {
+            AudioSource.loop = true;
+            AudioSource.clip = ExpressMusic;
         } else if (name.Equals("oh")) {
             AudioSource.clip = Oh;
         } else if (name.Equals("remains")) {
@@ -130,8 +137,21 @@ public class AudioTracks : MonoBehaviour {
         return null;
     }
 
-    public void Stop() {
+    public bool Stop(string name) {
         foreach (AudioSource source in Sources) {
+            if (source.clip.name.Equals(name)) {
+                source.Stop();
+                source.loop = false;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void StopAll() {
+        foreach (AudioSource source in Sources) {
+            source.loop = false;
             source.Stop();
         }
     }

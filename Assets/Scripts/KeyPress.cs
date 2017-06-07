@@ -21,8 +21,11 @@ public class KeyPress : MonoBehaviour {
     internal static bool IsTimeForFreePlayDecision = false;
     internal static bool IsTimeForWildDecision = false;
     internal static bool IsTimeForMysteryDecision = false;
+    internal static bool IsTimeForExpressDecision = false;
     internal MysteryWedgeLanded mysteryWedgeLanded;
+    internal ExpressWedgeLanded expressWedgeLanded;
     internal Coroutine MysteryWedgeCoroutine;
+    internal Coroutine ExpressWedgeCoroutine;
 
     internal string[] Splits;
     List<string> History = new List<string>();
@@ -102,6 +105,16 @@ public class KeyPress : MonoBehaviour {
                 IsTimeForMysteryDecision = false;
                 StopCoroutine(MysteryWedgeCoroutine);
                 mysteryWedgeLanded.DontTakeChance();
+            }
+        } else if (IsTimeForExpressDecision) {
+            if (Input.GetKeyUp(KeyCode.Alpha2) || Input.GetKeyUp(KeyCode.Keypad2)) {
+                IsTimeForExpressDecision = false;
+                StopCoroutine(ExpressWedgeCoroutine);
+                StartCoroutine(expressWedgeLanded.TakeChance());
+            } else if (Input.GetKeyUp(KeyCode.Alpha1) || Input.GetKeyUp(KeyCode.Keypad1)) {
+                IsTimeForExpressDecision = false;
+                StopCoroutine(ExpressWedgeCoroutine);
+                expressWedgeLanded.DontTakeChance();
             }
         }
     }
@@ -410,8 +423,8 @@ public class KeyPress : MonoBehaviour {
 
     private void StopSounds() {
         if (Splits[0].Equals("STOPSOUNDS") && Splits.Length == 1) {
-            RoundRunner.AudioTracks.Stop();
-            RoundRunner.AudioTracks.Stop();
+            RoundRunner.AudioTracks.StopAll();
+            RoundRunner.AudioTracks.StopAll();
         }
     }
 
@@ -473,7 +486,7 @@ public class KeyPress : MonoBehaviour {
             yield return 0;
         }
 
-        if (RoundRunner.IsTimeForLetter && !IsTimeForWildDecision) {
+        if (RoundRunner.IsTimeForLetter && !IsTimeForWildDecision && !IsTimeForExpressDecision) {
             for (char i = 'a'; i <= 'z'; i++) {
                 string strChar = (i.ToString());
                 if (Input.GetKeyDown(strChar)) {

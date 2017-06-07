@@ -14,5 +14,6 @@ public enum WedgeType {
     Wild,
     Million,
     TenThousand,
-    HalfCar
+    HalfCar,
+    Express
 }

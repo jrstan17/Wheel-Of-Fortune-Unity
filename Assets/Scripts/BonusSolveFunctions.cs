@@ -37,7 +37,7 @@ public class BonusSolveFunctions : MonoBehaviour {
             if (Countdown.TimeLeft == 0) {
                 timerStopFlag = true;
                 Countdown.StopTimer();
-                RoundRunner.AudioTracks.Stop();
+                RoundRunner.AudioTracks.StopAll();
                 StartCoroutine(BonusRoundRunner.SolvedIncorrectly());
                 GetComponent<Canvas>().enabled = false;
             }
@@ -60,7 +60,7 @@ public class BonusSolveFunctions : MonoBehaviour {
         if (solveText.Equals(sb.ToString())) {
             timerStopFlag = true;
             Countdown.StopTimer();
-            RoundRunner.AudioTracks.Stop();
+            RoundRunner.AudioTracks.StopAll();
             GetComponent<Canvas>().enabled = false;
             StartCoroutine(BonusRoundRunner.SolvedCorrectly());
         } else {

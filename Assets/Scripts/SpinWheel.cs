@@ -86,6 +86,8 @@ public class SpinWheel : MonoBehaviour {
             } else if (currentType == WedgeType.FreePlay || currentType == WedgeType.Prize || currentType == WedgeType.Million || currentType == WedgeType.Wild || currentType == WedgeType.Mystery) {
                 RoundRunner.AudioTracks.Play("freeplay");
                 waitTime = 2f;
+            } else if (currentType == WedgeType.Express) {
+                RoundRunner.AudioTracks.Play("express_landed");
             }
 
             ItemManager itemManager = RoundRunner.ItemManager;
