@@ -53,6 +53,7 @@ public class ExpressWedgeLanded : MonoBehaviour {
         RoundRunner.IsTimeForLetter = true;
         Timer.StartTimer();
         RoundRunner.AudioTracks.Play("express_music");
+        RoundRunner.ToggleUIButtons();
         yield return 0;
     }
 

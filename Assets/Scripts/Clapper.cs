@@ -19,7 +19,7 @@ public class Clapper : MonoBehaviour {
     public IEnumerator PlayFor(float seconds) {
         seconds += AudioTracks.ClapStart.length;
         yield return Play();
-        yield return new WaitForSeconds(seconds - 0.1f);
+        yield return new WaitForSeconds(seconds);
         yield return Stop();
     }
 
@@ -27,9 +27,8 @@ public class Clapper : MonoBehaviour {
         AudioSource AudioSource = AudioTracks.GetSource("clap_sustained");
         AudioSource.loop = false;
 
-        while (AudioSource.isPlaying) {
-            yield return 0;
-        }
+        float remaining = AudioSource.clip.length - AudioSource.time;
+        yield return new WaitForSeconds(remaining - 0.025f);
 
         AudioTracks.Play("clap_finish");
     }

@@ -141,8 +141,16 @@ public class BoardFiller : MonoBehaviour {
                 if (t.State == TrilonState.Unrevealed) {
                     if (Utilities.IsVowel(t.Letter) && !hasVowels) {
                         hasVowels = true;
+
+                        if (type == LetterType.Neither) {
+                            return false;
+                        }
                     } else if (!Utilities.IsVowel(t.Letter) && !hasConsonants) {
                         hasConsonants = true;
+
+                        if (type == LetterType.Neither) {
+                            return false;
+                        }
                     }
                 }
 
@@ -289,7 +297,7 @@ public class BoardFiller : MonoBehaviour {
             yield return new WaitForSeconds(waitTime);
         }
 
-        if (!PuzzleContainsOnly(LetterType.Both)) {
+        if (!PuzzleContainsOnly(LetterType.Both) && !RR.KeyPress.expressWedgeLanded.IsExpressRunning) {
             if (PuzzleContainsOnly(LetterType.Vowel) && !RR.NotifiedOfRemainingLetters && !RR.IsBonusRound) {
                 AudioTracks.Play("remains");
                 RR.SajakText.text = "Only vowels remain!";

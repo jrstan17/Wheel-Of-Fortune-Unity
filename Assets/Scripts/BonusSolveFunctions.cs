@@ -17,11 +17,12 @@ public class BonusSolveFunctions : MonoBehaviour {
     bool timerStopFlag = false;
 
     void OnEnable() {
-            Countdown.StartTimer();
-            Countdown.TimeLeft = 30f;
-            SolveField.text = "";
-            BoardFiller = BonusRoundRunner.BoardFiller;
-            RoundRunner.AudioTracks.Play("countdown");
+        RoundRunner.IsTimeForLetter = false;
+        Countdown.StartTimer();
+        Countdown.TimeLeft = 30f;
+        SolveField.text = "";
+        BoardFiller = BonusRoundRunner.BoardFiller;
+        RoundRunner.AudioTracks.Play("countdown");
     }
 
     // Update is called once per frame

@@ -271,6 +271,9 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public IEnumerator SolvedCorrectly() {
+        AudioTracks.Stop("express_music");
+        KeyPress.expressWedgeLanded.IsExpressRunning = false;
+
         IsRoundEnded = true;
         SolveCanvas.GetComponent<Canvas>().enabled = false;
 
@@ -390,21 +393,33 @@ public class RoundRunner : MonoBehaviour {
         }
     }
 
-    public void SolvedIncorrectly(bool isOutOfTime) {
-        SolveCanvas.SetActive(false);
-        AudioTracks.Play("buzzer");
-        string pre = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". ";
-        string chance = Utilities.RandomString(new string[] { " try.", " chance.", "n opportunity." });
+    public IEnumerator SolvedIncorrectly(SolvedIncorrectlyArg arg) {
+        SolveCanvas.GetComponent<Canvas>().enabled = false; 
 
-        if (isOutOfTime) {
+        if (arg == SolvedIncorrectlyArg.IsOutOfTime) {
+            AudioTracks.Play("buzzer");
+            string pre = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". ";
+            string chance = Utilities.RandomString(new string[] { " try.", " chance.", "n opportunity." });
             string yes = pre + "You're out of time.";
             string no = yes + " Let's give " + PlayerList.NextPlayersName() + " a" + chance;
             StartCoroutine(AskIfFreePlay(yes, no));
-        } else {
+        } else if (arg == SolvedIncorrectlyArg.Default) {
+            AudioTracks.Play("buzzer");
+            string pre = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". ";
+            string chance = Utilities.RandomString(new string[] { " try.", " chance.", "n opportunity." });
             string statement = Utilities.RandomString(new string[] { "That is incorrect.", "That is not correct.", "That's not right.", "You didn't solve it correctly.", "That's not the right answer." });
             string yes = pre + statement;
             string no = yes + " Let's give " + PlayerList.NextPlayersName() + " a" + chance;
             StartCoroutine(AskIfFreePlay(yes, no));
+        } else if (arg == SolvedIncorrectlyArg.Express) {
+            AudioTracks.Stop("express_music");
+            KeyPress.expressWedgeLanded.StopTimer();
+            AudioTracks.Play("buzzer");
+            AudioTracks.Play("ah");
+            SajakText.text = "That's not the correct answer. The Express ride is over.";
+            yield return new WaitForSeconds(5f);
+            OnBankrupt(PlayerList.CurrentPlayer);
+            GotoNextPlayer();
         }
     }
 
@@ -800,10 +815,7 @@ public class RoundRunner : MonoBehaviour {
             int trilonsRevealed = 0;
 
             if (KeyPress.expressWedgeLanded.IsExpressRunning) {
-                if (PlayerList.CurrentPlayer.RoundWinnings >= 250 && IsVowel || !IsVowel) {
-                    KeyPress.expressWedgeLanded.StopTimer();
-                }
-
+                KeyPress.expressWedgeLanded.StopTimer();
                 LetterTypeWanted = LetterType.Both;
             }
 
@@ -828,14 +840,7 @@ public class RoundRunner : MonoBehaviour {
                         StartCoroutine(Clapper.PlayFor(clapSeconds));
                     } else {
                         if (IsVowel) {
-                            if (PlayerList.CurrentPlayer.RoundWinnings < 250) {
-                                AudioTracks.Play("buzzer");
-                                trilonsRevealed = -1;
-                                IsTimeForLetter = true;
-                                yield break;
-                            } else {
-                                PlayerList.CurrentPlayer.RoundWinnings -= 250;
-                            }
+                            PlayerList.CurrentPlayer.RoundWinnings -= 250;
                         }
                     }
 
@@ -856,7 +861,7 @@ public class RoundRunner : MonoBehaviour {
                         } else {
                             SajakText.text += ".";
                         }
-                    } else if (!KeyPress.expressWedgeLanded.IsExpressRunning) {
+                    } else {
                         SajakText.text += ".";
                     }
                 } else {

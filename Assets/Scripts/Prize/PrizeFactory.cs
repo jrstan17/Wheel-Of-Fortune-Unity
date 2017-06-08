@@ -22,7 +22,7 @@ public class PrizeFactory : MonoBehaviour{
             string[] textSplits = textAsset.text.Split('\n');
 
             foreach (string str in textSplits) {
-                if (!str.Equals("\r") && str[0] != '@') {
+                if (!str.Equals("") && !str.Equals("\r") && str[0] != '@') {
                     Prizes.Add(new Prize(str, PrizeSpriteGetter));
                 }
             }

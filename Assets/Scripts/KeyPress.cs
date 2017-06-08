@@ -490,7 +490,12 @@ public class KeyPress : MonoBehaviour {
             for (char i = 'a'; i <= 'z'; i++) {
                 string strChar = (i.ToString());
                 if (Input.GetKeyDown(strChar)) {
-                    yield return StartCoroutine(RoundRunner.LetterPressed(i));
+
+                    if (expressWedgeLanded.IsExpressRunning && Utilities.IsVowel(i) && PlayerList.CurrentPlayer.RoundWinnings < 250) {
+                        RoundRunner.AudioTracks.Play("buzzer");
+                    } else {
+                        yield return StartCoroutine(RoundRunner.LetterPressed(i));
+                    }
                 }
             }
         }

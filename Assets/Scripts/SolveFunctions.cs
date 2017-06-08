@@ -4,6 +4,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Assets.Scripts.Enums;
 
 public class SolveFunctions : MonoBehaviour {
 
@@ -26,7 +27,7 @@ public class SolveFunctions : MonoBehaviour {
         }
 
         if (Countdown.TimeLeft == 0) {
-            RoundRunner.SolvedIncorrectly(true);
+            StartCoroutine(RoundRunner.SolvedIncorrectly(SolvedIncorrectlyArg.IsOutOfTime));
         }
     }
 
@@ -41,7 +42,12 @@ public class SolveFunctions : MonoBehaviour {
             StartCoroutine(RoundRunner.SolvedCorrectly());
         } else {
             RoundRunner.ToggleUIButtonsParsing("all", false);
-            RoundRunner.SolvedIncorrectly(false);
+
+            if (RoundRunner.KeyPress.expressWedgeLanded.IsExpressRunning) {
+                StartCoroutine(RoundRunner.SolvedIncorrectly(SolvedIncorrectlyArg.Express));
+            } else {
+                StartCoroutine(RoundRunner.SolvedIncorrectly(SolvedIncorrectlyArg.Default));
+            }
         }
     }
 
