@@ -914,7 +914,7 @@ public class RoundRunner : MonoBehaviour {
                             IsTimeForLetter = true;
                         }
 
-                        KeyPress.expressWedgeLanded.StartTimer();
+                        KeyPress.expressWedgeLanded.StartTimer(false);
                     }
 
                     if (!IsVowel && PlayerList.CurrentPlayer.Wilds > 0 && (BoardFiller.PuzzleContainsOnly(LetterType.Consonant) || BoardFiller.PuzzleContainsOnly(LetterType.Both))) {

@@ -30,6 +30,8 @@ public class AudioTracks : MonoBehaviour {
     public AudioClip ClapFinish;
     public AudioClip ExpressLanded;
     public AudioClip ExpressMusic;
+    public AudioClip GetSet;
+    public AudioClip Go;
 
     public float PitchBend = 0.25f;
 
@@ -96,6 +98,10 @@ public class AudioTracks : MonoBehaviour {
             AudioSource.clip = Remains;
         } else if (name.Equals("car_horn")) {
             AudioSource.clip = CarHorn;
+        } else if (name.Equals("get_set")) {
+            AudioSource.clip = GetSet;
+        } else if (name.Equals("go")) {
+            AudioSource.clip = Go;
         } else if (name.Equals("cheering")) {
             AudioSource.clip = Cheering;
         } else if (name.Equals("freeplay")) {

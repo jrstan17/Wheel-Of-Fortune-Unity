@@ -8,6 +8,7 @@ public class ExpressCountdownTimer : MonoBehaviour {
 
     internal float TimeLeft;
     private bool IsStarted = false;
+    bool IsFirstTimeStarting = true;
 
     RoundRunner RoundRunner;
 
@@ -15,7 +16,13 @@ public class ExpressCountdownTimer : MonoBehaviour {
         if (IsStarted) {
             TimeLeft -= Time.deltaTime;
 
-            RoundRunner.SajakText.text = "Keep Going! You have " + TimeLeft.ToString("N2") + " seconds to guess.";
+            if (IsFirstTimeStarting) {
+                RoundRunner.SajakText.text = " GO!  ";
+            } else {
+                RoundRunner.SajakText.text = " Keep Going!  ";
+            }
+
+            RoundRunner.SajakText.text += "You have " + TimeLeft.ToString("N2") + " seconds to guess.";
 
             if (TimeLeft < 0) {
                 TimeLeft = 0;
@@ -29,7 +36,8 @@ public class ExpressCountdownTimer : MonoBehaviour {
         RoundRunner = runner;
     }
 
-    public void StartTimer() {
+    public void StartTimer(bool isFirstTimeStarting) {
+        IsFirstTimeStarting = isFirstTimeStarting;
         TimeLeft = Constants.EXPRESS_LETTER_GUESS_TIME;
         IsStarted = true;
     }

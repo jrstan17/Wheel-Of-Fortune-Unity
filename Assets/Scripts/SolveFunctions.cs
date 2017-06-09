@@ -14,6 +14,7 @@ public class SolveFunctions : MonoBehaviour {
 
     void OnEnable() {
         Countdown.StartTimer();
+        RoundRunner.IsTimeForLetter = false;
         SolveField.text = "";
     }
 

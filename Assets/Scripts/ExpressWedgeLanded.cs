@@ -29,30 +29,39 @@ public class ExpressWedgeLanded : MonoBehaviour {
         yield return SaySajak("You've landed on the Express Wedge, " + PlayerList.CurrentPlayer.Name + "!", 4.5f);
 
         yield return SaySajak("Press (1) to skip the Express and guess a consonant for 1,000 or...", 7f);
-        yield return SaySajak("Press (2) to go the Express route...", 6f);
-        yield return SaySajak("Where you keep calling consonants for 1,000 or buying vowels...", 7f);
-        yield return SaySajak("until you solve the puzzle, but...", 6f);
-        yield return SaySajak("Be careful. If you guess or solve incorrectly...", 6f);
-        yield return SaySajak("or take more than 10 seconds to think of your next letter...", 7.5f);
-        yield return SaySajak("after the previous letter had been completely revealed...", 7.5f);
-        yield return SaySajak("You'll BANKRUPT!", 5f);
-        Sajak.text = "Press (1) to skip.  Press (2) to Express!";
+        yield return SaySajak("Press (2) to get on the Express ride...", 6f);
+        yield return SaySajak("Where you call consonants for 1,000 or buy vowels...", 7f);
+        yield return SaySajak("until you solve the puzzle, but be careful...", 7f);
+        yield return SaySajak("If you make a mistake or take too long to guess...", 6f);
+        yield return SaySajak("You'll BANKRUPT!", 6f);
+        Sajak.text = "Press (1) to skip.  Press (2) to ride the Express!";
     }
 
     public void StopTimer() {
         Timer.StopTimer();
     }
 
-    public void StartTimer() {
-        Timer.StartTimer();
+    public void StartTimer(bool isFirstTimeStarting) {
+        Timer.StartTimer(isFirstTimeStarting);
     }
 
     internal IEnumerator TakeChance() {
-        IsExpressRunning = true;
-        Sajak.text = "Let's begin.";
-        RoundRunner.IsTimeForLetter = true;
-        Timer.StartTimer();
+        RoundRunner.AudioTracks.Play("get_set");
+        Sajak.text = "!<-- 3 -->!";
+        yield return new WaitForSeconds(1f);
+        RoundRunner.AudioTracks.Play("get_set");
+        Sajak.text = "!<-- 2 -->!";
+        yield return new WaitForSeconds(1f);
+        RoundRunner.AudioTracks.Play("get_set");
+        Sajak.text = "!<-- 1 -->!";
+        yield return new WaitForSeconds(0.558f);
         RoundRunner.AudioTracks.Play("express_music");
+        yield return new WaitForSeconds(0.442f);
+        RoundRunner.AudioTracks.Play("go");
+
+        IsExpressRunning = true;
+        RoundRunner.IsTimeForLetter = true;
+        Timer.StartTimer(true);
         RoundRunner.ToggleUIButtons();
         yield return 0;
     }

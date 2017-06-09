@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8a1e71b65677a044089ceda5e217a85b
-timeCreated: 1494129078
+timeCreated: 1496941427
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -30,7 +30,7 @@ TextureImporter:
   textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 1
     aniso: 16
     mipBias: -1
     wrapMode: -1
@@ -79,7 +79,7 @@ TextureImporter:
         x: 1
         y: 0
         width: 261
-        height: 605
+        height: 603
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -89,10 +89,10 @@ TextureImporter:
       name: ten_thousand_1
       rect:
         serializedVersion: 2
-        x: 265
+        x: 264
         y: 0
         width: 261
-        height: 605
+        height: 603
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -102,10 +102,10 @@ TextureImporter:
       name: ten_thousand_2
       rect:
         serializedVersion: 2
-        x: 529
+        x: 527
         y: 0
         width: 261
-        height: 605
+        height: 603
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
