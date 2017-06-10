@@ -18,6 +18,7 @@ public class SolveFunctions : MonoBehaviour {
             Countdown.StartTimer();
             RoundRunner.IsTimeForLetter = false;
             SolveField.text = "";
+            SolveField.ActivateInputField();
         } else {
             Countdown.StopTimer();
             GetComponent<Canvas>().enabled = false;
@@ -30,8 +31,7 @@ public class SolveFunctions : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (IsWindowEnabled()) {
-            SolveField.ActivateInputField();
+        if (IsWindowEnabled()) {            
             SolveField.text = SolveField.text.ToUpper();
 
             if (Input.GetKeyUp(KeyCode.Return)) {

@@ -10,6 +10,7 @@ public class Puzzle {
     internal DateTime Airdate;
     internal int Number;
     internal string TextLettersOnly;
+    internal string Punctuation;
 
     public Puzzle(string rawLine, int number) {
         string[] splits = rawLine.Split('\t');
@@ -19,6 +20,8 @@ public class Puzzle {
         foreach(char c in Text) {
             if (char.IsLetter(c)) {
                 TextLettersOnly += c;
+            } else {
+                Punctuation += c;
             }
         }
 

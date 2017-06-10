@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Enums;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,7 @@ public class BoardFiller : MonoBehaviour {
     public List<Row> Rows;
     public List<Trilon> Trilons;
     public AudioTracks AudioTracks;
-    internal RoundRunner RR;
+    internal RoundRunner RoundRunner;
     internal Color32 ScreenColor;
 
     internal static int LettersRevealed = 0;
@@ -20,7 +21,7 @@ public class BoardFiller : MonoBehaviour {
     private IEnumerator coroutine;
 
     void Start() {
-        RR = gameObject.GetComponent<RoundRunner>();
+        RoundRunner = gameObject.GetComponent<RoundRunner>();
         LetterGetter = GetComponent<LetterGetter>();
     }
 
@@ -193,7 +194,7 @@ public class BoardFiller : MonoBehaviour {
 
         if (RoundRunner.Puzzle.HasNonLetters()) {
             float start = Time.time;
-            RR.SajakText.text = "But first, let's reveal some punctuation.";
+            RoundRunner.SajakText.text = GetSajakForPunctuation();
             yield return StartCoroutine(RevealLetters(Utilities.NonLetters));
 
             if (Time.time < start + 4) {
@@ -201,9 +202,9 @@ public class BoardFiller : MonoBehaviour {
             }
         }
 
-        if (!RR.IsBonusRound) {
-            RR.SajakText.text = "Start us off with a spin, " + PlayerList.CurrentPlayer.Name + ".";
-            RR.ToggleUIButtons();
+        if (!RoundRunner.IsBonusRound) {
+            RoundRunner.SajakText.text = "Start us off with a spin, " + PlayerList.CurrentPlayer.Name + ".";
+            RoundRunner.ToggleUIButtons();
         }
     }
 
@@ -246,7 +247,7 @@ public class BoardFiller : MonoBehaviour {
 
         foreach (char letter in letters) {
             if (char.IsLetter(letter)) {
-                RR.UsedLetterText[letter - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
+                RoundRunner.UsedLetterText[letter - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
             }
         }
 
@@ -260,7 +261,7 @@ public class BoardFiller : MonoBehaviour {
             }
         }
 
-        if (revealData.Count == 0 && !RR.IsBonusRound) {
+        if (revealData.Count == 0 && !RoundRunner.IsBonusRound) {
             AudioTracks.Play("buzzer");
             yield return 0;
         }
@@ -297,30 +298,30 @@ public class BoardFiller : MonoBehaviour {
             yield return new WaitForSeconds(waitTime);
         }
 
-        if (!PuzzleContainsOnly(LetterType.Both) && !RR.KeyPress.expressWedgeLanded.IsExpressRunning) {
-            if (PuzzleContainsOnly(LetterType.Vowel) && !RR.NotifiedOfRemainingLetters && !RR.IsBonusRound) {
+        if (!PuzzleContainsOnly(LetterType.Both) && !RoundRunner.KeyPress.expressWedgeLanded.IsExpressRunning) {
+            if (PuzzleContainsOnly(LetterType.Vowel) && !RoundRunner.NotifiedOfRemainingLetters && !RoundRunner.IsBonusRound) {
                 AudioTracks.Play("remains");
-                RR.SajakText.text = "Only vowels remain!";
-                RR.NotifiedOfRemainingLetters = true;
-                RR.ToggleUIButtons();
+                RoundRunner.SajakText.text = "Only vowels remain!";
+                RoundRunner.NotifiedOfRemainingLetters = true;
+                RoundRunner.ToggleUIButtons();
 
                 foreach (char c in Utilities.Consonants) {
-                    if (!RR.UsedLetters.Contains(c)) {
-                        RR.UsedLetters.Add(c);
+                    if (!RoundRunner.UsedLetters.Contains(c)) {
+                        RoundRunner.UsedLetters.Add(c);
                     }
-                    RR.UsedLetterText[c - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
+                    RoundRunner.UsedLetterText[c - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
                 }
-            } else if (PuzzleContainsOnly(LetterType.Consonant) && !RR.NotifiedOfRemainingLetters && !RR.IsBonusRound) {
+            } else if (PuzzleContainsOnly(LetterType.Consonant) && !RoundRunner.NotifiedOfRemainingLetters && !RoundRunner.IsBonusRound) {
                 AudioTracks.Play("remains");
-                RR.SajakText.text = "Only consonants remain!";
-                RR.NotifiedOfRemainingLetters = true;
-                RR.ToggleUIButtons();
+                RoundRunner.SajakText.text = "Only consonants remain!";
+                RoundRunner.NotifiedOfRemainingLetters = true;
+                RoundRunner.ToggleUIButtons();
 
                 foreach (char c in Utilities.Vowels) {
-                    if (!RR.UsedLetters.Contains(c)) {
-                        RR.UsedLetters.Add(c);
+                    if (!RoundRunner.UsedLetters.Contains(c)) {
+                        RoundRunner.UsedLetters.Add(c);
                     }
-                    RR.UsedLetterText[c - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
+                    RoundRunner.UsedLetterText[c - 65].color = Constants.USED_LETTER_DISABLED_COLOR;
                 }
             }
         }
@@ -331,6 +332,159 @@ public class BoardFiller : MonoBehaviour {
     public void Clear() {
         foreach (Row r in Rows) {
             r.Clear();
+        }
+    }
+
+    private string GetSajakForPunctuation() {
+        PunctuationLibrary library = new PunctuationLibrary();
+        library.Add(PunctuationType.Ampersand);
+        library.Add(PunctuationType.Apostrophe);
+        library.Add(PunctuationType.Colon);
+        library.Add(PunctuationType.Comma);
+        library.Add(PunctuationType.ExclamationPoint);
+        library.Add(PunctuationType.Hyphen);
+        library.Add(PunctuationType.Period);
+        library.Add(PunctuationType.QuestionMark);
+
+        foreach (char c in RoundRunner.Puzzle.Punctuation) {
+            switch (c) {
+                case '&':
+                    library.Increase(PunctuationType.Ampersand);
+                    break;
+                case ',':
+                    library.Increase(PunctuationType.Comma);
+                    break;
+                case ':':
+                    library.Increase(PunctuationType.Colon);
+                    break;
+                case '-':
+                    library.Increase(PunctuationType.Hyphen);
+                    break;
+                case '?':
+                    library.Increase(PunctuationType.QuestionMark);
+                    break;
+                case '!':
+                    library.Increase(PunctuationType.ExclamationPoint);
+                    break;
+                case '\'':
+                    library.Increase(PunctuationType.Apostrophe);
+                    break;
+                case '.':
+                    library.Increase(PunctuationType.Period);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        string toReturn = "But first, let's reveal ";
+
+        if (library.GetTypesOfMoreThanQuantity(0).Count > 1) {
+            toReturn += "some punctuation.";
+            return toReturn;
+        }
+
+        List<PunctuationType> types = library.GetTypesOfMoreThanQuantity(0);
+
+        string typeStr = "";
+
+        if (types[0] == PunctuationType.Ampersand) {
+            typeStr = "ampersand";
+        } else if (types[0] == PunctuationType.Apostrophe) {
+            typeStr = "apostrophe";
+        } else if (types[0] == PunctuationType.Colon) {
+            typeStr = "colon";
+        } else if (types[0] == PunctuationType.Comma) {
+            typeStr = "comma";
+        } else if (types[0] == PunctuationType.ExclamationPoint) {
+            typeStr = "exclamation point";
+        } else if (types[0] == PunctuationType.Hyphen) {
+            typeStr = "hyphen";
+        } else if (types[0] == PunctuationType.Period) {
+            typeStr = "period";
+        } else if (types[0] == PunctuationType.QuestionMark) {
+            typeStr = "question mark";
+        }
+
+        types = library.GetTypesOfMoreThanQuantity(2);
+        if (types.Count != 0) {
+            typeStr += "s";
+            toReturn += "some " + typeStr;
+        }
+
+        types = library.GetTypesOfQuantity(2);
+        if (types.Count != 0) {
+            typeStr += "s";
+            toReturn += "a couple " + typeStr;
+        }
+
+        types = library.GetTypesOfQuantity(1);
+        if (types.Count != 0) {
+            if (types[0] == PunctuationType.Ampersand) {
+                toReturn += "a lovely " + typeStr;
+            } else if (Utilities.IsVowel(typeStr[0])) {
+                toReturn += "an " + typeStr;
+            } else {
+                toReturn += "a " + typeStr;
+            }
+        }
+
+        toReturn += ".";
+        return toReturn;
+    }
+
+    private class PunctuationLibrary {
+        private List<PuncQty> puncQty = new List<PuncQty>();
+
+        public void Add(PunctuationType type) {
+            puncQty.Add(new PuncQty() { Type = type, Quantity = 0 });
+        }
+
+        public void Increase(PunctuationType type) {
+            foreach (PuncQty pq in puncQty) {
+                if (pq.Type == type) {
+                    pq.Quantity++;
+                }
+            }
+        }
+
+        public List<PunctuationType> GetTypesOfQuantity(int quantity) {
+            List<PunctuationType> types = new List<PunctuationType>();
+
+            foreach (PuncQty pq in puncQty) {
+                if (pq.Quantity == quantity) {
+                    types.Add(pq.Type);
+                }
+            }
+
+            return types;
+        }
+
+        public List<PunctuationType> GetTypesOfMoreThanQuantity(int quantity) {
+            List<PunctuationType> types = new List<PunctuationType>();
+
+            foreach (PuncQty pq in puncQty) {
+                if (pq.Quantity > quantity) {
+                    types.Add(pq.Type);
+                }
+            }
+
+            return types;
+        }
+
+        public int Quantity(PunctuationType type) {
+            foreach (PuncQty pq in puncQty) {
+                if (pq.Type == type) {
+                    return pq.Quantity;
+                }
+            }
+
+            return -1;
+        }
+
+        private class PuncQty {
+            public PunctuationType Type { get; set; }
+            public int Quantity { get; set; }
         }
     }
 

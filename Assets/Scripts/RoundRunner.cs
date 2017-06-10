@@ -111,6 +111,11 @@ public class RoundRunner : MonoBehaviour {
         IsRoundEnded = false;
         NotifiedOfRemainingLetters = false;
 
+        foreach(Player p in PlayerList.Players) {
+            p.LicensePlates = 0;
+            p.RoundPrize = null;
+        }
+
         IsBonusRound = isBonus;
         LetterTypeWanted = LetterType.Consonant;
         GotoNextPlayer();
