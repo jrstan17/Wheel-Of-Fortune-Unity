@@ -19,7 +19,7 @@ public class BonusSolveFunctions : MonoBehaviour {
     void OnEnable() {
         RoundRunner.IsTimeForLetter = false;
         Countdown.StartTimer();
-        Countdown.TimeLeft = 30f;
+        Countdown.TimeLeft = Constants.BONUS_SOLVE_TIME;
         SolveField.text = "";
         BoardFiller = BonusRoundRunner.BoardFiller;
         RoundRunner.AudioTracks.Play("countdown");

@@ -74,7 +74,7 @@ public class BonusRoundRunner : MonoBehaviour {
             yield return UpdateSajak("Well, I'm sorry " + Winner.Name + ", but those letters were no help at all.", NORMAL_SAJAK_SPEED);
         }
 
-        yield return UpdateSajak("You have 30 seconds to solve the puzzle. Good luck.", NORMAL_SAJAK_SPEED);
+        yield return UpdateSajak("You have " + Constants.BONUS_SOLVE_TIME + " seconds to solve the puzzle. Good luck.", NORMAL_SAJAK_SPEED);
         yield return UpdateSajak("", 0f);
         BonusSolveCanvas.SetActive(true);
     }
@@ -141,6 +141,7 @@ public class BonusRoundRunner : MonoBehaviour {
 
         RoundRunner.AudioTracks.Play("cymbal_crash");
         RoundRunner.AudioTracks.Play("bankrupt");
+        RoundRunner.AudioTracks.Play("boo");
         yield return UpdateSajak(PrizeAmount.ToString("C0") + ". I'm so sorry.", NORMAL_SAJAK_SPEED);
 
         yield return Closeout();
@@ -155,7 +156,7 @@ public class BonusRoundRunner : MonoBehaviour {
             yield return UpdateSajak("You made it to " + highScorePlace + HighScore.GetOrdinalSuffix(highScorePlace) + " place!", NORMAL_SAJAK_SPEED);
         }
 
-        yield return UpdateSajak(Winner.Name + ", you're leaving us with a total of " + Winner.TotalWinnings.ToString("C0") + " in cash and prizes!", 7f);
+        yield return UpdateSajak(Winner.Name + ", you're leaving us with total winnings of " + Winner.TotalWinnings.ToString("C0") + "!", 7f);
 
         PlayerBar.SetActive(true);
         RoundRunner.UpdatePlayerBar(WinningsType.TOTAL);

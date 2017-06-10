@@ -12,28 +12,40 @@ public class SolveFunctions : MonoBehaviour {
     public InputField SolveField;
     public CountdownTimer Countdown;
 
-    void OnEnable() {
-        Countdown.StartTimer();
-        RoundRunner.IsTimeForLetter = false;
-        SolveField.text = "";
+    public void ToggleWindow(bool enable) {
+        if (enable) {
+            GetComponent<Canvas>().enabled = true;
+            Countdown.StartTimer();
+            RoundRunner.IsTimeForLetter = false;
+            SolveField.text = "";
+        } else {
+            Countdown.StopTimer();
+            GetComponent<Canvas>().enabled = false;
+        }
+    }
+
+    public bool IsWindowEnabled() {
+        return GetComponent<Canvas>().enabled;
     }
 
     // Update is called once per frame
     void Update () {
-        SolveField.ActivateInputField();
-        SolveField.text = SolveField.text.ToUpper();
+        if (IsWindowEnabled()) {
+            SolveField.ActivateInputField();
+            SolveField.text = SolveField.text.ToUpper();
 
-        if (Input.GetKeyUp(KeyCode.Return)) {
-            Submit_Clicked();
-        }
+            if (Input.GetKeyUp(KeyCode.Return)) {
+                Submit_Clicked();
+            }
 
-        if (Countdown.TimeLeft == 0) {
-            StartCoroutine(RoundRunner.SolvedIncorrectly(SolvedIncorrectlyArg.IsOutOfTime));
+            if (Countdown.TimeLeft == 0) {
+                StartCoroutine(RoundRunner.SolvedIncorrectly(SolvedIncorrectlyArg.IsOutOfTime));
+            }
         }
     }
 
     public void Submit_Clicked() {
-        Countdown.StopTimer();
+        ToggleWindow(false);
 
         string guess = Format(SolveField.GetComponent<InputField>().text);
         string correct = Format(RoundRunner.Puzzle.Text);

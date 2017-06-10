@@ -275,7 +275,6 @@ public class RoundRunner : MonoBehaviour {
         KeyPress.expressWedgeLanded.IsExpressRunning = false;
 
         IsRoundEnded = true;
-        SolveCanvas.GetComponent<Canvas>().enabled = false;
 
         if (PlayerList.CurrentPlayer.RoundWinnings < 1000) {
             PlayerList.CurrentPlayer.RoundWinnings = 1000;
@@ -393,9 +392,7 @@ public class RoundRunner : MonoBehaviour {
         }
     }
 
-    public IEnumerator SolvedIncorrectly(SolvedIncorrectlyArg arg) {
-        SolveCanvas.GetComponent<Canvas>().enabled = false; 
-
+    public IEnumerator SolvedIncorrectly(SolvedIncorrectlyArg arg) {   
         if (arg == SolvedIncorrectlyArg.IsOutOfTime) {
             AudioTracks.Play("buzzer");
             string pre = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". ";
@@ -463,9 +460,13 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void Solve_Clicked() {
+        if (!SolveCanvas.activeSelf) {
+            SolveCanvas.SetActive(true);
+        }
+
         KeyPress.expressWedgeLanded.StopTimer();
         AnyRegularButtonClicked();
-        SolveCanvas.SetActive(true);
+        SolveCanvas.GetComponent<SolveFunctions>().ToggleWindow(true);
     }
 
     public void Buy_Clicked() {

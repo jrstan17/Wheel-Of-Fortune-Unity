@@ -9,6 +9,7 @@ class Constants {
     public static readonly Color32 USED_LETTER_ENABLED_COLOR = Color.white;
 
     public static readonly int MYSTERY_WEDGE_WIN = 10000;
+    public static readonly float BONUS_SOLVE_TIME = 30f;
 
     public static readonly float EXPRESS_LETTER_GUESS_TIME = 9.99f;
 }
