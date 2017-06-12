@@ -10,10 +10,8 @@ public class RevealCanvas : MonoBehaviour {
     public SpriteRenderer CreditRenderer;
     public Texture2D CursorTexture;
 
-    public void Do() {
-        Cursor.SetCursor(CursorTexture, new Vector2(0, 0), CursorMode.ForceSoftware);
-        CursorToggler.ToggleCursor(true);
-    }
+    public GameObject OptionPanel;
+    public GameObject MainPanels;
 
     public void NewGame_Clicked() {
         NewGamePanel.SetActive(true);
@@ -24,5 +22,15 @@ public class RevealCanvas : MonoBehaviour {
 
     public void Exit_Clicked() {
         Application.Quit();
+    }
+
+    public void Options_Clicked() {
+        MainPanels.SetActive(false);
+        OptionPanel.SetActive(true);
+    }
+
+    public void CloseOptions() {
+        MainPanels.SetActive(true);
+        OptionPanel.SetActive(false);
     }
 }

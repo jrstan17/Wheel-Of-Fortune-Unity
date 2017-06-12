@@ -53,7 +53,7 @@ public class LetterGetter : MonoBehaviour {
             frequencies.Add(new Frequency() { Letter = 'M', FrequencySum = 0.53425f });
             frequencies.Add(new Frequency() { Letter = 'N', FrequencySum = 0.60174f });
             frequencies.Add(new Frequency() { Letter = 'O', FrequencySum = 0.67681f });
-            frequencies.Add(new Frequency() { Letter = 'P', FrequencySum = 0.6961f });
+            frequencies.Add(new Frequency() { Letter = 'P', FrequencySum = 0.69610f });
             frequencies.Add(new Frequency() { Letter = 'Q', FrequencySum = 0.69705f });
             frequencies.Add(new Frequency() { Letter = 'R', FrequencySum = 0.75692f });
             frequencies.Add(new Frequency() { Letter = 'S', FrequencySum = 0.82019f });
