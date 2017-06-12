@@ -390,7 +390,7 @@ public class KeyPress : MonoBehaviour {
             bool isParsed = int.TryParse(Splits[1], out parsed);
 
             if (isParsed) {
-                RoundRunner.MaxRounds = parsed;
+                OptionsRunner.NumberOfRounds = parsed;
             }
         }
     }
@@ -486,7 +486,7 @@ public class KeyPress : MonoBehaviour {
                 string strChar = (i.ToString());
                 if (Input.GetKeyDown(strChar)) {
 
-                    if (expressWedgeLanded.IsExpressRunning && Utilities.IsVowel(i) && PlayerList.CurrentPlayer.RoundWinnings < 250) {
+                    if (expressWedgeLanded.IsExpressRunning && Utilities.IsVowel(i) && PlayerList.CurrentPlayer.RoundWinnings < OptionsRunner.VowelCost) {
                         RoundRunner.AudioTracks.Play("buzzer");
                     } else {
                         yield return StartCoroutine(RoundRunner.LetterPressed(i));

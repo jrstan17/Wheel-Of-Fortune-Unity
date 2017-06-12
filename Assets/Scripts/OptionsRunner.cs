@@ -11,6 +11,11 @@ public class OptionsRunner : MonoBehaviour {
     public Text RoundNumberValueText;
     public Slider RoundNumberSlider;
 
+    public InputField VowelCostText;
+
+    public static int NumberOfRounds = 4;
+    public static int VowelCost = 250;
+
     private void OnEnable() {
         LoadValues();
     }
@@ -29,12 +34,18 @@ public class OptionsRunner : MonoBehaviour {
     }
 
     private void LoadValues() {
-        RoundNumberSlider.value = PlayerPrefs.GetFloat("roundNumber_Value", 4f);
+        NumberOfRounds = PlayerPrefs.GetInt("roundNumber_Value", 4);
+        RoundNumberSlider.value = NumberOfRounds;
+
+        VowelCost = PlayerPrefs.GetInt("vowelCost_Value", 250);
+        VowelCostText.text = VowelCost.ToString();
     }
 
     private void SaveAndApplyValues() {
-        RoundRunner.MaxRounds = (int) RoundNumberSlider.value;
-        PlayerPrefs.SetFloat("roundNumber_Value", RoundNumberSlider.value);
+        NumberOfRounds = (int) RoundNumberSlider.value;
+        VowelCost = int.Parse(VowelCostText.text);
+        PlayerPrefs.SetInt("roundNumber_Value", (int) RoundNumberSlider.value);
+        PlayerPrefs.SetInt("vowelCost_Value", int.Parse(VowelCostText.text));
         PlayerPrefs.Save();
     }
 }

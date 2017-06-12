@@ -52,10 +52,8 @@ public class RoundRunner : MonoBehaviour {
     internal Text CategoryText;
     internal bool IsBonusRound = false;
     internal bool IsTimeForLetter = false;
-    internal int VowelPurchaseCost = 250;
     internal LetterType LetterTypeWanted = LetterType.Consonant;
     internal int RoundNumber = 0;
-    internal int MaxRounds = 0;
     internal bool NotifiedOfRemainingLetters = false;
     internal bool IsRoundEnded = false;
     internal BoardFiller BoardFiller;
@@ -69,8 +67,6 @@ public class RoundRunner : MonoBehaviour {
         MainCamera.gameObject.SetActive(true);
         HighScoresCamera.gameObject.SetActive(false);
         TitleCamera.gameObject.SetActive(false);
-
-        MaxRounds = PlayerList.Players.Count + 1;
 
         HighScore = new HighScore();
 
@@ -101,7 +97,7 @@ public class RoundRunner : MonoBehaviour {
         InitPrizeCanvas();
 
         wheelGetter = new WheelGetter();
-        wheelGetter.Init(MaxRounds, WheelCanvases.Length);
+        wheelGetter.Init(OptionsRunner.NumberOfRounds, WheelCanvases.Length);
 
         ItemManager = GetComponent<ItemManager>();
     }
@@ -317,7 +313,7 @@ public class RoundRunner : MonoBehaviour {
 
         Text buttonText = NextRoundCanvas.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
 
-        if (RoundNumber != MaxRounds) {
+        if (RoundNumber != OptionsRunner.NumberOfRounds) {
             SajakText.text = PlayerList.WinningPlayer().Name + " is currently in the lead with " + PlayerList.WinningPlayer().TotalWinnings.ToString("C0") + "!";
             buttonText.text = "CONTINUE TO\nROUND " + (RoundNumber + 1);
         } else {
@@ -438,7 +434,7 @@ public class RoundRunner : MonoBehaviour {
     public void Continue_Clicked() {
         NextRoundCanvas.SetActive(false);
 
-        if (RoundNumber != MaxRounds) {
+        if (RoundNumber != OptionsRunner.NumberOfRounds) {
             InitPrizeCanvas();
             PrizeCanvas.SetActive(true);
         } else {
@@ -478,7 +474,7 @@ public class RoundRunner : MonoBehaviour {
         AnyRegularButtonClicked();
         IsTimeForLetter = true;
         LetterTypeWanted = LetterType.Vowel;
-        PlayerList.CurrentPlayer.RoundWinnings -= VowelPurchaseCost;
+        PlayerList.CurrentPlayer.RoundWinnings -= OptionsRunner.VowelCost;
     }
 
     public void AnyRegularButtonClicked() {
@@ -759,7 +755,7 @@ public class RoundRunner : MonoBehaviour {
             return;
         }
 
-        if (PlayerList.CurrentPlayer.RoundWinnings >= VowelPurchaseCost) {
+        if (PlayerList.CurrentPlayer.RoundWinnings >= OptionsRunner.VowelCost) {
             ToggleUIButtonsParsing("all", true);
         } else {
             ToggleUIButtonsParsing("spin solve", true);
@@ -846,7 +842,7 @@ public class RoundRunner : MonoBehaviour {
                         StartCoroutine(Clapper.PlayFor(clapSeconds));
                     } else {
                         if (IsVowel) {
-                            PlayerList.CurrentPlayer.RoundWinnings -= 250;
+                            PlayerList.CurrentPlayer.RoundWinnings -= OptionsRunner.VowelCost;
                         }
                     }
 

@@ -6,11 +6,10 @@ public class WedgeRules : MonoBehaviour {
 
 	public static bool RoundUsesWedge(RoundRunner runner, WedgeType type) {
         int currentRound = runner.RoundNumber;
-        int maxRounds = runner.MaxRounds;
         int currentWheel = runner.wheelGetter.Get(currentRound);
 
         if (type == WedgeType.Million) {
-            return currentRound != maxRounds;
+            return currentRound != OptionsRunner.NumberOfRounds;
         }
 
         if (type == WedgeType.Wild) {
