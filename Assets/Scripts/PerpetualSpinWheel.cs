@@ -8,6 +8,7 @@ public class PerpetualSpinWheel : MonoBehaviour {
     public RandomColorChanger ColorChanger;
     float currentAngle = 0;
     public float Speed;
+    public bool SpinClockwise = true;
 
     private void Start() {
         currentAngle = Random.Range(0, 360);
@@ -18,7 +19,13 @@ public class PerpetualSpinWheel : MonoBehaviour {
     public IEnumerator Spin() {
         while (true) {
             transform.eulerAngles = new Vector3(0.0f, 0.0f, currentAngle);
-            currentAngle -= Speed;
+
+            if (SpinClockwise) {
+                currentAngle -= Speed;
+            } else {
+                currentAngle += Speed;
+            }
+
             yield return new WaitForFixedUpdate();
         }
     }

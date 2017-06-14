@@ -24,8 +24,6 @@ public class SpinWheel : MonoBehaviour {
     internal bool isDebugSpin = false;
     internal string debugWedgeText;
 
-    private IEnumerator coroutine;
-
     void Start() {
         spinning = false;
     }
@@ -65,7 +63,9 @@ public class SpinWheel : MonoBehaviour {
         while (timer < time) {
             //to calculate rotation            
             float angle = rndAngle * animationCurves[animationCurveNumber].Evaluate(timer / time);
+
             transform.eulerAngles = new Vector3(0.0f, 0.0f, angle + startAngle);
+
             timer += Time.deltaTime;
 
             if (RoundRunner.CurrentWedge != null && isDebugSpin && RoundRunner.CurrentWedge.Text.Equals(debugWedgeText)) {

@@ -8,14 +8,18 @@ public class CursorToggler : MonoBehaviour {
 
     internal float Timer = 0;
     internal float StartTime = 0;
-    static bool Toggled = true;
+    bool Toggled = true;
 
 	// Use this for initialization
 	void Start () {
         StartTime = Time.time;
     }
 
-    public static void ToggleCursor(bool enable) {
+    public void EnableCursor() {
+        ToggleCursor(true);
+    }
+
+    public void ToggleCursor(bool enable) {
         Toggled = enable;
     }
 	

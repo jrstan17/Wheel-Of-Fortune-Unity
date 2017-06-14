@@ -13,8 +13,11 @@ public class OptionsRunner : MonoBehaviour {
 
     public InputField VowelCostText;
 
+    public Toggle FullScreenToggle;
+
     public static int NumberOfRounds = 4;
     public static int VowelCost = 250;
+    public static bool IsFullScreen = true;
 
     private void OnEnable() {
         LoadValues();
@@ -39,13 +42,30 @@ public class OptionsRunner : MonoBehaviour {
 
         VowelCost = PlayerPrefs.GetInt("vowelCost_Value", 250);
         VowelCostText.text = VowelCost.ToString();
+
+        int fullScreenInt = PlayerPrefs.GetInt("fullScreen_Value", 1);
+        if (fullScreenInt == 1) {
+            FullScreenToggle.isOn = true;
+        } else {
+            FullScreenToggle.isOn = false;
+        }
     }
 
     private void SaveAndApplyValues() {
         NumberOfRounds = (int) RoundNumberSlider.value;
+        PlayerPrefs.SetInt("roundNumber_Value", (int)RoundNumberSlider.value);
+
         VowelCost = int.Parse(VowelCostText.text);
-        PlayerPrefs.SetInt("roundNumber_Value", (int) RoundNumberSlider.value);
         PlayerPrefs.SetInt("vowelCost_Value", int.Parse(VowelCostText.text));
+
+        if (FullScreenToggle.isOn) {
+            Screen.fullScreen = true;
+            PlayerPrefs.SetInt("fullScreen_Value", 1);
+        } else {
+            Screen.fullScreen = false;
+            PlayerPrefs.SetInt("fullScreen_Value", 0);
+        }
+
         PlayerPrefs.Save();
     }
 }

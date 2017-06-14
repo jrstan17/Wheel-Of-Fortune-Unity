@@ -13,6 +13,7 @@ public class TitleRunner : MonoBehaviour {
     public Camera MainCamera;
     public Camera TitleCamera;
     public RoundRunner RoundRunner;
+    public CursorToggler CursorToggler;
 
     // Use this for initialization
     void Start () {
