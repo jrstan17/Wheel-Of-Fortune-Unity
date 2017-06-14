@@ -15,9 +15,14 @@ public class OptionsRunner : MonoBehaviour {
 
     public Toggle FullScreenToggle;
 
+    public InputField XResolutionInput;
+    public InputField YResolutionInput;
+
     public static int NumberOfRounds = 4;
     public static int VowelCost = 250;
     public static bool IsFullScreen = true;
+    public static int XResolution = Screen.width;
+    public static int YResolution = Screen.height;
 
     private void OnEnable() {
         LoadValues();
@@ -46,9 +51,17 @@ public class OptionsRunner : MonoBehaviour {
         int fullScreenInt = PlayerPrefs.GetInt("fullScreen_Value", 1);
         if (fullScreenInt == 1) {
             FullScreenToggle.isOn = true;
+            IsFullScreen = true;
         } else {
             FullScreenToggle.isOn = false;
+            IsFullScreen = false;
         }
+
+        XResolution = PlayerPrefs.GetInt("xResolution_Value", Screen.width);
+        XResolutionInput.text = XResolution.ToString();
+
+        YResolution = PlayerPrefs.GetInt("yResolution_Value", Screen.height);
+        YResolutionInput.text = YResolution.ToString();
     }
 
     private void SaveAndApplyValues() {
@@ -61,10 +74,19 @@ public class OptionsRunner : MonoBehaviour {
         if (FullScreenToggle.isOn) {
             Screen.fullScreen = true;
             PlayerPrefs.SetInt("fullScreen_Value", 1);
+            IsFullScreen = true;
         } else {
             Screen.fullScreen = false;
             PlayerPrefs.SetInt("fullScreen_Value", 0);
+            IsFullScreen = false;
         }
+
+        XResolution = int.Parse(XResolutionInput.text);
+        PlayerPrefs.SetInt("xResolution_Value", int.Parse(XResolutionInput.text));
+
+        YResolution = int.Parse(YResolutionInput.text);
+        PlayerPrefs.SetInt("yResolution_Value", int.Parse(YResolutionInput.text));
+        Screen.SetResolution(XResolution, YResolution, IsFullScreen);
 
         PlayerPrefs.Save();
     }
