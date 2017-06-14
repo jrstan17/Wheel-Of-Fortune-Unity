@@ -18,13 +18,17 @@ public class OptionsRunner : MonoBehaviour {
     public InputField XResolutionInput;
     public InputField YResolutionInput;
 
+    public Dropdown QualityDropdown;
+
     public static int NumberOfRounds = 4;
     public static int VowelCost = 250;
     public static bool IsFullScreen = true;
     public static int XResolution = Screen.width;
     public static int YResolution = Screen.height;
+    public static int QualityIndex = 0;
 
     private void OnEnable() {
+        PopulateQualityDropdown();
         LoadValues();
     }
 
@@ -62,6 +66,9 @@ public class OptionsRunner : MonoBehaviour {
 
         YResolution = PlayerPrefs.GetInt("yResolution_Value", Screen.height);
         YResolutionInput.text = YResolution.ToString();
+
+        QualityIndex = PlayerPrefs.GetInt("qualityIndex_Value", 0);
+        QualityDropdown.value = QualityIndex;
     }
 
     private void SaveAndApplyValues() {
@@ -88,6 +95,20 @@ public class OptionsRunner : MonoBehaviour {
         PlayerPrefs.SetInt("yResolution_Value", int.Parse(YResolutionInput.text));
         Screen.SetResolution(XResolution, YResolution, IsFullScreen);
 
+        QualityIndex = QualityDropdown.value;
+        QualitySettings.SetQualityLevel(QualityIndex);
+
         PlayerPrefs.Save();
+    }
+
+    private void PopulateQualityDropdown() {
+        string[] names = QualitySettings.names;
+        List<Dropdown.OptionData> dataList = new List<Dropdown.OptionData>();
+
+        foreach(string name in names) {
+            dataList.Add(new Dropdown.OptionData(name));
+        }
+
+        QualityDropdown.AddOptions(dataList);
     }
 }
