@@ -96,19 +96,22 @@ public class OptionsRunner : MonoBehaviour {
         Screen.SetResolution(XResolution, YResolution, IsFullScreen);
 
         QualityIndex = QualityDropdown.value;
+        PlayerPrefs.SetInt("qualityIndex_Value", QualityIndex);
         QualitySettings.SetQualityLevel(QualityIndex);
 
         PlayerPrefs.Save();
     }
 
     private void PopulateQualityDropdown() {
-        string[] names = QualitySettings.names;
-        List<Dropdown.OptionData> dataList = new List<Dropdown.OptionData>();
+        if (QualityDropdown.options.Count == 0) {
+            string[] names = QualitySettings.names;
+            List<Dropdown.OptionData> dataList = new List<Dropdown.OptionData>();
 
-        foreach(string name in names) {
-            dataList.Add(new Dropdown.OptionData(name));
+            foreach (string name in names) {
+                dataList.Add(new Dropdown.OptionData(name));
+            }
+
+            QualityDropdown.AddOptions(dataList);
         }
-
-        QualityDropdown.AddOptions(dataList);
     }
 }
