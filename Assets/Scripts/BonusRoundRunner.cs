@@ -149,11 +149,14 @@ public class BonusRoundRunner : MonoBehaviour {
 
     public IEnumerator Closeout() {
         RoundRunner.AudioTracks.Play("theme");
-        int highScorePlace = HighScore.UpdateHighScores(Winner.Name, Winner.TotalWinnings);
 
-        if (highScorePlace > 0) {
-            yield return UpdateSajak(Winner.Name + ", you have a new high score!", NORMAL_SAJAK_SPEED);
-            yield return UpdateSajak("You made it to " + highScorePlace + HighScore.GetOrdinalSuffix(highScorePlace) + " place!", NORMAL_SAJAK_SPEED);
+        if (OptionsRunner.IsNumberOfRoundsOnAuto) {
+            int highScorePlace = HighScore.UpdateHighScores(Winner.Name, Winner.TotalWinnings);
+
+            if (highScorePlace > 0) {
+                yield return UpdateSajak(Winner.Name + ", you have a new high score!", NORMAL_SAJAK_SPEED);
+                yield return UpdateSajak("You made it to " + highScorePlace + HighScore.GetOrdinalSuffix(highScorePlace) + " place!", NORMAL_SAJAK_SPEED);
+            }
         }
 
         yield return UpdateSajak(Winner.Name + ", you're leaving us with total winnings of " + Winner.TotalWinnings.ToString("C0") + "!", 7f);
