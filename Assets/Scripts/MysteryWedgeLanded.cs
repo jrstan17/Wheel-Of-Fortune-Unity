@@ -38,6 +38,7 @@ public class MysteryWedgeLanded : MonoBehaviour {
 
         if (picked == 0) {
             RoundRunner.AudioTracks.Play("bankrupt");
+            RoundRunner.AudioTracks.Play("boo");
             yield return SaySajak("A BANKRUPT!", 3.5f);
             yield return SaySajak("I'm sorry, " + PlayerList.CurrentPlayer.Name + ". That's the risk of the Mystery Wedge.", 5f);
             RoundRunner.doBankruptLogic(PlayerList.CurrentPlayer);
@@ -45,6 +46,7 @@ public class MysteryWedgeLanded : MonoBehaviour {
             Sajak.text = "It's now " + PlayerList.CurrentPlayer.Name + "'s turn.";
         } else {
             RoundRunner.AudioTracks.Play("pq");
+            RoundRunner.AudioTracks.Play("cheer_applause");
             PlayerList.CurrentPlayer.RoundWinnings += Constants.MYSTERY_WEDGE_WIN;
             yield return SaySajak(Constants.MYSTERY_WEDGE_WIN.ToString("C0") + "!  Luck was on your side!", 6f);
             Sajak.text = "Please select a consonant for " + RoundRunner.CurrentWedge.Value.ToString("N0") + ".";
