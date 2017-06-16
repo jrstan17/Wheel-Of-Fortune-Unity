@@ -10,6 +10,7 @@ public class OptionsRunner : MonoBehaviour {
 
     public Text RoundNumberValueText;
     public Slider RoundNumberSlider;
+    public Toggle AutoToggle;
 
     public InputField VowelCostText;
 
@@ -21,19 +22,33 @@ public class OptionsRunner : MonoBehaviour {
     public Dropdown QualityDropdown;
 
     public static int NumberOfRounds = 4;
+    public static bool IsNumberOfRoundsOnAuto = true;
     public static int VowelCost = 250;
     public static bool IsFullScreen = true;
     public static int XResolution = Screen.width;
     public static int YResolution = Screen.height;
-    public static int QualityIndex = 0;
+    public static int QualityIndex;
 
     private void OnEnable() {
+        AutoToggle_OnChange();
         PopulateQualityDropdown();
         LoadValues();
     }
 
     public void RoundNumber_Changed() {
         RoundNumberValueText.text = RoundNumberSlider.value.ToString();
+    }
+
+    public void AutoToggle_OnChange() {
+        if (AutoToggle.isOn) {
+            RoundNumberSlider.enabled = false;
+            RoundNumberValueText.text = "";
+            IsNumberOfRoundsOnAuto = true;
+        } else {
+            RoundNumberSlider.enabled = true;
+            RoundNumberValueText.text = RoundNumberSlider.value.ToString();
+            IsNumberOfRoundsOnAuto = false;
+        }
     }
 
     public void ApplyAndClose_Clicked() {
@@ -67,8 +82,15 @@ public class OptionsRunner : MonoBehaviour {
         YResolution = PlayerPrefs.GetInt("yResolution_Value", Screen.height);
         YResolutionInput.text = YResolution.ToString();
 
-        QualityIndex = PlayerPrefs.GetInt("qualityIndex_Value", 0);
+        QualityIndex = PlayerPrefs.GetInt("qualityIndex_Value", QualitySettings.names.Length - 1);
         QualityDropdown.value = QualityIndex;
+
+        int autoInt = PlayerPrefs.GetInt("autoRounds_Value", 1);
+        if (autoInt == 1) {
+            AutoToggle.isOn = true;
+        } else {
+            AutoToggle.isOn = false;
+        }
     }
 
     private void SaveAndApplyValues() {
@@ -98,6 +120,12 @@ public class OptionsRunner : MonoBehaviour {
         QualityIndex = QualityDropdown.value;
         PlayerPrefs.SetInt("qualityIndex_Value", QualityIndex);
         QualitySettings.SetQualityLevel(QualityIndex);
+
+        if (AutoToggle.isOn) {
+            PlayerPrefs.SetInt("autoRounds_Value", 1);
+        } else {
+            PlayerPrefs.SetInt("autoRounds_Value", 0);
+        }
 
         PlayerPrefs.Save();
     }

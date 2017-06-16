@@ -70,6 +70,10 @@ public class RoundRunner : MonoBehaviour {
 
         HighScore = new HighScore();
 
+        if (OptionsRunner.IsNumberOfRoundsOnAuto) {
+            OptionsRunner.NumberOfRounds = PlayerList.Players.Count + 1;
+        }
+
         GameObject panel = GameObject.FindGameObjectWithTag("PlayerPanel");
         PlayerWinningsTexts = new List<Text>();
         foreach (Player p in PlayerList.Players) {
