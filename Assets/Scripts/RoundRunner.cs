@@ -748,14 +748,23 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public void ToggleUIButtons() {
+        bool isExpress = KeyPress.expressWedgeLanded.IsExpressRunning;
+
         ToggleUIButtonsParsing("all", false);
 
         if (KeyPress.IsTimeForFreePlayDecision) {
             return;
         }
 
-        if (BoardFiller.PuzzleContainsOnly(LetterType.Neither) || KeyPress.expressWedgeLanded.IsExpressRunning) {
+        if (BoardFiller.PuzzleContainsOnly(LetterType.Neither) || isExpress) {
             ToggleUIButtonsParsing("solve", true);
+        }
+
+        if (isExpress) {
+            if (PlayerList.CurrentPlayer.RoundWinnings >= OptionsRunner.VowelCost) {
+                ToggleUIButtonsParsing("buy", true);
+            }
+
             return;
         }
 
