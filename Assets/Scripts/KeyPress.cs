@@ -272,6 +272,8 @@ public class KeyPress : MonoBehaviour {
 
             if (isParsed) {
                 RoundRunner.WheelCanvas = RoundRunner.WheelCanvases[parsed - 1];
+                GameObject wheelGameObject = RoundRunner.WheelCanvas.transform.GetChild(0).gameObject;
+                RoundRunner.ResetWheel(wheelGameObject, true);
                 Debug.Log("Using Wheel #" + (parsed));
             }
         }

@@ -111,7 +111,7 @@ public class RoundRunner : MonoBehaviour {
         IsRoundEnded = false;
         NotifiedOfRemainingLetters = false;
 
-        foreach(Player p in PlayerList.Players) {
+        foreach (Player p in PlayerList.Players) {
             p.LicensePlates = 0;
             p.RoundPrize = null;
         }
@@ -203,6 +203,18 @@ public class RoundRunner : MonoBehaviour {
         if (index != -1) {
             WedgeChangeContainer mysteryChange = wheelBaseObject.GetComponents<WedgeChangeContainer>()[index];
             mysteryChange.ToggleBefore();
+        }
+
+        index = WedgeRules.GetWedgeChangeIndex("halfcar1", wheelBaseObject);
+        if (index != -1) {
+            WedgeChangeContainer halfCar1Change = wheelBaseObject.GetComponents<WedgeChangeContainer>()[index];
+            halfCar1Change.ToggleBefore();
+        }
+
+        index = WedgeRules.GetWedgeChangeIndex("halfcar2", wheelBaseObject);
+        if (index != -1) {
+            WedgeChangeContainer halfCar2Change = wheelBaseObject.GetComponents<WedgeChangeContainer>()[index];
+            halfCar2Change.ToggleBefore();
         }
     }
 
@@ -397,7 +409,7 @@ public class RoundRunner : MonoBehaviour {
         }
     }
 
-    public IEnumerator SolvedIncorrectly(SolvedIncorrectlyArg arg) {   
+    public IEnumerator SolvedIncorrectly(SolvedIncorrectlyArg arg) {
         if (arg == SolvedIncorrectlyArg.IsOutOfTime) {
             AudioTracks.Play("buzzer");
             string pre = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". ";
@@ -672,17 +684,23 @@ public class RoundRunner : MonoBehaviour {
 
         if (p.LicensePlates != 0) {
             p.LicensePlates = 0;
-            List<string> notMissing = WhichHalfCarsExistOnTheWheel();
+            List<string> notMissing = GetWhichPlatesShouldExistOnWheel();
 
-            if (!notMissing.Contains("HALFCARRED")) {
-                ToggleHalfCar("HALFCARRED", true);
-            }
-
-            if (!notMissing.Contains("HALFCARGREEN")) {
-                ToggleHalfCar("HALFCARGREEN", true);
+            if (PlayerList.GetTotalLicensePlatesTaken() == 1) {
+                if (!notMissing.Contains("HALFCARGREEN")) {
+                    ToggleHalfCar("HALFCARGREEN", true);
+                } else if (!notMissing.Contains("HALFCARRED")) {
+                    ToggleHalfCar("HALFCARRED", true);
+                }
+            } else if (PlayerList.GetTotalLicensePlatesTaken() == 0) {
+                if (!notMissing.Contains("HALFCARGREEN")) {
+                    ToggleHalfCar("HALFCARGREEN", true);
+                }
+                if (!notMissing.Contains("HALFCARRED")) {
+                    ToggleHalfCar("HALFCARRED", true);
+                }
             }
         }
-
 
         if (p.Wilds != 0) {
             p.Wilds = 0;
@@ -692,7 +710,7 @@ public class RoundRunner : MonoBehaviour {
         p.FreePlays = 0;
     }
 
-    public List<string> WhichHalfCarsExistOnTheWheel() {
+    public List<string> GetWhichPlatesShouldExistOnWheel() {
         List<string> toReturn = new List<string>();
 
         foreach (NewWedgeEntered nwe in Wheel2Colliders) {

@@ -100,4 +100,14 @@ public static class PlayerList {
 
         return false;
     }
+
+    public static int GetTotalLicensePlatesTaken() {
+        int toReturn = 0;
+
+        foreach (Player p in Players) {
+            toReturn += p.LicensePlates;
+        }
+
+        return toReturn;
+    }
 }
