@@ -17,6 +17,7 @@ public class PlayerCreationRunner : MonoBehaviour {
     public Button StartButton;
     public RandomColorChanger GlowColorChanger;
     public GameObject PlayerCreationPanel;
+    public BestFitter BestFitter;
 
     private List<Button> playerButtons = new List<Button>();
     private List<string> names = new List<string>();
@@ -65,6 +66,7 @@ public class PlayerCreationRunner : MonoBehaviour {
         }
 
         EventSystem.current.SetSelectedGameObject(AddPlayerField.gameObject, null);
+        StartCoroutine(BestFitter.UpdateTextSize());
     }
 
     public void Name_Clicked(GameObject obj, PointerEventData ped) {

@@ -8,21 +8,15 @@ public class BestFitter : MonoBehaviour {
     public Canvas Canvas;
     int nameCount = 0;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    public IEnumerator UpdateTextSize() {
         List<GameObject> newNameBtns = new List<GameObject>();
-        foreach(Transform t in transform) {
+        foreach (Transform t in transform) {
             if (t.gameObject.activeSelf) {
                 newNameBtns.Add(t.gameObject);
             }
         }
 
-        if (newNameBtns.Count != nameCount) {            
+        if (newNameBtns.Count != nameCount) {
             nameCount = newNameBtns.Count;
 
             foreach (GameObject go in newNameBtns) {
@@ -32,15 +26,23 @@ public class BestFitter : MonoBehaviour {
 
             int smallest = int.MaxValue;
             bool smallestHasChanged = false;
-            foreach(GameObject go in newNameBtns) {
+            foreach (GameObject go in newNameBtns) {
                 Text text = go.transform.GetChild(0).GetComponent<Text>();
-                int bestfit = (int) (text.cachedTextGenerator.fontSizeUsedForBestFit / Canvas.scaleFactor);
+
+                while (text.cachedTextGenerator.fontSizeUsedForBestFit == 0) {
+                    yield return new WaitForFixedUpdate();
+                }
+
+                int bestfit = (int)(text.cachedTextGenerator.fontSizeUsedForBestFit / Canvas.scaleFactor);
+
+                Debug.Log("After: " + bestfit);
 
                 if (bestfit < smallest) {
                     smallest = bestfit;
                     smallestHasChanged = true;
                 }
             }
+            Debug.Log("");
 
             if (smallestHasChanged) {
                 foreach (GameObject go in newNameBtns) {
@@ -50,5 +52,5 @@ public class BestFitter : MonoBehaviour {
                 }
             }
         }
-	}
+    }
 }
