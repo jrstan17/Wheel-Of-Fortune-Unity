@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class BestFitter : MonoBehaviour {
 
+    public Canvas Canvas;
     int nameCount = 0;
 
 	// Use this for initialization
@@ -29,14 +30,14 @@ public class BestFitter : MonoBehaviour {
                 text.resizeTextForBestFit = true;
             }
 
-            int smallest = 0;
+            int smallest = int.MaxValue;
             bool smallestHasChanged = false;
             foreach(GameObject go in newNameBtns) {
                 Text text = go.transform.GetChild(0).GetComponent<Text>();
-                int bestfit = text.cachedTextGenerator.fontSizeUsedForBestFit;
+                int bestfit = (int) (text.cachedTextGenerator.fontSizeUsedForBestFit / Canvas.scaleFactor);
 
                 if (bestfit < smallest) {
-                    smallest = text.fontSize;
+                    smallest = bestfit;
                     smallestHasChanged = true;
                 }
             }
