@@ -12,4 +12,7 @@ class Constants {
     public static readonly float BONUS_SOLVE_TIME = 30f;
 
     public static readonly float EXPRESS_LETTER_GUESS_TIME = 9.99f;
+
+    public static readonly float PLAYER_RANDOM_ANIM_DURATION = 5f;
+    public static readonly float PLAYER_RANDOM_ANIM_RATE = 0.15f;
 }
