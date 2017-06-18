@@ -16,7 +16,7 @@ public class RandomColorChanger : MonoBehaviour {
     Material material;
     internal Color32 start;
     internal Color32 finish;
-    internal static bool isStarted = false;
+    internal bool isStarted = false;
     internal float elapsedTime = 0;
 
 	// Use this for initialization

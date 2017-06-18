@@ -15,6 +15,8 @@ public class PlayerCreationRunner : MonoBehaviour {
     public RoundRunner RoundRunner;
     public Button AddPlayerButton;
     public Button StartButton;
+    public RandomColorChanger GlowColorChanger;
+    public GameObject PlayerCreationPanel;
 
     private List<Button> playerButtons = new List<Button>();
     private List<string> names = new List<string>();
@@ -26,6 +28,10 @@ public class PlayerCreationRunner : MonoBehaviour {
     }
 
     void Update() {
+        if (PlayerCreationPanel.activeInHierarchy && !GlowColorChanger.isStarted) {
+            GlowColorChanger.StartColorChange();
+        }
+
         if (Input.GetKey(KeyCode.Return)) {
             AddPlayerButton.onClick.Invoke();
         }
