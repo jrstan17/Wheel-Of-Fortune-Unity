@@ -495,6 +495,6 @@ public class KeyPress : MonoBehaviour {
                     }
                 }
             }
-        }
+        } else if (IsTimeForWildDecision && )
     }
 }

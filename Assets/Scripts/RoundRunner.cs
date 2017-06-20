@@ -950,7 +950,7 @@ public class RoundRunner : MonoBehaviour {
                         KeyPress.expressWedgeLanded.StartTimer(false);
                     }
 
-                    if (!IsVowel && PlayerList.CurrentPlayer.Wilds > 0 && (BoardFiller.PuzzleContainsOnly(LetterType.Consonant) || BoardFiller.PuzzleContainsOnly(LetterType.Both))) {
+                    if (!IsVowel && PlayerList.CurrentPlayer.Wilds > 0 && !KeyPress.expressWedgeLanded.IsExpressRunning && (BoardFiller.PuzzleContainsOnly(LetterType.Consonant) || BoardFiller.PuzzleContainsOnly(LetterType.Both))) {
                         KeyPress.IsTimeForWildDecision = true;
                         ItemManager.ToggleWild(IconState.Flashing);
                     }
