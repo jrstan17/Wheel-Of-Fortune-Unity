@@ -12,6 +12,7 @@ public class KeyPress : MonoBehaviour {
     public GameObject DebugInputObject;
     public GameObject Background;
     public SpinWheel BonusWheelSpin;
+    public Button IllSpinButton;
 
     private RoundRunner RoundRunner;
     internal bool isMenuActive = false;
@@ -464,8 +465,7 @@ public class KeyPress : MonoBehaviour {
                     yield return StartCoroutine(BonusWheelSpin.Spin(false));
                 }
             } else {
-                Button b = RoundRunner.RegularRoundButtonsObject.transform.GetChild(0).GetComponent<Button>();
-                if (b.interactable == true) {
+                if (IllSpinButton.IsActive() && IllSpinButton.enabled) {
                     RoundRunner.Spin_Clicked();
                 }
             }
@@ -495,6 +495,6 @@ public class KeyPress : MonoBehaviour {
                     }
                 }
             }
-        } else if (IsTimeForWildDecision && )
+        }
     }
 }
