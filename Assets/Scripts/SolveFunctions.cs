@@ -11,6 +11,7 @@ public class SolveFunctions : MonoBehaviour {
     public RoundRunner RoundRunner;
     public InputField SolveField;
     public CountdownTimer Countdown;
+    public Button IllSpinButton;
 
     public void ToggleWindow(bool enable) {
         if (enable) {
@@ -31,7 +32,12 @@ public class SolveFunctions : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (IsWindowEnabled()) {            
+        if (IsWindowEnabled()) {
+            
+            if (IllSpinButton.enabled) {
+                IllSpinButton.enabled = false;
+            }
+                        
             SolveField.text = SolveField.text.ToUpper();
 
             if (Input.GetKeyUp(KeyCode.Return)) {
