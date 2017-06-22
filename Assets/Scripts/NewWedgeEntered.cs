@@ -17,6 +17,9 @@ public class NewWedgeEntered : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col) {
         RoundRunner.CurrentWedge = new WedgeData(WedgeValue, WedgeText, WedgeType);
-        AudioTracks.Play("wheel_click");
+
+        if (SpinWheel.spinning) {
+            AudioTracks.Play("wheel_click");
+        }
     }
 }

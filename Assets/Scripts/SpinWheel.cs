@@ -17,7 +17,7 @@ public class SpinWheel : MonoBehaviour {
     public const int DEFAULT_MIN = 360;
     public const int DEFAULT_MAX = 720;
 
-    internal bool spinning;
+    internal static bool spinning;
     internal static float SpinTime = 6f;
     internal static int minAngle = DEFAULT_MIN;
     internal static int maxAngle = DEFAULT_MAX;

@@ -34,9 +34,7 @@ public class SolveFunctions : MonoBehaviour {
     void Update () {
         if (IsWindowEnabled()) {
             
-            if (IllSpinButton.enabled) {
-                IllSpinButton.enabled = false;
-            }
+            RoundRunner.ToggleUIButtonsParsing("all", false);
                         
             SolveField.text = SolveField.text.ToUpper();
 
@@ -55,6 +53,7 @@ public class SolveFunctions : MonoBehaviour {
 
         string guess = Format(SolveField.GetComponent<InputField>().text);
         string correct = Format(RoundRunner.Puzzle.Text);
+
 
         if (guess.Equals(correct)) {
             RoundRunner.ToggleUIButtonsParsing("all", false);

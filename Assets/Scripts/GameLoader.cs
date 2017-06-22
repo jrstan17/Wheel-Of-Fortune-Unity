@@ -14,6 +14,7 @@ public class GameLoader : MonoBehaviour {
     void Update() {
         if (!loadScene) {
             loadScene = true;
+            StartCoroutine(gameObject.GetComponent<GameLoadingAnim>().BeginAnimation());
             StartCoroutine(LoadNewScene());
         }
     }
@@ -21,9 +22,6 @@ public class GameLoader : MonoBehaviour {
 
     // The coroutine runs on its own at the same time as Update() and takes an integer indicating which scene to load.
     IEnumerator LoadNewScene() {
-
-        yield return new WaitForSeconds(5f);
-
         // Start an asynchronous operation to load the scene that was passed to the LoadNewScene coroutine.
         AsyncOperation async = SceneManager.LoadSceneAsync(scene);
 

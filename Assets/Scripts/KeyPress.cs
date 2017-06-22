@@ -222,6 +222,7 @@ public class KeyPress : MonoBehaviour {
                 return;
             }
 
+            RoundRunner.ToggleUIButtonsParsing("all", false);
             PlayerList.GotoPlayer(Splits[1]);
             StartCoroutine(RoundRunner.SolvedCorrectly());
         }
@@ -465,7 +466,7 @@ public class KeyPress : MonoBehaviour {
                     yield return StartCoroutine(BonusWheelSpin.Spin(false));
                 }
             } else {
-                if (IllSpinButton.IsActive() && IllSpinButton.enabled) {
+                if (IllSpinButton.interactable) {
                     RoundRunner.Spin_Clicked();
                 }
             }
