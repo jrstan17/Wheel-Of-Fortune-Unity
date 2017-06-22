@@ -3754,7 +3754,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -7.902397, y: -0.59046096}
+  m_Offset: {x: -10.223837, y: -7.4911366}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3765,7 +3765,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.916199, y: 1.1409143}
+  m_Size: {x: 19.537502, y: 14.942266}
   m_EdgeRadius: 0
 --- !u!95 &150525673
 Animator:
@@ -14497,7 +14497,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -7.902397, y: -0.59046096}
+  m_Offset: {x: -8.5618725, y: -5.3575325}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -14508,7 +14508,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.916199, y: 1.1409143}
+  m_Size: {x: 12.797684, y: 10.675058}
   m_EdgeRadius: 0
 --- !u!212 &449235277
 SpriteRenderer:
@@ -20556,7 +20556,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -7.902397, y: -0.59046096}
+  m_Offset: {x: -9.492423, y: -7.5865364}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -20567,7 +20567,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.916199, y: 1.1409143}
+  m_Size: {x: 17.311487, y: 15.133068}
   m_EdgeRadius: 0
 --- !u!95 &648653952
 Animator:
@@ -37685,7 +37685,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -7.902397, y: -0.59046096}
+  m_Offset: {x: -8.761027, y: -7.491135}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -37696,7 +37696,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.916199, y: 1.1409143}
+  m_Size: {x: 20.173498, y: 14.942264}
   m_EdgeRadius: 0
 --- !u!95 &1230473847
 Animator:
