@@ -6,6 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/BoardLoading.unity
+    guid: 5ceeb28e5eabeea4780a49a330b42772
+  - enabled: 1
     path: Assets/Board.unity
-  - enabled: 0
-    path: Assets/Wheel1.unity
+    guid: 28260a985b3db1347a218c02e8951f91
