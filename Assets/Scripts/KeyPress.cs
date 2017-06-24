@@ -12,7 +12,6 @@ public class KeyPress : MonoBehaviour {
     public GameObject DebugInputObject;
     public GameObject Background;
     public SpinWheel BonusWheelSpin;
-    public Button IllSpinButton;
 
     private RoundRunner RoundRunner;
     internal bool isMenuActive = false;
@@ -23,6 +22,7 @@ public class KeyPress : MonoBehaviour {
     internal static bool IsTimeForWildDecision = false;
     internal static bool IsTimeForMysteryDecision = false;
     internal static bool IsTimeForExpressDecision = false;
+    internal static bool IsBonusSolvingActive = false;
     internal MysteryWedgeLanded mysteryWedgeLanded;
     internal ExpressWedgeLanded expressWedgeLanded;
     internal Coroutine MysteryWedgeCoroutine;
@@ -465,10 +465,8 @@ public class KeyPress : MonoBehaviour {
                 if (!isMenuActive && !BonusWheelSpin.HasSpun) {
                     yield return StartCoroutine(BonusWheelSpin.Spin(false));
                 }
-            } else {
-                if (IllSpinButton.interactable) {
-                    RoundRunner.Spin_Clicked();
-                }
+            } else if (!IsBonusSolvingActive){
+                RoundRunner.Spin_Clicked();
             }
         }
 
