@@ -20674,7 +20674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d06f9e9aa42354e8c076c9a6d77add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useQuickStart: 1
+  useQuickStart: 0
   MusicTracks: {fileID: 1369945915}
   ColorChangersToBoot:
   - {fileID: 935055829}

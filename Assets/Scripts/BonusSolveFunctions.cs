@@ -23,7 +23,7 @@ public class BonusSolveFunctions : MonoBehaviour {
         SolveField.text = "";
         BoardFiller = BonusRoundRunner.BoardFiller;
         RoundRunner.AudioTracks.Play("countdown");
-        KeyPress.IsBonusSolvingActive = true;
+        KeyPress.IsSolvingActive = true;
     }
 
     // Update is called once per frame
@@ -37,7 +37,7 @@ public class BonusSolveFunctions : MonoBehaviour {
             }
 
             if (Countdown.TimeLeft == 0) {
-                KeyPress.IsBonusSolvingActive = false;
+                KeyPress.IsSolvingActive = false;
                 timerStopFlag = true;
                 Countdown.StopTimer();
                 RoundRunner.AudioTracks.StopAll();
@@ -61,7 +61,7 @@ public class BonusSolveFunctions : MonoBehaviour {
         }
 
         if (solveText.Equals(sb.ToString())) {
-            KeyPress.IsBonusSolvingActive = false;
+            KeyPress.IsSolvingActive = false;
             timerStopFlag = true;
             Countdown.StopTimer();
             RoundRunner.AudioTracks.StopAll();

@@ -22,7 +22,7 @@ public class KeyPress : MonoBehaviour {
     internal static bool IsTimeForWildDecision = false;
     internal static bool IsTimeForMysteryDecision = false;
     internal static bool IsTimeForExpressDecision = false;
-    internal static bool IsBonusSolvingActive = false;
+    internal static bool IsSolvingActive = false;
     internal MysteryWedgeLanded mysteryWedgeLanded;
     internal ExpressWedgeLanded expressWedgeLanded;
     internal Coroutine MysteryWedgeCoroutine;
@@ -465,7 +465,7 @@ public class KeyPress : MonoBehaviour {
                 if (!isMenuActive && !BonusWheelSpin.HasSpun) {
                     yield return StartCoroutine(BonusWheelSpin.Spin(false));
                 }
-            } else if (!IsBonusSolvingActive){
+            } else if (!IsSolvingActive){
                 RoundRunner.Spin_Clicked();
             }
         }

@@ -15,12 +15,14 @@ public class SolveFunctions : MonoBehaviour {
 
     public void ToggleWindow(bool enable) {
         if (enable) {
+            KeyPress.IsSolvingActive = true;
             GetComponent<Canvas>().enabled = true;
             Countdown.StartTimer();
             RoundRunner.IsTimeForLetter = false;
             SolveField.text = "";
             SolveField.ActivateInputField();
         } else {
+            KeyPress.IsSolvingActive = false;
             Countdown.StopTimer();
             GetComponent<Canvas>().enabled = false;
         }
