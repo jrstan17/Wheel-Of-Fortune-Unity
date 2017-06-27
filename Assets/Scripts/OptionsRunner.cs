@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class OptionsRunner : MonoBehaviour {
 
+    public Camera Camera;
+
     public RoundRunner RoundRunner;
     public RevealCanvas RevealCanvas;
 
@@ -20,6 +22,8 @@ public class OptionsRunner : MonoBehaviour {
     public InputField YResolutionInput;
 
     public Dropdown QualityDropdown;
+
+    public Button ApplyAndClose;
 
     public static int NumberOfRounds = 4;
     public static bool IsNumberOfRoundsOnAuto = true;
@@ -49,6 +53,32 @@ public class OptionsRunner : MonoBehaviour {
             RoundNumberValueText.text = RoundNumberSlider.value.ToString();
             IsNumberOfRoundsOnAuto = false;
         }
+    }
+
+    public void OnWidthChange() {
+        int parsed = Camera.pixelWidth;
+        bool didWork = int.TryParse(XResolutionInput.text, out parsed);
+        if (!didWork) {
+            ApplyAndClose.interactable = false;
+            return;
+        }
+
+        ApplyAndClose.interactable = true;
+        float newHeight = parsed / Camera.aspect;
+        YResolutionInput.text = Mathf.Round(newHeight).ToString();
+    }
+
+    public void OnHeightChange() {
+        int parsed = Camera.pixelHeight;
+        bool didWork = int.TryParse(YResolutionInput.text, out parsed);
+        if (!didWork) {
+            ApplyAndClose.interactable = false;
+            return;
+        }
+
+        ApplyAndClose.interactable = true;
+        float newWidth = int.Parse(YResolutionInput.text) * Camera.aspect;
+        XResolutionInput.text = Mathf.Round(newWidth).ToString();
     }
 
     public void ApplyAndClose_Clicked() {
