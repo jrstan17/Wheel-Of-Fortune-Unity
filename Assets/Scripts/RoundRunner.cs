@@ -411,6 +411,7 @@ public class RoundRunner : MonoBehaviour {
 
     public IEnumerator SolvedIncorrectly(SolvedIncorrectlyArg arg) {
         if (arg == SolvedIncorrectlyArg.IsOutOfTime) {
+			SolveCanvas.GetComponent<SolveFunctions>().ToggleWindow(false);
             AudioTracks.Play("buzzer");
             string pre = "I'm sorry, " + PlayerList.CurrentPlayer.Name + ". ";
             string chance = Utilities.RandomString(new string[] { " try.", " chance.", "n opportunity." });

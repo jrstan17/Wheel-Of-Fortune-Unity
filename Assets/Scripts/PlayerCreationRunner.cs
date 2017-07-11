@@ -55,7 +55,7 @@ public class PlayerCreationRunner : MonoBehaviour {
             Button playerButton = Instantiate(PlayerPrefab);
             playerButton.gameObject.SetActive(true);
             Text playerText = playerButton.transform.GetChild(0).GetComponent<Text>();
-            playerText.color = new Color32(0, 255, 0, 255);
+            playerText.color = new Color32(255, 255, 255, 255);
             playerText.text = AddPlayerField.text;
             playerText.text = InsureFirstLetterUppercase(playerText.text);
             playerText.raycastTarget = true;

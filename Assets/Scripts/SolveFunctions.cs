@@ -45,6 +45,7 @@ public class SolveFunctions : MonoBehaviour {
             }
 
             if (Countdown.TimeLeft == 0) {
+				Countdown.TimeLeft = -1;
                 StartCoroutine(RoundRunner.SolvedIncorrectly(SolvedIncorrectlyArg.IsOutOfTime));
             }
         }

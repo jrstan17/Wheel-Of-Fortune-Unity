@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class RevealCanvas : MonoBehaviour {
 
@@ -26,11 +27,13 @@ public class RevealCanvas : MonoBehaviour {
 
 	public void Options_Clicked() {
 		MainPanels.GetComponent<VisabilityToggler>().ToggleVisability(false);
+		EventSystem.current.SetSelectedGameObject(null);
 		OptionPanel.SetActive(true);
 	}
 
 	public void CloseOptions() {
 		MainPanels.GetComponent<VisabilityToggler>().ToggleVisability(true);
+		EventSystem.current.SetSelectedGameObject(null);
 		OptionPanel.SetActive(false);
 	}
 }
