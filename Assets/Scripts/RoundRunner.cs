@@ -778,7 +778,7 @@ public class RoundRunner : MonoBehaviour {
         if (BoardFiller.PuzzleContainsOnly(LetterType.Neither) || isExpress) {
             ToggleUIButtonsParsing("solve", true);
 
-			if (!isExpress) {
+			if (!isExpress || BoardFiller.PuzzleContainsOnly(LetterType.Neither) && isExpress) {
 				return;
 			}			
         }
