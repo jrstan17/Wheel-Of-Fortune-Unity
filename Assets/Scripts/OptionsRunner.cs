@@ -83,11 +83,14 @@ public class OptionsRunner : MonoBehaviour {
 				return;
 			}
 
-			ApplyAndClose.interactable = true;
 			float newWidth = int.Parse(YResolutionInput.text) * Camera.aspect;
 			firstChanged = false;
 			XResolutionInput.text = Mathf.Round(newWidth).ToString();
 			firstChanged = true;
+
+			if (XResolution > 250 && YResolution > 250) {
+				ApplyAndClose.interactable = true;
+			}
 		}
 	}
 
