@@ -33,6 +33,8 @@ public class OptionsRunner : MonoBehaviour {
     public static int YResolution = Screen.height;
     public static int QualityIndex;
 
+	private bool firstChanged = true;
+
     private void OnEnable() {
         AutoToggle_OnChange();
         PopulateQualityDropdown();
@@ -56,30 +58,38 @@ public class OptionsRunner : MonoBehaviour {
     }
 
     public void OnWidthChange() {
-        int parsed = Camera.pixelWidth;
-        bool didWork = int.TryParse(XResolutionInput.text, out parsed);
-        if (!didWork) {
-            ApplyAndClose.interactable = false;
-            return;
-        }
+		if (firstChanged) {
+			int parsed = Camera.pixelWidth;
+			bool didWork = int.TryParse(XResolutionInput.text, out parsed);
+			if (!didWork) {
+				ApplyAndClose.interactable = false;
+				return;
+			}
 
-        ApplyAndClose.interactable = true;
-        float newHeight = parsed / Camera.aspect;
-        YResolutionInput.text = Mathf.Round(newHeight).ToString();
-    }
+			ApplyAndClose.interactable = true;
+			float newHeight = parsed / Camera.aspect;
+			firstChanged = false;
+			YResolutionInput.text = Mathf.Round(newHeight).ToString();
+			firstChanged = true;
+		}
+	}
 
     public void OnHeightChange() {
-        int parsed = Camera.pixelHeight;
-        bool didWork = int.TryParse(YResolutionInput.text, out parsed);
-        if (!didWork) {
-            ApplyAndClose.interactable = false;
-            return;
-        }
+		if (firstChanged) {
+			int parsed = Camera.pixelHeight;
+			bool didWork = int.TryParse(YResolutionInput.text, out parsed);
+			if (!didWork) {
+				ApplyAndClose.interactable = false;
+				return;
+			}
 
-        ApplyAndClose.interactable = true;
-        float newWidth = int.Parse(YResolutionInput.text) * Camera.aspect;
-        XResolutionInput.text = Mathf.Round(newWidth).ToString();
-    }
+			ApplyAndClose.interactable = true;
+			float newWidth = int.Parse(YResolutionInput.text) * Camera.aspect;
+			firstChanged = false;
+			XResolutionInput.text = Mathf.Round(newWidth).ToString();
+			firstChanged = true;
+		}
+	}
 
     public void ApplyAndClose_Clicked() {
         SaveAndApplyValues();
