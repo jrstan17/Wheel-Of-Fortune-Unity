@@ -4,21 +4,20 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class RevealCanvas : MonoBehaviour {
+	VisabilityToggler MainPanelToggler;
+	VisabilityToggler PlayerCreationToggler;
+	VisabilityToggler OptionPanelToggler;
 
-	public GameObject NewGamePanel;
-	public GameObject TitleButtonPanel;
-	public SpriteRenderer TitleRenderer;
-	public SpriteRenderer CreditRenderer;
-	public Texture2D CursorTexture;
-
-	public GameObject OptionPanel;
-	public GameObject MainPanels;
+	void Start(){
+		VisabilityToggler[] togglers = gameObject.GetComponents<VisabilityToggler>();
+		MainPanelToggler = togglers[0];
+		PlayerCreationToggler = togglers[1];
+		OptionPanelToggler = togglers[2];
+	}
 
 	public void NewGame_Clicked() {
-		NewGamePanel.SetActive(true);
-		TitleRenderer.enabled = false;
-		CreditRenderer.enabled = false;
-		TitleButtonPanel.SetActive(false);
+		MainPanelToggler.ToggleVisability(false);
+		PlayerCreationToggler.ToggleVisability(true);
 	}
 
 	public void Exit_Clicked() {
@@ -26,14 +25,19 @@ public class RevealCanvas : MonoBehaviour {
 	}
 
 	public void Options_Clicked() {
-		MainPanels.GetComponent<VisabilityToggler>().ToggleVisability(false);
+		MainPanelToggler.ToggleVisability(false);
+		OptionPanelToggler.ToggleVisability(true);
 		EventSystem.current.SetSelectedGameObject(null);
-		OptionPanel.SetActive(true);
 	}
 
 	public void CloseOptions() {
-		MainPanels.GetComponent<VisabilityToggler>().ToggleVisability(true);
+		MainPanelToggler.ToggleVisability(true);
+		OptionPanelToggler.ToggleVisability(false);
 		EventSystem.current.SetSelectedGameObject(null);
-		OptionPanel.SetActive(false);
 	}
-}
+
+	public void PlayerCreationBack_Clicked(){
+		MainPanelToggler.ToggleVisability(true);
+		PlayerCreationToggler.ToggleVisability(false);
+		}
+	}

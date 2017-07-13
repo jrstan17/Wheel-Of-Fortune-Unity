@@ -72,7 +72,7 @@ public class SpinWheel : MonoBehaviour {
                 break;
             }
 
-            yield return 0;
+			yield return new WaitForEndOfFrame();
         }
 
         spinning = false;
