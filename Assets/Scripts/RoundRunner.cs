@@ -33,6 +33,8 @@ public class RoundRunner : MonoBehaviour {
     public NewWedgeEntered[] Wheel2Colliders;
     public PrizeFactory PrizeFactory;
 
+	public Button IllSpin;
+
     public GameObject PrizeCanvas;
     public Text RoundText;
     public SpriteRenderer PrizeSprite;
@@ -427,6 +429,7 @@ public class RoundRunner : MonoBehaviour {
             string no = yes + " Let's give " + PlayerList.NextPlayersName() + " a" + chance;
             StartCoroutine(AskIfFreePlay(yes, no));
         } else if (arg == SolvedIncorrectlyArg.Express) {
+			IsTimeForLetter = false;
             AudioTracks.Stop("express_music");
             KeyPress.expressWedgeLanded.StopTimer();
             AudioTracks.Play("buzzer");
@@ -908,6 +911,7 @@ public class RoundRunner : MonoBehaviour {
                         KeyPress.expressWedgeLanded.StopTimer();
                         AudioTracks.Play("buzzer");
                         AudioTracks.Play("ah");
+						ToggleUIButtonsParsing("all", false);
                         SajakText.text = "There are no " + char.ToUpper(letter) + "'s. The Express ride is over.";
                         yield return new WaitForSeconds(5f);
                         OnBankrupt(PlayerList.CurrentPlayer);
@@ -942,7 +946,7 @@ public class RoundRunner : MonoBehaviour {
                         WedgeChangeContainer millionChange = WheelBaseObject.GetComponents<WedgeChangeContainer>()[index];
                         millionChange.ToggleAfter();
 
-                        SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up the One Million wedge!");
+                        SajakYouGotSomethingGood(PlayerList.CurrentPlayer.Name + " picks up the Million Dollar wedge!");
                     }
 
                     if (KeyPress.expressWedgeLanded.IsExpressRunning) {
@@ -967,7 +971,8 @@ public class RoundRunner : MonoBehaviour {
                     AudioTracks.Stop("express_music");
                     KeyPress.expressWedgeLanded.StopTimer();
                     AudioTracks.Play("buzzer");
-
+					AudioTracks.Play("ah");
+					ToggleUIButtonsParsing("all", false);
                     SajakText.text = char.ToUpper(letter) + " has already been used. The Express ride is over.";
 
                     yield return new WaitForSeconds(5f);
@@ -998,6 +1003,8 @@ public class RoundRunner : MonoBehaviour {
         AudioTracks.Stop("express_music");
         KeyPress.expressWedgeLanded.StopTimer();
         AudioTracks.Play("buzzer");
+		AudioTracks.Play("ah");
+		ToggleUIButtonsParsing("all", false);
 
         SajakText.text = "You took too long to respond. The Express ride is over.";
 

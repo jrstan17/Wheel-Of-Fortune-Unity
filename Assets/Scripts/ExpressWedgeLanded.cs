@@ -30,7 +30,7 @@ public class ExpressWedgeLanded : MonoBehaviour {
 
         yield return SaySajak("Press (1) to skip the Express and guess a consonant for 1,000 or...", 7f);
         yield return SaySajak("Press (2) to get on the Express ride...", 6f);
-        yield return SaySajak("Where you call consonants for 1,000 or buy vowels...", 7f);
+        yield return SaySajak("Where you keep calling consonants for 1,000 or buy vowels...", 7f);
         yield return SaySajak("until you solve the puzzle, but be careful...", 7f);
         yield return SaySajak("If you make a mistake or take too long to guess...", 6f);
         yield return SaySajak("You'll BANKRUPT!", 6f);
@@ -47,13 +47,13 @@ public class ExpressWedgeLanded : MonoBehaviour {
 
     internal IEnumerator TakeChance() {
         RoundRunner.AudioTracks.Play("get_set");
-        Sajak.text = "!<-- 3 -->!";
+        Sajak.text = "<!-- 3 --!>";
         yield return new WaitForSeconds(1f);
         RoundRunner.AudioTracks.Play("get_set");
-        Sajak.text = "!<-- 2 -->!";
+		Sajak.text = "<!-- 2 --!>";
         yield return new WaitForSeconds(1f);
         RoundRunner.AudioTracks.Play("get_set");
-        Sajak.text = "!<-- 1 -->!";
+		Sajak.text = "<!-- 1 --!>";
         yield return new WaitForSeconds(0.558f);
         RoundRunner.AudioTracks.Play("express_music");
         yield return new WaitForSeconds(0.442f);

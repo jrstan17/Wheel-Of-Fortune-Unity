@@ -455,19 +455,19 @@ public class KeyPress : MonoBehaviour {
 
     private IEnumerator IfNoDebugField() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            if (isWheelActive) {
-                SpinWheel spinWheel = RoundRunner.WheelCanvas.transform.GetChild(0).gameObject.GetComponent<SpinWheel>();
+			if (isWheelActive) {
+				SpinWheel spinWheel = RoundRunner.WheelCanvas.transform.GetChild(0).gameObject.GetComponent<SpinWheel>();
 
-                if (!isMenuActive && !spinWheel.HasSpun) {
-                    yield return StartCoroutine(spinWheel.Spin(false));
-                }
-            } else if (isBonusWheelActive) {
-                if (!isMenuActive && !BonusWheelSpin.HasSpun) {
-                    yield return StartCoroutine(BonusWheelSpin.Spin(false));
-                }
-            } else if (!IsSolvingActive){
-                RoundRunner.Spin_Clicked();
-            }
+				if (!isMenuActive && !spinWheel.HasSpun) {
+					yield return StartCoroutine(spinWheel.Spin(false));
+				}
+			} else if (isBonusWheelActive) {
+				if (!isMenuActive && !BonusWheelSpin.HasSpun) {
+					yield return StartCoroutine(BonusWheelSpin.Spin(false));
+				}
+			} else if (RoundRunner.IllSpin.interactable && !expressWedgeLanded.IsExpressRunning) {
+				RoundRunner.Spin_Clicked();
+			}
         }
 
         if (Input.GetKeyDown(KeyCode.Escape)) {

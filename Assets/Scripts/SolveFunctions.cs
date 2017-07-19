@@ -12,9 +12,11 @@ public class SolveFunctions : MonoBehaviour {
     public InputField SolveField;
     public CountdownTimer Countdown;
     public Button IllSpinButton;
+	public Button SubmitButton;
 
     public void ToggleWindow(bool enable) {
         if (enable) {
+			SubmitButton.interactable = true;
             KeyPress.IsSolvingActive = true;
             GetComponent<Canvas>().enabled = true;
             Countdown.StartTimer();
@@ -52,6 +54,7 @@ public class SolveFunctions : MonoBehaviour {
     }
 
     public void Submit_Clicked() {
+		SubmitButton.interactable = false;
         ToggleWindow(false);
 
         string guess = Format(SolveField.GetComponent<InputField>().text);
