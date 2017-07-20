@@ -34,7 +34,6 @@ public class PuzzleFactory {
         previousPuzzleIndex = randomIndex;
 
         return Puzzles[randomIndex];
-        //return new Puzzle("IF YOU DON'T LOVE ME I'LL KICK YOUR BUTT\tCategory\t10/16/2014", 1);
     }
 
     public Puzzle NewPuzzle(string text) {
@@ -85,7 +84,7 @@ public class PuzzleFactory {
         float ratio = (float) sum / total;
         Debug.Log("RSTLNE: " + sum + " / Letters: " + total + " / Ratio: " + ratio.ToString("P"));
 
-        return (ratio <= maxRatioAllowed);
+		return (ratio <= maxRatioAllowed && ratio != 0);
     }
 
     internal Puzzle NewPuzzle(int puzzleIndex) {
