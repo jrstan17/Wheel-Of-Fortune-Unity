@@ -205,6 +205,8 @@ public class KeyPress : MonoBehaviour {
             CustomText = text;
             RoundRunner.RoundNumber--;
             RoundRunner.NewBoard(false);
+
+			Debug.Log("Is Valid Bonus Puzzle: " + RoundRunner.PuzzleFactory.IsRandomRoundPuzzleValid(text, RoundType.Bonus));
         }
     }
 
@@ -465,7 +467,7 @@ public class KeyPress : MonoBehaviour {
 				if (!isMenuActive && !BonusWheelSpin.HasSpun) {
 					yield return StartCoroutine(BonusWheelSpin.Spin(false));
 				}
-			} else if (RoundRunner.IllSpin.interactable && !expressWedgeLanded.IsExpressRunning) {
+			} else if (RoundRunner.IllSpin.interactable) {
 				RoundRunner.Spin_Clicked();
 			}
         }

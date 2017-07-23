@@ -429,7 +429,6 @@ public class RoundRunner : MonoBehaviour {
             string no = yes + " Let's give " + PlayerList.NextPlayersName() + " a" + chance;
             StartCoroutine(AskIfFreePlay(yes, no));
         } else if (arg == SolvedIncorrectlyArg.Express) {
-			IsTimeForLetter = false;
             AudioTracks.Stop("express_music");
             KeyPress.expressWedgeLanded.StopTimer();
             AudioTracks.Play("buzzer");

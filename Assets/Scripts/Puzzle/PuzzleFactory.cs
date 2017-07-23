@@ -7,6 +7,7 @@ public class PuzzleFactory {
 
     public static int REGULAR_ROUND_PUZZLE_SIZE_MIN = 16;
     public static int BONUS_ROUND_PUZZLE_SIZE_MAX = 16;
+	public static float BONUS_MAX_RSTLNE_RATIO = 0.3f;
     const int TIMEOUT = 1000000;
 
     List<Puzzle> Puzzles;
@@ -41,27 +42,31 @@ public class PuzzleFactory {
         return new Puzzle(text + "\tCustom Puzzle\t10/16/2014", 1);
     }
 
-    private bool IsRandomRoundPuzzleValid(int randomIndex, RoundType type) {
+    public bool IsRandomRoundPuzzleValid(int randomIndex, RoundType type) {
         string answer = Puzzles[randomIndex].Text;
-        int letters = 0;
-        foreach (char c in answer) {
-            if (char.IsLetter(c)) {
-                letters++;
-            }
-        }
-
-        if (type == RoundType.Regular) {
-            if (letters >= REGULAR_ROUND_PUZZLE_SIZE_MIN) {
-                return true;
-            }
-        } else if (type == RoundType.Bonus) {
-            if (letters <= BONUS_ROUND_PUZZLE_SIZE_MAX && IsValidLetterRatio(answer, Utilities.RSTLNE, 0.3f)) {
-                return true;
-            }
-        }
-
-        return false;
+		return IsRandomRoundPuzzleValid(answer, type);
     }
+
+	public bool IsRandomRoundPuzzleValid(string answer, RoundType type){
+		int letters = 0;
+		foreach (char c in answer) {
+			if (char.IsLetter(c)) {
+				letters++;
+			}
+		}
+
+		if (type == RoundType.Regular) {
+			if (letters >= REGULAR_ROUND_PUZZLE_SIZE_MIN) {
+				return true;
+			}
+		} else if (type == RoundType.Bonus) {
+			if (letters <= BONUS_ROUND_PUZZLE_SIZE_MAX && IsValidLetterRatio(answer, Utilities.RSTLNE, BONUS_MAX_RSTLNE_RATIO)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 
     internal bool IsValidLetterRatio(string answer, List<char> lettersToCheck, float maxRatioAllowed) {
         List<char> answerLetters = new List<char>();
