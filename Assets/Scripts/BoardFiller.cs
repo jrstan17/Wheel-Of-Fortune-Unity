@@ -276,6 +276,7 @@ public class BoardFiller : MonoBehaviour {
 
         LettersRevealed = revealData.Count;
 
+		RoundRunner.ToggleUIButtonsParsing("all", false);
         yield return StartCoroutine(WaitForLetter(1f, letters, revealData));
     }
 
