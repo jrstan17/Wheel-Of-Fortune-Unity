@@ -17,6 +17,7 @@ public class BoardFiller : MonoBehaviour {
     internal Color32 ScreenColor;
 
     internal static int LettersRevealed = 0;
+	internal static bool ExpressRemainSoundAlreadySounded = false;
 
     private IEnumerator coroutine;
 
@@ -326,6 +327,17 @@ public class BoardFiller : MonoBehaviour {
                 }
             }
         }
+
+		if (RoundRunner.KeyPress.expressWedgeLanded.IsExpressRunning && PuzzleContainsOnly(LetterType.Vowel) || PuzzleContainsOnly(LetterType.Consonant)) {
+
+			if (!ExpressRemainSoundAlreadySounded) {
+				AudioTracks.Play("remains");
+				ExpressRemainSoundAlreadySounded = true;
+			}
+			if (PuzzleContainsOnly(LetterType.Consonant)) {
+				RoundRunner.ToggleUIButtonsParsing("buy", false);
+			}
+		}
 
         yield return 0;
     }

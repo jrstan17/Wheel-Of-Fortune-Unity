@@ -773,6 +773,11 @@ public class RoundRunner : MonoBehaviour {
 
         ToggleUIButtonsParsing("all", false);
 
+		if (isExpress && BoardFiller.PuzzleContainsOnly(LetterType.Consonant)) {
+			ToggleUIButtonsParsing("solve", true);
+			return;
+		}
+
         if (KeyPress.IsTimeForFreePlayDecision) {
             return;
         }
@@ -999,6 +1004,7 @@ public class RoundRunner : MonoBehaviour {
     }
 
     public IEnumerator ExpressTimeElapsed() {
+		BoardFiller.ExpressRemainSoundAlreadySounded = false;
         AudioTracks.Stop("express_music");
         KeyPress.expressWedgeLanded.StopTimer();
         AudioTracks.Play("buzzer");
