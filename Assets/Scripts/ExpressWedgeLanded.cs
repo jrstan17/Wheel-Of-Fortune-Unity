@@ -28,13 +28,13 @@ public class ExpressWedgeLanded : MonoBehaviour {
         KeyPress.IsTimeForExpressDecision = true;
         yield return SaySajak("You've landed on the Express Wedge, " + PlayerList.CurrentPlayer.Name + "!", 4.5f);
 
-        yield return SaySajak("Press (1) to skip the Express and guess a consonant for 1,000 or...", 7f);
-        yield return SaySajak("Press (2) to get on the Express ride...", 6f);
-        yield return SaySajak("Where you keep calling consonants for 1,000 or buy vowels...", 7f);
+        yield return SaySajak("Press 'N' to skip the Express and guess a consonant for 1,000 or...", 7f);
+        yield return SaySajak("Press 'Y' to get on the Express ride...", 6f);
+        yield return SaySajak("Where you continue calling consonants for 1,000 or buy vowels...", 7f);
         yield return SaySajak("until you solve the puzzle, but be careful...", 7f);
         yield return SaySajak("If you make a mistake or take too long to guess...", 6f);
         yield return SaySajak("You'll BANKRUPT!", 6f);
-        Sajak.text = "Press (1) to skip.  Press (2) to ride the Express!";
+        Sajak.text = "Press 'Y' to ride the Express! Press 'N' to skip.";
     }
 
     public void StopTimer() {

@@ -98,21 +98,21 @@ public class KeyPress : MonoBehaviour {
                 RoundRunner.SajakText.text = "It's your turn, " + PlayerList.CurrentPlayer.Name + ".";
             }
         } else if (IsTimeForMysteryDecision) {
-            if (Input.GetKeyUp(KeyCode.Alpha2) || Input.GetKeyUp(KeyCode.Keypad2)) {
+            if (Input.GetKeyUp(KeyCode.Y)) {
                 IsTimeForMysteryDecision = false;
                 StopCoroutine(MysteryWedgeCoroutine);
                 StartCoroutine(mysteryWedgeLanded.TakeChance());
-            } else if (Input.GetKeyUp(KeyCode.Alpha1) || Input.GetKeyUp(KeyCode.Keypad1)) {
+            } else if (Input.GetKeyUp(KeyCode.N)) {
                 IsTimeForMysteryDecision = false;
                 StopCoroutine(MysteryWedgeCoroutine);
                 mysteryWedgeLanded.DontTakeChance();
             }
         } else if (IsTimeForExpressDecision) {
-            if (Input.GetKeyUp(KeyCode.Alpha2) || Input.GetKeyUp(KeyCode.Keypad2)) {
+            if (Input.GetKeyUp(KeyCode.Y)) {
                 IsTimeForExpressDecision = false;
                 StopCoroutine(ExpressWedgeCoroutine);
                 StartCoroutine(expressWedgeLanded.TakeChance());
-            } else if (Input.GetKeyUp(KeyCode.Alpha1) || Input.GetKeyUp(KeyCode.Keypad1)) {
+            } else if (Input.GetKeyUp(KeyCode.N)) {
                 IsTimeForExpressDecision = false;
                 StopCoroutine(ExpressWedgeCoroutine);
                 expressWedgeLanded.DontTakeChance();

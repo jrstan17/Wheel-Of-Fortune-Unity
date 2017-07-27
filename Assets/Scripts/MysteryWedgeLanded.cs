@@ -22,10 +22,10 @@ public class MysteryWedgeLanded : MonoBehaviour {
         KeyPress.IsTimeForMysteryDecision = true;
         yield return SaySajak("You've landed on a Mystery Wedge, " + PlayerList.CurrentPlayer.Name + "!", 4.5f);
 
-        yield return SaySajak("Press (1) to skip the mystery and guess a consonant for 1,000 or...", 7f);
-        yield return SaySajak("Press (2) to see what's under the Mystery Wedge...", 6f);
+        yield return SaySajak("Press 'N' to skip the mystery and guess a consonant for 1,000 or...", 7f);
+        yield return SaySajak("Press 'Y' to see what's under the Mystery Wedge...", 6f);
         yield return SaySajak("Hidden underneath is either $10,000 or a Bankrupt!", 7f);
-        Sajak.text = "Press (1) to skip.  Press (2) to take the chance.";
+        Sajak.text = "Press 'Y' to take the chance! Press 'N' to skip.";
     }
 
     internal IEnumerator TakeChance() {
