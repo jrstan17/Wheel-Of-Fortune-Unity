@@ -14,13 +14,10 @@ public class SpinWheel : MonoBehaviour {
     internal bool HasPast = false;
     internal bool IsBonusSpin = false;
 
-    public const int DEFAULT_MIN = 360;
-    public const int DEFAULT_MAX = 720;
-
     internal static bool spinning;
     internal static float SpinTime = 6f;
-    internal static int minAngle = DEFAULT_MIN;
-    internal static int maxAngle = DEFAULT_MAX;
+    internal static int minAngle = Constants.DEFAULT_MIN;
+    internal static int maxAngle = Constants.DEFAULT_MAX;
     internal bool isDebugSpin = false;
     internal string debugWedgeText;
 
