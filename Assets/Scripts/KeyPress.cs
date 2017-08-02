@@ -131,6 +131,7 @@ public class KeyPress : MonoBehaviour {
             Splits[i] = Splits[i].ToUpper();
         }
 
+		StartExpress();
         Reveal();
         RevealSajak();
         BackgroundColor();
@@ -155,6 +156,14 @@ public class KeyPress : MonoBehaviour {
         UseWheel();
         ResetWheel();
     }
+
+	private void StartExpress(){
+		if (Splits[0].Equals("STARTEXPRESS") && Splits.Length == 1) {
+			RoundRunner.CurrentWedge = new WedgeData(1000, "EXPRESS", WedgeType.Express);
+			expressWedgeLanded.Start();
+			ExpressWedgeCoroutine = StartCoroutine(expressWedgeLanded.TakeChance());
+		}
+	}
 
     private void BackgroundColor() {
         if (Splits[0].Equals("BACKGROUNDCOLOR") && Splits.Length == 4) {
