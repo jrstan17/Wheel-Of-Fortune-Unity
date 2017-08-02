@@ -15,4 +15,7 @@ class Constants {
 
     public static readonly float PLAYER_RANDOM_ANIM_DURATION = 5f;
     public static readonly float PLAYER_RANDOM_ANIM_RATE = 0.15f;
+
+    public const int DEFAULT_MIN = 360;
+    public const int DEFAULT_MAX = 630;
 }
