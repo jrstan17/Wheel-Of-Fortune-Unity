@@ -96,8 +96,8 @@ public class SpinWheel : MonoBehaviour {
         }
 
         isDebugSpin = false;
-        minAngle = DEFAULT_MIN;
-        maxAngle = DEFAULT_MAX;
+		minAngle = Constants.DEFAULT_MIN;
+		maxAngle = Constants.DEFAULT_MAX;
 
         StartCoroutine(TimesUp(waitTime));
     }
